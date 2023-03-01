@@ -19,13 +19,13 @@
 # in the templates via {{ site.myvariable }}.
 
 title: "Python Descomplicado: Aprendendo Algoritmos de Forma Simples"
-baseurl: "/python-intro-ptbr/" # the subpath of your site, e.g. /blog
-url: "https://wmonteiro-ai.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-github_username: wmonteiro-ai
 
 # Build settings
 theme: minima
-  
+
+repository:
+  url: https://github.com/wmonteiro-ai/python-intro-ptbr
+
 html:
   use_issues_button: true
   google_analytics_id: G-0LGPFVV5N2
