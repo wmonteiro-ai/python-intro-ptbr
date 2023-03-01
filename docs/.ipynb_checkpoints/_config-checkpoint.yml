@@ -20,9 +20,6 @@
 
 title: "Python Descomplicado: Aprendendo Algoritmos de Forma Simples"
 
-# Build settings
-theme: minima
-
 repository:
   url: https://github.com/wmonteiro-ai/python-intro-ptbr
 
@@ -32,6 +29,10 @@ html:
   
 execute:
   execute_notebooks: "off"
+
+sphinx:
+  config:
+    language: pt
 
 # Exclude from processing.
 # The following items will not be processed, by default.
