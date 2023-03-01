@@ -7,3 +7,6 @@ Olá! Este é um livro totalmente escrito em português e voltado para estudante
 Portanto, se você está interessado em aprender mais sobre algoritmos e como resolver problemas de forma autônoma, "Python Descomplicado: Aprendendo Algoritmos de Forma Simples" pode ser uma ótima opção de leitura para você.
 
 Este livro foi produzido por mim, um humano com experiência acadêmica e profissional na minha área de atuação. Dito isso, o ChatGPT contribuiu para complementar o conteúdo e dar exemplos. Por isso, embora tenha sido uma ferramenta valiosa para a produção deste livro, é importante lembrar que este é um livro criado e editado por um professor/profissional com conhecimento e experiência na área abordada.
+
+```{tableofcontents}
+```

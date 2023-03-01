@@ -1,6 +1,11 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
 format: jb-book
-root: index
-parts:
+root: intro
 chapters:
-  - file: 01-Introducao-Algoritmos.ipynb
-  - file: 02-Introducao-Python.ipynb
+- file: markdown
+- file: notebooks
+- file: markdown-notebooks
+- file: 01-Introducao-Algoritmos.ipynb
+- file: 02-Introducao-Python.ipynb
