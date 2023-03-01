@@ -4,8 +4,5 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
 - file: 01-Introducao-Algoritmos.ipynb
 - file: 02-Introducao-Python.ipynb
