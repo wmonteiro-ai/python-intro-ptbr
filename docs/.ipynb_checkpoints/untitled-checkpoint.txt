@@ -1,6 +1,0 @@
-format: jb-book
-root: index
-parts:
-chapters:
-  - file: 01-Introducao-Algoritmos.ipynb
-  - file: 02-Introducao-Python.ipynb

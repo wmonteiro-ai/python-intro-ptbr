@@ -1,12 +1,3 @@
----
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
-layout: home
-title: "Python Descomplicado: Aprendendo Algoritmos de Forma Simples"
-permalink: /index
----
-
 # Python Descomplicado: Aprendendo Algoritmos de Forma Simples
 
 Olá! Este é um livro totalmente escrito em português e voltado para estudantes que estão dando os seus primeiros passos em desenvolvimento de software. O objetivo é o de explicar algoritmos de uma forma simples usando a linguagem de programação Python.
