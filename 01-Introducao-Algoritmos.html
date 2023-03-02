@@ -1,12 +1,12 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Introdução aos Algoritmos &#8212; Python Descomplicado: Aprendendo Algoritmos de Forma Simples</title>
+    <title>Introdução aos Algoritmos &#8212; Python Descomplicado</title>
   
   
   
@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -45,6 +46,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script src="_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -70,7 +72,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="&lt;no title&gt;" href="02-Introducao-Python.html" />
     <link rel="prev" title="Python Descomplicado: Aprendendo Algoritmos de Forma Simples" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="None">
+  <meta name="docsearch:language" content="en">
   </head>
   
   
@@ -124,7 +126,7 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-    <p class="title logo__title">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</p>
+    <p class="title logo__title">Python Descomplicado</p>
   
 </a>
     
@@ -283,7 +285,7 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-    <p class="title logo__title">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</p>
+    <p class="title logo__title">Python Descomplicado</p>
   
 </a>
     </div>
@@ -306,7 +308,6 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introdução aos Algoritmos</a></li>
-
 </ul>
 
     </div>
@@ -470,136 +471,129 @@ title="Print to PDF"
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Introdução aos Algoritmos
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
+   O que você saberá se você ler todo este capítulo?
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#o-que-voce-precisara-saber-ao-terminar-de-ler-este-capitulo">
-     O que você precisará saber ao terminar de ler este capítulo?
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#comecando-com-codigo-colocando-a-mao-na-massa">
-     Começando com código: colocando a mão na massa
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#os-algoritmos-e-a-sua-vida">
-     Os algoritmos e a sua vida
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#exemplo-1-fazendo-um-bolo">
-       Exemplo 1: Fazendo um bolo
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#ingredientes">
-         Ingredientes:
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#modo-de-preparo">
-         Modo de preparo:
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#resultado-esperado">
-         Resultado esperado:
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#exemplo-2-pedindo-comida-por-aplicativo">
-       Exemplo 2: Pedindo comida por aplicativo
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#pre-requisitos">
-         Pré-requisitos:
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#passo-a-passo">
-         Passo-a-passo:
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id1">
-         Resultado esperado:
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#os-algoritmos-e-os-computadores">
-     Os algoritmos e os computadores
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pseudocodigo">
-     Pseudocódigo
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comecando-com-codigo-colocando-a-mao-na-massa">
+   Começando com código: colocando a mão na massa
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#os-algoritmos-e-a-sua-vida">
+   Os algoritmos e a sua vida
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exemplo-1-fazendo-um-bolo">
+     Exemplo 1: Fazendo um bolo
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#um-exemplo-de-pseudocodigo">
-       Um exemplo de pseudocódigo
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ingredientes">
+       Ingredientes:
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#onde-usar-como-trabalhar-com-pseudocodigos">
-       Onde usar/como trabalhar com pseudocódigos?
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modo-de-preparo">
+       Modo de preparo:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#resultado-esperado">
+       Resultado esperado:
       </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quase-la-para-comecar">
-     Quase lá para começar
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exemplo-2-pedindo-comida-por-aplicativo">
+     Exemplo 2: Pedindo comida por aplicativo
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dados">
-       Dados
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#tipos-de-dados">
-         Tipos de dados
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#constantes-e-variaveis">
-         Constantes e variáveis
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#operadores">
-       Operadores
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pre-requisitos">
+       Pré-requisitos:
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#indentacao">
-       Indentação
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#passo-a-passo">
+       Passo-a-passo:
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#proximos-passos">
-       Próximos passos
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Resultado esperado:
       </a>
      </li>
     </ul>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#os-algoritmos-e-os-computadores">
+   Os algoritmos e os computadores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pseudocodigo">
+   Pseudocódigo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#um-exemplo-de-pseudocodigo">
+     Um exemplo de pseudocódigo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#onde-usar-como-trabalhar-com-pseudocodigos">
+     Onde usar/como trabalhar com pseudocódigos?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quase-la-para-comecar">
+   Quase lá para começar
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dados">
+     Dados
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tipos-de-dados">
+       Tipos de dados
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#constantes-e-variaveis">
+       Constantes e variáveis
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operadores">
+     Operadores
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indentacao">
+     Indentação
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proximos-passos">
+     Próximos passos
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias-bibliograficas">
    Referências bibliográficas
   </a>
@@ -615,8 +609,8 @@ title="Print to PDF"
               
   <section class="tex2jax_ignore mathjax_ignore" id="introducao-aos-algoritmos">
 <h1>Introdução aos Algoritmos<a class="headerlink" href="#introducao-aos-algoritmos" title="Permalink to this headline">#</a></h1>
-<section id="o-que-voce-precisara-saber-ao-terminar-de-ler-este-capitulo">
-<h2>O que você precisará saber ao terminar de ler este capítulo?<a class="headerlink" href="#o-que-voce-precisara-saber-ao-terminar-de-ler-este-capitulo" title="Permalink to this headline">#</a></h2>
+<section id="o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
+<h2>O que você saberá se você ler todo este capítulo?<a class="headerlink" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo" title="Permalink to this headline">#</a></h2>
 <ol class="arabic simple">
 <li><p>Algoritmos podem conter dados.</p>
 <ul class="simple">
@@ -641,17 +635,15 @@ title="Print to PDF"
 <li><p>O algoritmo precisa ser claro, conciso e eficiente na solução do problema proposto.</p></li>
 </ol>
 <p>Ah, antes de começar: veja o vídeo abaixo (ele possui legendas traduzidas para o português, se quiser). É um exemplo do que acontece quando você faz um algoritmo sem pensar direito na sua organização. No caso, Josh Darnit pediu para que os seus filhos fizessem um algoritmo (um passo-a-passo) para fazer um sanduíche de manteiga de amendoim e geleia. E ele seguiu as instruções ao pé da letra, como um computador seguirá ao pé da letra um algoritmo que você irá desenvolver no futuro.</p>
-<a href="https://www.youtube.com/watch?v=cDA3_5982h8">
+<a href="https://www.youtube.com/watch?v=cDA3_5982h8" target="_blank">
     <figure>
         <img alt="Imagem de um bolo redondo de chocolate" src="https://img.youtube.com/vi/cDA3_5982h8/0.jpg" style="max-width:400px; display: block; margin: auto;">
     </figure>
 </a></section>
 <section id="comecando-com-codigo-colocando-a-mao-na-massa">
 <h2>Começando com código: colocando a mão na massa<a class="headerlink" href="#comecando-com-codigo-colocando-a-mao-na-massa" title="Permalink to this headline">#</a></h2>
-<p>Sejamos sinceros: o legal mesmo é colocar a mão na massa logo de cara, não é mesmo? O que acha de um algoritmo em Python que encontra para você uma música com o seu nome direto do Youtube? Este é o algoritmo:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<p>Sejamos sinceros: o legal mesmo é colocar a mão na massa logo de cara, não é mesmo? O que acha de um algoritmo em Python que encontra para você uma música com o seu nome direto do Youtube? Este é o algoritmo e, logo abaixo, o seu resultado para alguém chamado <code class="docutils literal notranslate"><span class="pre">Fulano</span> <span class="pre">de</span> <span class="pre">Tal</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 
 <span class="c1"># Pergunta ao usuário qual é o nome que deve ser procurado na música</span>
@@ -674,43 +666,14 @@ title="Print to PDF"
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Não foi possível encontrar uma música que contém o seu nome.&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
-<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Pergunta ao usuário qual é o nome que deve ser procurado na música</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">nome</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Qual é o seu nome? &#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Faz uma busca no Google por músicas que contêm o nome digitado pelo usuário</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.google.com/search?q=</span><span class="si">{}</span><span class="s1">+música&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nome</span><span class="p">)</span>
-
-<span class="nn">File A:\anaconda3\lib\site-packages\ipykernel\kernelbase.py:1072,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1065</span> <span class="sd">&quot;&quot;&quot;Forward raw_input to frontends</span>
-<span class="g g-Whitespace">   </span><span class="mi">1066</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1067</span><span class="sd"> Raises</span>
-<span class="g g-Whitespace">   </span><span class="mi">1068</span><span class="sd"> ------</span>
-<span class="g g-Whitespace">   </span><span class="mi">1069</span><span class="sd"> StdinNotImplementedError if active frontend doesn&#39;t support stdin.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1070</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1071</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1072</span>     <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1073</span>         <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1074</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1075</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1076</span>     <span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1077</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">[</span><span class="s2">&quot;shell&quot;</span><span class="p">],</span>
-<span class="g g-Whitespace">   </span><span class="mi">1078</span>     <span class="bp">self</span><span class="o">.</span><span class="n">get_parent</span><span class="p">(</span><span class="s2">&quot;shell&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1079</span>     <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1080</span> <span class="p">)</span>
-
-<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Qual é o seu nome?  Fulano de Tal
+Acesse o link abaixo para ouvir uma música que contém o seu nome:
+https://google.com/url?q<span class="o">=</span>https://www.youtube.com/watch%3Fv%3DbFI536LVnJI
 </pre></div>
-</div>
-</div>
 </div>
 <p><a class="reference external" href="https://colab.research.google.com/drive/1woAvHfwUjRk3P_wLfZ-zLXavOenwjfh7?usp=sharing">E este é o link para testar isso na prática</a>. Basta clicar no botão de <code class="docutils literal notranslate"><span class="pre">Play</span></code> logo à direita do código e ver a mágica acontecer. Teste por você mesmo, e veja o que acontece.</p>
 <figure>
-    <img alt="Imagem do Google Colab com o botão em formato de triângulo chamado 'Run cell' realçado" src="../images/runkernel.png" style="max-width:400px; display: block; margin: auto;">
+    <img alt="Imagem do Google Colab com o botão em formato de triângulo chamado 'Run cell' realçado" src="runkernel.png" style="max-width:400px; display: block; margin: auto;">
     <figcaption style="text-align:center;">Observe o botão de "Play" (chamado de "Run cell") realçado em amarelo. Ao entrar no link acima clique neste botão.</figcaption>
 </figure><p>O link acima possui este código que foi escrito em Python. Neste livro você aprenderá a fazer algoritmos como este aqui. Por outro lado, este livro não é um passo-a-passo somente: se assim fosse, você só seria capaz de replicar os passos que eu estaria lhe falando para executar.</p>
 <p>Um profissional de TI recebe o seu salário para resolver problemas e não para apertar teclas no computador para gerar código porque, além de ter habilidades técnicas em sua área de atuação, ele também possui habilidades analíticas e de resolução de problemas que o capacitam a encontrar soluções eficazes e eficientes para os desafios que surgem no trabalho. Isso pode envolver a criação de novos algoritmos, adaptação de algoritmos existentes, integração de sistemas e outras atividades que vão além do simples seguimento de tutoriais de código.</p>
@@ -725,7 +688,7 @@ title="Print to PDF"
 <h3>Exemplo 1: Fazendo um bolo<a class="headerlink" href="#exemplo-1-fazendo-um-bolo" title="Permalink to this headline">#</a></h3>
 <p>Vejamos por exemplo uma receita de bolo de chocolate. Perceba principalmente no exemplo abaixo a organização sequencial da receita e como ela é preparada em uma sequência lógica (afinal, não faria sentido lhe dar o modo de preparo sem passar primeiro os ingredientes, não é?).</p>
 <figure>
-    <img alt="Imagem de um bolo redondo de chocolate" src="../images/american-heritage-chocolate-Id8BO472TbY-unsplash.jpg" style="max-width:400px; display: block; margin: auto;">
+    <img alt="Imagem de um bolo redondo de chocolate" src="american-heritage-chocolate-Id8BO472TbY-unsplash.jpg" style="max-width:400px; display: block; margin: auto;">
     <figcaption style="text-align:center;">Créditos: <a href="https://unsplash.com/@americanheritagechocolate?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">American Heritage Chocolate</a> no <a href="https://unsplash.com/photos/Id8BO472TbY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></figcaption>
 </figure><hr class="docutils" />
 <section id="ingredientes">
@@ -798,7 +761,7 @@ title="Print to PDF"
 <p>O usuário recebe a comida no endereço indicado dentro do tempo estimado.</p>
 <hr class="docutils" />
 <figure>
-    <img alt="Imagem de um bolo redondo de chocolate" src="../images/abillion-F0e3AdcwVbM-unsplash.jpg" style="max-width:400px; display: block; margin: auto;">
+    <img alt="Imagem de um bolo redondo de chocolate" src="abillion-F0e3AdcwVbM-unsplash.jpg" style="max-width:400px; display: block; margin: auto;">
     <figcaption style="text-align:center;">Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">abillion</a> no <a href="https://unsplash.com/photos/F0e3AdcwVbM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>.</figcaption>
 </figure><p>Veja mais uma vez que a organização é parecida com o exemplo do bolo: temos uma lista de pré-requisitos (que antes eram os ingredientes), a sequência de instruções e, finalmente, o resultado esperado. De novo: não importa o que você está pedindo, o modelo do celular ou a sua cidade: o funcionamento deve ser o mesmo e o resultado esperado também deve ser o mesmo, beleza?</p>
 <p>Eu queria trazer estes exemplos para você para que ficasse claro que, ainda que sejam frequentemente associados à inteligência artificial e ao processamento de dados em computadores, os algoritmos podem ser encontrados em muitos outros contextos na vida real.</p>
@@ -938,9 +901,8 @@ title="Print to PDF"
 <p>Também conheceu os pseudocódigos: eles serão necessários para que possamos trabalhar com alguns exemplos e convertê-los em Python, que será o foco a partir de agora. Vamos lá?</p>
 </section>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="referencias-bibliograficas">
-<h1>Referências bibliográficas<a class="headerlink" href="#referencias-bibliograficas" title="Permalink to this headline">#</a></h1>
+<section id="referencias-bibliograficas">
+<h2>Referências bibliográficas<a class="headerlink" href="#referencias-bibliograficas" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>AZEVEDO, E. S.; COSTA, I. G.; PIRES, R. A. V. A contribution to the understanding of the determinants of user satisfaction in food delivery apps. International Journal of Information Management, v. 47, p. 46-57, 2019. doi: 10.1016/j.ijinfomgt.2019.03.003.</p></li>
 <li><p>CHOO, C. W.; MAYERNIK, M. S. Data, information, knowledge, and wisdom. In Annual Review of Information Science and Technology (Vol. 48, pp. 203-252), 2014.</p></li>
@@ -969,6 +931,7 @@ title="Print to PDF"
 <li><p>TURBAN, E.; SHARDA, R.; DELEN, D. Decision support and business intelligence systems. Pearson, 2019.</p></li>
 </ul>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -979,16 +942,16 @@ title="Print to PDF"
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: ""
+            mode: "python"
         },
         kernelOptions: {
-            name: "",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = ''</script>
+    <script>kernelName = 'python3'</script>
 
             </article>
             
@@ -1028,136 +991,129 @@ title="Print to PDF"
 </div>
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Introdução aos Algoritmos
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
+   O que você saberá se você ler todo este capítulo?
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#o-que-voce-precisara-saber-ao-terminar-de-ler-este-capitulo">
-     O que você precisará saber ao terminar de ler este capítulo?
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#comecando-com-codigo-colocando-a-mao-na-massa">
-     Começando com código: colocando a mão na massa
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#os-algoritmos-e-a-sua-vida">
-     Os algoritmos e a sua vida
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#exemplo-1-fazendo-um-bolo">
-       Exemplo 1: Fazendo um bolo
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#ingredientes">
-         Ingredientes:
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#modo-de-preparo">
-         Modo de preparo:
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#resultado-esperado">
-         Resultado esperado:
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#exemplo-2-pedindo-comida-por-aplicativo">
-       Exemplo 2: Pedindo comida por aplicativo
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#pre-requisitos">
-         Pré-requisitos:
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#passo-a-passo">
-         Passo-a-passo:
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id1">
-         Resultado esperado:
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#os-algoritmos-e-os-computadores">
-     Os algoritmos e os computadores
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pseudocodigo">
-     Pseudocódigo
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comecando-com-codigo-colocando-a-mao-na-massa">
+   Começando com código: colocando a mão na massa
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#os-algoritmos-e-a-sua-vida">
+   Os algoritmos e a sua vida
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exemplo-1-fazendo-um-bolo">
+     Exemplo 1: Fazendo um bolo
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#um-exemplo-de-pseudocodigo">
-       Um exemplo de pseudocódigo
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ingredientes">
+       Ingredientes:
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#onde-usar-como-trabalhar-com-pseudocodigos">
-       Onde usar/como trabalhar com pseudocódigos?
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modo-de-preparo">
+       Modo de preparo:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#resultado-esperado">
+       Resultado esperado:
       </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quase-la-para-comecar">
-     Quase lá para começar
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exemplo-2-pedindo-comida-por-aplicativo">
+     Exemplo 2: Pedindo comida por aplicativo
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dados">
-       Dados
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#tipos-de-dados">
-         Tipos de dados
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#constantes-e-variaveis">
-         Constantes e variáveis
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#operadores">
-       Operadores
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pre-requisitos">
+       Pré-requisitos:
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#indentacao">
-       Indentação
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#passo-a-passo">
+       Passo-a-passo:
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#proximos-passos">
-       Próximos passos
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Resultado esperado:
       </a>
      </li>
     </ul>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#os-algoritmos-e-os-computadores">
+   Os algoritmos e os computadores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pseudocodigo">
+   Pseudocódigo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#um-exemplo-de-pseudocodigo">
+     Um exemplo de pseudocódigo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#onde-usar-como-trabalhar-com-pseudocodigos">
+     Onde usar/como trabalhar com pseudocódigos?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quase-la-para-comecar">
+   Quase lá para começar
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dados">
+     Dados
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tipos-de-dados">
+       Tipos de dados
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#constantes-e-variaveis">
+       Constantes e variáveis
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operadores">
+     Operadores
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indentacao">
+     Indentação
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proximos-passos">
+     Próximos passos
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias-bibliograficas">
    Referências bibliográficas
   </a>
