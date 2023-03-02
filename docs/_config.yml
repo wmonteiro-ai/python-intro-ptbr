@@ -25,5 +25,7 @@ html:
 
 sphinx:
   config:
-    language: pt
+    language: en
+  extra_extensions:
+    - sphinx_inline_tabs
 # reference on building the book https://jupyterbook.org/en/stable/start/build.html
