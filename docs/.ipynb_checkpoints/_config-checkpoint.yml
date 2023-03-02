@@ -22,5 +22,8 @@ html:
   use_issues_button: true
   use_repository_button: true
   google_analytics_id: G-0LGPFVV5N2
-  
+
+sphinx:
+  config:
+    language: pt
 # reference on building the book https://jupyterbook.org/en/stable/start/build.html
