@@ -1,0 +1,42 @@
+Traceback (most recent call last):
+  File "A:\anaconda3\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "A:\anaconda3\lib\site-packages\nbclient\client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "A:\anaconda3\lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "A:\anaconda3\lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "A:\anaconda3\lib\asyncio\base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "A:\anaconda3\lib\site-packages\nbclient\client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "A:\anaconda3\lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "A:\anaconda3\lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+Calculadora de IMC: pede ao usuário para inserir seu peso e altura e, em seguida, calcula e imprime seu índice de massa corporal.
+Conversor de temperatura: pede ao usuário para inserir uma temperatura em graus Celsius e converte para Fahrenheit, exibindo o resultado na tela.
+Verificador de idade: pede ao usuário para inserir sua data de nascimento e, em seguida, verifica se a pessoa é maior de idade ou não.
+Calculadora de gorjeta: pede ao usuário para inserir o valor total da conta do restaurante e, em seguida, calcula e imprime a gorjeta com base em uma porcentagem escolhida.
+Gerador de senha: pede ao usuário para inserir a quantidade de caracteres que deseja em sua senha e, em seguida, gera uma senha aleatória com esses caracteres.
+Sorteador de números: pede ao usuário para inserir a quantidade de números a serem sorteados e, em seguida, sorteia esse número de números aleatórios e os exibe na tela.
+Gerador de cartão de bingo: pede ao usuário para inserir a quantidade de cartões de bingo que deseja gerar e, em seguida, gera essa quantidade de cartões aleatórios.
+Verificador de palíndromo: pede ao usuário para inserir uma palavra e, em seguida, verifica se ela é um palíndromo (ou seja, se é a mesma palavra quando lida de trás para frente).
+Verificador de par ou ímpar: pede ao usuário para inserir um número e, em seguida, verifica se é par ou ímpar e exibe a resposta na tela.
+Conversor de moedas: pede ao usuário para inserir um valor em uma moeda e, em seguida, converte para outra moeda escolhida, exibindo o resultado na tela.
+
+Tutorial de Python da W3Schools: https://www.w3schools.com/python/
+Curso de Python no Codecademy: https://www.codecademy.com/learn/learn-python-3
+Livro "Python para todos" de Charles Severance: https://www.py4e.com/book
+------------------
+
+[1;36m  Input [1;32mIn [2][1;36m[0m
+[1;33m    Calculadora de IMC: pede ao usuário para inserir seu peso e altura e, em seguida, calcula e imprime seu índice de massa corporal.[0m
+[1;37m                ^[0m
+[1;31mSyntaxError[0m[1;31m:[0m invalid syntax
+
+SyntaxError: invalid syntax (810880392.py, line 1)
+

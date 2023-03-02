@@ -1,0 +1,956 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Arrumando as coisas para começar a trabalhar com Python &#8212; Python Descomplicado</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script src="_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-0LGPFVV5N2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-0LGPFVV5N2');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01-Introducao-Ambiente';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Arrumando as coisas para começar a falar de algoritmos" href="02-Introducao-Algoritmos.html" />
+    <link rel="prev" title="Python Descomplicado: Aprendendo Algoritmos de Forma Simples" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Python Descomplicado</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Arrumando as coisas para começar a trabalhar com Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="02-Introducao-Algoritmos.html">
+                        Arrumando as coisas para começar a falar de algoritmos
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="03-Variaveis-IO.html">
+                        Primeiros (ou segundos) passos em Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="05-Erros-Comuns.html">
+                        Erros/exceções em Python
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Arrumando as coisas para começar a trabalhar com Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="02-Introducao-Algoritmos.html">
+                        Arrumando as coisas para começar a falar de algoritmos
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="03-Variaveis-IO.html">
+                        Primeiros (ou segundos) passos em Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="05-Erros-Comuns.html">
+                        Erros/exceções em Python
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">Python Descomplicado</p>
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Python Descomplicado: Aprendendo Algoritmos de Forma Simples
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1: Sabendo onde estamos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Arrumando as coisas para começar a trabalhar com Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Introducao-Algoritmos.html">Arrumando as coisas para começar a falar de algoritmos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2: Fazendo coisas legais</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03-Variaveis-IO.html">Primeiros (ou segundos) passos em Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3: Resolvendo tretas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05-Erros-Comuns.html">Erros/exceções em Python</a></li>
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr/issues/new?title=Issue%20on%20page%20%2F01-Introducao-Ambiente.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="_sources/01-Introducao-Ambiente.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Arrumando as coisas para começar a trabalhar com Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
+   O que você saberá se você ler todo este capítulo?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#por-que-python">
+   Por que Python?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nas-universidades">
+     Nas universidades
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instalando-ou-nao-o-python">
+   Instalando (ou não) o Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comecando-com-codigo-colocando-a-mao-na-massa">
+   Começando com código: colocando a mão na massa
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arquivos-do-python-py-e-o-python-console">
+     Arquivos do Python (.py) e o Python Console
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias-bibliograficas">
+   Referências bibliográficas
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="arrumando-as-coisas-para-comecar-a-trabalhar-com-python">
+<h1>Arrumando as coisas para começar a trabalhar com Python<a class="headerlink" href="#arrumando-as-coisas-para-comecar-a-trabalhar-com-python" title="Permalink to this headline">#</a></h1>
+<section id="o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
+<h2>O que você saberá se você ler todo este capítulo?<a class="headerlink" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>🏆 Você irá testar logo de cara o seu primeiro algoritmo!</p></li>
+<li><p>Python é legal, mas não é perfeito. Não seja fanboy/fangirl de linguagem de programação!</p></li>
+<li><p>Muita gente em universidades e empresas usam Python porque é simples, rápido e tem uma galera usando. Mas, apesar disso, ele não é perfeito!</p></li>
+<li><p>Como configurar o seu computador para começar a trabalhar com Python (mais especificamente, com o PyCharm), e o que é o PyCharm e uma IDE.</p></li>
+<li><p>Você irá testar diferentes funções/comandos em Python dentro do PyCharm.</p></li>
+</ol>
+</section>
+<section id="por-que-python">
+<h2>Por que Python?<a class="headerlink" href="#por-que-python" title="Permalink to this headline">#</a></h2>
+<p>Python é uma das linguagens de programação mais utilizadas pelas empresas atualmente, devido à sua simplicidade e facilidade de aprendizado por ser uma linguagem de alto nível. Além disso, a sua grande comunidade de desenvolvedores cria bibliotecas e frameworks para diversas finalidades, o que aumenta a sua versatilidade e funcionalidade. Empresas de diversos segmentos estão utilizando Python para as mais diversas finalidades, desde análise de dados e inteligência artificial até a automação de tarefas e desenvolvimento web.</p>
+<blockquote>
+<div><p><em>Linguagem de alto nível</em>: é uma linguagem de programação que permite escrever códigos de forma mais próxima da linguagem humana.</p>
+</div></blockquote>
+<blockquote>
+<div><p><em>Bibliotecas</em>: é um conjunto de módulos ou arquivos que contêm funcionalidades prontas para serem usadas em programas de computador, permitindo aos desenvolvedores economizar tempo e esforço na criação de novas funcionalidades.</p>
+</div></blockquote>
+<p>A primeira imagem que a humanidade gerou de um buraco negro também foi gerada por cientistas usando Python. Olha só:</p>
+<figure>
+    <img alt="Buraco negro M87" src="https://numpy.org/images/content_images/cs/blackhole.jpg" style="max-width:400px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Buraco negro M87. Créditos: <a href="https://www.jpl.nasa.gov/images/universe/20190410/blackhole20190410.jpg">Event Horizon Telescope Collaboration</a></figcaption>
+</figure><p>Uma das empresas que mais utiliza Python é a Google, que utiliza a linguagem para diversas finalidades, desde automação de tarefas até a inteligência artificial. O Youtube também usa Python em grande parte de sua infraestrutura. Outra empresa que utiliza bastante Python é a NASA, que utiliza a linguagem para processamento de imagens, análise de dados e desenvolvimento de softwares de controle de missões espaciais.</p>
+<p>O uso de Python em empresas também se estende ao desenvolvimento web, com a utilização de frameworks como o Django e Flask, que permitem a criação de aplicações web com rapidez e eficiência. Empresas como Instagram, Spotify, Dropbox e Reddit utilizam Python em suas aplicações web, devido à sua facilidade de desenvolvimento e escalabilidade.</p>
+<p>Além disso, Python é amplamente utilizado em análise de dados e inteligência artificial, com bibliotecas como NumPy, Pandas e Scikit-learn, que permitem a manipulação de grandes conjuntos de dados e a criação de modelos de machine learning com facilidade. Empresas como Amazon, Netflix e Airbnb utilizam Python em seus processos de análise de dados e machine learning.</p>
+<p>Por fim, Python também é utilizado em automação de tarefas e scripts, permitindo a criação de rotinas automatizadas para diversos fins, desde backups até análise de logs. Empresas de diversos segmentos utilizam Python para automatizar tarefas rotineiras e melhorar a eficiência de seus processos.</p>
+<section id="nas-universidades">
+<h3>Nas universidades<a class="headerlink" href="#nas-universidades" title="Permalink to this headline">#</a></h3>
+<p>Nas universidades, o Python tem sido amplamente utilizado para ensinar conceitos básicos de programação, como variáveis, estruturas de controle de fluxo, funções e estruturas de dados (veremos esses itens em breve). Além disso, o Python é amplamente utilizado em disciplinas de ciência de dados, inteligência artificial e aprendizado de máquina (<em>machine learning</em>), devido à sua capacidade de processamento de grandes volumes de dados e aos seus módulos especializados nessas áreas.</p>
+<p>O Python também é utilizado em outros setores como finanças, marketing e automação de processos. A sua facilidade de aprendizado e rapidez no desenvolvimento de soluções têm sido fatores determinantes para a sua escolha, além de possuir um vasto suporte da comunidade, permitindo a utilização de bibliotecas e módulos já desenvolvidos e testados por outros usuários.</p>
+<p>Mas é claro: não é legal ser fanboy/fangirl de linguagem de programação e colocar o Python como a “melhor” linguagem de programação do Universo. Longe disso: existem várias outras <a class="reference external" href="https://www.tiobe.com/tiobe-index/">como você pode ver neste ranking</a>. Ela também possui algumas desvantagens como, por exemplo:</p>
+<ul class="simple">
+<li><p>Desempenho inferior a linguagens de baixo nível, como C e C++, o que pode ser um problema em alguns tipos de aplicações muito específicas que exigem alta performance;</p></li>
+<li><p>Falta de compatibilidade com versões anteriores, o que pode tornar a migração de versões um processo complexo em alguns casos;</p></li>
+<li><p>Limitações em relação à criação de interfaces gráficas (como jogos), já que a maioria das bibliotecas disponíveis não são nativas do Python.</p></li>
+</ul>
+</section>
+</section>
+<section id="instalando-ou-nao-o-python">
+<h2>Instalando (ou não) o Python<a class="headerlink" href="#instalando-ou-nao-o-python" title="Permalink to this headline">#</a></h2>
+<p>Você pode usar o Word para escrever textos, o PowerPoint para fazer apresentações, a Steam para comprar jogos para o computador e o Chrome para navegar na internet. Mas, o que você usaria para trabalhar com algoritmos? Para isso poderíamos usar as IDEs.</p>
+<p>Uma IDE (<em>Integrated Development Environment</em>) é um ambiente de desenvolvimento integrado que reúne diversas ferramentas necessárias para a criação e edição de códigos de programação em um único lugar. Seria dentro da IDE que escreveríamos, testaríamos e analisaríamos o código.</p>
+<p>O Python possui várias IDEs disponíveis como, por exemplo, o PyCharm, Visual Studio, Visual Studio Code, e Spyder. Para desenvolver algoritmos em Python também seria possível desenvolver códigos direto do navegador com soluções como o <a class="reference external" href="https://repl.it">repl.it</a> e <a class="reference external" href="https://colab.research.google.com">Google Colab</a>.</p>
+<p>A recomendação é a de que você instale o PyCharm para fazer os seus algoritmos. Se você está interessado em seguir em frente com o PyCharm e gostaria de saber como instalá-lo, recomendo acessar este <a class="reference external" href="https://medium.com/&#64;wmonteiro/instalando-o-pycharm-684bbd52bae9">passo-a-passo que eu criei</a> especificamente para isso.</p>
+<p>A partir de agora eu assumirei que você já está com o PyCharm (ou alguma outra alternativa) já instalada no seu computador. Se tudo deu certo, você terá uma janela com essa carinha:</p>
+<figure>
+    <img alt="Tela inicial do PyCharm" src="pycharm_new_project.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Tela inicial do PyCharm após a criação de um projeto</figcaption>
+</figure></section>
+<section id="comecando-com-codigo-colocando-a-mao-na-massa">
+<h2>Começando com código: colocando a mão na massa<a class="headerlink" href="#comecando-com-codigo-colocando-a-mao-na-massa" title="Permalink to this headline">#</a></h2>
+<p>Sejamos sinceros: o legal mesmo é colocar a mão na massa logo de cara, não é mesmo? O que acha de um algoritmo em Python que gera uma tabela de um campeonato de Counter-Strike? Veja o código abaixo:</p>
+<figure>
+    <img alt="Streamer da Twitch.tv 'Gaules'" src="gau.jpg" style="max-width:400px; display: block; margin: auto;">
+    <figcaption style="text-align:center;"><em>Começççççççççççou!</em></figcaption>
+</figure><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lista de times</span>
+<span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Astralis&#39;</span><span class="p">,</span> <span class="s1">&#39;Na`Vi&#39;</span><span class="p">,</span> <span class="s1">&#39;G2&#39;</span><span class="p">,</span> <span class="s1">&#39;Vitality&#39;</span><span class="p">,</span> <span class="s1">&#39;Liquid&#39;</span><span class="p">,</span> <span class="s1">&#39;FURIA&#39;</span><span class="p">]</span>
+
+<span class="c1"># Lista de resultados [time1, time2, resultado_time1, resultado_time2]</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;Astralis&#39;</span><span class="p">,</span> <span class="s1">&#39;G2&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Na`Vi&#39;</span><span class="p">,</span> <span class="s1">&#39;Vitality&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Liquid&#39;</span><span class="p">,</span> <span class="s1">&#39;FURIA&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Astralis&#39;</span><span class="p">,</span> <span class="s1">&#39;Liquid&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;G2&#39;</span><span class="p">,</span> <span class="s1">&#39;FURIA&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Vitality&#39;</span><span class="p">,</span> <span class="s1">&#39;Astralis&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Na`Vi&#39;</span><span class="p">,</span> <span class="s1">&#39;Liquid&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;FURIA&#39;</span><span class="p">,</span> <span class="s1">&#39;Vitality&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Astralis&#39;</span><span class="p">,</span> <span class="s1">&#39;Na`Vi&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;G2&#39;</span><span class="p">,</span> <span class="s1">&#39;Vitality&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Liquid&#39;</span><span class="p">,</span> <span class="s1">&#39;Astralis&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;FURIA&#39;</span><span class="p">,</span> <span class="s1">&#39;Na`Vi&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="c1"># Dicionário para armazenar a pontuação de cada time</span>
+<span class="n">pontuacao</span> <span class="o">=</span> <span class="p">{</span><span class="n">time</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;pontos&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;jogos&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vitorias&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span> <span class="k">for</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">times</span><span class="p">}</span>
+
+<span class="c1"># Loop para atualizar a pontuação de cada time</span>
+<span class="k">for</span> <span class="n">jogo</span> <span class="ow">in</span> <span class="n">resultados</span><span class="p">:</span>
+    <span class="n">time1</span><span class="p">,</span> <span class="n">time2</span><span class="p">,</span> <span class="n">resultado1</span><span class="p">,</span> <span class="n">resultado2</span> <span class="o">=</span> <span class="n">jogo</span>
+    <span class="k">if</span> <span class="n">resultado1</span> <span class="o">&gt;</span> <span class="n">resultado2</span><span class="p">:</span>
+        <span class="n">pontuacao</span><span class="p">[</span><span class="n">time1</span><span class="p">][</span><span class="s1">&#39;pontos&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">3</span>
+        <span class="n">pontuacao</span><span class="p">[</span><span class="n">time1</span><span class="p">][</span><span class="s1">&#39;vitorias&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">resultado1</span> <span class="o">&lt;</span> <span class="n">resultado2</span><span class="p">:</span>
+        <span class="n">pontuacao</span><span class="p">[</span><span class="n">time2</span><span class="p">][</span><span class="s1">&#39;pontos&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">3</span>
+        <span class="n">pontuacao</span><span class="p">[</span><span class="n">time2</span><span class="p">][</span><span class="s1">&#39;vitorias&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pontuacao</span><span class="p">[</span><span class="n">time1</span><span class="p">][</span><span class="s1">&#39;pontos&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">pontuacao</span><span class="p">[</span><span class="n">time2</span><span class="p">][</span><span class="s1">&#39;pontos&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">pontuacao</span><span class="p">[</span><span class="n">time1</span><span class="p">][</span><span class="s1">&#39;jogos&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">pontuacao</span><span class="p">[</span><span class="n">time2</span><span class="p">][</span><span class="s1">&#39;jogos&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># Classificar os times por pontos e exibir a tabela</span>
+<span class="n">classificacao</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pontuacao</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;pontos&#39;</span><span class="p">],</span> <span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;vitorias&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Tabela de classificação:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:&lt;15}</span><span class="s1"> </span><span class="si">{:&lt;10}</span><span class="s1"> </span><span class="si">{:&lt;10}</span><span class="s1"> </span><span class="si">{:&lt;10}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Pontos&#39;</span><span class="p">,</span> <span class="s1">&#39;Vitórias&#39;</span><span class="p">,</span> <span class="s1">&#39;Jogos&#39;</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">time</span><span class="p">,</span> <span class="n">pontos</span> <span class="ow">in</span> <span class="n">classificacao</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:&lt;15}</span><span class="s1"> </span><span class="si">{:&lt;10}</span><span class="s1"> </span><span class="si">{:&lt;10}</span><span class="s1"> </span><span class="si">{:&lt;10}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">pontos</span><span class="p">[</span><span class="s1">&#39;pontos&#39;</span><span class="p">],</span> <span class="n">pontos</span><span class="p">[</span><span class="s1">&#39;vitorias&#39;</span><span class="p">],</span> <span class="n">pontos</span><span class="p">[</span><span class="s1">&#39;jogos&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tabela de classificação:
+Time            Pontos     Vitórias   Jogos     
+Astralis        9          3          5         
+Na`Vi           6          2          4         
+G2              6          2          3         
+Liquid          6          2          4         
+FURIA           6          2          4         
+Vitality        3          1          4         
+</pre></div>
+</div>
+</div>
+</div>
+<p>Viu o resultado acima? Ele gerou uma tabela toda bonita contendo os times já ordenados pela pontuação. Isso poderia servir para qualquer outro campeonato: futebol, sinuca ou qualquer outra coisa que poderia entrar neste formato.</p>
+<p>Quer testar isso? Volte lá no PyCharm e apague todo o conteúdo que está naquela aba <code class="docutils literal notranslate"><span class="pre">main.py</span></code>. Este arquivo <code class="docutils literal notranslate"><span class="pre">main.py</span></code> possui o seu código-fonte, e é isso que iremos substituir.</p>
+<blockquote>
+<div><p><em>Código-fonte</em>: É o arquivo que contém o código na sua forma original, antes de ser compilado ou interpretado, e é através dele que os desenvolvedores podem criar, editar e aprimorar os programas.</p>
+</div></blockquote>
+<p>Você deverá ficar com algo assim:</p>
+<figure>
+    <img alt="Tela inicial do PyCharm com o código-fonte de exemplo removido" src="pycharm_blank.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Tela inicial do PyCharm após apagar o conteúdo do "main.py".</figcaption>
+</figure><p>Agora, vamos copiar e colar o código acima dentro desta tela. Você deve ficar com algo assim:</p>
+<figure>
+    <img alt="Tela inicial do PyCharm com o nosso código-fonte adicionado" src="pycharm_pasted.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Tela inicial do PyCharm após inserir o código da tabela do campeonato dentro do "main.py".</figcaption>
+</figure><p>Agora é hora de rodar (executar) o código. Você pode fazer isso de algumas formas:</p>
+<ol class="arabic simple">
+<li><p>Apertar <code class="docutils literal notranslate"><span class="pre">Shift</span></code> e <code class="docutils literal notranslate"><span class="pre">F10</span></code> no seu teclado;</p></li>
+<li><p>Clicando no botão de <code class="docutils literal notranslate"><span class="pre">Run</span></code> (triângulo verde no canto superior direito da tela, destacado abaixo);</p></li>
+<li><p>No menu superior, clicando em <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">&gt;</span> <span class="pre">Run</span> <span class="pre">'$ARQUIVO'</span></code> (neste caso, seria <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">&gt;</span> <span class="pre">Run</span> <span class="pre">'main'</span></code>).</p></li>
+</ol>
+<figure>
+    <img alt="Botão para rodar o código" src="pycharm_run.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Botão para rodar (executar) o código destacado em roxo.</figcaption>
+</figure><p>Com isso, o seu código deve executar e os resultados aparecerão na parte inferior do PyCharm. Veja a imagem abaixo:</p>
+<figure>
+    <img alt="Resultado da execução do algoritmo mostrando a tabela de classificação com 6 equipes e as colunas pontos, vitórias e jogos." src="pycharm_results.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Resultado da execução do algoritmo, em roxo.</figcaption>
+</figure><p>Você também deve ter notado a mensagem final <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">finished</span> <span class="pre">with</span> <span class="pre">exit</span> <span class="pre">code</span> <span class="pre">0</span></code>. Isto significa que o código rodou sem problemas. Agora, o que aconteceria se você digitasse <em>qualquer</em> outra coisa no meio do arquivo? Por exemplo: na linha 24, troque o texto <code class="docutils literal notranslate"><span class="pre">resultados</span></code> por <code class="docutils literal notranslate"><span class="pre">abc</span></code>. Deve ficar assim:</p>
+<figure>
+    <img alt="Linha 24 do algoritmo editada. O texto 'resultados' foi substituído pelo texto 'abc'. Há um realce em vermelho sob o texto 'abc'." src="pycharm_typo.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Trocando o texto "resultados" por "abc" na linha 24.</figcaption>
+</figure><p>Notou uma linha em ziguezague (ou uma “cobrinha”) embaixo do <code class="docutils literal notranslate"><span class="pre">abc</span></code>? O PyCharm ajuda a detectar erros para te mostrar com antecedência. Se você passar o mouse em cima do <code class="docutils literal notranslate"><span class="pre">abc</span></code> verá que aparecerá um texto com a mensagem <code class="docutils literal notranslate"><span class="pre">Unresolved</span> <span class="pre">reference</span> <span class="pre">'abc'</span></code>.</p>
+<p>Isto, traduzindo para o português, significa <code class="docutils literal notranslate"><span class="pre">Referência</span> <span class="pre">'abc'</span> <span class="pre">não-resolvida</span></code>. Reescrevendo de forma mais clara: <code class="docutils literal notranslate"><span class="pre">Você</span> <span class="pre">tá</span> <span class="pre">querendo</span> <span class="pre">usar</span> <span class="pre">um</span> <span class="pre">negócio</span> <span class="pre">chamado</span> <span class="pre">'abc'</span> <span class="pre">que</span> <span class="pre">não</span> <span class="pre">existe</span> <span class="pre">em</span> <span class="pre">nenhum</span> <span class="pre">outro</span> <span class="pre">lugar</span> <span class="pre">no</span> <span class="pre">código.</span> <span class="pre">Tá</span> <span class="pre">certo</span> <span class="pre">isso?</span></code>. O PyCharm está avisando que vai dar erro isso aí. O que acontece se ignorarmos este erro e tentarmos rodar o código mesmo assim (seja clicando no triângulo verde, indo no menu <code class="docutils literal notranslate"><span class="pre">Run</span></code> ou apertando <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">F10</span></code>)? Olha só:</p>
+<figure>
+    <img alt="Mensagem de erro com o texto 'NameError: name abc is not defined'." src="pycharm_nameerror.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Deu erro. Tá em vermelho, e mensagens em vermelho não são coisas boas, né?</figcaption>
+</figure><p>Parece confuso, mas não é. O Python é bem amigável quanto às mensagens de erro. Vamos traduzir por partes:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Traceback</span> <span class="pre">(most</span> <span class="pre">recent</span> <span class="pre">call</span> <span class="pre">last):</span></code> <em>“Viu, esse aqui foi o último erro que achei e que fez o código parar de funcionar, ó:”</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&quot;$ARQUIVO&quot;,</span> <span class="pre">line</span> <span class="pre">$LINHA,</span> <span class="pre">in</span> <span class="pre">&lt;module&gt;</span></code>: <em>“O erro aconteceu aqui ó, nesse $ARQUIVO (no nosso caso, no <code class="docutils literal notranslate"><span class="pre">main.py</span></code>) e nessa $LINHA (no nosso caso, na linha 24), entendeu?”</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">jogo</span> <span class="pre">in</span> <span class="pre">abc:</span></code>: <em>“Tá com preguiça de abrir aquela linha 24 para ver o que tem lá? Não tem problema: a linha 24 tinha isso aqui ó.”</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NameError:</span> <span class="pre">name</span> <span class="pre">'abc'</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></code>: <em>“O erro que teve aqui foi um erro de nome. No caso, não achei em lugar nenhum alguém com o nome de ‘abc’. O que é isso? O que eu deveria fazer com isso? Me ajuda aí.”</em></p></li>
+</ol>
+<p>Diferentes erros terão diferentes tratamentos. Ou seja, não será sempre que aparecerá um <code class="docutils literal notranslate"><span class="pre">NameError</span></code>, mas as explicações farão sentido para você ao longo do caminho. Para te ajudar, também <a class="reference internal" href="05-Erros-Comuns.html#content-commonerrors"><span class="std std-ref">criei uma seção com os tratamentos mais comuns aos erros de código para você</span></a>.</p>
+<section id="arquivos-do-python-py-e-o-python-console">
+<h3>Arquivos do Python (.py) e o Python Console<a class="headerlink" href="#arquivos-do-python-py-e-o-python-console" title="Permalink to this headline">#</a></h3>
+<p>Você também poderá usar o PyCharm para usar o console do Python. Este console é bem útil para rodar de comandos e ver os resultados em tempo real. Além disso, o console é uma ferramenta de depuração (<em>debug</em>) muito útil, pois permite que o desenvolvedor teste comandos e veja imediatamente se eles estão funcionando como esperado.</p>
+<p>Assim, imagine que o console do Python pode te ajudar por ser uma maneira fácil e rápida de testar ideias e verificar o funcionamento de funções e scripts. Agora, qual é a diferença entre usar aquele arquivo (o <code class="docutils literal notranslate"><span class="pre">main.py</span></code> no exemplo anterior) e usar o console?</p>
+<p>Enquanto que o arquivo .py permite que você salve o código em um arquivo e o execute posteriormente quantas vezes quiser, o console do Python executa o código em tempo real e apenas permite que você execute o código que foi digitado enquanto o console está aberto. Em outras palavras, o arquivo .py permite que você escreva seu código em um ambiente mais estruturado, <strong>salve-o e execute-o quantas vezes quiser</strong>, enquanto o console do Python é mais útil para <strong>testar pequenos trechos de código</strong> ou para interagir com o código em tempo real.</p>
+<p>Fazendo uma comparação com o mundo real, podemos comparar o arquivo .py com uma receita de bolo escrita em um caderno de receitas. Você pode escrever a receita em um caderno, salvar e acessar novamente sempre que quiser fazer o bolo. Por outro lado, o console do Python seria como estar em uma cozinha, onde você pode testar pequenas partes da receita para ver como ficaria o sabor final do bolo, mas não seria apropriado para escrever e armazenar a receita completa.</p>
+<figure>
+    <img alt="Botão 'Python Console' realçado dentro do PyCharm" src="pycharm_console.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Observe o botão "Python Console" no canto inferior do PyCharm.</figcaption>
+</figure><p>Quer testar o Python Console? Digite o comando abaixo dentro do console e logo após os <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Alô alô, testando.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Depois de digitar, aperte <code class="docutils literal notranslate"><span class="pre">Enter</span></code>. Deverá aparecer a mensagem <code class="docutils literal notranslate"><span class="pre">Alô</span> <span class="pre">alô,</span> <span class="pre">testando.</span></code> logo abaixo no console. Deve aparecer algo desse jeito:</p>
+<figure>
+    <img alt="Comando print('Alô alô, testando.') aparecendo no Python Console." src="pycharm_print_input.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">O seu comando digitado deve aparecer mais ou menos desse jeito <em>antes</em> de apertar Enter.</figcaption>
+</figure>
+<figure>
+    <img alt="Resultado da função print('Alô alô, testando.') no Python Console. A frase 'Alô alô, testando.' apareceu na tela." src="pycharm_print_output.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Você deve ter este mesmo resultado na sua tela depois de apertar Enter.</figcaption>
+</figure><p>A função <code class="docutils literal notranslate"><span class="pre">print</span></code> é responsável por mostrar uma mensagem na tela. A forma de escrever é sempre a mesma: o texto <code class="docutils literal notranslate"><span class="pre">print</span></code>, seguido pela abertura de parênteses e, dentro dos parênteses e circundados por aspas simples ou duplas, o texto que você quer mostrar. Os exemplos abaixo são permitidos:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Alô alô, testando.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Alô alô, testando.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Assim não seria uma boa prática de formatação/organização:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Alô alô, testando.&quot;</span><span class="p">)</span>  <span class="c1"># veja o espaço entre `print` e `(`</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Alô alô, testando.&quot;</span> <span class="p">)</span> <span class="c1"># veja o espaço antes e depois do fechamento das aspas</span>
+</pre></div>
+</div>
+<p>E isso aqui daria um erro, já que você começaria de um jeito (aspas simples) e terminaria de outro (aspas duplas):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Alô alô, testando.&quot;)   </span>
+</pre></div>
+</div>
+<p>Quer testar mais exemplos? Digite os comandos abaixo, sempre apertando <code class="docutils literal notranslate"><span class="pre">Enter</span></code> no final de cada comando. Fique tranquilo se alguns desses conceitos não estiverem muito claros: veremos com mais calma adiante.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">print(&quot;Olá</span> <span class="pre">de</span> <span class="pre">novo!&quot;)</span></code>: exibe uma outra mensagem na tela. No caso, <em>“Olá de novo!”</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">+</span> <span class="pre">1</span></code>: soma cinco mais um e mostra o resultado (<code class="docutils literal notranslate"><span class="pre">6</span></code>) na tela.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;Olá&quot;</span> <span class="pre">+</span> <span class="pre">&quot;</span> <span class="pre">&quot;</span> <span class="pre">+</span> <span class="pre">&quot;de</span> <span class="pre">novo!&quot;</span></code>: concatena os textos (strings) <em>“Olá”</em> e <em>“de novo!”</em> com um espaço entre eles e exibe o resultado na tela.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">len(&quot;Python&quot;)</span></code>: retorna o comprimento (<em>length</em>, ou total de caracteres) da string “Python”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type(5)</span></code>: retorna o tipo de dado do número 5. Como 5 é um número inteiro (<em>integer</em>), aparecerá <code class="docutils literal notranslate"><span class="pre">int</span></code> na tela.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type(&quot;Python&quot;)</span></code>: retorna o tipo de dado do valor “Python”. Como ele é um texto (<em>string</em>), aparecerá <code class="docutils literal notranslate"><span class="pre">str</span></code> na tela.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max([1,</span> <span class="pre">7,</span> <span class="pre">2,</span> <span class="pre">3])</span></code>: retorna o maior número da lista [1, 7, 2, 3]. No caso, <code class="docutils literal notranslate"><span class="pre">7</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min([1,</span> <span class="pre">7,</span> <span class="pre">2,</span> <span class="pre">3])</span></code>: retorna o menor número da lista [1, 7, 2, 3]. No caso, <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sum([1,</span> <span class="pre">7,</span> <span class="pre">2,</span> <span class="pre">3])</span></code>: retorna a soma dos números da lista [1, 7, 2, 3]. No caso, <code class="docutils literal notranslate"><span class="pre">13</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">round(3.14159265359,</span> <span class="pre">2)</span></code>: arredonda o número pi para 2 casas decimais. No caso, <code class="docutils literal notranslate"><span class="pre">3.14</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool(1)</span></code>: retorna <code class="docutils literal notranslate"><span class="pre">True</span></code>, pois 1 representa o valor <code class="docutils literal notranslate"><span class="pre">verdadeiro</span></code> em Python quando estamos tratando de operações binárias (isto é, verdadeiro/falso, ligado/desligado).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool(0)</span></code>: retorna <code class="docutils literal notranslate"><span class="pre">False</span></code>, pois 0 representa o valor <code class="docutils literal notranslate"><span class="pre">falso</span></code> em Python.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str(123)</span></code>: converte o número 123 para uma string. No caso, resultará em <code class="docutils literal notranslate"><span class="pre">&quot;123&quot;</span></code> (observe as aspas que explicitam que trata-se de um texto, e não de um número).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'Olá</span> <span class="pre">de</span> <span class="pre">novo!'.split()</span></code>: divide a string em uma lista de palavras toda vez que um espaço for encontrado. No caso, retornará <code class="docutils literal notranslate"><span class="pre">['Olá',</span> <span class="pre">'de',</span> <span class="pre">'novo!']</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;wellington&quot;.capitalize()</span></code>: retorna a string <code class="docutils literal notranslate"><span class="pre">&quot;Wellington&quot;</span></code>. Observe que a primeira letra está em maiúscula.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">abs(-5)</span></code>: retorna o valor absoluto de -5. No caso, <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">São</span> <span class="pre">José</span> <span class="pre">dos</span> <span class="pre">Pinhais</span> <span class="pre">&quot;.strip()</span></code>: remove os espaços em branco no início e no fim da string, mas vai ignorar os espaços entre as palavras. No caso, retornará <code class="docutils literal notranslate"><span class="pre">São</span> <span class="pre">José</span> <span class="pre">dos</span> <span class="pre">Pinhais</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;Olá</span> <span class="pre">de</span> <span class="pre">novo!&quot;.replace(&quot;novo&quot;,</span> <span class="pre">&quot;volta&quot;)</span></code>: substitui a palavra <code class="docutils literal notranslate"><span class="pre">&quot;novo&quot;</span></code> por <code class="docutils literal notranslate"><span class="pre">&quot;volta&quot;</span></code> na string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list(range(10))</span></code>: cria uma lista de números inteiros de 0 até 10, mas sem considerar o 10. Ou seja: <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">8,</span> <span class="pre">9]</span></code>.</p></li>
+</ul>
+<p>Neste livro você aprenderá a fazer algoritmos como aquele da tabela de classificação. Por outro lado, este livro não é um passo-a-passo somente: se assim fosse, você só seria capaz de replicar os passos que eu estaria lhe falando para executar.</p>
+<p>Um profissional de TI recebe o seu salário para resolver problemas e não para apertar teclas no computador para gerar código porque, além de ter habilidades técnicas em sua área de atuação, ele também possui habilidades analíticas e de resolução de problemas que o capacitam a encontrar soluções eficazes e eficientes para os desafios que surgem no trabalho. Isso pode envolver a criação de novos algoritmos, adaptação de algoritmos existentes, integração de sistemas e outras atividades que vão além do simples seguimento de tutoriais de código.</p>
+<p>Além disso, muitos dos desafios enfrentados na área de TI não têm soluções prontas e, portanto, exigem que o profissional utilize sua experiência e criatividade para encontrar soluções inovadoras e personalizadas para os problemas em questão. Isso significa que o profissional de TI deve ser capaz de analisar e entender os problemas, desenvolver hipóteses, testar soluções e avaliar resultados, muitas vezes em um ambiente de constante mudança e evolução.</p>
+<p>Portanto, ainda que seguir tutoriais pode ser uma forma útil de aprender novas habilidades e conceitos na área de TI, um desenvolvedor pode ser valorizado principalmente por sua capacidade de resolver problemas de maneira eficaz e inovadora, usando suas habilidades técnicas, analíticas e de pensamento crítico. Por isso, é importante você entender um pouco mais sobre algoritmo antes de voltarmos ao Python. É para isto que este capítulo serve. Vamos lá?</p>
+</section>
+</section>
+<section id="referencias-bibliograficas">
+<h2>Referências bibliográficas<a class="headerlink" href="#referencias-bibliograficas" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>JANSEN, S. Why is Python so popular? <a class="reference external" href="http://Opensource.com">Opensource.com</a>, 2019. Disponível em: <a class="reference external" href="https://opensource.com/article/19/4/why-python-popular">https://opensource.com/article/19/4/why-python-popular</a>. Acesso em: 18 abr. 2022.</p></li>
+<li><p>HUNT, A.; THOMAS, D. The Pragmatic Programmer: From Journeyman to Master. Addison-Wesley, 1999.</p></li>
+<li><p>KENNY, S. Python: A language tailor-made for data analysis. Information Age, 2018. Disponível em: <a class="reference external" href="https://www.information-age.com/python-a-language-tailor-made-for-data-analysis-123472615/">https://www.information-age.com/python-a-language-tailor-made-for-data-analysis-123472615/</a>. Acesso em: 18 abr. 2022.</p></li>
+<li><p>MARTIN, R. C. Clean Code: A Handbook of Agile Software Craftsmanship. Prentice Hall, 2009.</p></li>
+<li><p>REITZ, K. et al. Requests: HTTP for Humans™. 2021. Disponível em: <a class="reference external" href="https://docs.python-requests.org/en/latest/">https://docs.python-requests.org/en/latest/</a>. Acesso em: 01 mar. 2023.</p></li>
+<li><p>RICHARDSON, L. et al. Beautiful Soup Documentation. 2021. Disponível em: <a class="reference external" href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">https://www.crummy.com/software/BeautifulSoup/bs4/doc/</a>. Acesso em: 01 mar. 2023.</p></li>
+<li><p>ROSA, J. J. Por que empresas como Google, Netflix, Dropbox e outras usam Python? iMasters, 2019. Disponível em: <a class="reference external" href="https://imasters.com.br/back-end/por-que-empresas-como-google-netflix-dropbox-e-outras-usam-python">https://imasters.com.br/back-end/por-que-empresas-como-google-netflix-dropbox-e-outras-usam-python</a>. Acesso em: 18 abr. 2022.</p></li>
+<li><p>SWEIGART, A. Why Python is perfect for beginners. TechRepublic, 2015. Disponível em: <a class="reference external" href="https://www.techrepublic.com/article/why-python-is-perfect-for-beginners/">https://www.techrepublic.com/article/why-python-is-perfect-for-beginners/</a>. Acesso em: 18 abr. 2022.</p></li>
+<li><p>VAN ROSSUM, G. History of Python. Python Software Foundation, 2007. Disponível em: <a class="reference external" href="https://www.python.org/doc/essays/cp4e/history/">https://www.python.org/doc/essays/cp4e/history/</a>. Acesso em: 18 abr. 2022.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="02-Introducao-Algoritmos.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Arrumando as coisas para começar a falar de algoritmos</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
+   O que você saberá se você ler todo este capítulo?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#por-que-python">
+   Por que Python?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nas-universidades">
+     Nas universidades
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instalando-ou-nao-o-python">
+   Instalando (ou não) o Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comecando-com-codigo-colocando-a-mao-na-massa">
+   Começando com código: colocando a mão na massa
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arquivos-do-python-py-e-o-python-console">
+     Arquivos do Python (.py) e o Python Console
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias-bibliograficas">
+   Referências bibliográficas
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Wellington Rodrigo Monteiro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2022.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
