@@ -3,6 +3,15 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: 01-Introducao-Algoritmos.ipynb
-- file: 02-Introducao-Python.ipynb
+parts:
+- caption: "Parte 1: Sabendo onde estamos"
+  chapters:
+  - file: 01-Introducao-Ambiente.ipynb
+  - file: 02-Introducao-Algoritmos.ipynb
+- caption: "Parte 2: Fazendo coisas legais"
+  chapters:
+  - file: 03-Variaveis-IO.ipynb
+#  - file: 04-Estruturas-Selecao.ipynb
+- caption: "Parte 3: Resolvendo tretas"
+  chapters:
+  - file: 05-Erros-Comuns.ipynb
