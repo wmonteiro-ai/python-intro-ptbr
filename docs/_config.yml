@@ -3,6 +3,7 @@
 
 title: "Python Descomplicado"
 author: "Wellington Rodrigo Monteiro"
+copyright: "2023, Wellington Rodrigo Monteiro"
 # logo: logo.png
 
 # Force re-execution of notebooks on each build.
@@ -26,7 +27,9 @@ html:
 sphinx:
   config:
     language: en
+    html_show_copyright: false
     html_extra_path: ['assets']
   extra_extensions:
     - sphinx_inline_tabs
+    - sphinx_last_updated_by_git
 # reference on building the book https://jupyterbook.org/en/stable/start/build.html
