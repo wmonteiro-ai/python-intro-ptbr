@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+    <meta property="article:modified_time" content="2023-03-03T16:19:14-03:00" />
     <title>Primeiros (ou segundos) passos em Python &#8212; Python Descomplicado</title>
   
   
@@ -552,11 +553,46 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#operadores-logicos">
      Operadores lógicos
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#operadores-de-identidade">
-     Operadores de identidade
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#negacao-not">
+       Negação (
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         not
+        </span>
+       </code>
+       )
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ou-logico-or">
+       Ou lógico (
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         or
+        </span>
+       </code>
+       )
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#e-logico-e">
+       E lógico (
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         e
+        </span>
+       </code>
+       )
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#resumindo">
+       Resumindo
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -576,8 +612,61 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exemplos">
-   Exemplos
+  <a class="reference internal nav-link" href="#int-float-e-str">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     int
+    </span>
+   </code>
+   ,
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     float
+    </span>
+   </code>
+   e
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     str
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formatacao-de-strings">
+   Formatação de strings
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jeito-1-concatenando-strings">
+     Jeito 1: concatenando strings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jeito-2-usando-f-strings">
+     Jeito 2: usando f-strings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jeito-3-usando-placeholders">
+     Jeito 3: usando placeholders
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jeito-4-usando-format">
+     Jeito 4: usando
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       format()
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercicios">
+   Exercícios
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -586,16 +675,6 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exemplos-de-erros-comuns">
-   Exemplos de erros comuns
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#formatacao-de-strings">
-   Formatação de strings
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias-bibliograficas">
@@ -651,7 +730,7 @@ title="Print to PDF"
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A soma dos números é: &quot;</span><span class="p">,</span> <span class="n">soma</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Agora, quais são as semelhanças e diferenças entre os dois algoritmos? Comecemos pelas diferenças: as palavras <code class="docutils literal notranslate"><span class="pre">Início</span></code> e <code class="docutils literal notranslate"><span class="pre">Fim</span></code> saíram de cena. Além disso, a linha 2 do pseudocódigo que declarava as três variáveis deixou de existir: em Python, isto não é mais necessário. Finalmente, a função <code class="docutils literal notranslate"><span class="pre">Escreva</span></code> deu lugar à <code class="docutils literal notranslate"><span class="pre">print</span></code>, e a <code class="docutils literal notranslate"><span class="pre">Leia</span></code> deu lugar à <code class="docutils literal notranslate"><span class="pre">int(input())</span></code>.</p>
+<p>Agora, quais são as semelhanças e diferenças entre os dois algoritmos? Comecemos pelas diferenças: as palavras <code class="docutils literal notranslate"><span class="pre">Início</span></code> e <code class="docutils literal notranslate"><span class="pre">Fim</span></code> saíram de cena. Além disso, a linha 2 do pseudocódigo que declarava as três variáveis deixou de existir: em Python, isto não é mais necessário. Finalmente, a função <code class="docutils literal notranslate"><span class="pre">Escreva</span></code> deu lugar à <code class="docutils literal notranslate"><span class="pre">print</span></code>, e a <code class="docutils literal notranslate"><span class="pre">Leia</span></code> deu lugar à <code class="docutils literal notranslate"><span class="pre">int(input())</span></code>. Existem outras formas de reescrever este código, e veremos mais sobre isto em breve.</p>
 <p>Quanto às semelhanças, temos várias delas. Primeiro, a ordem do algoritmo é mantida. A organização também: veja como as linhas estão organizadas. O mesmo se aplica às mensagens e à operação de soma. Por isso que começar a escrever algoritmos em Python é mais simples do que parece a princípio: se você sabe como os algoritmos funcionam de forma geral e sabe interpretar pseudocódigo, então rapidamente você também conseguirá escrever algoritmos utilizando Python.</p>
 <p>Mas, e aí? Como <em>testamos</em> isso usando o PyCharm? Vamos testar aqui por partes, beleza?</p>
 </section>
@@ -765,22 +844,237 @@ title="Print to PDF"
 </section>
 <section id="operadores-de-comparacao">
 <h3>Operadores de comparação<a class="headerlink" href="#operadores-de-comparacao" title="Permalink to this headline">#</a></h3>
+<p>Se os operadores aritméticos fazem operações aritméticas, então os de comparação… Adivinha? Exato: eles comparam. Esses operadores servem para fazer comparações entre valores e variáveis para retornar <code class="docutils literal notranslate"><span class="pre">True</span></code> se aquela comparação for verdadeira e <code class="docutils literal notranslate"><span class="pre">False</span></code> se não for. Vamos usar as mesmas variáveis acima para testar lá no Python Console:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">==</span> <span class="n">num2</span>
+<span class="n">num1</span> <span class="o">!=</span> <span class="n">num2</span>
+<span class="n">num1</span> <span class="o">&gt;</span> <span class="n">num2</span>
+<span class="n">num1</span> <span class="o">&gt;=</span> <span class="n">num2</span>
+<span class="n">num1</span> <span class="o">&lt;</span> <span class="n">num2</span>
+<span class="n">num1</span> <span class="o">&lt;=</span> <span class="n">num2</span>
+<span class="s1">&#39;au&#39;</span> <span class="ow">in</span> <span class="n">texto2</span>
+<span class="s1">&#39;Au&#39;</span> <span class="ow">in</span> <span class="n">texto2</span>
+<span class="s1">&#39;au&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">texto2</span>
+</pre></div>
+</div>
+<p>Você deve ter visto que para cada uma das linhas apareceu <code class="docutils literal notranslate"><span class="pre">True</span></code> ou <code class="docutils literal notranslate"><span class="pre">False</span></code> como resultado, não é? Vamos ver caso-a-caso o que cada um desses exemplos querem dizer.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">==</span> <span class="n">num2</span>
+</pre></div>
+</div>
+<p>Nesse caso, o <code class="docutils literal notranslate"><span class="pre">==</span></code> é um operador de igualdade. Ele compara se <code class="docutils literal notranslate"><span class="pre">num1</span></code> é exatamente igual a <code class="docutils literal notranslate"><span class="pre">num2</span></code>. Se forem números, compara se o valor deles é igual. Se forem strings, compara se o conteúdo do texto é exatamente igual, diferenciando maiúsculas de minúsculas. O resultado aqui foi <code class="docutils literal notranslate"><span class="pre">False</span></code> porque 3 é diferente de 5. Se eles fossem iguais, o resultado seria <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">!=</span> <span class="n">num2</span>
+</pre></div>
+</div>
+<p>Já o <code class="docutils literal notranslate"><span class="pre">!=</span></code> é um operador de desigualdade. Como você já deve imaginar, ele funciona ao contrário do <code class="docutils literal notranslate"><span class="pre">==</span></code>. Ou seja: ele retornará <code class="docutils literal notranslate"><span class="pre">True</span></code> se as duas variáveis ou valores sendo comparados forem <em>diferentes</em>  e <code class="docutils literal notranslate"><span class="pre">False</span></code> se forem iguais. Como 3 é diferente de 5 o resultado foi <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">&gt;</span> <span class="n">num2</span>
+<span class="n">num1</span> <span class="o">&gt;=</span> <span class="n">num2</span>
+<span class="n">num1</span> <span class="o">&lt;</span> <span class="n">num2</span>
+<span class="n">num1</span> <span class="o">&lt;=</span> <span class="n">num2</span>
+</pre></div>
+</div>
+<p>Estes quatro operadores permitem comparar dois valores ou variáveis e retornar um resultado verdadeiro ou falso (booleano) dependendo do resultado da comparação.</p>
+<p>O operador <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> é usado para verificar se o valor ou a variável do lado esquerdo é maior que o valor ou variável do lado direito. O operador <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> verifica se o valor ou variável do lado esquerdo é maior ou igual ao valor ou variável do lado direito. O operador <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> verifica se o valor ou a variável do lado esquerdo é menor que o valor ou a variável do lado direito, enquanto o operador <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> verifica se o valor ou a variável do lado esquerdo é menor ou igual ao valor ou variável do lado direito. Esses operadores são amplamente utilizados em estruturas de controle, como declarações condicionais e loops.</p>
+<p>Como 3 é menor (e menor ou igual) a 5, os dois primeiros testes resultam em <code class="docutils literal notranslate"><span class="pre">False</span></code> e os dois últimos em <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;au&#39;</span> <span class="ow">in</span> <span class="n">texto2</span>
+<span class="s1">&#39;Au&#39;</span> <span class="ow">in</span> <span class="n">texto2</span>
+<span class="s1">&#39;au&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">texto2</span>
+</pre></div>
+</div>
+<p>O <code class="docutils literal notranslate"><span class="pre">in</span></code> e <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">in</span></code> são variáveis de pertencimento. O <code class="docutils literal notranslate"><span class="pre">in</span></code> poderia ser traduzido como “está dentro de”, enquanto que <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">in</span></code> poderia ser traduzido como “não está dentro de”.</p>
+<p>Como o texto <code class="docutils literal notranslate"><span class="pre">au</span></code> está dentro de <code class="docutils literal notranslate"><span class="pre">Tchau</span></code>, o primeiro comando retornou <code class="docutils literal notranslate"><span class="pre">True</span></code>. Como as comparações diferenciam letras maiúsculas de minúsculas, o segundo comando retornou <code class="docutils literal notranslate"><span class="pre">False</span></code> (afinal, a letra <code class="docutils literal notranslate"><span class="pre">A</span></code> em maiúsculo não está no texto). Finalmente, o último comando retornou <code class="docutils literal notranslate"><span class="pre">False</span></code> porque não é verdade que o <code class="docutils literal notranslate"><span class="pre">au</span></code> não esteja dentro de <code class="docutils literal notranslate"><span class="pre">Tchau</span></code>.</p>
 </section>
 <section id="operadores-logicos">
 <h3>Operadores lógicos<a class="headerlink" href="#operadores-logicos" title="Permalink to this headline">#</a></h3>
+<p>São operadores para realizarem comparações lógicas. Antes de pensarmos em alguns exemplos em Python vale pensarmos um pouco em exemplos de lógica booleana (ou lógica binária).</p>
+<section id="negacao-not">
+<h4>Negação (<code class="docutils literal notranslate"><span class="pre">not</span></code>)<a class="headerlink" href="#negacao-not" title="Permalink to this headline">#</a></h4>
+<p>Imagine que você está seguindo uma receita de bolo que diz “<em>adicione uma colher de açúcar</em>”. Se você quer fazer uma negação dessa instrução, significa que você quer fazer o oposto do que está sendo dito. Nesse caso, a negação seria “<em>não adicione uma colher de açúcar</em>”. Isso significa que você vai ignorar a instrução original e não vai adicionar açúcar na massa do bolo.</p>
+<p>Outro exemplo seria se a receita dissesse “<em>pré-aqueça o forno a 180 graus Celsius</em>”. A negação seria “<em>não pré-aqueça o forno a 180 graus Celsius</em>”, o que significa que você não deve aquecer o forno antes de colocar o bolo para assar.</p>
+<p>A negação é um dos operadores booleanos em Python e é representada com a palavra-chave <code class="docutils literal notranslate"><span class="pre">not</span></code>. O <code class="docutils literal notranslate"><span class="pre">not</span></code> inverte o valor de uma expressão booleana, ou seja, se a expressão for verdadeira, ele a torna falsa e vice-versa.</p>
 </section>
-<section id="operadores-de-identidade">
-<h3>Operadores de identidade<a class="headerlink" href="#operadores-de-identidade" title="Permalink to this headline">#</a></h3>
+<section id="ou-logico-or">
+<h4>Ou lógico (<code class="docutils literal notranslate"><span class="pre">or</span></code>)<a class="headerlink" href="#ou-logico-or" title="Permalink to this headline">#</a></h4>
+<p>Agora imagine que você está seguindo uma receita de bolo e a receita diz que você pode usar açúcar cristal <em>ou</em> açúcar refinado para fazer a massa. Nesse caso, o “ou” lógico é utilizado, pois você pode escolher usar um tipo de açúcar <strong>ou</strong> outro para fazer a receita. Você pode fazer a receita sem problemas se tiver só açúcar cristal, se tiver só açúcar refinado, ou se tiver os dois. Agora, você não poderia fazer a receita se não tivesse <em>nenhum</em> desses dois tipos.</p>
+<p>Outro exemplo de “ou” lógico seria em uma receita que diz para usar manteiga <em>ou</em> margarina. Nesse caso, você pode escolher usar uma das opções para fazer a receita. Você pode fazer o bolo com manteiga, o bolo com margarina, ou o bolo misturando os dois (apesar de que isso seria estranho).</p>
+<p>Em Python, este “ou” lógico é representado pela palavra-chave <code class="docutils literal notranslate"><span class="pre">or</span></code>, que testa se <em>pelo menos uma</em> das expressões booleanas é verdadeira.</p>
+</section>
+<section id="e-logico-e">
+<h4>E lógico (<code class="docutils literal notranslate"><span class="pre">e</span></code>)<a class="headerlink" href="#e-logico-e" title="Permalink to this headline">#</a></h4>
+<p>Vamos supor que para preparar uma receita de bolo é necessário ter tanto açúcar quanto farinha de trigo. Se eu disser que é preciso ter açúcar <strong>e</strong> farinha de trigo para fazer a receita, isso significa que se faltar qualquer um desses ingredientes, o bolo não poderá ser feito. Ou seja, <em>as duas condições precisam ser verdadeiras para que o resultado final seja verdadeiro</em>.</p>
+<p>Por exemplo, se eu disser que “para fazer a receita de bolo é necessário ter açúcar <strong>e</strong> farinha de trigo”, e se eu tiver apenas açúcar mas não tiver farinha de trigo, a condição não será satisfeita e o resultado será falso (ou seja: sem bolo). Apenas quando eu tiver ambos os ingredientes – açúcar e farinha de trigo – é que a condição será satisfeita e o resultado será verdadeiro, permitindo assim que eu faça o bolo.</p>
+<p>Em Python, o “e” lógico é representado pela palavra-chave <code class="docutils literal notranslate"><span class="pre">and</span></code>, e precisa que todas as condições sejam verdadeiras para que o resultado seja <code class="docutils literal notranslate"><span class="pre">True</span></code>. Caso contrário, retornará <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</section>
+<section id="resumindo">
+<h4>Resumindo<a class="headerlink" href="#resumindo" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>E lógico (<code class="docutils literal notranslate"><span class="pre">and</span></code>): <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">and</span> <span class="pre">False</span></code> resulta em <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p>Ou lógico (<code class="docutils literal notranslate"><span class="pre">or</span></code>): <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">or</span> <span class="pre">False</span></code> resulta em <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p>Não lógico (<code class="docutils literal notranslate"><span class="pre">not</span></code>): <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">True</span></code> resulta em <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+<p>Vamos voltar no Python Console lá do PyCharm? Teste as seguintes variáveis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ow">not</span> <span class="n">num1</span> <span class="o">==</span> <span class="n">num2</span>
+<span class="n">num1</span> <span class="o">!=</span> <span class="n">num2</span> <span class="ow">and</span> <span class="n">num1</span> <span class="o">&gt;</span> <span class="n">num2</span>
+<span class="n">num1</span> <span class="o">!=</span> <span class="n">num2</span> <span class="ow">or</span> <span class="n">num1</span> <span class="o">&gt;</span> <span class="n">num2</span>
+<span class="n">num1</span> <span class="o">!=</span> <span class="n">num2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">num1</span> <span class="o">&gt;</span> <span class="n">num2</span>
+<span class="n">num1</span> <span class="o">!=</span> <span class="n">num2</span> <span class="ow">and</span> <span class="n">num1</span> <span class="o">&lt;</span> <span class="n">num2</span>
+</pre></div>
+</div>
+<p>A primeira resulta em <code class="docutils literal notranslate"><span class="pre">True</span></code> porque 3 é diferente de 5. Logo, <code class="docutils literal notranslate"><span class="pre">num1</span> <span class="pre">==</span> <span class="pre">num2</span></code> resultou em <code class="docutils literal notranslate"><span class="pre">False</span></code>. Como estamos invertendo o resultado com o <code class="docutils literal notranslate"><span class="pre">not</span></code>, este <code class="docutils literal notranslate"><span class="pre">False</span></code> vira <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>A segunda resulta em <code class="docutils literal notranslate"><span class="pre">False</span></code> porque a primeira comparação resulta em <code class="docutils literal notranslate"><span class="pre">True</span></code> (3 é diferente de 5), mas a segunda comparação resulta em <code class="docutils literal notranslate"><span class="pre">False</span></code> (3 não é maior do que 5). Como o <code class="docutils literal notranslate"><span class="pre">and</span></code> requer que ambos sejam verdadeiros para que o resultado também seja verdade, o resultado desta comparação deu <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>A terceira resulta em <code class="docutils literal notranslate"><span class="pre">True</span></code> porque somente uma das comparações precisa ser verdadeira para que o resultado seja <code class="docutils literal notranslate"><span class="pre">True</span></code>. A segunda comparação possui o resultado <code class="docutils literal notranslate"><span class="pre">False</span></code>, mas a primeira obedece é verdadeira e, por isso, o resultado da comparação é <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>A quarta comparação resulta em <code class="docutils literal notranslate"><span class="pre">True</span></code> porque a primeira parte da expressão é <code class="docutils literal notranslate"><span class="pre">num1</span> <span class="pre">!=</span> <span class="pre">num2</span></code>. Como o valor de <code class="docutils literal notranslate"><span class="pre">num1</span></code> é 3 e o valor de <code class="docutils literal notranslate"><span class="pre">num2</span></code> é 5, essa comparação resulta em <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>Em seguida, a expressão utiliza o operador and para combinar essa comparação com a próxima, que é <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">num1</span> <span class="pre">&gt;</span> <span class="pre">num2</span></code>. Essa segunda parte compara se <code class="docutils literal notranslate"><span class="pre">num1</span></code> não é maior que <code class="docutils literal notranslate"><span class="pre">num2</span></code>. Como <code class="docutils literal notranslate"><span class="pre">num1</span></code> é menor que <code class="docutils literal notranslate"><span class="pre">num2</span></code>, essa comparação resulta em <code class="docutils literal notranslate"><span class="pre">False</span></code>. No entanto, a expressão utiliza o operador <code class="docutils literal notranslate"><span class="pre">not</span></code> para negar esse resultado e obter <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>Por fim, o operador and combina esses dois resultados. Como a primeira parte resultou em <code class="docutils literal notranslate"><span class="pre">True</span></code> e a segunda em <code class="docutils literal notranslate"><span class="pre">True</span></code>, o resultado final da expressão é <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>Já a quinta e última comparação resulta em <code class="docutils literal notranslate"><span class="pre">True</span></code> porque o resultado das duas comparações é <code class="docutils literal notranslate"><span class="pre">True</span></code>: <code class="docutils literal notranslate"><span class="pre">num1</span> <span class="pre">!=</span> <span class="pre">num2</span></code> é verdade (3 é diferente de 5) e <code class="docutils literal notranslate"><span class="pre">num1</span> <span class="pre">&lt;</span> <span class="pre">num2</span></code> também é verdade (3 é menor do que 5).</p>
+</section>
 </section>
 </section>
 <section id="input-e-print">
 <h2><code class="docutils literal notranslate"><span class="pre">input</span></code> e <code class="docutils literal notranslate"><span class="pre">print</span></code><a class="headerlink" href="#input-e-print" title="Permalink to this headline">#</a></h2>
-<p>A função <code class="docutils literal notranslate"><span class="pre">input()</span></code> em Python é uma função que permite que o usuário insira dados em um código. Ela é utilizada para que o código possa interagir com o usuário e receber informações que serão processadas. Essa função permite que o usuário possa informar dados de entrada para o código, como valores numéricos, textos, informações de datas, entre outros. O resultado dessa função é a leitura desses dados pelo código e o armazenamento dos mesmos em variáveis para que possam ser processados.</p>
-<p>Já a função <code class="docutils literal notranslate"><span class="pre">print()</span></code> em Python é utilizada para exibir informações na tela do computador ou em um arquivo. Ela é utilizada para que o código possa exibir informações para o usuário, como resultados de cálculos, mensagens de erro, instruções de uso, entre outros. Essa função permite que o usuário possa visualizar os resultados gerados pelo código, tornando-o mais interativo e amigável. O resultado dessa função é a exibição das informações na tela ou em um arquivo de texto.</p>
-<p>As funções <code class="docutils literal notranslate"><span class="pre">input()</span></code> e <code class="docutils literal notranslate"><span class="pre">print()</span></code> são fundamentais em Python, pois permitem que o código possa interagir com o usuário e gerar informações úteis para o mesmo. Essas funções são utilizadas em praticamente todos os códigos em Python, desde os mais simples até os mais complexos. Elas são ferramentas essenciais para a criação de códigos mais interativos e amigáveis, facilitando o uso pelos usuários. É importante que quem esteja iniciando em Python aprenda o funcionamento dessas funções e como utilizá-las corretamente, já que elas são a base para a interação do código com o usuário.</p>
+<p>Em termos simples, quando estamos escrevendo um código em Python, podemos querer que ele faça algumas coisas como, por exemplo, ler um arquivo, ler coisas que o usuário digitou, ou mostrar alguma informação na tela do computador. A leitura de informações que o usuário forneceu e a exibição de informações na tela são exemplos de entrada e saída (<em>input</em>  e <em>output</em>, ou I/O) do nosso algoritmo.</p>
+<p>Quando escrevemos um algoritmo, é importante que ele consiga se comunicar com o mundo exterior para coletar e enviar informações. Por exemplo, se quisermos fazer um programa que calcule a média de notas de um aluno, precisamos permitir que o usuário insira as notas. Isso é entrada (<em>input</em>) do programa. E quando o programa calcular a média, ele precisará exibir o resultado ao usuário, que é a saída (<em>output</em>) do programa.</p>
+<blockquote>
+<div><p>Mensagem para agora: as funções básicas de I/O em Python são a <code class="docutils literal notranslate"><span class="pre">input()</span></code> e <code class="docutils literal notranslate"><span class="pre">print()</span></code>, e é com elas que você irá trabalhar inicialmente.</p>
+</div></blockquote>
+<p>A função <code class="docutils literal notranslate"><span class="pre">input()</span></code> é uma função do Python que permite ao usuário inserir informações em um programa. Ela é como uma caixa de texto na qual o usuário pode digitar alguma coisa e, em seguida, o programa usa essa informação para realizar alguma ação. É como quando alguém te pede uma informação e você responde falando com essa pessoa. No caso da função <code class="docutils literal notranslate"><span class="pre">input()</span></code>, o programa é quem faz a pergunta e espera pela resposta do usuário. Depois que o usuário digita a resposta e pressiona Enter, o programa recebe essa informação e pode utilizá-la da forma que foi programada. É uma maneira muito útil de fazer com que o usuário interaja com o programa.</p>
+<p>Já a função <code class="docutils literal notranslate"><span class="pre">print()</span></code> em Python é usada para mostrar mensagens na tela do computador. É como se fosse uma impressora que escreve na tela do seu computador em vez de em um pedaço de papel. Com ela, é possível imprimir (na tela ou em um arquivo) textos, números e até mesmo variáveis que foram definidas no seu programa.</p>
+<p>Ela é utilizada para que o código possa exibir informações para o usuário, como resultados de cálculos, mensagens de erro, instruções de uso, entre outros. Essa função permite que o usuário possa visualizar os resultados gerados pelo código, tornando-o mais interativo e amigável. O resultado dessa função é a exibição das informações na tela ou em um arquivo de texto.</p>
+<p>Lembra daquele exemplo da soma de dois números que vimos no início do capítulo? Vamos usar ele como base para estudarmos e testarmos as funções <code class="docutils literal notranslate"><span class="pre">input()</span></code> e <code class="docutils literal notranslate"><span class="pre">print()</span></code>, beleza?</p>
+<blockquote>
+<div><p>👉 A partir de agora nós vamos deixar de usar o Python Console e vamos começar a trabalhar com um arquivo com o código em Python. <a class="reference internal" href="01-Introducao-Ambiente.html#content-environment-sourcecodefile"><span class="std std-ref">Lembra quando estávamos trabalhando</span></a> com o <code class="docutils literal notranslate"><span class="pre">main.py</span></code> nos capítulos anteriores para fazer aquele exemplo do Counter-Strike? Vamos voltar a usar aquele arquivo. Da mesma forma que você tem um arquivo chamado <code class="docutils literal notranslate"><span class="pre">main.py</span></code> você pode criar outros arquivos como <code class="docutils literal notranslate"><span class="pre">teste.py</span></code>, <code class="docutils literal notranslate"><span class="pre">projeto.py</span></code> e outros nomes.</p>
+</div></blockquote>
+<p>No PyCharm, deixe o seu código somente com isso, e rode ele (lembra do <code class="docutils literal notranslate"><span class="pre">Run</span></code> que já tínhamos visto anteriormente, né?):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num1</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure>
+    <img alt="O algoritmo visto anteriormente deve estar agora dentro da tela 'main.py'." src="pycharm_sample_input_code.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">O seu código deve estar dentro de um arquivo com final (extensão) .py, como você pode ver na área realçada em roxo. Você não precisa ter o código dentro do arquivo "main.py": você pode usar outros nomes sem problemas. O ponto aqui é que começaremos a trabalhar com esses arquivos ".py" a partir de agora, beleza?</figcaption>
+</figure><p>Se você mandou rodar, provavelmente só verá esta mensagem. Ao usar a função <code class="docutils literal notranslate"><span class="pre">input()</span></code>, o programa pausa sua execução e aguarda a entrada de dados pelo usuário, que deve pressionar a tecla <code class="docutils literal notranslate"><span class="pre">Enter</span></code> para confirmar sua entrada. Ou seja: ele ficará parado aí até que você digite alguma coisa e aperte <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p>
+<figure>
+    <img alt="PyCharm aberto. Aparece a frase 'Digite um número' na tela, indicando que o Python está esperando o usuário digitar algo." src="pycharm_sample_input_code_2.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Observe que a frase "Digite um número: " aparece na tela na parte inferior, e só. Isto indica que o código está "travado" e esperando você digitar alguma coisa.</figcaption>
+</figure><p>Experimente digitar algum valor, como <code class="docutils literal notranslate"><span class="pre">2000</span></code>. Em seguida, aperte <code class="docutils literal notranslate"><span class="pre">Enter</span></code>. Veja que apareceu exatamente o que você digitou na linha abaixo (no caso, o valor <code class="docutils literal notranslate"><span class="pre">2000</span></code>) e, logo após isso, a frase <code class="docutils literal notranslate"><span class="pre">Process</span> <span class="pre">finished</span> <span class="pre">with</span> <span class="pre">exit</span> <span class="pre">code</span> <span class="pre">0</span></code>. Em bom português, essa frase poderia ser interpretada como <code class="docutils literal notranslate"><span class="pre">Seu</span> <span class="pre">programa</span> <span class="pre">finalizou</span> <span class="pre">de</span> <span class="pre">boas,</span> <span class="pre">sem</span> <span class="pre">erro</span> <span class="pre">nenhum</span></code>.</p>
+<figure>
+    <img alt="PyCharm aberto. Aparece a frase 'Digite um número' na tela, indicando que o Python está esperando o usuário digitar algo. O usuário digitou 2000. Abaixo, o número 2000 aparece novamente, seguido pela mensagem 'Process finished with exit code 0'." src="pycharm_sample_input_code_3.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Observe que o código finalizou com sucesso (aquele "Process finished with exit code 0" comprova isso).</figcaption>
+</figure><p>Agora, por que aquele <code class="docutils literal notranslate"><span class="pre">2000</span></code> apareceu repetido logo depois de você ter digitado ele? Esse algoritmo solicita que o usuário digite um número (com o uso da função <code class="docutils literal notranslate"><span class="pre">input()</span></code>) e guarda o valor digitado na variável chamada <code class="docutils literal notranslate"><span class="pre">num1</span></code>. Em seguida, o <code class="docutils literal notranslate"><span class="pre">print()</span></code> é utilizado para mostrar na tela o valor armazenado em <code class="docutils literal notranslate"><span class="pre">num1</span></code>.</p>
+<p>Essas funções (a <code class="docutils literal notranslate"><span class="pre">input()</span></code> e <code class="docutils literal notranslate"><span class="pre">print()</span></code>) fazem parte ed um conjunto de instruções que o Python já tem prontas para realizar algumas tarefas, como receber uma entrada do usuário ou exibir informações na tela do computador. Dentro delas existem algoritmos especializados e prontos especialmente para estas tarefas.</p>
+<p>Para utilizar essas funções, você pode ter percebido que fomos obrigados a escrever o nome delas seguido de parênteses. Os parênteses servem para indicar que estamos <em>chamando a função</em>, ou seja, pedindo para que ela seja executada. Além disso, dentro dos parênteses podemos passar informações para a função, como textos ou variáveis, para que ela possa realizar a tarefa que queremos.</p>
+<p>Por exemplo, no código <code class="docutils literal notranslate"><span class="pre">num1</span> <span class="pre">=</span> <span class="pre">input(&quot;Digite</span> <span class="pre">um</span> <span class="pre">número:</span> <span class="pre">&quot;)</span></code>, a função <code class="docutils literal notranslate"><span class="pre">input()</span></code> é chamada e o texto <code class="docutils literal notranslate"><span class="pre">Digite</span> <span class="pre">um</span> <span class="pre">número:</span> </code> é passado como um argumento para ela, indicando que queremos que o usuário digite um número. A função retorna a entrada do usuário, que é armazenada na variável <code class="docutils literal notranslate"><span class="pre">num1</span></code>. Em seguida, a função <code class="docutils literal notranslate"><span class="pre">print()</span></code> é chamada, passando a variável <code class="docutils literal notranslate"><span class="pre">num1</span></code> como argumento dentro dos parênteses para que ela exiba o valor armazenado nessa variável na tela do computador.</p>
+<p>Que tal testarmos uma pequena mudança no <code class="docutils literal notranslate"><span class="pre">print</span></code>? Mude o código para isso:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num1</span> <span class="o">+</span> <span class="n">num1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Agora, teste com o mesmo número 2000. 2000 + 2000 é igual a 4000, certo? Então teste aí. Você pode ter percebido que o resultado foi <code class="docutils literal notranslate"><span class="pre">20002000</span></code>. Por que isso? Todos os dados que você digita e que o <code class="docutils literal notranslate"><span class="pre">input()</span></code> captura são tratados como uma string (texto), mesmo que sejam números. E, como vimos anteriormente, o <code class="docutils literal notranslate"><span class="pre">+</span></code> em textos possui a função de concatená-los. Ou seja: o Python entendeu que você estava querendo juntar um texto chamado “2000” com outro texto chamado “2000”, e ele não tinha nenhuma ideia de que isso, na verdade, era um número.</p>
+<p>Para converter esses dados em outros tipos de dados, como int ou float, é necessário usar as funções de conversão de tipos de dados.</p>
 </section>
-<section id="exemplos">
-<h2>Exemplos<a class="headerlink" href="#exemplos" title="Permalink to this headline">#</a></h2>
+<section id="int-float-e-str">
+<h2><code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code> e <code class="docutils literal notranslate"><span class="pre">str</span></code><a class="headerlink" href="#int-float-e-str" title="Permalink to this headline">#</a></h2>
+<p>O resultado da função <code class="docutils literal notranslate"><span class="pre">input()</span></code> é sempre um texto. Também pode ser que você esteja manipulando dados de outra fonte (como um arquivo) e que também aquilo seja lido como um texto. Por outro lado, você pode precisar converter aquele texto para um número para fazer operações como soma, divisão, comparações, e assim por diante.</p>
+<p>É para isso que servem as funções <code class="docutils literal notranslate"><span class="pre">int()</span></code> (que converte um valor de outro tipo para um número inteiro), <code class="docutils literal notranslate"><span class="pre">float()</span></code> (que converte um valor de outro tipo para um número decimal), e <code class="docutils literal notranslate"><span class="pre">str()</span></code> (que converte um número ou um valor de outro tipo para um texto). Modifique o código que tínhamos para adicionar o <code class="docutils literal notranslate"><span class="pre">int</span></code>. O seu código deve parecer com o código abaixo. Rode ele e teste novamente com o número <code class="docutils literal notranslate"><span class="pre">2000</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num1</span> <span class="o">+</span> <span class="n">num1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Agora apareceu corretamente o <code class="docutils literal notranslate"><span class="pre">4000</span></code> como resultado da soma, não é? Funciona assim: na primeira linha, a função <code class="docutils literal notranslate"><span class="pre">input()</span></code> exibe na tela a mensagem <code class="docutils literal notranslate"><span class="pre">Digite</span> <span class="pre">um</span> <span class="pre">número:</span> </code> para que o usuário possa digitar o valor desejado. Sabemos disso porque o conteúdo dos parênteses mais internos é avaliado primeiro, e depois é avaliado o conteúdo dos parênteses mais externos. Isso ajuda a definir a ordem em que as operações matemáticas devem ser executadas em uma expressão, evitando assim ambiguidades. Assim que o usuário digita <code class="docutils literal notranslate"><span class="pre">2000</span></code>, esse texto é convertido em um número inteiro pela função <code class="docutils literal notranslate"><span class="pre">int()</span></code> e armazenado na variável <code class="docutils literal notranslate"><span class="pre">num1</span></code>.</p>
+<p>Na segunda linha, há uma exibição na tela do resultado da soma da variável <code class="docutils literal notranslate"><span class="pre">num1</span></code> com ela mesma. Isso é feito com o uso da função <code class="docutils literal notranslate"><span class="pre">print()</span></code>, que exibe na tela o valor passado entre parênteses (ou seja: o resultado da soma).</p>
+<p>Antes de avançarmos, teste este mesmo algoritmo com outro número. Primeiro, teste o algoritmo com <code class="docutils literal notranslate"><span class="pre">9.78</span></code> no lugar de <code class="docutils literal notranslate"><span class="pre">2000</span></code>. Você verá que apareceu um erro assim:</p>
+<p><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">invalid</span> <span class="pre">literal</span> <span class="pre">for</span> <span class="pre">int()</span> <span class="pre">with</span> <span class="pre">base</span> <span class="pre">10:</span> <span class="pre">'9.78'</span></code></p>
+<p>Isto acontece porque ele esperava um número inteiro e você acabou digitando um número com casas decimais. Veja que o próprio erro te diz isso: que o número que você digitou não é um inteiro. Erros assim podem acontecer enquanto desenvolvemos e testamos algoritmos. Para te ajudar, também <a class="reference internal" href="05-Erros-Comuns.html#content-commonerrors"><span class="std std-ref">criei uma seção com os tratamentos mais comuns aos erros de código para você</span></a>.</p>
+<p>Se quiséssemos que o nosso código funcionasse com números decimais bastaria substituir o <code class="docutils literal notranslate"><span class="pre">int()</span></code> por <code class="docutils literal notranslate"><span class="pre">float()</span></code>, ficando assim:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num1</span> <span class="o">+</span> <span class="n">num1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Teste de novo, e você verá a mágica acontecer. Da mesma forma, o <code class="docutils literal notranslate"><span class="pre">str()</span></code> pode ser útil em outros momentos para convertermos números de volta para texto. Agora, vamos continuar testando o uso do <code class="docutils literal notranslate"><span class="pre">print()</span></code> e do <code class="docutils literal notranslate"><span class="pre">input()</span></code>. Como seria para fazermos a soma de dois números diferentes digitados pelo usuário? Ora, bastaria criarmos uma segunda variável (<code class="docutils literal notranslate"><span class="pre">num2</span></code>) e pedirmos para o usuário digitar um segundo número. No final, teríamos a soma de <code class="docutils literal notranslate"><span class="pre">num1</span></code> e <code class="docutils literal notranslate"><span class="pre">num2</span></code>. Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o primeiro número: &quot;</span><span class="p">))</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o segundo número: &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Também poderíamos mostrar alguma mensagem <em>antes</em> de chamarmos o <code class="docutils literal notranslate"><span class="pre">input()</span></code>. O código abaixo faz a mesmíssima coisa do que o código anterior, mas com um uso um pouco diferente. Consegue ver as semelhanças e diferenças?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Digite o primeiro número: &quot;</span><span class="p">)</span>
+<span class="n">num1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Digite o segundo número: &quot;</span><span class="p">)</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Também poderíamos criar uma variável chamada <code class="docutils literal notranslate"><span class="pre">soma</span></code> para guardar o resultado da soma. Veja e teste:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o primeiro número: &quot;</span><span class="p">))</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o segundo número: &quot;</span><span class="p">))</span>
+
+<span class="n">soma</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">soma</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="formatacao-de-strings">
+<h2>Formatação de strings<a class="headerlink" href="#formatacao-de-strings" title="Permalink to this headline">#</a></h2>
+<p>Agora, e se quiséssemos mostrar um texto um pouco mais bonito do que somente aquele valor? E se quiséssemos mostrar uma <em>mensagem personalizada</em> dentro daquele <code class="docutils literal notranslate"><span class="pre">print()</span></code>? É aí que entra a formatação de texto. A formatação de texto serve mostrar informações de uma maneira organizada e legível, e que permite criar mensagens personalizadas e dinâmicas de acordo com as entradas do usuário ou resultados de cálculos.</p>
+<p>Com a formatação de texto, poderíamos criar um modelo de mensagem com espaços reservados para as informações fornecidas pelo usuário, como <code class="docutils literal notranslate"><span class="pre">Olá,</span> <span class="pre">$NOME.</span> <span class="pre">Você</span> <span class="pre">tem</span> <span class="pre">$IDADE</span> <span class="pre">anos!</span></code>, onde <code class="docutils literal notranslate"><span class="pre">$NOME</span></code> e <code class="docutils literal notranslate"><span class="pre">$IDADE</span></code> são valores que podem variar de pessoa para pessoa. Durante a execução do seu código, as informações reais serão inseridas nos espaços reservados, criando uma mensagem personalizada para cada usuário.</p>
+<p>Existem alguns jeitos de fazermos isso em Python. A formatação de texto em Python pode ser feita de algumas formas diferentes. Vamos usar o mesmo exemplo acima para continuar, beleza?</p>
+<p>Vamos supor que queiramos mostrar uma mensagem chamada <em>“A soma dos números <span class="math notranslate nohighlight">\(PRIMEIRONUMERO e \)</span>SEGUNDONUMERO é: $SOMA”</em>. Por exemplo: se o usuário digitar 5 e 3, deve aparecer uma mensagem chamada <em>“A soma dos números 3 e 5 é: 8</em>. Se ele digitar 2000 e -10, deve aparecer <em>“A soma dos números 2000 e -10 é: 1990</em>. Bom, acho que você já pegou a ideia do que queremos, né?</p>
+<section id="jeito-1-concatenando-strings">
+<h3>Jeito 1: concatenando strings<a class="headerlink" href="#jeito-1-concatenando-strings" title="Permalink to this headline">#</a></h3>
+<p>Lembra de que comentei que o <code class="docutils literal notranslate"><span class="pre">+</span></code> serve para concatenar strings? Teste o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o primeiro número: &quot;</span><span class="p">))</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o segundo número: &quot;</span><span class="p">))</span>
+
+<span class="n">soma</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A soma dos números &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; e &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; é: &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">soma</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Veja que na última linha usamos o sinal de <code class="docutils literal notranslate"><span class="pre">+</span></code> para juntar pedaços diferentes do texto. Ou seja: começamos a montar uma frase chamada <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">soma</span> <span class="pre">dos</span> <span class="pre">números</span> </code> e, em seguida, juntamos com o valor que está dentro da variável <code class="docutils literal notranslate"><span class="pre">num1</span></code>. Depois, juntamos com mais um texto (<code class="docutils literal notranslate"><span class="pre">e</span></code>) e assim sucessivamente até chegar na frase completa.</p>
+<p>Também perceba que usamos o <code class="docutils literal notranslate"><span class="pre">str()</span></code>. Isto é necessário converter as variáveis num1 e num2 em strings usando a função str() antes de concatená-las com as demais strings na função <code class="docutils literal notranslate"><span class="pre">print()</span></code>. Isto acontece porque o Python não permite juntar texto com números: ou juntamos número com número, ou texto com texto. Por isso, tivemos que converter os números das três variáveis de volta para um texto com o <code class="docutils literal notranslate"><span class="pre">str()</span></code>.</p>
+</section>
+<section id="jeito-2-usando-f-strings">
+<h3>Jeito 2: usando f-strings<a class="headerlink" href="#jeito-2-usando-f-strings" title="Permalink to this headline">#</a></h3>
+<p>As f-strings permitem que você inclua valores de variáveis diretamente dentro de strings sem precisar concatenar (unir) vários elementos. Para criar uma f-string, basta inserir a letra <code class="docutils literal notranslate"><span class="pre">f</span></code> antes das aspas da string e, em seguida, colocar as chaves (<code class="docutils literal notranslate"><span class="pre">{}</span></code>) em torno do nome da variável que você deseja incluir.</p>
+<p>Teste o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o primeiro número: &quot;</span><span class="p">))</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o segundo número: &quot;</span><span class="p">))</span>
+
+<span class="n">soma</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A soma dos números </span><span class="si">{</span><span class="n">num1</span><span class="si">}</span><span class="s2"> e </span><span class="si">{</span><span class="n">num2</span><span class="si">}</span><span class="s2"> é: </span><span class="si">{</span><span class="n">soma</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Neste exemplo, as variáveis <code class="docutils literal notranslate"><span class="pre">num1</span></code>, <code class="docutils literal notranslate"><span class="pre">num2</span></code> e <code class="docutils literal notranslate"><span class="pre">soma</span></code> são colocadas dentro da string entre chaves <code class="docutils literal notranslate"><span class="pre">{}</span></code> na última linha, indicando que elas serão substituídas pelos seus respectivos valores assim que o Python executar aquela linha. Veja que só podemos usar variáveis que existem aqui: se tentarmos colocar também uma variável chamada <code class="docutils literal notranslate"><span class="pre">num3</span></code> na última linha teremos um erro já que ela nunca apareceu em nenhum lugar antes do código.</p>
+</section>
+<section id="jeito-3-usando-placeholders">
+<h3>Jeito 3: usando placeholders<a class="headerlink" href="#jeito-3-usando-placeholders" title="Permalink to this headline">#</a></h3>
+<p>Agora, vamos usar a função <code class="docutils literal notranslate"><span class="pre">format()</span></code> para formatar uma string de saída que contém os valores das variáveis <code class="docutils literal notranslate"><span class="pre">num1</span></code>, <code class="docutils literal notranslate"><span class="pre">num2</span></code> e <code class="docutils literal notranslate"><span class="pre">soma</span></code>. Os valores são inseridos na string usando chaves <code class="docutils literal notranslate"><span class="pre">{}</span></code> como marcadores de posição: é como se falássemos assim: <em>“troque o valor das primeiras chaves com o primeiro valor que está lá no format (<code class="docutils literal notranslate"><span class="pre">num1</span></code>), as segundas chaves com o segundo valor (<code class="docutils literal notranslate"><span class="pre">num2</span></code>) e as terceiras chaves com o terceiro valor (<code class="docutils literal notranslate"><span class="pre">soma</span></code>)”</em>. Por isso, a ordem das chaves determina a ordem dos argumentos passados para a função <code class="docutils literal notranslate"><span class="pre">format()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o primeiro número: &quot;</span><span class="p">))</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o segundo número: &quot;</span><span class="p">))</span>
+
+<span class="n">soma</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A soma dos números </span><span class="si">{}</span><span class="s2"> e </span><span class="si">{}</span><span class="s2"> é: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">,</span> <span class="n">soma</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Experimente trocar a ordem do que está dentro do <code class="docutils literal notranslate"><span class="pre">format()</span></code>, colocando o <code class="docutils literal notranslate"><span class="pre">soma</span></code> em primeiro lugar. Veja que a frase final deixará de fazer sentido por isso.</p>
+</section>
+<section id="jeito-4-usando-format">
+<h3>Jeito 4: usando <code class="docutils literal notranslate"><span class="pre">format()</span></code><a class="headerlink" href="#jeito-4-usando-format" title="Permalink to this headline">#</a></h3>
+<p>Também existe uma forma de “demarcar” a posição de cada elemento do format no texto. Teste o código abaixo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o primeiro número: &quot;</span><span class="p">))</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o segundo número: &quot;</span><span class="p">))</span>
+
+<span class="n">soma</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A soma dos números </span><span class="si">{1}</span><span class="s2"> e </span><span class="si">{2}</span><span class="s2"> é: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">soma</span><span class="p">,</span> <span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>A última linha desse código ainda usa a função <code class="docutils literal notranslate"><span class="pre">format()</span></code>. Veja que o que mudou foi a ordem do que está dentro do <code class="docutils literal notranslate"><span class="pre">format()</span></code>. As chaves (<code class="docutils literal notranslate"><span class="pre">{}</span></code>) ainda servem como marcadores de posição, e agora estão numeradas de 0 a 2. O primeiro argumento passado para a função <code class="docutils literal notranslate"><span class="pre">format()</span></code> é o valor que deve ser atribuído à posição 0, ou seja, o resultado da soma, representado pela variável <code class="docutils literal notranslate"><span class="pre">soma</span></code>. Em seguida, os valores das variáveis <code class="docutils literal notranslate"><span class="pre">num1</span></code> e <code class="docutils literal notranslate"><span class="pre">num2</span></code> são passados como segundo e terceiro argumentos, respectivamente, para serem atribuídos às posições 1 e 2 da mensagem.</p>
+<p>Assim, o método format() faz a substituição dos marcadores de posição pelos valores passados como argumentos <em>obedecendo a ordem que você determinou</em>.</p>
+</section>
+</section>
+<section id="exercicios">
+<h2>Exercícios<a class="headerlink" href="#exercicios" title="Permalink to this headline">#</a></h2>
+<p>O que acha de colocar a mão na massa e tentar resolver os problemas abaixo usando Python? Todos eles podem ser resolvidos somente com o que você aprendeu até o momento. Você também pode tentar inserir coisas a mais, como uma mensagem mais bonita usando técnicas de formatação de strings.</p>
+<p>Ah, e reforçando: é provável que você encontre algum erro no caminho. Fique tranquilo! Procurei criar <a class="reference internal" href="05-Erros-Comuns.html#content-commonerrors"><span class="std std-ref">uma seção com os tratamentos mais comuns aos erros de código para você</span></a>. Logo abaixo destes exercícios existem as respostas com as explicações. Lembrando: não existe uma solução única para estes problemas – o seu algoritmo pode também funcionar perfeitamente ainda que a sua implementação seja diferente da minha, beleza?</p>
 <ol class="arabic simple">
 <li><p>Crie um algoritmo que solicita ao usuário que insira seu nome e exibe na tela uma mensagem de saudação</p>
 <ul class="simple">
@@ -792,14 +1086,14 @@ title="Print to PDF"
 <li><p>Exemplo: um usuário digita o número <code class="docutils literal notranslate"><span class="pre">23.51</span></code>. O algoritmo deve retornar <code class="docutils literal notranslate"><span class="pre">47.02</span></code>.</p></li>
 </ul>
 </li>
-<li><p>Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela se ele é par ou ímpar.</p>
+<li><p>Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela <code class="docutils literal notranslate"><span class="pre">True</span></code> se ele for par e <code class="docutils literal notranslate"><span class="pre">False</span></code> se for ímpar.</p>
 <ul class="simple">
-<li><p>Exemplo: um usuário digita o número <code class="docutils literal notranslate"><span class="pre">7</span></code>. O algoritmo deve retornar a mensagem <em>“Ímpar”</em>.</p></li>
+<li><p>Exemplo: um usuário digita o número <code class="docutils literal notranslate"><span class="pre">7</span></code>. O algoritmo deve retornar a mensagem <em>False</em>.</p></li>
 </ul>
 </li>
-<li><p>Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela se ele é positivo, negativo ou zero.</p>
+<li><p>Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela <code class="docutils literal notranslate"><span class="pre">True</span></code> se ele for igual ou acima de zero ou <code class="docutils literal notranslate"><span class="pre">False</span></code> se menor do que zero.</p>
 <ul class="simple">
-<li><p>Exemplo: um usuário digita o número <code class="docutils literal notranslate"><span class="pre">-51.05</span></code>. O algoritmo deve retornar a mensagem <em>“Negativo”</em>.</p></li>
+<li><p>Exemplo: um usuário digita o número <code class="docutils literal notranslate"><span class="pre">-51.05</span></code>. O algoritmo deve retornar a mensagem <em>False</em>.</p></li>
 </ul>
 </li>
 <li><p>Crie um algoritmo que solicita ao usuário que insira a temperatura em graus Celsius e exibe na tela a temperatura em Fahrenheit.</p>
@@ -820,9 +1114,7 @@ title="Print to PDF"
 </ol>
 <section id="respostas">
 <h3>Respostas<a class="headerlink" href="#respostas" title="Permalink to this headline">#</a></h3>
-<ol class="arabic simple">
-<li><p>Crie um algoritmo que solicita ao usuário que insira seu nome e exibe na tela uma mensagem de saudação</p></li>
-</ol>
+<p><strong>1. Crie um algoritmo que solicita ao usuário que insira seu nome e exibe na tela uma mensagem de saudação</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solicita que o usuário digite seu nome</span>
 <span class="n">nome</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite seu nome: &quot;</span><span class="p">)</span>
 
@@ -832,9 +1124,7 @@ title="Print to PDF"
 </div>
 <p>Explicando o código acima, na primeira linha é solicitado ao usuário que digite o seu nome e essa informação é armazenada na variável <code class="docutils literal notranslate"><span class="pre">nome</span></code>. Já na segunda linha, uma mensagem de saudação é exibida na tela utilizando a função <code class="docutils literal notranslate"><span class="pre">print</span></code>, que recebe uma string e a variável <code class="docutils literal notranslate"><span class="pre">nome</span></code> (que contém o nome do usuário) como argumentos.</p>
 <p>Ao executar o programa, o usuário verá uma mensagem solicitando que ele digite o seu nome. Em seguida, o nome digitado será exibido na mensagem de saudação que aparecerá na tela.</p>
-<ol class="arabic simple" start="2">
-<li><p>Crie um algoritmo que solicita ao usuário que insira um número decimal e exibe o dobro desse número na tela.</p></li>
-</ol>
+<p><strong>2. Crie um algoritmo que solicita ao usuário que insira um número decimal e exibe o dobro desse número na tela.</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solicita ao usuário que insira um número decimal e armazena na variável &quot;num&quot;</span>
 <span class="n">num</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insira um número decimal: &quot;</span><span class="p">))</span>
 
@@ -846,37 +1136,20 @@ title="Print to PDF"
 </pre></div>
 </div>
 <p>Neste algoritmo, a função <code class="docutils literal notranslate"><span class="pre">input()</span></code> é utilizada para solicitar ao usuário que insira um número decimal, que é então convertido para um valor do tipo <code class="docutils literal notranslate"><span class="pre">float</span></code>. Em seguida, o dobro desse número é calculado e armazenado na variável dobro. Por fim, a função <code class="docutils literal notranslate"><span class="pre">print()</span></code> é utilizada para exibir na tela uma mensagem contendo o resultado do cálculo.</p>
-<ol class="arabic simple" start="3">
-<li><p>Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela se ele é par ou ímpar.</p></li>
-</ol>
+<p><strong>3. Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela se ele é par ou ímpar.</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insira um número inteiro: &quot;</span><span class="p">))</span>
-
-<span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;é um número par&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;é um número ímpar&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>O algoritmo começa solicitando ao usuário que insira um número inteiro através da função <code class="docutils literal notranslate"><span class="pre">input()</span></code>, que lê a entrada do usuário como uma string. Em seguida, o número é convertido para um inteiro usando a função <code class="docutils literal notranslate"><span class="pre">int()</span></code>, e armazenado na variável <code class="docutils literal notranslate"><span class="pre">num</span></code>.</p>
-<p>A partir daí, usamos um condicional if para verificar se o número é par ou ímpar. Se o resto da divisão por <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">(num</span> <span class="pre">%</span> <span class="pre">2)</span></code> for igual a 0, significa que o número é par, e a mensagem correspondente é exibida na tela usando a função <code class="docutils literal notranslate"><span class="pre">print()</span></code>. Caso contrário, o número é ímpar, e a mensagem correspondente é exibida.</p>
-<ol class="arabic simple" start="4">
-<li><p>Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela se ele é positivo, negativo ou zero.</p></li>
-</ol>
+<p>Depois disso, ele compara se o resto da divisão por 2 <code class="docutils literal notranslate"><span class="pre">(num</span> <span class="pre">%</span> <span class="pre">2)</span></code> é igual a 0 ou não. Se for igual a 0, significa que o número é par e esta comparação é verdadeira (<code class="docutils literal notranslate"><span class="pre">True</span></code>). Caso contrário, esta comparação não é verdadeira (<code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+<p><strong>4. Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela se ele é positivo, negativo ou zero.</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">))</span>
-
-<span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O número é positivo.&quot;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O número é negativo.&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O número é zero.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>O programa começa pedindo para que o usuário digite um número, que é armazenado na variável num. Em seguida, um bloco condicional <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> é utilizado para verificar se o número é positivo, negativo ou zero.</p>
-<p>Se o número for maior que zero, o programa exibe a mensagem <code class="docutils literal notranslate"><span class="pre">O</span> <span class="pre">número</span> <span class="pre">é</span> <span class="pre">positivo</span></code>. Se o número for menor que zero, o programa exibe a mensagem <code class="docutils literal notranslate"><span class="pre">O</span> <span class="pre">número</span> <span class="pre">é</span> <span class="pre">negativo</span></code>. Se o número for igual a zero, o programa exibe a mensagem <code class="docutils literal notranslate"><span class="pre">O</span> <span class="pre">número</span> <span class="pre">é</span> <span class="pre">zero</span></code>.</p>
-<ol class="arabic simple" start="5">
-<li><p>Crie um algoritmo que solicita ao usuário que insira a temperatura em graus Celsius e exibe na tela a temperatura em Fahrenheit.</p></li>
-</ol>
+<p>O programa começa pedindo para que o usuário digite um número, que é armazenado na variável <code class="docutils literal notranslate"><span class="pre">num</span></code>. A segunda linha compara se o que está armazenado em <code class="docutils literal notranslate"><span class="pre">num</span></code> é maior ou igual (representado por <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>) a zero. Se for, o resultado desta comparação é <code class="docutils literal notranslate"><span class="pre">True</span></code>. Caso contrário, é <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p><strong>5. Crie um algoritmo que solicita ao usuário que insira a temperatura em graus Celsius e exibe na tela a temperatura em Fahrenheit.</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solicita a temperatura em Celsius ao usuário</span>
 <span class="n">temp_celsius</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a temperatura em graus Celsius: &quot;</span><span class="p">))</span>
 
@@ -890,9 +1163,7 @@ title="Print to PDF"
 <p>A função <code class="docutils literal notranslate"><span class="pre">input()</span></code> solicita ao usuário que digite a temperatura em graus Celsius e a armazena na variável <code class="docutils literal notranslate"><span class="pre">temp_celsius</span></code>.</p>
 <p>Em seguida, o algoritmo usa uma fórmula amplamente usada na Física (<span class="math notranslate nohighlight">\(°C * {{9} \over {5}} + 32\)</span>) para converter a temperatura de Celsius para Fahrenheit e armazena o resultado na variável <code class="docutils literal notranslate"><span class="pre">temp_fahrenheit</span></code>.</p>
 <p>Por fim, a função <code class="docutils literal notranslate"><span class="pre">print()</span></code> exibe a temperatura em Fahrenheit na tela.</p>
-<ol class="arabic simple" start="6">
-<li><p>Crie um algoritmo que solicita ao usuário que insira a sua altura em metros e o seu peso em quilogramas e exibe na tela o seu índice de massa corporal (IMC).</p></li>
-</ol>
+<p><strong>6. Crie um algoritmo que solicita ao usuário que insira a sua altura em metros e o seu peso em quilogramas e exibe na tela o seu índice de massa corporal (IMC).</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">altura</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite sua altura em metros: &quot;</span><span class="p">))</span>
 <span class="n">peso</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite seu peso em quilogramas: &quot;</span><span class="p">))</span>
 
@@ -903,9 +1174,7 @@ title="Print to PDF"
 </div>
 <p>O algoritmo acima solicita que o usuário digite sua altura em metros e seu peso em quilogramas. Em seguida, ele calcula o índice de massa corporal (IMC) usando a fórmula <span class="math notranslate nohighlight">\({peso} \over {altura ^ 2}\)</span>, armazenando o resultado na variável de nome <code class="docutils literal notranslate"><span class="pre">imc</span></code>.</p>
 <p>No caso, <code class="docutils literal notranslate"><span class="pre">altura</span> <span class="pre">**</span> <span class="pre">2</span></code> tem o mesmo significado de <span class="math notranslate nohighlight">\(altura ^2\)</span>. Por fim, exibe na tela o valor do IMC com a mensagem “Seu IMC é: ” seguido pelo valor da variável <code class="docutils literal notranslate"><span class="pre">imc</span></code>.</p>
-<ol class="arabic simple" start="7">
-<li><p>Crie um algoritmo que solicita ao usuário que insira dois números e exibe na tela o resultado da soma, subtração, multiplicação e divisão desses números.</p></li>
-</ol>
+<p><strong>7. Crie um algoritmo que solicita ao usuário que insira dois números e exibe na tela o resultado da soma, subtração, multiplicação e divisão desses números.</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># solicita ao usuário que insira dois números</span>
 <span class="n">num1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insira o primeiro número: &quot;</span><span class="p">))</span>
 <span class="n">num2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insira o segundo número: &quot;</span><span class="p">))</span>
@@ -926,57 +1195,29 @@ title="Print to PDF"
 <p>Nesse algoritmo, o usuário é solicitado a inserir dois números, que são armazenados nas variáveis <code class="docutils literal notranslate"><span class="pre">num1</span></code> e <code class="docutils literal notranslate"><span class="pre">num2</span></code>. Em seguida, são realizadas as operações matemáticas de soma, subtração, multiplicação e divisão entre os números, que são armazenadas nas variáveis <code class="docutils literal notranslate"><span class="pre">soma</span></code>, <code class="docutils literal notranslate"><span class="pre">subtracao</span></code>, <code class="docutils literal notranslate"><span class="pre">multiplicacao</span></code> e <code class="docutils literal notranslate"><span class="pre">divisao</span></code>, respectivamente. Por fim, os resultados são exibidos na tela por meio da função <code class="docutils literal notranslate"><span class="pre">print()</span></code>.</p>
 </section>
 </section>
-<section id="exemplos-de-erros-comuns">
-<h2>Exemplos de erros comuns<a class="headerlink" href="#exemplos-de-erros-comuns" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="formatacao-de-strings">
-<h2>Formatação de strings<a class="headerlink" href="#formatacao-de-strings" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Calculadora</span> <span class="n">de</span> <span class="n">IMC</span><span class="p">:</span> <span class="n">pede</span> <span class="n">ao</span> <span class="n">usuário</span> <span class="n">para</span> <span class="n">inserir</span> <span class="n">seu</span> <span class="n">peso</span> <span class="n">e</span> <span class="n">altura</span> <span class="n">e</span><span class="p">,</span> <span class="n">em</span> <span class="n">seguida</span><span class="p">,</span> <span class="n">calcula</span> <span class="n">e</span> <span class="n">imprime</span> <span class="n">seu</span> <span class="n">índice</span> <span class="n">de</span> <span class="n">massa</span> <span class="n">corporal</span><span class="o">.</span>
-<span class="n">Conversor</span> <span class="n">de</span> <span class="n">temperatura</span><span class="p">:</span> <span class="n">pede</span> <span class="n">ao</span> <span class="n">usuário</span> <span class="n">para</span> <span class="n">inserir</span> <span class="n">uma</span> <span class="n">temperatura</span> <span class="n">em</span> <span class="n">graus</span> <span class="n">Celsius</span> <span class="n">e</span> <span class="n">converte</span> <span class="n">para</span> <span class="n">Fahrenheit</span><span class="p">,</span> <span class="n">exibindo</span> <span class="n">o</span> <span class="n">resultado</span> <span class="n">na</span> <span class="n">tela</span><span class="o">.</span>
-<span class="n">Verificador</span> <span class="n">de</span> <span class="n">idade</span><span class="p">:</span> <span class="n">pede</span> <span class="n">ao</span> <span class="n">usuário</span> <span class="n">para</span> <span class="n">inserir</span> <span class="n">sua</span> <span class="n">data</span> <span class="n">de</span> <span class="n">nascimento</span> <span class="n">e</span><span class="p">,</span> <span class="n">em</span> <span class="n">seguida</span><span class="p">,</span> <span class="n">verifica</span> <span class="n">se</span> <span class="n">a</span> <span class="n">pessoa</span> <span class="n">é</span> <span class="n">maior</span> <span class="n">de</span> <span class="n">idade</span> <span class="n">ou</span> <span class="n">não</span><span class="o">.</span>
-<span class="n">Calculadora</span> <span class="n">de</span> <span class="n">gorjeta</span><span class="p">:</span> <span class="n">pede</span> <span class="n">ao</span> <span class="n">usuário</span> <span class="n">para</span> <span class="n">inserir</span> <span class="n">o</span> <span class="n">valor</span> <span class="n">total</span> <span class="n">da</span> <span class="n">conta</span> <span class="n">do</span> <span class="n">restaurante</span> <span class="n">e</span><span class="p">,</span> <span class="n">em</span> <span class="n">seguida</span><span class="p">,</span> <span class="n">calcula</span> <span class="n">e</span> <span class="n">imprime</span> <span class="n">a</span> <span class="n">gorjeta</span> <span class="n">com</span> <span class="n">base</span> <span class="n">em</span> <span class="n">uma</span> <span class="n">porcentagem</span> <span class="n">escolhida</span><span class="o">.</span>
-<span class="n">Gerador</span> <span class="n">de</span> <span class="n">senha</span><span class="p">:</span> <span class="n">pede</span> <span class="n">ao</span> <span class="n">usuário</span> <span class="n">para</span> <span class="n">inserir</span> <span class="n">a</span> <span class="n">quantidade</span> <span class="n">de</span> <span class="n">caracteres</span> <span class="n">que</span> <span class="n">deseja</span> <span class="n">em</span> <span class="n">sua</span> <span class="n">senha</span> <span class="n">e</span><span class="p">,</span> <span class="n">em</span> <span class="n">seguida</span><span class="p">,</span> <span class="n">gera</span> <span class="n">uma</span> <span class="n">senha</span> <span class="n">aleatória</span> <span class="n">com</span> <span class="n">esses</span> <span class="n">caracteres</span><span class="o">.</span>
-<span class="n">Sorteador</span> <span class="n">de</span> <span class="n">números</span><span class="p">:</span> <span class="n">pede</span> <span class="n">ao</span> <span class="n">usuário</span> <span class="n">para</span> <span class="n">inserir</span> <span class="n">a</span> <span class="n">quantidade</span> <span class="n">de</span> <span class="n">números</span> <span class="n">a</span> <span class="n">serem</span> <span class="n">sorteados</span> <span class="n">e</span><span class="p">,</span> <span class="n">em</span> <span class="n">seguida</span><span class="p">,</span> <span class="n">sorteia</span> <span class="n">esse</span> <span class="n">número</span> <span class="n">de</span> <span class="n">números</span> <span class="n">aleatórios</span> <span class="n">e</span> <span class="n">os</span> <span class="n">exibe</span> <span class="n">na</span> <span class="n">tela</span><span class="o">.</span>
-<span class="n">Gerador</span> <span class="n">de</span> <span class="n">cartão</span> <span class="n">de</span> <span class="n">bingo</span><span class="p">:</span> <span class="n">pede</span> <span class="n">ao</span> <span class="n">usuário</span> <span class="n">para</span> <span class="n">inserir</span> <span class="n">a</span> <span class="n">quantidade</span> <span class="n">de</span> <span class="n">cartões</span> <span class="n">de</span> <span class="n">bingo</span> <span class="n">que</span> <span class="n">deseja</span> <span class="n">gerar</span> <span class="n">e</span><span class="p">,</span> <span class="n">em</span> <span class="n">seguida</span><span class="p">,</span> <span class="n">gera</span> <span class="n">essa</span> <span class="n">quantidade</span> <span class="n">de</span> <span class="n">cartões</span> <span class="n">aleatórios</span><span class="o">.</span>
-<span class="n">Verificador</span> <span class="n">de</span> <span class="n">palíndromo</span><span class="p">:</span> <span class="n">pede</span> <span class="n">ao</span> <span class="n">usuário</span> <span class="n">para</span> <span class="n">inserir</span> <span class="n">uma</span> <span class="n">palavra</span> <span class="n">e</span><span class="p">,</span> <span class="n">em</span> <span class="n">seguida</span><span class="p">,</span> <span class="n">verifica</span> <span class="n">se</span> <span class="n">ela</span> <span class="n">é</span> <span class="n">um</span> <span class="n">palíndromo</span> <span class="p">(</span><span class="n">ou</span> <span class="n">seja</span><span class="p">,</span> <span class="n">se</span> <span class="n">é</span> <span class="n">a</span> <span class="n">mesma</span> <span class="n">palavra</span> <span class="n">quando</span> <span class="n">lida</span> <span class="n">de</span> <span class="n">trás</span> <span class="n">para</span> <span class="n">frente</span><span class="p">)</span><span class="o">.</span>
-<span class="n">Verificador</span> <span class="n">de</span> <span class="n">par</span> <span class="n">ou</span> <span class="n">ímpar</span><span class="p">:</span> <span class="n">pede</span> <span class="n">ao</span> <span class="n">usuário</span> <span class="n">para</span> <span class="n">inserir</span> <span class="n">um</span> <span class="n">número</span> <span class="n">e</span><span class="p">,</span> <span class="n">em</span> <span class="n">seguida</span><span class="p">,</span> <span class="n">verifica</span> <span class="n">se</span> <span class="n">é</span> <span class="n">par</span> <span class="n">ou</span> <span class="n">ímpar</span> <span class="n">e</span> <span class="n">exibe</span> <span class="n">a</span> <span class="n">resposta</span> <span class="n">na</span> <span class="n">tela</span><span class="o">.</span>
-<span class="n">Conversor</span> <span class="n">de</span> <span class="n">moedas</span><span class="p">:</span> <span class="n">pede</span> <span class="n">ao</span> <span class="n">usuário</span> <span class="n">para</span> <span class="n">inserir</span> <span class="n">um</span> <span class="n">valor</span> <span class="n">em</span> <span class="n">uma</span> <span class="n">moeda</span> <span class="n">e</span><span class="p">,</span> <span class="n">em</span> <span class="n">seguida</span><span class="p">,</span> <span class="n">converte</span> <span class="n">para</span> <span class="n">outra</span> <span class="n">moeda</span> <span class="n">escolhida</span><span class="p">,</span> <span class="n">exibindo</span> <span class="n">o</span> <span class="n">resultado</span> <span class="n">na</span> <span class="n">tela</span><span class="o">.</span>
-
-<span class="n">Tutorial</span> <span class="n">de</span> <span class="n">Python</span> <span class="n">da</span> <span class="n">W3Schools</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3schools</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
-<span class="n">Curso</span> <span class="n">de</span> <span class="n">Python</span> <span class="n">no</span> <span class="n">Codecademy</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">codecademy</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">learn</span><span class="o">/</span><span class="n">learn</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="mi">3</span>
-<span class="n">Livro</span> <span class="s2">&quot;Python para todos&quot;</span> <span class="n">de</span> <span class="n">Charles</span> <span class="n">Severance</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">py4e</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">book</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-    <span class="n">Calculadora</span> <span class="n">de</span> <span class="n">IMC</span><span class="p">:</span> <span class="n">pede</span> <span class="n">ao</span> <span class="n">usuário</span> <span class="n">para</span> <span class="n">inserir</span> <span class="n">seu</span> <span class="n">peso</span> <span class="n">e</span> <span class="n">altura</span> <span class="n">e</span><span class="p">,</span> <span class="n">em</span> <span class="n">seguida</span><span class="p">,</span> <span class="n">calcula</span> <span class="n">e</span> <span class="n">imprime</span> <span class="n">seu</span> <span class="n">índice</span> <span class="n">de</span> <span class="n">massa</span> <span class="n">corporal</span><span class="o">.</span>
-                <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="referencias-bibliograficas">
 <h2>Referências bibliográficas<a class="headerlink" href="#referencias-bibliograficas" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>BEAZLEY, D. M.; JONES, B. K. Python Cookbook (3ª ed.). O’Reilly Media, 2013.</p></li>
+<li><p>BORGES, L. E. Python para desenvolvedores. 2. ed. São Paulo: Novatec, 2016.</p></li>
 <li><p>DOWNEY, A. B. Think Python: How to Think Like a Computer Scientist (2ª ed.). O’Reilly Media, 2015.</p></li>
-<li><p>NAYAK, A. K. (2021). Python Programming: The Complete Guide to Learn Python for Data Science, AI, Machine Learning, and Coding (2ª ed.). Amazon.</p></li>
-<li><p>RAMALHO, L. (2015). Fluent Python: Clear, Concise, and Effective Programming. O’Reilly Media.</p></li>
-<li><p>SWEIGART, A. Automate the Boring Stuff with Python: Practical Programming for Total Beginners. No Starch Press, 2015.</p></li>
-<li><p>THOMAS, D., HUNT, A., &amp; KNIGHT, K. (2014). Programming Python (4ª ed.). O’Reilly Media.</p></li>
-<li><p>VANDERPLAS, J. (2016). Python Data Science Handbook: Essential Tools for Working with Data. O’Reilly Media.</p></li>
+<li><p>AYDEN, N. Python Programming: The Complete Guide to Learn Python for Data Science, AI, Machine Learning, GUI and More With Practical Exercises and Interview Questions (2ª ed.). Crawford Press, 2021.</p></li>
+<li><p>PYTHON. Built-in Constants. Disponível em: <a class="reference external" href="https://docs.python.org/3/library/constants.html">https://docs.python.org/3/library/constants.html</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>PYTHON. Built-in Types. Disponível em: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html">https://docs.python.org/3/library/stdtypes.html</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>PYTHON. Formatted string literals. Disponível em: <a class="reference external" href="https://docs.python.org/3/reference/lexical_analysis.html#f-strings">https://docs.python.org/3/reference/lexical_analysis.html#f-strings</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>PYTHON. Objects, values and types. Disponível em: <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#objects-values-and-types">https://docs.python.org/3/reference/datamodel.html#objects-values-and-types</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>PYTHON. Python 3.10.1 documentation: Input and Output. Disponível em: <a class="reference external" href="https://docs.python.org/3/tutorial/inputoutput.html">https://docs.python.org/3/tutorial/inputoutput.html</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>RAMALHO, L. Fluent Python: Clear, Concise, and Effective Programming. O’Reilly Media, 2015.</p></li>
+<li><p>REAL PYTHON. Python Boolean Operators. Disponível em: <a class="reference external" href="https://realpython.com/lessons/python-boolean-operators/">https://realpython.com/lessons/python-boolean-operators/</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>SWEIGART, A. Automate the Boring Stuff with Python: Practical Programming for Total Beginners. No Starch Press, 2019.</p></li>
+<li><p>THOMAS, D.; HUNT, A. The pragmatic programmer. Addison-Wesley Professional, 2019.</p></li>
+<li><p>VANDERPLAS, J. Python Data Science Handbook: Essential Tools for Working with Data. O’Reilly Media, 2016.</p></li>
+<li><p>W3SCHOOLS. Python Boolean. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_booleans.asp">https://www.w3schools.com/python/python_booleans.asp</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>W3SCHOOLS. Python Input and Output (I/O). Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_file_handling.asp">https://www.w3schools.com/python/python_file_handling.asp</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>W3SCHOOLS. Python Operators. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_operators.asp">https://www.w3schools.com/python/python_operators.asp</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>W3SCHOOLS. Python Variables. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_variables.asp">https://www.w3schools.com/python/python_variables.asp</a>. Acesso em: 03 mar. 2023.</p></li>
 <li><p>ZELLE, J. M. Python Programming: An Introduction to Computer Science (3ª ed.). Franklin, Beedle &amp; Associates, 2017.</p></li>
-<li><p>PYTHON. Built-in Constants. Disponível em: <a class="reference external" href="https://docs.python.org/3/library/constants.html">https://docs.python.org/3/library/constants.html</a>. Acesso em: 21 out. 2022.</p></li>
-<li><p>PYTHON. Built-in Types. Disponível em: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html">https://docs.python.org/3/library/stdtypes.html</a>. Acesso em: 24 out. 2022.</p></li>
-<li><p>W3SCHOOLS. Python Operators. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_operators.asp">https://www.w3schools.com/python/python_operators.asp</a>. Acesso em: 24 out. 2022.
-Python Software Foundation. (2022). “4.1.1. Objects, values and types”. Python Documentation. Recuperado em 28 de outubro de 2022, de <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html#objects-values-and-types">https://docs.python.org/3/reference/datamodel.html#objects-values-and-types</a></p></li>
 </ul>
-<p>DAWSON, M. Python para desenvolvedores. 2. ed. São Paulo: Novatec, 2016.</p>
 </section>
 </section>
 
@@ -1079,11 +1320,46 @@ Python Software Foundation. (2022). “4.1.1. Objects, values and types”. Pyth
     <a class="reference internal nav-link" href="#operadores-logicos">
      Operadores lógicos
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#operadores-de-identidade">
-     Operadores de identidade
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#negacao-not">
+       Negação (
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         not
+        </span>
+       </code>
+       )
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ou-logico-or">
+       Ou lógico (
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         or
+        </span>
+       </code>
+       )
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#e-logico-e">
+       E lógico (
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         e
+        </span>
+       </code>
+       )
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#resumindo">
+       Resumindo
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -1103,8 +1379,61 @@ Python Software Foundation. (2022). “4.1.1. Objects, values and types”. Pyth
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exemplos">
-   Exemplos
+  <a class="reference internal nav-link" href="#int-float-e-str">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     int
+    </span>
+   </code>
+   ,
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     float
+    </span>
+   </code>
+   e
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     str
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formatacao-de-strings">
+   Formatação de strings
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jeito-1-concatenando-strings">
+     Jeito 1: concatenando strings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jeito-2-usando-f-strings">
+     Jeito 2: usando f-strings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jeito-3-usando-placeholders">
+     Jeito 3: usando placeholders
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jeito-4-usando-format">
+     Jeito 4: usando
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       format()
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercicios">
+   Exercícios
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -1113,16 +1442,6 @@ Python Software Foundation. (2022). “4.1.1. Objects, values and types”. Pyth
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exemplos-de-erros-comuns">
-   Exemplos de erros comuns
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#formatacao-de-strings">
-   Formatação de strings
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias-bibliograficas">
@@ -1153,17 +1472,11 @@ By Wellington Rodrigo Monteiro
   
   <div class="footer-item">
     
-<p class="copyright">
-
-    &copy; Copyright 2022.<br>
-
-</p>
-
   </div>
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on None.<br>
+Last updated on Mar 03, 2023.<br>
 </p>
   </div>
   

@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+    <meta property="article:modified_time" content="2023-03-03T16:19:14-03:00" />
     <title>Introdução ao Python &#8212; Python Descomplicado</title>
   
   
@@ -518,6 +519,18 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercicios">
+   Exercícios
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#respostas">
+     Respostas
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias-bibliograficas">
    Referências bibliográficas
   </a>
@@ -570,6 +583,52 @@ title="Print to PDF"
 </section>
 <section id="teste-de-mesa">
 <h2>Teste de mesa<a class="headerlink" href="#teste-de-mesa" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="exercicios">
+<h2>Exercícios<a class="headerlink" href="#exercicios" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple" start="3">
+<li><p>Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela se ele é par ou ímpar.</p>
+<ul class="simple">
+<li><p>Exemplo: um usuário digita o número <code class="docutils literal notranslate"><span class="pre">7</span></code>. O algoritmo deve retornar a mensagem <em>“Ímpar”</em>.</p></li>
+</ul>
+</li>
+<li><p>Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela se ele é positivo, negativo ou zero.</p>
+<ul class="simple">
+<li><p>Exemplo: um usuário digita o número <code class="docutils literal notranslate"><span class="pre">-51.05</span></code>. O algoritmo deve retornar a mensagem <em>“Negativo”</em>.</p></li>
+</ul>
+</li>
+</ol>
+<section id="respostas">
+<h3>Respostas<a class="headerlink" href="#respostas" title="Permalink to this headline">#</a></h3>
+<ol class="arabic simple" start="3">
+<li><p>Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela se ele é par ou ímpar.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insira um número inteiro: &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;é um número par&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;é um número ímpar&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O algoritmo começa solicitando ao usuário que insira um número inteiro através da função <code class="docutils literal notranslate"><span class="pre">input()</span></code>, que lê a entrada do usuário como uma string. Em seguida, o número é convertido para um inteiro usando a função <code class="docutils literal notranslate"><span class="pre">int()</span></code>, e armazenado na variável <code class="docutils literal notranslate"><span class="pre">num</span></code>.</p>
+<p>A partir daí, usamos um condicional if para verificar se o número é par ou ímpar. Se o resto da divisão por <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">(num</span> <span class="pre">%</span> <span class="pre">2)</span></code> for igual a 0, significa que o número é par, e a mensagem correspondente é exibida na tela usando a função <code class="docutils literal notranslate"><span class="pre">print()</span></code>. Caso contrário, o número é ímpar, e a mensagem correspondente é exibida.</p>
+<ol class="arabic simple" start="4">
+<li><p>Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela se ele é positivo, negativo ou zero.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O número é positivo.&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O número é negativo.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O número é zero.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O programa começa pedindo para que o usuário digite um número, que é armazenado na variável num. Em seguida, um bloco condicional <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> é utilizado para verificar se o número é positivo, negativo ou zero.</p>
+<p>Se o número for maior que zero, o programa exibe a mensagem <code class="docutils literal notranslate"><span class="pre">O</span> <span class="pre">número</span> <span class="pre">é</span> <span class="pre">positivo</span></code>. Se o número for menor que zero, o programa exibe a mensagem <code class="docutils literal notranslate"><span class="pre">O</span> <span class="pre">número</span> <span class="pre">é</span> <span class="pre">negativo</span></code>. Se o número for igual a zero, o programa exibe a mensagem <code class="docutils literal notranslate"><span class="pre">O</span> <span class="pre">número</span> <span class="pre">é</span> <span class="pre">zero</span></code>.</p>
+</section>
 </section>
 <section id="referencias-bibliograficas">
 <h2>Referências bibliográficas<a class="headerlink" href="#referencias-bibliograficas" title="Permalink to this headline">#</a></h2>
@@ -634,6 +693,18 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercicios">
+   Exercícios
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#respostas">
+     Respostas
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias-bibliograficas">
    Referências bibliográficas
   </a>
@@ -662,17 +733,11 @@ By Wellington Rodrigo Monteiro
   
   <div class="footer-item">
     
-<p class="copyright">
-
-    &copy; Copyright 2022.<br>
-
-</p>
-
   </div>
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on None.<br>
+Last updated on Mar 03, 2023.<br>
 </p>
   </div>
   

@@ -2,11 +2,13 @@
 
 Olá! Este é um livro totalmente escrito em português e voltado para estudantes que estão dando os seus primeiros passos em desenvolvimento de software. O objetivo é o de explicar algoritmos de uma forma simples usando a linguagem de programação Python.
 
-É importante ressaltar que o livro não é um tutorial ou um guia passo-a-passo. O seu foco é desenvolver um pensamento crítico para a resolução de problemas em vez de somente seguir instruções clicando em telas e apertando botões. Isso porque, como profissional, é fundamental saber como resolver problemas complexos dentro das empresas, e seguir tutoriais pode limitar a autonomia nesse sentido.
+Python é uma das linguagens de programação mais populares e versáteis do mercado. Seu aprendizado é fundamental para quem deseja atuar na área de programação, já que ela é utilizada para uma ampla variedade de projetos, desde desenvolvimento web e de aplicativos móveis, até análise de dados e inteligência artificial. Além disso, Python é uma linguagem relativamente fácil de aprender, possuindo uma sintaxe clara e direta.
 
-Portanto, se você está interessado em aprender mais sobre algoritmos e como resolver problemas de forma autônoma, "Python Descomplicado: Aprendendo Algoritmos de Forma Simples" pode ser uma ótima opção de leitura para você.
+Por outro lado, aprender Python pode ser um desafio para quem não tem conhecimentos prévios em programação, principalmente pela falta de recursos em português que expliquem de forma clara e acessível os conceitos básicos da linguagem. Muitos cursos e materiais didáticos disponíveis na internet acabam sendo superficiais, enquanto outros são extensos demais e acabam desestimulando quem está começando a estudar a linguagem.
 
-Este livro foi produzido por mim, um humano com experiência acadêmica e profissional na minha área de atuação. Dito isso, o ChatGPT contribuiu para complementar o conteúdo e dar exemplos. Por isso, embora tenha sido uma ferramenta valiosa para a produção deste livro, é importante lembrar que este é um livro criado e editado por um professor/profissional com conhecimento e experiência na área abordada.
+É importante ressaltar que este livro não é um tutorial ou um guia passo-a-passo. O seu foco é desenvolver um pensamento crítico para a resolução de problemas em vez de somente seguir instruções clicando em telas e apertando botões. Isso porque, como profissional, é fundamental saber como resolver problemas complexos dentro das empresas, e seguir tutoriais pode limitar a autonomia nesse sentido.
+
+Este livro foi produzido por mim, um humano com experiência acadêmica e profissional na minha área de atuação. Isto posto, também é preciso informar que o ChatGPT foi empregado com muita cautela para complementar o conteúdo e dar exemplos. Por isso, embora tenha sido uma ferramenta valiosa para a produção deste livro, é importante lembrar que este é um livro que é criado e editado por um professor/profissional com conhecimento e experiência na área abordada.
 
 ```{tableofcontents}
 ```
