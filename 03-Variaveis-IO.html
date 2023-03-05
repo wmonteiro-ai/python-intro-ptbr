@@ -72,7 +72,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '03-Variaveis-IO';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Erros/exceções em Python" href="05-Erros-Comuns.html" />
+    <link rel="next" title="Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)" href="04-Estruturas-Selecao.html" />
     <link rel="prev" title="Arrumando as coisas para começar a falar de algoritmos" href="02-Introducao-Algoritmos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
@@ -168,7 +168,14 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="05-Erros-Comuns.html">
+                      <a class="nav-link nav-internal" href="04-Estruturas-Selecao.html">
+                        Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="10-Erros-Comuns.html">
                         Erros/exceções em Python
                       </a>
                     </li>
@@ -265,7 +272,14 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="05-Erros-Comuns.html">
+                      <a class="nav-link nav-internal" href="04-Estruturas-Selecao.html">
+                        Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="10-Erros-Comuns.html">
                         Erros/exceções em Python
                       </a>
                     </li>
@@ -345,10 +359,11 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2: Fazendo coisas legais</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Primeiros (ou segundos) passos em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Estruturas-Selecao.html">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3: Resolvendo tretas</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="05-Erros-Comuns.html">Erros/exceções em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-Erros-Comuns.html">Erros/exceções em Python</a></li>
 </ul>
 
     </div>
@@ -696,8 +711,10 @@ title="Print to PDF"
 <h2>O que você saberá se você ler todo este capítulo?<a class="headerlink" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo" title="Permalink to this headline">#</a></h2>
 <ol class="arabic simple">
 <li><p>Você saberá usar as funções de entrada e saída de dados (<code class="docutils literal notranslate"><span class="pre">input</span></code> e <code class="docutils literal notranslate"><span class="pre">print</span></code>) em Python.</p></li>
-<li><p>Você saberá usar operadores aritméticos em Python.</p></li>
+<li><p>Você saberá usar operadores aritméticos, de comparação e lógicos em Python.</p></li>
 <li><p>Você saberá formatar textos (strings) em Python.</p></li>
+<li><p>Você saberá como funcionam as variáveis em Python.</p></li>
+<li><p>Você também saberá como converter um tipo de dado em outro como, por exemplo, um número para texto e vice-versa.</p></li>
 </ol>
 </section>
 <section id="saindo-do-pseudocodigo-para-o-python">
@@ -929,7 +946,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="input-e-print">
-<h2><code class="docutils literal notranslate"><span class="pre">input</span></code> e <code class="docutils literal notranslate"><span class="pre">print</span></code><a class="headerlink" href="#input-e-print" title="Permalink to this headline">#</a></h2>
+<span id="content-python-inputprint"></span><h2><code class="docutils literal notranslate"><span class="pre">input</span></code> e <code class="docutils literal notranslate"><span class="pre">print</span></code><a class="headerlink" href="#input-e-print" title="Permalink to this headline">#</a></h2>
 <p>Em termos simples, quando estamos escrevendo um código em Python, podemos querer que ele faça algumas coisas como, por exemplo, ler um arquivo, ler coisas que o usuário digitou, ou mostrar alguma informação na tela do computador. A leitura de informações que o usuário forneceu e a exibição de informações na tela são exemplos de entrada e saída (<em>input</em>  e <em>output</em>, ou I/O) do nosso algoritmo.</p>
 <p>Quando escrevemos um algoritmo, é importante que ele consiga se comunicar com o mundo exterior para coletar e enviar informações. Por exemplo, se quisermos fazer um programa que calcule a média de notas de um aluno, precisamos permitir que o usuário insira as notas. Isso é entrada (<em>input</em>) do programa. E quando o programa calcular a média, ele precisará exibir o resultado ao usuário, que é a saída (<em>output</em>) do programa.</p>
 <blockquote>
@@ -982,7 +999,7 @@ title="Print to PDF"
 <p>Na segunda linha, há uma exibição na tela do resultado da soma da variável <code class="docutils literal notranslate"><span class="pre">num1</span></code> com ela mesma. Isso é feito com o uso da função <code class="docutils literal notranslate"><span class="pre">print()</span></code>, que exibe na tela o valor passado entre parênteses (ou seja: o resultado da soma).</p>
 <p>Antes de avançarmos, teste este mesmo algoritmo com outro número. Primeiro, teste o algoritmo com <code class="docutils literal notranslate"><span class="pre">9.78</span></code> no lugar de <code class="docutils literal notranslate"><span class="pre">2000</span></code>. Você verá que apareceu um erro assim:</p>
 <p><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">invalid</span> <span class="pre">literal</span> <span class="pre">for</span> <span class="pre">int()</span> <span class="pre">with</span> <span class="pre">base</span> <span class="pre">10:</span> <span class="pre">'9.78'</span></code></p>
-<p>Isto acontece porque ele esperava um número inteiro e você acabou digitando um número com casas decimais. Veja que o próprio erro te diz isso: que o número que você digitou não é um inteiro. Erros assim podem acontecer enquanto desenvolvemos e testamos algoritmos. Para te ajudar, também <a class="reference internal" href="05-Erros-Comuns.html#content-commonerrors"><span class="std std-ref">criei uma seção com os tratamentos mais comuns aos erros de código para você</span></a>.</p>
+<p>Isto acontece porque ele esperava um número inteiro e você acabou digitando um número com casas decimais. Veja que o próprio erro te diz isso: que o número que você digitou não é um inteiro. Erros assim podem acontecer enquanto desenvolvemos e testamos algoritmos. Para te ajudar, também <a class="reference internal" href="10-Erros-Comuns.html#content-commonerrors"><span class="std std-ref">criei uma seção com os tratamentos mais comuns aos erros de código para você</span></a>.</p>
 <p>Se quiséssemos que o nosso código funcionasse com números decimais bastaria substituir o <code class="docutils literal notranslate"><span class="pre">int()</span></code> por <code class="docutils literal notranslate"><span class="pre">float()</span></code>, ficando assim:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">num1</span> <span class="o">+</span> <span class="n">num1</span><span class="p">)</span>
@@ -1074,7 +1091,7 @@ title="Print to PDF"
 <section id="exercicios">
 <h2>Exercícios<a class="headerlink" href="#exercicios" title="Permalink to this headline">#</a></h2>
 <p>O que acha de colocar a mão na massa e tentar resolver os problemas abaixo usando Python? Todos eles podem ser resolvidos somente com o que você aprendeu até o momento. Você também pode tentar inserir coisas a mais, como uma mensagem mais bonita usando técnicas de formatação de strings.</p>
-<p>Ah, e reforçando: é provável que você encontre algum erro no caminho. Fique tranquilo! Procurei criar <a class="reference internal" href="05-Erros-Comuns.html#content-commonerrors"><span class="std std-ref">uma seção com os tratamentos mais comuns aos erros de código para você</span></a>. Logo abaixo destes exercícios existem as respostas com as explicações. Lembrando: não existe uma solução única para estes problemas – o seu algoritmo pode também funcionar perfeitamente ainda que a sua implementação seja diferente da minha, beleza?</p>
+<p>Ah, e reforçando: é provável que você encontre algum erro no caminho. Fique tranquilo! Procurei criar <a class="reference internal" href="10-Erros-Comuns.html#content-commonerrors"><span class="std std-ref">uma seção com os tratamentos mais comuns aos erros de código para você</span></a>. Logo abaixo destes exercícios existem as respostas com as explicações. Lembrando: não existe uma solução única para estes problemas – o seu algoritmo pode também funcionar perfeitamente ainda que a sua implementação seja diferente da minha, beleza?</p>
 <ol class="arabic simple">
 <li><p>Crie um algoritmo que solicita ao usuário que insira seu nome e exibe na tela uma mensagem de saudação</p>
 <ul class="simple">
@@ -1256,10 +1273,10 @@ title="Print to PDF"
           <p class="prev-next-title">Arrumando as coisas para começar a falar de algoritmos</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="05-Erros-Comuns.html" title="next page">
+  <a class='right-next' id="next-link" href="04-Estruturas-Selecao.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Erros/exceções em Python</p>
+      <p class="prev-next-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</p>
   </div>
   <i class="fa-solid fa-angle-right"></i>
   </a>

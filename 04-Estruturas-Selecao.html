@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <meta property="article:modified_time" content="2023-03-03T16:19:14-03:00" />
-    <title>Introdução ao Python &#8212; Python Descomplicado</title>
+    <title>Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else) &#8212; Python Descomplicado</title>
   
   
   
@@ -70,6 +70,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '04-Estruturas-Selecao';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Erros/exceções em Python" href="10-Erros-Comuns.html" />
+    <link rel="prev" title="Primeiros (ou segundos) passos em Python" href="03-Variaveis-IO.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -163,8 +165,15 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="05-Erros-Comuns.html">
+                      <a class="nav-link nav-internal" href="10-Erros-Comuns.html">
                         Erros/exceções em Python
                       </a>
                     </li>
@@ -260,8 +269,15 @@ const thebe_selector_output = ".output, .cell_output"
                     </li>
                 
 
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="05-Erros-Comuns.html">
+                      <a class="nav-link nav-internal" href="10-Erros-Comuns.html">
                         Erros/exceções em Python
                       </a>
                     </li>
@@ -339,12 +355,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="02-Introducao-Algoritmos.html">Arrumando as coisas para começar a falar de algoritmos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2: Fazendo coisas legais</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03-Variaveis-IO.html">Primeiros (ou segundos) passos em Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3: Resolvendo tretas</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="05-Erros-Comuns.html">Erros/exceções em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-Erros-Comuns.html">Erros/exceções em Python</a></li>
 </ul>
 
     </div>
@@ -498,7 +515,7 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introdução ao Python</h1>
+    <h1>Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -514,9 +531,199 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#teste-de-mesa">
-   Teste de mesa
+  <a class="reference internal nav-link" href="#respirando-um-pouco-antes-de-continuar">
+   Respirando um pouco antes de continuar
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#se-senao-se-senao">
+   Se, senão-se, senão
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bloqueando-um-usuario">
+     Bloqueando um usuário
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dirigindo">
+     Dirigindo
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#se-com-duas-condicoes">
+       “Se” com duas condições
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aprovacao-de-credito">
+     Aprovação de crédito
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#senao-se">
+       Senão-se
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#um-resumo-ate-aqui">
+     Um resumo até aqui
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#if-elif-else">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       if
+      </span>
+     </code>
+     ,
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       elif
+      </span>
+     </code>
+     ,
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       else
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#apenas-if">
+       Apenas
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#if-e-else">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+       e
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         else
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#if-elif-e-else">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+       ,
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         elif
+        </span>
+       </code>
+       e
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         else
+        </span>
+       </code>
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#tres-elif">
+         Três
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           elif
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#if-dentro-de-if">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+       dentro de
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#if-dentro-de-if-dentro-de-if">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+       dentro de
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+       dentro de
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#varios-blocos-de-if">
+       Vários blocos de
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comentarios">
+     Comentários
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#teste-de-mesa-e-debugging">
+   Teste de mesa e debugging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#teste-de-mesa">
+     Teste de mesa
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#debugging">
+     Debugging
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercicios">
@@ -544,14 +751,486 @@ title="Print to PDF"
 
             <article class="bd-article" role="main">
               
-  <section class="tex2jax_ignore mathjax_ignore" id="introducao-ao-python">
-<h1>Introdução ao Python<a class="headerlink" href="#introducao-ao-python" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="decidindo-o-destino-do-seu-codigo-a-logica-das-condicoes-em-python-if-elif-else">
+<h1>Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)<a class="headerlink" href="#decidindo-o-destino-do-seu-codigo-a-logica-das-condicoes-em-python-if-elif-else" title="Permalink to this headline">#</a></h1>
 <section id="o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
 <h2>O que você saberá se você ler todo este capítulo?<a class="headerlink" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo" title="Permalink to this headline">#</a></h2>
 <ol class="arabic simple">
-<li><p>if/elif/else</p></li>
-<li><p>Teste de mesa</p></li>
+<li><p>Como funcionam as estruturas de seleção (se/senão-se/senão) (em Python, <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code>).</p></li>
+<li><p>Que é possível montar estas estruturas de forma que façam sentido no nosso código: assim, podemos usar só <code class="docutils literal notranslate"><span class="pre">if</span></code>, ou <code class="docutils literal notranslate"><span class="pre">if</span></code> com vários <code class="docutils literal notranslate"><span class="pre">elif</span></code> e sem <code class="docutils literal notranslate"><span class="pre">else</span></code> ou <code class="docutils literal notranslate"><span class="pre">if</span></code> com <code class="docutils literal notranslate"><span class="pre">else</span></code>.</p></li>
+<li><p>Que não podemos ter <code class="docutils literal notranslate"><span class="pre">if</span></code> com dois <code class="docutils literal notranslate"><span class="pre">else</span></code>, ou <code class="docutils literal notranslate"><span class="pre">elif</span></code> e <code class="docutils literal notranslate"><span class="pre">else</span></code> sem <code class="docutils literal notranslate"><span class="pre">if</span></code>.</p></li>
+<li><p>Que podemos colocar uma estrutura de seleção dentro da outra, ainda que não seja muito legal e nem muito recomendado.</p></li>
+<li><p>Que podemos usar várias estruturas de seleção de forma separada ao longo do código onde fizer sentido.</p></li>
+<li><p>Que testes de mesa e debuggers ajudam a identificar problemas no código sem quebrar (tanto) a cabeça.</p></li>
+<li><p>Que é legal usar debuggers! 🐛</p></li>
 </ol>
+<figure>
+    <img alt="Primeiro bug identificado na história. A imagem mostra um inseto grudado com uma fita adesiva em uma folha de caderno de 1947." src="bug.jfif" style="max-width:400px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Primeiro bug da história, de 1947. Você vai começar a encontrar outros bugs no seu código conforme ele aumenta em complexidade. Créditos: Transfer from United States Department of Defense, Naval Surface Warfare Center. National Museum of American History.</figcaption>
+</figure></section>
+<section id="respirando-um-pouco-antes-de-continuar">
+<h2>Respirando um pouco antes de continuar<a class="headerlink" href="#respirando-um-pouco-antes-de-continuar" title="Permalink to this headline">#</a></h2>
+<p>Oi de novo! Parabéns por ter aprendido a programar em Python! É incrível como você já conseguiu dominar as coisas básicas da linguagem em tão pouco tempo. Saber como desenvolver algoritmos (isso é diferente de seguir tutoriais e seguir um passo-a-passo, tá?) é uma habilidade muito importante na sua carreira e pode ser útil em diversas áreas.</p>
+<p>Não desanime se encontrar desafios ao longo do caminho. A programação é uma habilidade que exige persistência e dedicação, mas os resultados podem ser extremamente gratificantes. Continue aprendendo, desenvolvendo seus próprios projetos e participando da comunidade Python. Você verá que em pouco tempo será capaz de criar programas ainda mais complexos e úteis.</p>
+<p>Veja só: até agora você aprendeu vários operadores e funções em Python. Imagine trabalhar com algoritmos como sendo brincar com vários blocos de Lego. Você tem diferentes tipos de blocos (funções, operadores e variáveis) que podem ser combinados de várias maneiras para construir coisas novas. Cada bloco tem sua própria função e você pode usá-los em diferentes combinações para alcançar o resultado desejado.</p>
+<p>Assim como no Lego, você precisa de criatividade e raciocínio para construir algo novo. Você pode começar com um conjunto básico de blocos (as funções e operadores básicos do Python que você viu no capítulo anterior) e, à medida que se familiariza com eles, pode experimentar combinações mais avançadas e construir coisas mais complexas.</p>
+<p>Por exemplo, imagine que você queira construir um robô com o jogo de Lego. Você pode começar com blocos simples, como aquelas peças retangulares que todo mundo conhece, para construir o corpo do robô. Em seguida, você pode adicionar blocos mais específicos, como engrenagens e motores para torná-lo mais funcional.</p>
+<p>Da mesma forma, no Python, você pode começar com funções simples, como <code class="docutils literal notranslate"><span class="pre">input()</span></code> e <code class="docutils literal notranslate"><span class="pre">print()</span></code> para criar um programa básico que pede ao usuário para inserir um número e o imprime na tela. À medida que você aprende mais, pode adicionar funções mais específicas e criar as suas próprias funções, ou usar loops e condicionais para tornar seu programa mais complexo e interativo.</p>
+<p>Por isso, agora vamos aprender sobre as estruturas de seleção (ou controle) para que você tenha um repertório um pouco mais avançado. Com as estruturas de seleção em Python, como o <code class="docutils literal notranslate"><span class="pre">if</span></code>, o <code class="docutils literal notranslate"><span class="pre">else</span></code> e o <code class="docutils literal notranslate"><span class="pre">elif</span></code>, você pode criar programas que tomam decisões baseadas em condições específicas. Lembra das analogias da receita de bolo? Então: imagine agora uma receita de bolo em que você decide seguir um conjunto de instruções com base nos ingredientes disponíveis na sua cozinha. Se você tem açúcar e cenoura, você pode fazer um bolo de cenoura. Se você tem cacau e açúcar, você pode fazer um bolo de chocolate. As possibilidades são muitas e dependem das condições que você tem em mãos.</p>
+<p>Até porque nem sempre é um caminho direto que sempre vai chegar a uma única decisão. Nem sempre quando você vai no supermercado comprar alguma coisa você sai com <em>exatamente</em> os mesmos itens que você planejou no começo que iria comprar, não é? Vamos ver como trabalhar com essas seleções em Python?</p>
+<figure>
+    <img alt="Imagem de um homem olhando para geladeiras cheias de bebidas em um supermercado." src="victoriano-izquierdo-JG35CpZLfVs-unsplash.jpg" style="max-width:400px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Créditos: <a href="https://unsplash.com/@victoriano?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Victoriano Izquierdo</a> no <a href="https://unsplash.com/photos/JG35CpZLfVs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>.</figcaption>
+</figure></section>
+<section id="se-senao-se-senao">
+<h2>Se, senão-se, senão<a class="headerlink" href="#se-senao-se-senao" title="Permalink to this headline">#</a></h2>
+<p>O que você viu e construiu até agora são algoritmos sequenciais. Um algoritmo sequencial é uma sequência de instruções executadas na ordem em que aparecem. Ele é utilizado quando uma tarefa precisa ser executada de forma linear, passo a passo, sem a necessidade de tomar decisões ou realizar desvios de fluxo. É como uma receita simples de bolo, onde as instruções precisam ser seguidas em ordem para obter o resultado esperado: você tem que seguir exatamente as instruções seguindo uma ordem pré-definida. Não há como escapar ou como pular ou trocar passo nenhum.</p>
+<p>Por outro lado, nem tudo na vida é tão rígido assim. Imagine um algoritmo que poderia ser construído para controlar um semáforo de trânsito. O algoritmo leva em consideração o tempo em que cada sinal deve permanecer aberto para permitir a passagem de veículos e, em seguida, muda para a próxima cor. Afinal de contas, não seria muito legal que ele ficasse aberto e fechado pelo mesmo período de tempo em ruas bem movimentadas em cidades grandes, não é? Ou, imagine um algoritmo de uma loja online oferece diferentes opções de frete para seus clientes. O tempo de entrega e até as opções de transportadora vão depender do lugar em que o cliente mora e o tamanho da encomenda.</p>
+<p>É para casos como estes que existem as estruturas de seleções. Por isso, saiba que usamos estruturas de seleção quando precisamos <strong>tomar decisões ou realizar desvios durante</strong> o fluxo do algoritmo. Ele permite que o algoritmo execute diferentes conjuntos de instruções, dependendo de uma condição. É como um jogo de escolhas, onde as decisões que tomamos alteram o desenrolar da história.</p>
+<p>A diferença fundamental entre esses dois tipos de algoritmos (o que começaremos a ver agora e o que você trabalhou até o capítulo anterior) é que o algoritmo sequencial segue um fluxo linear de instruções, enquanto o algoritmo que emprega estruturas de seleção pode tomar diferentes caminhos dependendo da condição sendo testada para um caso específico.</p>
+<blockquote>
+<div><p>Resumo: os algoritmos que você viu até agora seguia uma sequência pré-determinada de ações. A partir de agora você também poderá criar algoritmos capazes de tomar decisões de acordo com as condições que são apresentadas.</p>
+</div></blockquote>
+<p>Agora, como funcionam essas estruturas de seleção? Vamos pensar em alguns exemplos da vida real.</p>
+<section id="bloqueando-um-usuario">
+<h3>Bloqueando um usuário<a class="headerlink" href="#bloqueando-um-usuario" title="Permalink to this headline">#</a></h3>
+<p>Imagine um usuário que está tentando entrar em um sistema. Se a senha digitada for a correta, o acesso será liberado. Caso contrário, nada irá acontecer: o usuário permanecerá na tela de entrada. Simples, não é? Um exemplo de pseudocódigo seria:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="m">1</span>. Início
+ <span class="m">2</span>.   Texto: nome_usuario, senha_usuario
+ <span class="m">3</span>.   
+ <span class="m">4</span>.   Escreva<span class="o">(</span><span class="s2">&quot;Digite o nome do usuário:&quot;</span><span class="o">)</span>
+ <span class="m">5</span>.   Leia<span class="o">(</span>nome_usuario<span class="o">)</span>
+ <span class="m">6</span>.   Escreva<span class="o">(</span><span class="s2">&quot;Digite a senha:&quot;</span><span class="o">)</span>
+ <span class="m">7</span>.   Leia<span class="o">(</span>senha_usuario<span class="o">)</span>
+ <span class="m">8</span>.   
+ <span class="m">9</span>.   Se a senha_usuario é válida para o nome_usuario, então
+<span class="m">10</span>.     Liberar acesso ao sistema
+<span class="m">11</span>.   Fim Se
+<span class="m">12</span>. Fim
+</pre></div>
+</div>
+<p>Veja que nas linhas 9 até a 11 temos uma <strong>estrutura de seleção</strong>. Essa estrutura é composta por três partes:</p>
+<ol class="arabic simple">
+<li><p>A condição (o <strong>se</strong>, que está no começo da linha 9);</p></li>
+<li><p>A ação (o que acontece logo após a palavra <strong>então</strong> no final da linha 9).</p></li>
+<li><p>A indicação do final da ação (o <strong>fim se</strong>, na linha 11).</p></li>
+</ol>
+<p>Perceba que a <a class="reference internal" href="02-Introducao-Algoritmos.html#content-python-identation"><span class="std std-ref">indentação</span></a> na linha 10 ajuda a perceber que esta ação fica <em>dentro</em> da condição estabelecida pela linha 9. Ou seja:</p>
+<ol class="arabic simple">
+<li><p>Se a <code class="docutils literal notranslate"><span class="pre">senha_usuario</span></code> estiver correta para o <code class="docutils literal notranslate"><span class="pre">nome_usuario</span></code>, o algoritmo irá rodar todos os passos, incluindo a linha 10.</p></li>
+<li><p>Se a <code class="docutils literal notranslate"><span class="pre">senha_usuario</span></code> não estiver correta, o algoritmo <strong>pulará</strong> o passo 10. Ou seja: o acesso não será concedido.</p></li>
+</ol>
+</section>
+<section id="dirigindo">
+<h3>Dirigindo<a class="headerlink" href="#dirigindo" title="Permalink to this headline">#</a></h3>
+<p>Agora, vamos pensar em um caso em que o “se” possui duas condições sendo testadas. A mesma lógica funcionaria com três ou mais condições, também. Assim, vamos supor que queiramos fazer um algoritmo para dirigir um carro até a Universidade. Por outro lado, não dá para dirigir com o tanque vazio, não é? Para evitar isso, vamos abastecer o carro quando o tanque estiver abaixo de 25% da capacidade (ou seja, 1/4 de tanque). E, se formos abastecer, precisaremos pagar. Por isso, antes de parar para abastecer é importante verificar se temos dinheiro para tal. Um exemplo de pseudocódigo seria:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="m">1</span>. Início
+ <span class="m">2</span>.   Pegue as chaves <span class="k">do</span> carro.
+ <span class="m">3</span>.   Ande até o carro.
+ <span class="m">4</span>.   Desbloqueie o carro.
+ <span class="m">5</span>.   Entre no carro, se sentando no banco <span class="k">do</span> motorista.
+ <span class="m">6</span>.   Verifique o trânsito antes de sair de casa.
+ <span class="m">7</span>.   Escolha o melhor caminho.
+ <span class="m">8</span>.   Verifique se há combustível suficiente no tanque <span class="k">do</span> carro para ir até a Universidade.
+ <span class="m">9</span>.   Ligue o carro.
+<span class="m">10</span>.   Respeite as leis de trânsito e limite de velocidade durante todo o trajeto.
+<span class="m">11</span>.   Se o tanque estiver abaixo de <span class="m">1</span>/4 e se tiver dinheiro o suficiente para pagar pelo combustível então
+<span class="m">12</span>.     Dirija até o posto de combustível.
+<span class="m">13</span>.     Pare em um posto de combustível no meio <span class="k">do</span> caminho e abasteça.
+<span class="m">14</span>.     Pague pelo combustível.
+<span class="m">15</span>.     Saia <span class="k">do</span> posto.
+<span class="m">16</span>.   Fim Se
+<span class="m">17</span>.   Dirija até a Universidade.
+<span class="m">18</span>.   Estacione o carro em um <span class="nb">local</span> apropriado e seguro.
+<span class="m">19</span>.   Desligue o motor e retire a chave.
+<span class="m">20</span>.   Saia <span class="k">do</span> carro.
+<span class="m">21</span>. Fim
+</pre></div>
+</div>
+<p>Perceba que a <a class="reference internal" href="02-Introducao-Algoritmos.html#content-python-identation"><span class="std std-ref">indentação</span></a> nos passos 12 a 15 nos ajuda a perceber que estes passos ficam <em>dentro</em> da condição estabelecida pela linha 11. Para ficar mais fácil, vamos pensar nos seguintes exemplos:</p>
+<ol class="arabic simple">
+<li><p><strong>Temos mais do que 1/4 de tanque</strong>: vamos pular as linhas 12, 13, 14 e 15. Afinal, não precisamos entrar agora no posto. Ou seja: leia o código das linhas 1 até 11, e depois das linhas 17 até 21.</p></li>
+<li><p><strong>Temos menos do que 1/4 de tanque, mas não temos dinheiro</strong>: vamos pular as linhas 12, 13, 14 e 15. Afinal, não temos dinheiro para pagar pelo combustível. Ou seja: leia o código das linhas 1 até 11, e depois das linhas 17 até 21.</p></li>
+<li><p><strong>Temos menos do que 1/4 de tanque e temos dinheiro</strong>: vamos ler o código das linhas 1 até 21, sem parar. Isto porque precisamos ir ao posto (porque temos pouco combustível) e poderemos pagar por ele.</p></li>
+</ol>
+<p>Ainda, perceba que nas linhas 11 até a 16 temos uma <strong>estrutura de seleção</strong>. Essa estrutura é composta por três partes:</p>
+<ol class="arabic simple">
+<li><p>A condição (o <strong>se</strong>, que está no começo da linha 11);</p></li>
+<li><p>A ação (o que acontece logo após a palavra <strong>então</strong> no final da linha 11).</p></li>
+<li><p>A indicação do final da ação (o <strong>fim se</strong>, na linha 16).</p></li>
+</ol>
+<p>O algoritmo verifica se a condição (isto é, <em>tudo</em> o que está dentro da linha 11) é verdadeira e, se for, executa a ação que vem logo em seguida (que está nas linhas 12 a 15). Caso contrário, o programa segue para o próximo comando (ou seja: ele pulará as linhas 12, 13, 14, 15 e 16 e irá direto para a 17). O <strong>fim se</strong> é utilizado para indicar o final da estrutura de controle.</p>
+<section id="se-com-duas-condicoes">
+<h4>“Se” com duas condições<a class="headerlink" href="#se-com-duas-condicoes" title="Permalink to this headline">#</a></h4>
+<p>Veja também que temos uma condição na linha 11 de comparação: percebeu a palavra <em><strong>e</strong></em> entre as duas frases naquela linha? Pois bem. Vamos pensar melhor no que isto significa na prática e o que aconteceria se mudássemos esta estrutura:</p>
+<ol class="arabic simple">
+<li><p>Tanque estiver abaixo de 1/4 <em><strong>e</strong></em> se tiver dinheiro o suficiente para pagar pelo combustível:</p>
+<ul class="simple">
+<li><p>O operador <em><strong>e</strong></em> indica que as duas condições (<code class="docutils literal notranslate"><span class="pre">tanque</span> <span class="pre">abaixo</span> <span class="pre">de</span> <span class="pre">1/4</span></code>, <code class="docutils literal notranslate"><span class="pre">dinheiro</span> <span class="pre">suficiente</span> <span class="pre">para</span> <span class="pre">pagar</span></code>) precisam ser verdadeiras <em>ao mesmo tempo</em> para que possamos ir para as linhas 12, 13, 14 e 15.</p></li>
+<li><p>Isto significa que precisamos ter o tanque abaixo da quantidade esperada e também o dinheiro para pagar para que possamos ir ao posto de combustível. Afinal, não faria sentido ir ao posto sem dinheiro ou se não precisássemos por ainda ter combustível o suficiente.</p></li>
+<li><p>Se ainda tivermos combustível (ou seja, <code class="docutils literal notranslate"><span class="pre">tanque</span> <span class="pre">abaixo</span> <span class="pre">de</span> <span class="pre">1/4</span></code> não for verdade) nem testaríamos se teríamos dinheiro ou não, já que seria desnecessário testar isso.</p></li>
+</ul>
+</li>
+<li><p>Tanque estiver abaixo de 1/4 <em><strong>ou</strong></em> se tiver dinheiro o suficiente para pagar pelo combustível:</p>
+<ul class="simple">
+<li><p>O operador <strong>ou</strong> indica que somente uma das duas condições (<code class="docutils literal notranslate"><span class="pre">tanque</span> <span class="pre">abaixo</span> <span class="pre">de</span> <span class="pre">1/4</span></code>, <code class="docutils literal notranslate"><span class="pre">dinheiro</span> <span class="pre">suficiente</span> <span class="pre">para</span> <span class="pre">pagar</span></code>) precisam ser verdadeiras para que possamos ir para as linhas 12, 13, 14 e 15.</p></li>
+<li><p>Isto significa que poderíamos entrar no posto de gasolina sem dinheiro (o que não deixaria o frentista feliz com você) ou com o tanque cheio (o que seria desnecessário).</p></li>
+</ul>
+</li>
+<li><p>Tanque <strong>não</strong> estiver abaixo de 1/4 <em><strong>e</strong></em> se tiver dinheiro o suficiente para pagar pelo combustível:</p>
+<ul class="simple">
+<li><p>Temos agora um operador de negação (<strong>não</strong>) na primeira condição. Logo, esta condição pode ser relida como <code class="docutils literal notranslate"><span class="pre">tanque</span> <span class="pre">igual</span> <span class="pre">ou</span> <span class="pre">acima</span> <span class="pre">de</span> <span class="pre">1/4</span></code>.</p></li>
+<li><p>O operador <em><strong>e</strong></em> indica que as duas condições (<code class="docutils literal notranslate"><span class="pre">tanque</span> <span class="pre">igual</span> <span class="pre">ou</span> <span class="pre">acima</span> <span class="pre">de</span> <span class="pre">1/4</span></code>, <code class="docutils literal notranslate"><span class="pre">dinheiro</span> <span class="pre">suficiente</span> <span class="pre">para</span> <span class="pre">pagar</span></code>) precisam ser verdadeiras <em>ao mesmo tempo</em> para que possamos ir para as linhas 12, 13, 14 e 15.</p></li>
+<li><p>Isto significa que só entraríamos no posto se tivermos muito combustível. Ou seja: teve alguma emergência em algum dia e por algum motivo ele está abaixo de 1/4? Boa sorte: seu algoritmo irá garantir que você nunca entrará no posto de gasolina.</p></li>
+</ul>
+</li>
+<li><p>Tanque estiver abaixo de 1/4 <em><strong>e</strong></em> se <strong>não</strong> tiver dinheiro o suficiente para pagar pelo combustível:</p>
+<ul class="simple">
+<li><p>Agora, o operador <strong>não</strong> está na segunda condição. Em outras palavras, você só iria ao posto de gasolina se não tivesse dinheiro para pagar. Provavelmente em pouco tempo você será banido de todos os postos de combustível da região.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="aprovacao-de-credito">
+<h3>Aprovação de crédito<a class="headerlink" href="#aprovacao-de-credito" title="Permalink to this headline">#</a></h3>
+<p>Vamos pensar em um caso diferente: agora, você solicitará um financiamento para um banco para comprar alguma coisa: seja uma casa, um carro, ou uma moto. A lógica é simples: o banco lhe dará o dinheiro que precisa se você tiver um salário compatível para pagar o valor que você está pedindo. Simples, certo? Um exemplo de pseudocódigo para isso poderia ser:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="m">1</span>. Início
+ <span class="m">2</span>.   Real: credito_desejado, renda_mensal
+ <span class="m">3</span>.   
+ <span class="m">4</span>.   Escreva<span class="o">(</span><span class="s2">&quot;Digite o valor do crédito desejado: &quot;</span><span class="o">)</span>
+ <span class="m">5</span>.   Leia<span class="o">(</span>credito_desejado<span class="o">)</span>
+ <span class="m">6</span>.   
+ <span class="m">7</span>.   Escreva<span class="o">(</span><span class="s2">&quot;Digite a renda mensal do cliente: &quot;</span><span class="o">)</span>
+ <span class="m">8</span>.   Leia<span class="o">(</span>renda_mensal<span class="o">)</span>
+ <span class="m">9</span>.   
+<span class="m">10</span>.   Se credito_desejado &lt; renda_mensal então
+<span class="m">11</span>.       Escreva<span class="o">(</span><span class="s2">&quot;Crédito aprovado!&quot;</span><span class="o">)</span>
+<span class="m">12</span>.   Senão
+<span class="m">13</span>.       Escreva<span class="o">(</span><span class="s2">&quot;Crédito negado.&quot;</span><span class="o">)</span>    
+<span class="m">14</span>.   Fim Se
+<span class="m">15</span>. Fim
+</pre></div>
+</div>
+<p>Observe que temos uma coisa nova na linha 12: o <strong>senão</strong>. Ele é usado em algoritmos para fazer uma ação caso a condição do “se” não seja atendida. Em outras palavras, ele é usado para estabelecer um <em>caminho alternativo</em> quando a condição do “se” não é verdadeira.</p>
+<p>Pensemos aqui o que aconteceria com o nosso código:</p>
+<ol class="arabic simple">
+<li><p>👍 Estamos pedindo <strong>menos</strong> do que estaria dentro da nossa renda (podemos pagar o empréstimo): a linha 10 é verdadeira. O algoritmo vai rodar a linha 11 e pulará as linhas 12 e 13.</p></li>
+<li><p>👎 Estamos pedindo <strong>mais</strong> do que podemos pagar (está acima da nossa renda): a linha 10 é falsa. O algoritmo pulará a linha 11 e irá rodar as linhas 12 e 13.</p></li>
+</ol>
+<section id="senao-se">
+<h4>Senão-se<a class="headerlink" href="#senao-se" title="Permalink to this headline">#</a></h4>
+<p>Também é possível combinar testes adicionais dentro de um único teste. Imaginemos agora que queremos mostrar uma mensagem chamada <em>“Crédito aprovado, mas com ressalvas”</em> se o valor que você está pedindo é <strong>exatamente igual</strong> à sua renda mensal.</p>
+<p>É para isso que serve o “senão-se”, bem útil para indicar uma condição alternativa caso a primeira condição não seja satisfeita. Ele funciona da seguinte forma: se a condição do “se” for verdadeira, o algoritmo executa a sequência de instruções dentro daquele bloco. Caso contrário, ele verifica a próxima condição do “senão-se” e executa as instruções dentro do bloco correspondente, caso a condição seja verdadeira. Se nenhuma das condições for verdadeira, o algoritmo executa as instruções dentro do bloco do “senão”, caso ele exista.</p>
+<p>Essa estrutura é útil em situações onde existem múltiplas possibilidades de resultados, permitindo que o algoritmo execute diferentes sequências de instruções dependendo da condição satisfeita. Vamos modificar o pseudocódigo acima para incluir isto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="m">1</span>. Início
+ <span class="m">2</span>.   Real: credito_desejado, renda_mensal
+ <span class="m">3</span>.   
+ <span class="m">4</span>.   Escreva<span class="o">(</span><span class="s2">&quot;Digite o valor do crédito desejado: &quot;</span><span class="o">)</span>
+ <span class="m">5</span>.   Leia<span class="o">(</span>credito_desejado<span class="o">)</span>
+ <span class="m">6</span>.   
+ <span class="m">7</span>.   Escreva<span class="o">(</span><span class="s2">&quot;Digite a renda mensal do cliente: &quot;</span><span class="o">)</span>
+ <span class="m">8</span>.   Leia<span class="o">(</span>renda_mensal<span class="o">)</span>
+ <span class="m">9</span>.   
+<span class="m">10</span>.   Se credito_desejado &lt; renda_mensal então
+<span class="m">11</span>.       Escreva<span class="o">(</span><span class="s2">&quot;Crédito aprovado!&quot;</span><span class="o">)</span>
+<span class="m">12</span>.   Senão-se <span class="nv">credito_desejado</span> <span class="o">==</span> renda_mensal então
+<span class="m">13</span>.       Escreva<span class="o">(</span><span class="s2">&quot;Crédito aprovado, mas com ressalvas.&quot;</span><span class="o">)</span> 
+<span class="m">14</span>.   Senão
+<span class="m">15</span>.       Escreva<span class="o">(</span><span class="s2">&quot;Crédito negado.&quot;</span><span class="o">)</span>    
+<span class="m">16</span>.   Fim Se
+<span class="m">17</span>. Fim
+</pre></div>
+</div>
+<p>Vejamos alguns pontos importantes no código acima:</p>
+<ol class="arabic simple">
+<li><p>Adicionamos as linhas 12 e 13.</p></li>
+<li><p>As linhas 10 até a 16 fazem parte de um único bloco de <em>se/senão-se/senão</em>. Sabemos disso porque o primeiro “Se” começa na linha 10 e o próximo “Fim Se” acontece na linha 16. Além disso, todos eles seguem a mesma indentação.</p></li>
+<li><p>👍 Estamos pedindo <strong>menos</strong> do que estaria dentro da nossa renda (podemos pagar o empréstimo): a linha 10 é verdadeira. O algoritmo vai rodar a linha 11 e pulará as linhas 12 a 15 já que não faria sentido testar as demais condições.</p></li>
+<li><p>✋ Estamos pedindo <strong>o mesmo valor</strong> da nossa renda (podemos pagar o empréstimo): a linha 10 é falsa (ou seja: falhou a primeira condição). Como falhou a primeira condição, o algoritmo vai testar a próxima condição (linha 12). Como a condição da linha 12 está correta, o algoritmo vai rodar a linha 13 e ignorar os testes seguintes. Assim, ele pularia as linhas 11 e 15.</p></li>
+<li><p>👎 Estamos pedindo <strong>mais</strong> do que podemos pagar (está acima da nossa renda): a linha 10 é falsa e a linha 12 é falsa. Como tudo o que veio antes falhou, resta somente o “senão” que serve justamente para os cenários em que todos os testes anteriores falharam. Por isso, o algoritmo pulará a linha 11 e 13, mas rodará a linha 15.</p></li>
+</ol>
+</section>
+</section>
+<section id="um-resumo-ate-aqui">
+<h3>Um resumo até aqui<a class="headerlink" href="#um-resumo-ate-aqui" title="Permalink to this headline">#</a></h3>
+<p>Calma! Sei que as coisas podem ficar bem confusas. Vamos para um resumo:</p>
+<ol class="arabic simple">
+<li><p>O “se”, “senão-se” e “senão” são estruturas de seleção utilizadas em algoritmos para realizar testes lógicos e tomar decisões com base em diferentes condições.</p>
+<ul class="simple">
+<li><p>Podemos pensar no uso das estruturas condicionais “se”, “senão-se” e “senão” em um processo de decisão. Imagine que você está em uma loja de doces e tem R<span>$</span> 100,00 para gastar em balas. Se o preço de um pacote de bala for R<span>$</span> 20,00, você pode comprar até 5 pacotes. Nesse caso, o “se” seria a condição de que o preço da bala seja igual ou menor que R<span>$</span> 20,00, e a ação seria comprar o pacote. Já o “senão” seria a condição de que o preço da bala é maior que R<span>$</span> 20,00, e a ação seria não comprar o pacote.</p></li>
+<li><p>Agora, imagine que você tem uma preferência por chicletes, mas poderia escolher outro doce se não puder pagar pelos 5 pacotes de chicletes.</p>
+<ul>
+<li><p>Aqui, o “se” seria a condição de que o preço do chiclete seja menor ou igual a R<span>$</span> 20,00, e a ação seria comprar o chiclete.</p></li>
+<li><p>O “senão-se” seria a condição de que o preço do pirulito seja menor ou igual a R<span>$</span> 20,00, e a ação seria comprar o pirulito.</p></li>
+<li><p>Poderíamos ter um segundo “senão-se” para os casos em que tanto o preço do pacote de chiclete e de bala estiverem acima de R<span>$</span> 20,00. Este segundo “senão-se” seria a condição de que o preço do pacote de paçocas seja menor ou igual a R<span>$</span> 20,00, e a ação seria comprar a paçoca.</p></li>
+<li><p>E o “senão” seria para os casos em que tudo o que veio antes não deu certo (ou seja: tá tudo caro). Aqui, a ação seria não comprar nada e ir embora da loja.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>O “se” é uma estrutura de seleção em algoritmos que permite verificar se uma condição é verdadeira ou falsa e executar uma ação correspondente.</p>
+<ul class="simple">
+<li><p>Por exemplo, “se” o dia de hoje for sábado, então vá ao cinema.</p></li>
+</ul>
+</li>
+<li><p>Já o “senão-se” permite adicionar mais uma condição caso a primeira seja falsa.</p>
+<ul class="simple">
+<li><p>Por exemplo, “se” o dia for sábado, vá ao cinema, “senão-se” o dia for domingo, vá ao parque.</p></li>
+</ul>
+</li>
+<li><p>E por fim, o “senão” é usado caso nenhuma das condições anteriores seja verdadeira, executando uma ação padrão.</p>
+<ul class="simple">
+<li><p>Por exemplo, “se” o dia for sábado, vá ao cinema, “senão-se” o dia for domingo, vá ao parque, “senão” fique em casa (o que pode ser segunda, quarta, ou qualquer outro dia que não seja sábado ou domingo).</p></li>
+</ul>
+</li>
+<li><p>Nem todo “se” precisa ter “senão-se” e “senão”.</p>
+<ul class="simple">
+<li><p>Por exemplo, quando temos apenas uma condição para verificar, não precisamos utilizar o “senão-se” ou o “senão”.</p></li>
+</ul>
+</li>
+<li><p>Podemos ter “se” e “senão-se” sem necessariamente ter um “senão” para finalizar.</p></li>
+<li><p>Podemos ter um “se” e vários “senão-se” dentro de um mesmo bloco de seleção. Nesse caso, cada “senão-se” é verificado na ordem em que aparecem, e caso a condição seja verdadeira, o conjunto de instruções correspondente será executado.</p></li>
+<li><p>Essas estruturas são importantes para programar um comportamento específico para um algoritmo, permitindo que o mesmo possa lidar com diferentes situações corretamente.</p></li>
+</ol>
+</section>
+<section id="if-elif-else">
+<h3><code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code><a class="headerlink" href="#if-elif-else" title="Permalink to this headline">#</a></h3>
+<p>Começando com uma explicação direta:</p>
+<ul class="simple">
+<li><p>O “se” em Python se chama <code class="docutils literal notranslate"><span class="pre">if</span></code>.</p></li>
+<li><p>O “senão-se” em Python se chama <code class="docutils literal notranslate"><span class="pre">elif</span></code> (vem de <code class="docutils literal notranslate"><span class="pre">else-if</span></code>, que é exatamente “senão-se” em inglês).</p></li>
+<li><p>O “senão” em Python se chama <code class="docutils literal notranslate"><span class="pre">else</span></code>.</p></li>
+</ul>
+<section id="apenas-if">
+<h4>Apenas <code class="docutils literal notranslate"><span class="pre">if</span></code><a class="headerlink" href="#apenas-if" title="Permalink to this headline">#</a></h4>
+<p>Dito isso, vamos a alguns exemplos? Vou deixar de falar em “se”/”senão-se”/”senão” para falar <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code>. Afinal, estamos estudando Python. Vamos usar um arquivo .py para desenvolver e testar o código. Caso não se lembre como fazer isso, recomendo que relembre dos exemplos que fizemos do <code class="docutils literal notranslate"><span class="pre">input()</span></code> e <code class="docutils literal notranslate"><span class="pre">print()</span></code> <a class="reference internal" href="03-Variaveis-IO.html#content-python-inputprint"><span class="std std-ref">no capítulo anterior, aqui</span></a>.</p>
+<p>Isto posto, você já deve saber como o <code class="docutils literal notranslate"><span class="pre">if</span></code> funciona, não é? Teste este código, então:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a sua idade: &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">idade</span> <span class="o">&gt;=</span> <span class="mi">16</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você pode votar nas eleições!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Este código verifica a idade de uma pessoa. Se ela tiver 16 anos de idade ou mais, a mensagem <em>“Você pode votar nas eleições!”</em> aparecerá na tela. Se você for testar algum valor abaixo disso (como 14 anos), nada aparecerá na tela.</p>
+<p>Veja que o <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">idade</span> <span class="pre">&gt;=</span> <span class="pre">16</span></code> é responsável para verificar se o valor armazenado na variável <code class="docutils literal notranslate"><span class="pre">idade</span></code> é igual ou maior a 16. Se for, esta condição é verdadeira. E, quando a condição é verdadeira, a próxima linha pode ser executada. Veja que na última linha existem quatro espaços (ou um <code class="docutils literal notranslate"><span class="pre">Tab</span></code>) à esquerda: ela é a indentação que já comentamos antes, agora em Python.</p>
+<p>Agora, testemos outro código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o primeiro número: &quot;</span><span class="p">))</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o segundo número: &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">num1</span> <span class="o">&gt;</span> <span class="n">num2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num1</span><span class="si">}</span><span class="s2"> é maior que </span><span class="si">{</span><span class="n">num2</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A diferença entre </span><span class="si">{</span><span class="n">num1</span><span class="si">}</span><span class="s2"> e </span><span class="si">{</span><span class="n">num2</span><span class="si">}</span><span class="s2"> é </span><span class="si">{</span><span class="n">num1</span> <span class="o">-</span> <span class="n">num2</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A soma de </span><span class="si">{</span><span class="n">num1</span><span class="si">}</span><span class="s2"> e </span><span class="si">{</span><span class="n">num2</span><span class="si">}</span><span class="s2"> é </span><span class="si">{</span><span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Obrigado!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Consegue entender o que este código faz só de olhar? Veja: pedimos dois números inteiros ao usuário, e guardamos os resultados em <code class="docutils literal notranslate"><span class="pre">num1</span></code> e <code class="docutils literal notranslate"><span class="pre">num2</span></code>. Somente quando <code class="docutils literal notranslate"><span class="pre">num1</span></code> for maior do que <code class="docutils literal notranslate"><span class="pre">num2</span></code> é que aqueles três <code class="docutils literal notranslate"><span class="pre">print</span></code> seguidos aparecerão. Caso contrário (isto é, quando <code class="docutils literal notranslate"><span class="pre">num1</span></code> for igual ou menor do que <code class="docutils literal notranslate"><span class="pre">num2</span></code>) pularemos aquelas três linhas e iremos diretamente à mensagem escrita <em>“Obrigado!”</em>.</p>
+<p>O que acha de testar você mesmo? Teste os seguintes cenários:</p>
+<ol class="arabic simple">
+<li><p>Primeiro número: 0, segundo número: 5.</p></li>
+<li><p>Primeiro número: 9, segundo número: 5.</p></li>
+<li><p>Primeiro número: 5, segundo número: 5.</p></li>
+</ol>
+<p>Consegue entender o comportamento do código nesses 3 casos diferentes?</p>
+</section>
+<section id="if-e-else">
+<h4><code class="docutils literal notranslate"><span class="pre">if</span></code> e <code class="docutils literal notranslate"><span class="pre">else</span></code><a class="headerlink" href="#if-e-else" title="Permalink to this headline">#</a></h4>
+<p>Agora, vamos testar um <code class="docutils literal notranslate"><span class="pre">if</span></code> com <code class="docutils literal notranslate"><span class="pre">else</span></code>. Vamos lá:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nota1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a nota da primeira prova: &quot;</span><span class="p">))</span>
+<span class="n">nota2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a nota da segunda prova: &quot;</span><span class="p">))</span>
+<span class="n">media</span> <span class="o">=</span> <span class="p">(</span><span class="n">nota1</span> <span class="o">+</span> <span class="n">nota2</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+
+<span class="k">if</span> <span class="n">media</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parabéns, você foi aprovado com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Continue estudando e se preparando para os próximos desafios.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Infelizmente, você foi reprovado com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você precisa estudar mais para a próxima oportunidade.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Neste exemplo, o programa solicita duas notas de prova e calcula a média. Se a média for maior ou igual a 7, o programa exibe uma mensagem de parabéns e informa a média do aluno. Caso contrário, o programa exibe uma mensagem de reprovação, informa a média do aluno e exibe uma mensagem indicando que o aluno precisa estudar mais para a próxima prova.</p>
+<p>Teste o funcionamento com os seguintes valores:</p>
+<ol class="arabic simple">
+<li><p>Primeira nota: 7.0, segunda nota: 7.0.</p></li>
+<li><p>Primeira nota: 9.0, segunda nota: 7.0.</p></li>
+<li><p>Primeira nota: 6.0, segunda nota: 1.0.</p></li>
+</ol>
+<p>Consegue ver as semelhanças e diferenças no funcionamento? Consegue explicar por que sempre apareceram duas mensagens na tela para o usuário após digitar as duas notas?</p>
+</section>
+<section id="if-elif-e-else">
+<h4><code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code> e <code class="docutils literal notranslate"><span class="pre">else</span></code><a class="headerlink" href="#if-elif-e-else" title="Permalink to this headline">#</a></h4>
+<p>Agora, vamos modificar o código acima para incluir o <code class="docutils literal notranslate"><span class="pre">elif</span></code>. Basicamente, queremos que o algoritmo funcione assim:</p>
+<ul class="simple">
+<li><p>Notas iguais ou maiores de 7.0: o estudante estaria aprovado.</p></li>
+<li><p>Notas iguais ou maiores de 4.0, mas abaixo de 7.0: o estudante estaria em recuperação.</p></li>
+<li><p>Notas abaixo de 4.0: o estudante estaria reprovado.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nota1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a nota da primeira prova: &quot;</span><span class="p">))</span>
+<span class="n">nota2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a nota da segunda prova: &quot;</span><span class="p">))</span>
+<span class="n">media</span> <span class="o">=</span> <span class="p">(</span><span class="n">nota1</span> <span class="o">+</span> <span class="n">nota2</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+
+<span class="k">if</span> <span class="n">media</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parabéns, você foi aprovado com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Continue estudando e se preparando para os próximos desafios.&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">media</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você está em recuperação com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você precisa estudar mais para a próxima prova.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Infelizmente, você foi reprovado com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você precisa estudar mais para a próxima oportunidade.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Teste o funcionamento com os seguintes valores:</p>
+<ol class="arabic simple">
+<li><p>Primeira nota: 7.0, segunda nota: 7.0.</p></li>
+<li><p>Primeira nota: 10.0, segunda nota: 2.0.</p></li>
+<li><p>Primeira nota: 5.0, segunda nota: 1.0.</p></li>
+</ol>
+<p>Além disso, note o seguinte:</p>
+<ol class="arabic simple">
+<li><p>Veja que coloquei <code class="docutils literal notranslate"><span class="pre">elif</span> <span class="pre">media</span> <span class="pre">&gt;=</span> <span class="pre">5</span></code> ao invés de <code class="docutils literal notranslate"><span class="pre">elif</span> <span class="pre">media</span> <span class="pre">&gt;=</span> <span class="pre">5</span> <span class="pre">and</span> <span class="pre">media</span> <span class="pre">&lt;</span> <span class="pre">7</span></code>. Por quê? O motivo é simples: como o primeiro teste falhou, já sabemos com 100% de certeza de que <code class="docutils literal notranslate"><span class="pre">media</span> <span class="pre">&lt;</span> <span class="pre">7</span></code>. Por isso, seria bem redundante fazermos</p></li>
+<li><p>Consegue entender (e testar) em quais casos ele cai no <code class="docutils literal notranslate"><span class="pre">else</span></code>?</p></li>
+</ol>
+<blockquote>
+<div><p>🖐 Ah, sugestão: troque aquele <code class="docutils literal notranslate"><span class="pre">elif</span> <span class="pre">media</span> <span class="pre">&gt;=</span> <span class="pre">5:</span></code> por <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">media</span> <span class="pre">&gt;=</span> <span class="pre">5:</span></code>. Teste de novo. O que aconteceu de diferente? Por quê?</p>
+</div></blockquote>
+<section id="tres-elif">
+<h5>Três <code class="docutils literal notranslate"><span class="pre">elif</span></code><a class="headerlink" href="#tres-elif" title="Permalink to this headline">#</a></h5>
+<p>E se tivéssemos três <code class="docutils literal notranslate"><span class="pre">elif</span></code>, pode? Pode! Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nota1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a nota da primeira prova: &quot;</span><span class="p">))</span>
+<span class="n">nota2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a nota da segunda prova: &quot;</span><span class="p">))</span>
+<span class="n">media</span> <span class="o">=</span> <span class="p">(</span><span class="n">nota1</span> <span class="o">+</span> <span class="n">nota2</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+
+<span class="k">if</span> <span class="n">media</span> <span class="o">&gt;=</span> <span class="mf">9.5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parabéns, a sua nota foi excelente! Você foi aprovado com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">media</span> <span class="o">&gt;=</span> <span class="mi">8</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parabéns, a sua nota foi muito boa! Você foi aprovado com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">media</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parabéns, você foi aprovado com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Continue estudando e se preparando para os próximos desafios.&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">media</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você está em recuperação com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você precisa estudar mais para a próxima prova.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Infelizmente, você foi reprovado com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você precisa estudar mais para a próxima oportunidade.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Observe que agora temos três <code class="docutils literal notranslate"><span class="pre">elif</span></code>. O primeiro será verdadeiro para as notas que são iguais ou acima de 8, mas abaixo de 9.5. Já o segundo será verdadeiro para as notas que são iguais ou acima de 7, mas abaixo de 8. Já o terceiro será verdadeiro para as notas iguais ou acima de 5, mas abaixo de 7.</p>
+<ol class="arabic simple">
+<li><p>O que acha de testar com algumas notas diferentes para ver este funcionamento na prática?</p></li>
+<li><p>O que acha de modificar o código para remover completamente aquele <code class="docutils literal notranslate"><span class="pre">else</span></code>? Teste com uma nota baixa (como dois <code class="docutils literal notranslate"><span class="pre">0</span></code>). Deveria mesmo aparecer alguma mensagem falando que o estudante foi reprovado?</p></li>
+</ol>
+</section>
+</section>
+<section id="if-dentro-de-if">
+<h4><code class="docutils literal notranslate"><span class="pre">if</span></code> dentro de <code class="docutils literal notranslate"><span class="pre">if</span></code><a class="headerlink" href="#if-dentro-de-if" title="Permalink to this headline">#</a></h4>
+<p>Outro uso interessante é o <em>encapsulamento de</em> <code class="docutils literal notranslate"><span class="pre">if</span></code>. É uma técnica utilizada para colocar um <code class="docutils literal notranslate"><span class="pre">if</span></code> dentro de outro <code class="docutils literal notranslate"><span class="pre">if</span></code>, e consiste em colocar as condições mais restritivas em primeiro lugar, criando uma hierarquia lógica na execução do código. Dessa forma, as condições mais simples e de execução mais rápida são verificadas primeiro, evitando a execução desnecessária de outras condições. Veja e teste o código abaixo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Qual é a sua idade? &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">idade</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você é maior de idade.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">idade</span> <span class="o">&gt;=</span> <span class="mi">21</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você pode beber nos Estados Unidos.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você é menor de idade.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Neste exemplo, o primeiro <code class="docutils literal notranslate"><span class="pre">if</span></code> verifica se a pessoa possui 18 anos ou mais. Se sim, mostrará uma mensagem dizendo <em>“Você é maior de idade.”</em>. Dentro deste primeiro <code class="docutils literal notranslate"><span class="pre">if</span></code> perceba que há um segundo <code class="docutils literal notranslate"><span class="pre">if</span></code> que verifica se a pessoa tem 21 anos ou mais para saber se pode beber nos Estados Unidos. Veja que, de um ponto de vista lógico, quem tem 21 anos automaticamente possui 18 anos: por isso que colocamos dentro daquele primeiro <code class="docutils literal notranslate"><span class="pre">if</span></code>.</p>
+<p>Agora, se a pessoa possui menos de 18 anos, o <code class="docutils literal notranslate"><span class="pre">else</span></code> será executado, mostrando na tela uma mensagem correspondente. Veja como o algoritmo funciona se você informa idades como <code class="docutils literal notranslate"><span class="pre">15</span></code>, <code class="docutils literal notranslate"><span class="pre">19</span></code> e <code class="docutils literal notranslate"><span class="pre">23</span></code> anos para ver isto na prática.</p>
+<blockquote>
+<div><p>🛑 Usar um <code class="docutils literal notranslate"><span class="pre">if</span></code> dentro de outro <code class="docutils literal notranslate"><span class="pre">if</span></code> pode tornar o código mais difícil de ler e entender, além de aumentar a complexidade e a possibilidade de erros. Isso ocorre porque a lógica do código pode ficar confusa, com vários níveis de aninhamento e condições que precisam ser avaliadas em diferentes níveis. Além disso, usar muitos <code class="docutils literal notranslate"><span class="pre">if</span></code> dentro de outros <code class="docutils literal notranslate"><span class="pre">if</span></code> pode indicar que a estrutura do código pode ser melhorada com, por exemplo, o uso de operadores lógicos como <code class="docutils literal notranslate"><span class="pre">and</span></code> e <code class="docutils literal notranslate"><span class="pre">or</span></code> em uma única linha em vez de colocar vários <code class="docutils literal notranslate"><span class="pre">if</span></code> aninhados. Apesar disso, em alguns casos o uso de <code class="docutils literal notranslate"><span class="pre">if</span></code> dentro de <code class="docutils literal notranslate"><span class="pre">if</span></code> pode ser inevitável ou até mesmo a melhor solução para um problema específico.</p>
+</div></blockquote>
+</section>
+<section id="if-dentro-de-if-dentro-de-if">
+<h4><code class="docutils literal notranslate"><span class="pre">if</span></code> dentro de <code class="docutils literal notranslate"><span class="pre">if</span></code> dentro de <code class="docutils literal notranslate"><span class="pre">if</span></code><a class="headerlink" href="#if-dentro-de-if-dentro-de-if" title="Permalink to this headline">#</a></h4>
+<p>E dá para usar um <code class="docutils literal notranslate"><span class="pre">if</span></code> dentro de <code class="docutils literal notranslate"><span class="pre">if</span></code> dentro de outro <code class="docutils literal notranslate"><span class="pre">if</span></code>? Dá sim, mas o aviso anterior permanece: isso não necessariamente é uma boa prática do ponto de vista de legibilidade, complexidade e risco de introduzir erros de lógica no código. Veja o exemplo abaixo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nota1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a primeira nota: &quot;</span><span class="p">))</span>
+<span class="n">nota2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a segunda nota: &quot;</span><span class="p">))</span>
+<span class="n">nota3</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a terceira nota: &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">nota1</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">nota2</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">nota3</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parabéns, você foi aprovado(a)!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sua nota na terceira avaliação foi abaixo da média.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sua nota na segunda avaliação foi abaixo da média.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sua nota na primeira avaliação foi abaixo da média.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Percebe que isso ficou um pouco mais <em>feio</em> de se ler? Apesar disso, a lógica funciona: neste exemplo, o programa verifica a nota do aluno em três avaliações. Se o aluno tiver uma nota abaixo da média na primeira avaliação, o programa imprime a mensagem <em>“Sua nota na primeira avaliação foi abaixo da média.”</em> (veja o último <code class="docutils literal notranslate"><span class="pre">else</span></code>).</p>
+<p>Se o aluno tiver uma nota acima ou igual a 7 na primeira avaliação, o programa verifica a nota na segunda avaliação. Se o aluno tiver uma nota abaixo da média na segunda avaliação, o programa imprime a mensagem <em>“Sua nota na segunda avaliação foi abaixo da média.”</em>.</p>
+<p>Se a nota na segunda avaliação também for maior ou igual a 7, o programa verifica a nota na terceira avaliação. Se todas as notas forem maiores ou iguais a 7, o programa imprime a mensagem <em>“Parabéns, você foi aprovado(a)!”</em>. Caso contrário, mostrará a mensagem <em>“Sua nota na terceira avaliação foi abaixo da média.”</em>.</p>
+<p>Teste as seguintes combinações de notas para entender melhor o funcionamento na prática. Veja qual das mensagens de <code class="docutils literal notranslate"><span class="pre">print()</span></code> são mostradas e o porquê.</p>
+<ol class="arabic simple">
+<li><p>Primeira nota: 5, segunda nota: 8, terceira nota: 10.</p></li>
+<li><p>Primeira nota: 5, segunda nota: 8, terceira nota: 5.</p></li>
+<li><p>Primeira nota: 5, segunda nota: 5, terceira nota: 10.</p></li>
+<li><p>Primeira nota: 10, segunda nota: 5, terceira nota: 5.</p></li>
+<li><p>Primeira nota: 10, segunda nota: 10, terceira nota: 5.</p></li>
+<li><p>Primeira nota: 10, segunda nota: 4, terceira nota: 10.</p></li>
+<li><p>Primeira nota: 10, segunda nota: 10, terceira nota: 10.</p></li>
+</ol>
+</section>
+<section id="varios-blocos-de-if">
+<h4>Vários blocos de <code class="docutils literal notranslate"><span class="pre">if</span></code><a class="headerlink" href="#varios-blocos-de-if" title="Permalink to this headline">#</a></h4>
+<p>Você pode usar essas estruturas de <code class="docutils literal notranslate"><span class="pre">if/elif/else</span></code> como quiser no seu código desde que isto faça sentido. Como você viu, você pode fazer <code class="docutils literal notranslate"><span class="pre">if</span></code> sem <code class="docutils literal notranslate"><span class="pre">else</span></code>, ou <code class="docutils literal notranslate"><span class="pre">if</span></code> e <code class="docutils literal notranslate"><span class="pre">else</span></code> sem <code class="docutils literal notranslate"><span class="pre">elif</span></code>, <code class="docutils literal notranslate"><span class="pre">if</span></code> e <code class="docutils literal notranslate"><span class="pre">elif</span></code> sem <code class="docutils literal notranslate"><span class="pre">else</span></code> ou até encapsular várias dessas estruturas.</p>
+<p>Você também pode usar diferentes blocos independentes entre si. Na prática, significa que um bloco estaria totalmente separado do outro em sua lógica. Para ficar mais claro, teste o exemplo abaixo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Qual é a sua idade? &quot;</span><span class="p">))</span>
+
+<span class="c1"># Primeiro bloco de if/else</span>
+<span class="k">if</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você é menor de idade!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você é maior de idade!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Segundo bloco de if/elif/else</span>
+<span class="n">media</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Qual é a sua média na disciplina? &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">media</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parabéns, você foi aprovado com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Continue estudando e se preparando para os próximos desafios.&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">media</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você está em recuperação com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você precisa estudar mais para a próxima prova.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Infelizmente, você foi reprovado com média&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você precisa estudar mais para a próxima oportunidade.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Terceiro bloco de if/else</span>
+<span class="n">saldo</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Qual é o seu saldo na conta-corrente? &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">saldo</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O seu saldo está negativo!&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">saldo</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O seu saldo está zerado!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O seu saldo está positivo!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Neste exemplo, cada bloco de if/else trata de uma condição independente: o primeiro bloco verifica se o número é positivo ou negativo, o segundo verifica se a sua média lhe garantiria uma aprovação ou não, e o terceiro verifica se o seu saldo é positivo, negativo, ou zero. Cada bloco é executado independentemente dos outros e apresenta uma mensagem correspondente à condição verificada. Veja que é a indentação (que já vimos anteriormente) que nos ajuda a entender onde começa e onde termina cada um desses blocos.</p>
+</section>
+</section>
+<section id="comentarios">
+<h3>Comentários<a class="headerlink" href="#comentarios" title="Permalink to this headline">#</a></h3>
+<p>Você percebeu no código acima algumas linhas em cinza e que iniciavam com <code class="docutils literal notranslate"><span class="pre">#</span></code>? Aquelas linhas se referem aos <strong>comentários</strong> de código. Comentários de códigos são trechos de texto escritos em linguagem humana (português, inglês, italiano, francês, etc.) que servem para explicar o que está sendo feito em determinado trecho do código para que outros humanos entendam.</p>
+<p>Estas linhas serão ignoradas pelo computador como parte do código, mas são muito importantes para outros programadores que possam estar lendo o código, pois ajudam a entender o que está acontecendo e por que determinadas decisões foram tomadas na escrita do programa. Até ajudam também a explicar o que o desenvolvedor <em>queria</em> fazer no código, e que não necessariamente refletiria a realidade. Isto pode ser útil para ajudar a investigar o código e entender se o seu comportamento seria de fato esperado (ou não).</p>
+<p>Comentários em códigos podem ser utilizados para explicar o propósito de variáveis, funções, condicionais, laços de repetição, entre outros elementos do código. Eles também podem ser usados para documentar mudanças realizadas no código ao longo do tempo, facilitando a manutenção do programa.</p>
+<p>Em Python, existem duas formas principais de se fazer comentários em códigos:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># este é um exemplo de comentário em uma linha. Tudo o que vem aqui é ignorado pelo Python.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Já essas três aspas simples entre uma linha e outra servem para comentários multi-linha.</span>
+<span class="sd">Quer dizer, são para casos em que o meu comentário usa mais de uma linha.</span>
+<span class="sd">Pode ser melhor do que ter que criar várias linhas começando com um símbolo de &quot;#&quot;.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="m">1</span>. Início
  <span class="m">2</span>.   Inteiro: num1, num2, soma
  <span class="m">3</span>. 
@@ -581,12 +1260,66 @@ title="Print to PDF"
 <p>Quanto às semelhanças, temos várias delas. Primeiro, a ordem do algoritmo é mantida. A organização também: veja como as linhas estão organizadas. O mesmo se aplica às mensagens e à operação de soma. Por isso que começar a escrever algoritmos em Python é mais simples do que parece a princípio: se você sabe como os algoritmos funcionam de forma geral e sabe interpretar pseudocódigo, então rapidamente você também conseguirá escrever algoritmos utilizando Python.</p>
 <p>Mas, e aí? Como <em>testamos</em> isso usando o PyCharm? Vamos testar aqui por partes, beleza?</p>
 </section>
+</section>
+<section id="teste-de-mesa-e-debugging">
+<h2>Teste de mesa e debugging<a class="headerlink" href="#teste-de-mesa-e-debugging" title="Permalink to this headline">#</a></h2>
+<p>Conforme os nossos códigos vão aumentando em complexidade é comum que tenhamos erros e que precisemos investigá-los. É para isso que existem duas técnicas diferentes, mas importantes: o teste de mesa e o debug (ou debugging).</p>
 <section id="teste-de-mesa">
-<h2>Teste de mesa<a class="headerlink" href="#teste-de-mesa" title="Permalink to this headline">#</a></h2>
+<h3>Teste de mesa<a class="headerlink" href="#teste-de-mesa" title="Permalink to this headline">#</a></h3>
+<p>Um teste de mesa é uma técnica utilizada para verificar a lógica e o funcionamento de um algoritmo manualmente, ou seja, sem a necessidade de executá-lo em um computador. É uma ferramenta muito importante para os programadores, pois permite identificar possíveis erros e corrigi-los antes mesmo de executar o algoritmo.</p>
+<p>Como ele é um processo manual, ele pode funcionar também em pseudocódigos. Você pode fazê-lo com um papel e caneta na sua mesa (daí o nome). Você irá seguir passo a passo as instruções, acompanhando as alterações de valores das variáveis em cada etapa. Esse processo permite que você identifique possíveis erros no algoritmo e verifique se a lógica está funcionando corretamente.</p>
+<p>Uma analogia para explicar o teste de mesa seria a construção de uma casa. Antes de iniciar a construção, é preciso fazer um planejamento, onde é definido como a casa será dividida, quantos cômodos terá, onde ficarão as janelas, portas, entre outras coisas. Nesse processo, é possível identificar possíveis problemas, como um cômodo muito pequeno ou uma porta que impede o acesso a algum ambiente. O teste de mesa funciona de forma semelhante, onde o programador define a lógica do algoritmo e faz a simulação de sua execução, identificando possíveis erros e ajustando-os antes mesmo de executá-lo no computador.</p>
+<p>Veja no exemplo abaixo um funcionamento do <a href="https://www.101computing.net/using-trace-tables/">101computing.net</a>. Imagine que você imprimiu aquele algoritmo em uma folha de papel e está percorrendo cada uma daquelas linhas com uma caneta. Ao chegar na linha 1, você anotou o valor que estava na variável <code class="docutils literal notranslate"><span class="pre">number</span></code> naquela tabela ao lado (<code class="docutils literal notranslate"><span class="pre">Trace</span> <span class="pre">Table</span></code>). Ao chegar na linha 2, como o valor da variável não mudou, você não mudou nada no resultado. Ao chegar na linha 3, mudou o valor da variável <code class="docutils literal notranslate"><span class="pre">i</span></code> e, com isso, você alterou também na tabela. E assim foi sucessivamente até chegar ao final do algoritmo. Um pequeno spoiler: este exemplo usa uma estrutura de repetição nas linhas 3 a 5, e veremos este tipo de extrutura em maior profundidade no próximo capítulo.</p>
+<figure>
+    <img alt="Imagem de um homem olhando para geladeiras cheias de bebidas em um supermercado." src="https://www.101computing.net/wp/wp-content/uploads/trace-table-s.gif" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Créditos: <a href="https://www.101computing.net/using-trace-tables/">Using Trace Tables @ 101computing.net</a>.</figcaption>
+</figure></section>
+<section id="debugging">
+<h3>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">#</a></h3>
+<p>Já o debugging é o processo de identificação e correção de erros em um código já implementado em Python ou em outra linguagem de programação. Ele utiliza ferramentas específicas (<em>debuggers</em>) que permitem ao desenvolvedor acompanhar o fluxo de execução do código e identificar onde o erro ocorreu.</p>
+<p>Imagine como se fosse um teste de mesa automatizado. E, para ajudar, o PyCharm possui isso também. O que acha de testarmos? Primeiro, vamos colar este código em um arquivo dentro de um projeto no PyCharm:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nota1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a primeira nota: &quot;</span><span class="p">))</span>
+<span class="n">nota2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a segunda nota: &quot;</span><span class="p">))</span>
+<span class="n">nota3</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a terceira nota: &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">nota1</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">nota2</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">nota3</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parabéns, você foi aprovado(a)!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sua nota na terceira avaliação foi abaixo da média.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sua nota na segunda avaliação foi abaixo da média.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sua nota na primeira avaliação foi abaixo da média.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Veja na imagem abaixo como o seu código deve ficar. Também perceba o botão de <em>debug</em> à direita do botão de <em>run</em>. Ele é representado por um inseto na cor verde.</p>
+<figure>
+    <img alt="Código de verificação de notas colado dentro de um arquivo chamado main.py dentro do PyCharm. Realçado, o botão com um desenho de um inseto na cor verde aparece realçado." src="pycharm_debug.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">O seu código deverá aparecer nesta área aqui. Veja também no canto superior esquerdo (realçado em roxo) o botão de debug, representado por um inseto verde.</figcaption>
+</figure><p>Agora, ao invés de clicarmos no botão de <code class="docutils literal notranslate"><span class="pre">Run</span></code>, clicaremos no botão de <code class="docutils literal notranslate"><span class="pre">Debug</span></code>. Você também pode ativar o debugger ao clicar em <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">&gt;</span> <span class="pre">Debug</span> <span class="pre">'$ARQUIVO'</span></code> ou apertando <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">F9</span></code> em seu teclado. Você verá que não mudará muita coisa em relação ao comportamento padrão do código: você digitará as notas, e ele lhe apresentará um resultado final.</p>
+<p>Dito isso, vamos começar a usar o debugger de fato. Observe a imagem abaixo. Veja que antes (parte de cima da imagem) há um espaço em branco na linha 5 entre o número “5” e o código. Ao clicar neste espaço em branco aparecerá um círculo vermelho (parte de baixo da imagem). Este círculo é um <strong>breakpoint</strong>: é ele que denota que o debugger deve parar nesta linha para que possamos investigar o que está acontecendo. Clique na linha 5 para que apareça um breakpoint lá (conforme a parte de baixo da imagem abaixo) e rode o debugger novamente.</p>
+<figure>
+    <img alt="A linha 5 possui um espaço vazio à sua direita, entre o número 5 e o código. Ao clicar neste espaço vazio um círculo vermelho aparece." src="pycharm_breakpoint.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Veja o antes e o depois de adicionar um breakpoint.</figcaption>
+</figure><p>Assim que você digitou as três notas o código parou na linha 5. O que você estará vendo na sua tela deverá ser parecido com a visão da tela abaixo.</p>
+<figure>
+    <img alt="O debugger está visível na parte inferior da tela. Aparecem os valores das variáveis digitadas e um conjunto adicional de botões na parte inferior da tela." src="pycharm_debug_analysis.png" style="max-width:600px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Observe as novas funcionalidades do debugger realçadas em roxo, laranja e amarelo.</figcaption>
+</figure>
+<ol class="arabic simple">
+<li><p>Parte roxa: são os valores das variáveis neste momento do código. No caso, eu digitei as três notas com os valores 3, 6 e 8. Estes três valores apareceram na parte à direita do debugger.</p></li>
+<li><p>Parte laranja: são botões para que você possa avançar (ou voltar) no código para investigar o seu funcionamento. Passe o mouse me cada um deles dentro do seu PyCharm em aberto para ver o que querem dizer. Para testar, clique no <code class="docutils literal notranslate"><span class="pre">Step</span> <span class="pre">Over</span></code> (primeiro botão; símbolo da flecha indo para cima e depois para baixo). O código deve passar para a próxima linha que ele deverá executar. Com o tempo, teste outros destes botões.</p></li>
+<li><p>Parte amarela: permite controlar o debugger. Isto inclui interrompê-lo ou, ainda, continuar o algoritmo até que ele chegue ao próximo breakpoint.</p></li>
+</ol>
+<p>Experimente colocar um segundo breakpoint na linha 8, mas informe as notas 3, 5 e 4 para testar. Você verá que o seu debugger nunca irá chegar na linha 8. Isto acontece porque, com estas notas, o seu código nunca alcançaria as condições impostas pelos <code class="docutils literal notranslate"><span class="pre">if</span></code> nas linhas 5, 6 e 7 para chegar à linha 8. Hmmm, quer saber? O que acha de você mesmo chegar a estas conclusões no debugger? Lembra que na parte roxa existe um texto escrito <em>“Evaluate expression (Enter) or add a watch […]”</em>? O que acha de você digitar naquele campo o comando <code class="docutils literal notranslate"><span class="pre">nota1</span> <span class="pre">&gt;=</span> <span class="pre">7</span></code> e apertar <code class="docutils literal notranslate"><span class="pre">Enter</span></code>? Você verá que aparecerá uma nova variável chamada <code class="docutils literal notranslate"><span class="pre">result</span></code>. Esta variável possui o resultado desta comparação (que é a mesma da linha 5). Em outras palavras: você pode usar o debugger para também testar se a lógica do seu <code class="docutils literal notranslate"><span class="pre">if</span></code> está funcionando como esperado ou não. Legal, né?</p>
+</section>
 </section>
 <section id="exercicios">
 <h2>Exercícios<a class="headerlink" href="#exercicios" title="Permalink to this headline">#</a></h2>
-<ol class="arabic simple" start="3">
+<p>O que acha de colocar a mão na massa com mais exercícios? Vamos lá?</p>
+<ol class="arabic simple">
 <li><p>Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela se ele é par ou ímpar.</p>
 <ul class="simple">
 <li><p>Exemplo: um usuário digita o número <code class="docutils literal notranslate"><span class="pre">7</span></code>. O algoritmo deve retornar a mensagem <em>“Ímpar”</em>.</p></li>
@@ -597,12 +1330,25 @@ title="Print to PDF"
 <li><p>Exemplo: um usuário digita o número <code class="docutils literal notranslate"><span class="pre">-51.05</span></code>. O algoritmo deve retornar a mensagem <em>“Negativo”</em>.</p></li>
 </ul>
 </li>
+<li><p>Crie um algoritmo que peça ao usuário três números e informe qual deles é o maior.</p>
+<ul class="simple">
+<li><p>Exemplo: um usuário digita os números <code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">7</span></code> e <code class="docutils literal notranslate"><span class="pre">1</span></code>. O algoritmo deve retornar a mensagem <em>“O segundo número é o maior.”</em></p></li>
+</ul>
+</li>
+<li><p>Escreva um código que solicite o preço de um produto e, caso o valor seja maior que R<span>$</span> 100,00, aplique um desconto de 10%. Caso contrário, não aplique nenhum desconto e informe o preço final ao usuário.</p>
+<ul class="simple">
+<li><p>Exemplo: um usuário digita o valor <code class="docutils literal notranslate"><span class="pre">200</span></code>. O algoritmo deve retornar a mensagem <em>“O preço com desconto é: R<span>$</span> 180.00”</em>.</p></li>
+</ul>
+</li>
+<li><p>Escreva um código que solicite a idade e o gênero de uma pessoa e informe se ela pode se aposentar, levando em consideração as seguintes regras: mulheres podem se aposentar com 63 anos ou mais, enquanto homens podem se aposentar com 68 anos ou mais.</p>
+<ul class="simple">
+<li><p>Exemplo: um usuário digita a idade <code class="docutils literal notranslate"><span class="pre">65</span></code> e gênero masculino. O algoritmo deve retornar a mensagem <em>“Você ainda não pode se aposentar.”</em>.</p></li>
+</ul>
+</li>
 </ol>
 <section id="respostas">
 <h3>Respostas<a class="headerlink" href="#respostas" title="Permalink to this headline">#</a></h3>
-<ol class="arabic simple" start="3">
-<li><p>Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela se ele é par ou ímpar.</p></li>
-</ol>
+<p><strong>1. Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela se ele é par ou ímpar.</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insira um número inteiro: &quot;</span><span class="p">))</span>
 
 <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -613,9 +1359,7 @@ title="Print to PDF"
 </div>
 <p>O algoritmo começa solicitando ao usuário que insira um número inteiro através da função <code class="docutils literal notranslate"><span class="pre">input()</span></code>, que lê a entrada do usuário como uma string. Em seguida, o número é convertido para um inteiro usando a função <code class="docutils literal notranslate"><span class="pre">int()</span></code>, e armazenado na variável <code class="docutils literal notranslate"><span class="pre">num</span></code>.</p>
 <p>A partir daí, usamos um condicional if para verificar se o número é par ou ímpar. Se o resto da divisão por <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">(num</span> <span class="pre">%</span> <span class="pre">2)</span></code> for igual a 0, significa que o número é par, e a mensagem correspondente é exibida na tela usando a função <code class="docutils literal notranslate"><span class="pre">print()</span></code>. Caso contrário, o número é ímpar, e a mensagem correspondente é exibida.</p>
-<ol class="arabic simple" start="4">
-<li><p>Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela se ele é positivo, negativo ou zero.</p></li>
-</ol>
+<p><strong>2. Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela se ele é positivo, negativo ou zero.</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">))</span>
 
 <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -628,12 +1372,64 @@ title="Print to PDF"
 </div>
 <p>O programa começa pedindo para que o usuário digite um número, que é armazenado na variável num. Em seguida, um bloco condicional <code class="docutils literal notranslate"><span class="pre">if-elif-else</span></code> é utilizado para verificar se o número é positivo, negativo ou zero.</p>
 <p>Se o número for maior que zero, o programa exibe a mensagem <code class="docutils literal notranslate"><span class="pre">O</span> <span class="pre">número</span> <span class="pre">é</span> <span class="pre">positivo</span></code>. Se o número for menor que zero, o programa exibe a mensagem <code class="docutils literal notranslate"><span class="pre">O</span> <span class="pre">número</span> <span class="pre">é</span> <span class="pre">negativo</span></code>. Se o número for igual a zero, o programa exibe a mensagem <code class="docutils literal notranslate"><span class="pre">O</span> <span class="pre">número</span> <span class="pre">é</span> <span class="pre">zero</span></code>.</p>
+<p><strong>3. Crie um algoritmo que peça ao usuário três números e informe qual deles é o maior.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o primeiro número: &quot;</span><span class="p">))</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o segundo número: &quot;</span><span class="p">))</span>
+<span class="n">num3</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o terceiro número: &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">num1</span> <span class="o">&gt;=</span> <span class="n">num2</span> <span class="ow">and</span> <span class="n">num1</span> <span class="o">&gt;=</span> <span class="n">num3</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O primeiro número é o maior.&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">num2</span> <span class="o">&gt;=</span> <span class="n">num1</span> <span class="ow">and</span> <span class="n">num2</span> <span class="o">&gt;=</span> <span class="n">num3</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O segundo número é o maior.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O terceiro número é o maior.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O código solicita ao usuário que insira três números inteiros e armazena cada um deles nas variáveis <code class="docutils literal notranslate"><span class="pre">num1</span></code>, <code class="docutils literal notranslate"><span class="pre">num2</span></code> e <code class="docutils literal notranslate"><span class="pre">num3</span></code>. Em seguida, o programa utiliza uma estrutura de seleção <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> para verificar qual é o maior número entre os três.</p>
+<p>No primeiro bloco de condição, a instrução <code class="docutils literal notranslate"><span class="pre">if</span></code> testa se <code class="docutils literal notranslate"><span class="pre">num1</span></code> é maior ou igual a <code class="docutils literal notranslate"><span class="pre">num2</span></code> e <code class="docutils literal notranslate"><span class="pre">num3</span></code>. Se essa condição for verdadeira, o programa imprime a mensagem <em>“O primeiro número é o maior.”</em> na tela.</p>
+<p>Caso a condição do <code class="docutils literal notranslate"><span class="pre">if</span></code> não seja satisfeita, a próxima instrução <code class="docutils literal notranslate"><span class="pre">elif</span></code> é executada, testando se <code class="docutils literal notranslate"><span class="pre">num2</span></code> é maior ou igual a <code class="docutils literal notranslate"><span class="pre">num1</span></code> e <code class="docutils literal notranslate"><span class="pre">num3</span></code>. Se essa condição for verdadeira, o programa imprime a mensagem <em>“O segundo número é o maior.”</em> na tela.</p>
+<p>Por fim, se nenhuma das condições anteriores for satisfeita, o bloco <code class="docutils literal notranslate"><span class="pre">else</span></code> é executado, indicando que <code class="docutils literal notranslate"><span class="pre">num3</span></code> é o maior número entre os três e imprimindo a mensagem <em>“O terceiro número é o maior.”</em> na tela.</p>
+<p><strong>4. Escreva um código que solicite o preço de um produto e, caso o valor seja maior que R<span>$</span> 100,00, aplique um desconto de 10%. Caso contrário, não aplique nenhum desconto e informe o preço final ao usuário.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">preco</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o preço do produto: &quot;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">preco</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="n">preco_com_desconto</span> <span class="o">=</span> <span class="n">preco</span> <span class="o">*</span> <span class="mf">0.9</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O preço com desconto é: R$&quot;</span><span class="p">,</span> <span class="n">preco_com_desconto</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O preço sem desconto é: R$&quot;</span><span class="p">,</span> <span class="n">preco</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Este código inicia solicitando ao usuário que digite o preço de um produto, que é armazenado na variável <code class="docutils literal notranslate"><span class="pre">preco</span></code>. Em seguida, é criada uma estrutura de seleção utilizando o comando <code class="docutils literal notranslate"><span class="pre">if</span></code>, que verifica se o valor da variável <code class="docutils literal notranslate"><span class="pre">preco</span></code> é maior do que <code class="docutils literal notranslate"><span class="pre">100</span></code>.</p>
+<p>Caso seja, o código calcula o valor do produto com desconto de 10%, multiplicando o valor de <code class="docutils literal notranslate"><span class="pre">preco</span></code> por 0.9 e armazenando o resultado na variável <code class="docutils literal notranslate"><span class="pre">preco_com_desconto</span></code>. O código então exibe o valor com desconto para o usuário utilizando a função <code class="docutils literal notranslate"><span class="pre">print()</span></code>. Caso o valor da variável <code class="docutils literal notranslate"><span class="pre">preco</span></code> seja menor ou igual a 100, a estrutura de seleção utiliza o comando <code class="docutils literal notranslate"><span class="pre">else</span></code> para exibir o valor do produto sem desconto utilizando novamente o <code class="docutils literal notranslate"><span class="pre">print()</span></code> para isto.</p>
+<p><strong>5. Escreva um código que solicite a idade e o gênero de uma pessoa e informe se ela pode se aposentar, levando em consideração as seguintes regras: mulheres podem se aposentar com 63 anos ou mais, enquanto homens podem se aposentar com 68 anos ou mais.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">idade</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a idade: &quot;</span><span class="p">))</span>
+<span class="n">genero</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o gênero (M ou F): &quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">genero</span> <span class="o">==</span> <span class="s2">&quot;F&quot;</span> <span class="ow">and</span> <span class="n">idade</span> <span class="o">&gt;=</span> <span class="mi">63</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você pode se aposentar!&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">genero</span> <span class="o">==</span> <span class="s2">&quot;M&quot;</span> <span class="ow">and</span> <span class="n">idade</span> <span class="o">&gt;=</span> <span class="mi">68</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você pode se aposentar!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Você ainda não pode se aposentar.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Este código solicita que o usuário informe a idade e o gênero (representado pela letra <code class="docutils literal notranslate"><span class="pre">M</span></code> maiúscula para masculino e <code class="docutils literal notranslate"><span class="pre">F</span></code> maiúscula para feminino). Em seguida, ele verifica se o gênero é feminino e se a idade é maior ou igual a 63 anos, ou se o gênero é masculino e a idade é maior ou igual a 68 anos. Se alguma dessas condições for atendida, o programa exibe a mensagem <em>“Você pode se aposentar!”</em>. Caso contrário, exibe a mensagem “Você ainda não pode se aposentar.”</p>
+<p>O uso de <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> permite que o programa execute diferentes ações com base nas condições estabelecidas. No caso deste exemplo, se o gênero for feminino e a idade for maior ou igual a 63 anos, <em><strong>ou</strong></em> se o gênero for masculino e a idade for maior ou igual a 68 anos, a ação será a mesma: exibir a mensagem <em>“Você pode se aposentar!”</em>. No entanto, se <em><strong>nenhuma</strong></em> dessas condições for atendida, a ação será diferente, e o programa exibirá a mensagem <em>“Você ainda não pode se aposentar.”</em>.</p>
 </section>
 </section>
 <section id="referencias-bibliograficas">
 <h2>Referências bibliográficas<a class="headerlink" href="#referencias-bibliograficas" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li></li>
+<li><p>DOWNEY, Allen B. Think Python: How to Think Like a Computer Scientist. Green Tea Press, 2nd edition, 2012.</p></li>
+<li><p>FORBELLONE, André Luiz Villar; EBERSPACHER, Henri Frederico L. Lógica de Programação: A Construção de Algoritmos e Estruturas de Dados. São Paulo: Pearson, 3ª edição, 2017.</p></li>
+<li><p>MENEZES, Nilo Ney Coutinho. Introdução à Programação com Python: Algoritmos e Lógica de Programação para Iniciantes. São Paulo: Novatec, 2018.</p></li>
+<li><p>PARRY, Dave. Debugging and Testing Python Code with pdb. Real Python, 2020. Disponível em: <a class="reference external" href="https://realpython.com/python-debugging-pdb/">https://realpython.com/python-debugging-pdb/</a>. Acesso em: 05 mar. 2023.</p></li>
+<li><p>PYTHON. Control Flow Tools: if statements. Disponível em: <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#if-statements">https://docs.python.org/3/tutorial/controlflow.html#if-statements</a>. Acesso em: 05 mar. 2023.</p></li>
+<li><p>PYTHON. Compound Statements. Disponível em: <a class="reference external" href="https://docs.python.org/3/reference/compound_stmts.html">https://docs.python.org/3/reference/compound_stmts.html</a>. Acesso em: 14 out. 2021.</p></li>
+<li><p>RAZAVI, Arash. Testing vs. Debugging: What’s the Difference? Medium, 2018. Disponível em: <a class="reference external" href="https://medium.com/swlh/testing-vs-debugging-whats-the-difference-114c72a9576f">https://medium.com/swlh/testing-vs-debugging-whats-the-difference-114c72a9576f</a>. Acesso em: 05 mar. 2023.</p></li>
+<li><p>W3SCHOOLS. Python 3 Reference Manual. Scotts Valley, CA: CreateSpace. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/">https://www.w3schools.com/python/</a>. Acesso em: 05 mar. 2023.</p></li>
+<li><p>W3SCHOOLS. Python if…elif…else. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_conditions.asp">https://www.w3schools.com/python/python_conditions.asp</a>. Acesso em: 05 mar. 2023.</p></li>
+<li><p>ZIVIANI, Nivio. Projeto de Algoritmos com Implementações em Pascal e C. São Paulo: Cengage Learning, 2007.</p></li>
 </ul>
 </section>
 </section>
@@ -666,6 +1462,20 @@ title="Print to PDF"
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="03-Variaveis-IO.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Primeiros (ou segundos) passos em Python</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="10-Erros-Comuns.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Erros/exceções em Python</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
             
@@ -688,9 +1498,199 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#teste-de-mesa">
-   Teste de mesa
+  <a class="reference internal nav-link" href="#respirando-um-pouco-antes-de-continuar">
+   Respirando um pouco antes de continuar
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#se-senao-se-senao">
+   Se, senão-se, senão
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bloqueando-um-usuario">
+     Bloqueando um usuário
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dirigindo">
+     Dirigindo
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#se-com-duas-condicoes">
+       “Se” com duas condições
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aprovacao-de-credito">
+     Aprovação de crédito
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#senao-se">
+       Senão-se
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#um-resumo-ate-aqui">
+     Um resumo até aqui
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#if-elif-else">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       if
+      </span>
+     </code>
+     ,
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       elif
+      </span>
+     </code>
+     ,
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       else
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#apenas-if">
+       Apenas
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#if-e-else">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+       e
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         else
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#if-elif-e-else">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+       ,
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         elif
+        </span>
+       </code>
+       e
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         else
+        </span>
+       </code>
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#tres-elif">
+         Três
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           elif
+          </span>
+         </code>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#if-dentro-de-if">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+       dentro de
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#if-dentro-de-if-dentro-de-if">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+       dentro de
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+       dentro de
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#varios-blocos-de-if">
+       Vários blocos de
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         if
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comentarios">
+     Comentários
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#teste-de-mesa-e-debugging">
+   Teste de mesa e debugging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#teste-de-mesa">
+     Teste de mesa
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#debugging">
+     Debugging
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercicios">
