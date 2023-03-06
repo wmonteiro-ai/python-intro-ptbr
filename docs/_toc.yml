@@ -12,7 +12,7 @@ parts:
   chapters:
   - file: 03-Variaveis-IO.ipynb
   - file: 04-Estruturas-Selecao.ipynb
-#  - file: 05-Estruturas-Repeticao.ipynb
+  - file: 05-Estruturas-Repeticao.ipynb
 #  - file: 06-Funcoes.ipynb
 #  - file: 07-Listas-Dicionarios-Tuplas.ipynb
 #  - file: 08-Manipulacao-Arquivos.ipynb
