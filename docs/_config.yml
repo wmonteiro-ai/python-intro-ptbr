@@ -29,7 +29,7 @@ sphinx:
     language: en
     html_show_copyright: false
     html_extra_path: ['assets']
+    html_last_updated_fmt: ""
   extra_extensions:
     - sphinx_inline_tabs
-    - sphinx_last_updated_by_git
 # reference on building the book https://jupyterbook.org/en/stable/start/build.html
