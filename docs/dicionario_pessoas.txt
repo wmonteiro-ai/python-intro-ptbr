@@ -1,0 +1,1 @@
+{'João': 25, 'Maria': 30, 'Pedro': 20, 'Marcos': 15}

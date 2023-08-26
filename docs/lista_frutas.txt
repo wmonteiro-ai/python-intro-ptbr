@@ -1,0 +1,1 @@
+['maçã', 'banana', 'laranja', 'manga']
