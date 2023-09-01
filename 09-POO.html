@@ -1,0 +1,1196 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos &#8212; Python Descomplicado</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-0LGPFVV5N2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-0LGPFVV5N2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '09-POO';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Erros/exceções em Python" href="10-Erros-Comuns.html" />
+    <link rel="prev" title="Saindo da telinha sem cor do terminal: trabalhando com arquivos" href="08-Manipulacao-Arquivos.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python Descomplicado</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Python Descomplicado: Aprendendo Algoritmos de Forma Simples
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1: Sabendo onde estamos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-Introducao-Ambiente.html">Arrumando as coisas para começar a trabalhar com Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Introducao-Algoritmos.html">Arrumando as coisas para começar a falar de algoritmos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2: Fazendo coisas legais</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03-Variaveis-IO.html">Primeiros (ou segundos) passos em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Estruturas-Selecao.html">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Estruturas-Repeticao.html">Repetições, repetições, repetições: loops em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Funcoes.html">Tudo em blocos: trabalhando com funções</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Listas-Dicionarios-Tuplas.html">De um bolo para uma festa: listas, dicionários e tuplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Manipulacao-Arquivos.html">Saindo da telinha sem cor do terminal: trabalhando com arquivos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3: Resolvendo tretas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="10-Erros-Comuns.html">Erros/exceções em Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr/issues/new?title=Issue%20on%20page%20%2F09-POO.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/09-POO.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">O que você saberá se você ler todo este capítulo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-terror-das-universidades">O terror das universidades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacao-orientada-a-objetos-poo">Programação Orientada a Objetos (POO)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classe">Classe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objeto">Objeto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributo">Atributo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos">Métodos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acesso-publico-e-privado">Acesso público e privado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heranca">Herança</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polimorfismo">Polimorfismo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumo">🖐 Resumo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poo-em-python">POO em Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-construtores-atributos-e-metodos">Classes, Construtores, Atributos e Métodos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetos">Objetos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Métodos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Acesso público e privado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heranca-e-polimorfismo">Herança e Polimorfismo</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Herança</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Polimorfismo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicios">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respostas">Respostas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas">Referências bibliográficas</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="o-terror-de-muita-gente-menos-para-voce-introduzindo-a-programacao-orientada-a-objetos">
+<h1>O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos<a class="headerlink" href="#o-terror-de-muita-gente-menos-para-voce-introduzindo-a-programacao-orientada-a-objetos" title="Permalink to this heading">#</a></h1>
+<section id="o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
+<h2>O que você saberá se você ler todo este capítulo?<a class="headerlink" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Saberá que Programação Orientada a Objetos é uma forma de criarmos algoritmos mais complexos ao estruturá-los de forma parecida com o jeito que pensamos e organizamos as coisas no mundo real.</p></li>
+<li><p>Que muita gente tem medo desse assunto, mas pode ser mais simples do que parece.</p></li>
+<li><p>E que é fácil trabalharmos com classes, objetos, atributos e métodos em Python.</p></li>
+</ol>
+</section>
+<section id="o-terror-das-universidades">
+<h2>O terror das universidades<a class="headerlink" href="#o-terror-das-universidades" title="Permalink to this heading">#</a></h2>
+<p>Você sabia que programação orientada a objetos tira o sono de muita gente? Pois é. É um conceito que muita gente tem medo porque parece bem complexo. E, para ser bem sincero, <em>pode</em> ser explicado de um jeito bem difícil. Logo, o meu desafio aqui é que você entenda sem maiores dificuldades o que isso é e como isso funciona. Espero que você realmente entenda, e ficarei bem feliz em saber se cumpri (ou não) esta missão. Bora lá?</p>
+<figure>
+    <img alt="Um professor na Antártida ensinando algoritmos acompanhado de vários pinguins." src="penguins.png" style="max-width:400px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Um professor na Antártida ensinando algoritmos acompanhado de vários pinguins. Imagem gerada com o DALL-E 2.</figcaption>
+</figure></section>
+<section id="programacao-orientada-a-objetos-poo">
+<h2>Programação Orientada a Objetos (POO)<a class="headerlink" href="#programacao-orientada-a-objetos-poo" title="Permalink to this heading">#</a></h2>
+<p>POO é um jeito de escrevermos e organizarmos algoritmos de um jeito que é mais parecido com o mundo real. E, sabe qual outra coisa é parecida (às vezes) com o mundo real? Um filme. Neste exemplo, imagine que você é um produtor de cinema e precisa criar uma lista de filmes para serem produzidos. Cada filme tem uma história única, com personagens e enredos diferentes, e todos os elementos estão relacionados entre si para contar essa história. Por exemplo, em um filme de super-herói, o personagem principal pode ter habilidades especiais, um vilão pode ter uma fraqueza específica, e o objetivo final do herói pode ser salvar uma cidade inteira. Tudo isso faz parte de um único filme.</p>
+<p>Vamos então usar esses exemplos para demonstrar como funciona POO? Primeiro, precisamos definir alguns termos para falarmos na mesma língua.</p>
+<section id="classe">
+<h3>Classe<a class="headerlink" href="#classe" title="Permalink to this heading">#</a></h3>
+<p>Agora, pensemos que você precisa fazer um <strong>“molde”</strong> contendo tudo o que um filme, um personagem ou qualquer outra coisa precisa ter. Você ainda não pensou em nada em específico, mas só está tentando montar um <em>esqueleto</em> das coisas que são necessárias para você começar a produzir. Vamos pensar em alguns exemplos:</p>
+<ul class="simple">
+<li><p>Classe <code class="docutils literal notranslate"><span class="pre">filme</span></code>: bom, todo filme deveria ter um nome, o(a) protagonista, o(a) antagonista e o ano em que ele seria lançado, não é? Imagine que estaríamos fazendo um cadastro de todos os filmes - consegue imaginar que outras informações todo filme deveria ter?</p></li>
+<li><p>Classe <code class="docutils literal notranslate"><span class="pre">superheroi</span></code>: agora, o que todo super-herói deveria ter? Talvez um nome, sua fraqueza, a lista do seu principal rival, e o seu superpoder. Também imagine fazendo um cadastro de vários super-heróis: que características todo super-herói deveria ter?</p></li>
+</ul>
+</section>
+<section id="objeto">
+<h3>Objeto<a class="headerlink" href="#objeto" title="Permalink to this heading">#</a></h3>
+<p>Até agora não pensamos em nenhum filme ou super-herói em específico, né? Até agora, só pensamos nas classes (<em>moldes</em>). Agora que temos um molde em mãos, vamos pensar em alguns exemplos únicos a partir dessas classes. Vamos lá:</p>
+<ul class="simple">
+<li><p>Classe <code class="docutils literal notranslate"><span class="pre">filme</span></code>:</p>
+<ul>
+<li><p>Filme 1:</p>
+<ul>
+<li><p>Nome: <em>O Herói sem Nome</em></p></li>
+<li><p>Protagonista: Tom</p></li>
+<li><p>Antagonista: John</p></li>
+<li><p>Ano: 2015</p></li>
+</ul>
+</li>
+<li><p>Filme 2:</p>
+<ul>
+<li><p>Nome: <em>A Busca pelo Tesouro Perdido</em></p></li>
+<li><p>Protagonista: Michael</p></li>
+<li><p>Antagonista: Robert</p></li>
+<li><p>Ano: 2012</p></li>
+</ul>
+</li>
+<li><p>Filme 3:</p>
+<ul>
+<li><p>Nome: <em>O Mistério da Ilha Deserta</em></p></li>
+<li><p>Protagonista: Emily</p></li>
+<li><p>Antagonista: Jake</p></li>
+<li><p>Ano: 2022</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Classe <code class="docutils literal notranslate"><span class="pre">superheroi</span></code>:</p>
+<ul>
+<li><p>Super-herói 1:</p>
+<ul>
+<li><p>Nome: Tom</p></li>
+<li><p>Fraqueza: Eletricidade</p></li>
+<li><p>Principal Rival: John</p></li>
+<li><p>Superpoder: Velocidade extrema</p></li>
+</ul>
+</li>
+<li><p>Super-herói 2:</p>
+<ul>
+<li><p>Nome: Emily</p></li>
+<li><p>Fraqueza: Intolerância à Lactose</p></li>
+<li><p>Principal Rival: Jake</p></li>
+<li><p>Superpoder: Força sobre-humana</p></li>
+</ul>
+</li>
+<li><p>Super-herói 3:</p>
+<ul>
+<li><p>Nome: Michael</p></li>
+<li><p>Fraqueza: Chuva</p></li>
+<li><p>Principal Rival: Robert</p></li>
+<li><p>Superpoder: Controle de fogo</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Consegue perceber que cada um desses exemplos são diferentes uns dos outros? São únicos. O nome desses “indivíduos” (cada filme, ou cada super-herói) é um <strong>objeto</strong>. Cada objeto que você cria a partir dessa classe é como um filme ou super-herói único, com as suas próprias características. Podemos até ter dois filmes chamados “O Herói sem Nome”, mas podem ter sido encenados por atores diferentes, em anos diferentes ou diretores diferentes. Ou dois super-heróis chamados Tom, mas cada um deles seria único em suas características e imperfeições.</p>
+<p>Em outras palavras, veja que cada objeto que você cria a partir de uma classe seria como um super-herói (ou filme) diferente, com a sua individualidade.</p>
+</section>
+<section id="atributo">
+<h3>Atributo<a class="headerlink" href="#atributo" title="Permalink to this heading">#</a></h3>
+<p>Atributos em POO são como características dos objetos. Eles permitem que os objetos tenham propriedades específicas que os diferenciem de outros objetos da mesma classe. Nos exemplos acima, os atributos que temos são:</p>
+<ul class="simple">
+<li><p>Classe <code class="docutils literal notranslate"><span class="pre">filme</span></code>: <code class="docutils literal notranslate"><span class="pre">nome</span></code>, <code class="docutils literal notranslate"><span class="pre">protagonista</span></code>, <code class="docutils literal notranslate"><span class="pre">antagonista</span></code>, e <code class="docutils literal notranslate"><span class="pre">ano</span></code>.</p></li>
+<li><p>Classe <code class="docutils literal notranslate"><span class="pre">superheroi</span></code>: <code class="docutils literal notranslate"><span class="pre">nome</span></code>, <code class="docutils literal notranslate"><span class="pre">fraqueza</span></code>, <code class="docutils literal notranslate"><span class="pre">principal</span> <span class="pre">rival</span></code>, e <code class="docutils literal notranslate"><span class="pre">superpoder</span></code>.</p></li>
+</ul>
+<p>Simples, não é?</p>
+</section>
+<section id="metodos">
+<h3>Métodos<a class="headerlink" href="#metodos" title="Permalink to this heading">#</a></h3>
+<p>Você pode ter visto nos capítulos anteriores algumas menções de <em>métodos</em> e ficou meio sem saber o que aquilo significava, né? Agora é o momento de explicar. Se os filmes, super-heróis ou qualquer outra classe possui os seus atributos (<em>características</em>) que os definem, os mesmos também <em>fazem</em> algo, não é?</p>
+<p>Quer dizer, vamos pensar um pouco: um filme tem ações que acontecem como, por exemplo, as cenas de ação ou diálogos que ocorrem ao longo da história. Cada cena é uma ação específica que os personagens realizam para avançar a trama. Um super-herói também pode fazer coisas, certo? Ele pode falar, correr, lutar, gritar, entre outras ações. Até outros objetos que a princípio seriam inanimados também possuem as suas ações na vida real: uma bola pode ficar parada ou rolar, não é?</p>
+<p>Todas essas <em>ações</em> são os métodos em POO. Os <em><strong>métodos são funções</strong></em> que executam uma ação ou operação específica dentro de uma classe, alterando seus atributos ou retornando um valor.</p>
+<p>Vamos listar estes exemplos?</p>
+<ul class="simple">
+<li><p>Classe <code class="docutils literal notranslate"><span class="pre">filme</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">trocar</span> <span class="pre">de</span> <span class="pre">cena</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iniciar</span> <span class="pre">diálogo</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">terminar</span> <span class="pre">diálogo</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mudar</span> <span class="pre">câmera</span></code></p></li>
+</ul>
+</li>
+<li><p>Classe <code class="docutils literal notranslate"><span class="pre">superheroi</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">falar</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">correr</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lutar</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gritar</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rastejar</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dormir</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">comer</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="acesso-publico-e-privado">
+<h3>Acesso público e privado<a class="headerlink" href="#acesso-publico-e-privado" title="Permalink to this heading">#</a></h3>
+<p>Agora, vamos supor que você está assistindo a um filme e pode ver tudo o que acontece na tela. Só que não. Alguns detalhes da história, como as emoções e pensamentos dos personagens, não são mostrados na tela. Esses detalhes são como os atributos <strong>privados</strong> de uma classe na POO. Agora, pense em um filme em que um personagem tem um objeto muito importante que ele não quer que ninguém mais saiba. Por exemplo, uma chave que abre um cofre. Ele não quer que nenhum outro personagem saiba sobre a chave. Isso é como um atributo privado em POO - algo que só pode ser acessado dentro da classe ou objeto.</p>
+<p>Já os atributos <strong>públicos</strong> são como informações mostradas na tela do filme. Por exemplo, a cor do cabelo do personagem principal ou o modelo do carro que ele está dirigindo. Esses são detalhes que todos podem ver e acessar, assim como os atributos públicos em POO.</p>
+<p>O mesmo se aplica aos métodos. Os métodos <strong>privados e públicos</strong> são como ações realizadas pelos personagens. Alguns desses movimentos são importantes apenas para a trama do filme e não precisam ser compartilhados com o público. Esses são como os métodos privados em programação orientada a objetos. Já os métodos públicos são como as ações dos personagens que são mostradas na tela, como lutar contra um vilão ou salvar o mundo. Ou seja: o fato de ser “público” ou “privado” serve para controlar a visibilidade e acesso às informações e ações dentro de uma classe ou objeto, entende?</p>
+</section>
+<section id="heranca">
+<h3>Herança<a class="headerlink" href="#heranca" title="Permalink to this heading">#</a></h3>
+<p>Agora, vamos imaginar que existam vários filmes que <strong>compartilham</strong> algumas características em comum. Filmes que se passam no espaço, por exemplo, possuem ações exclusivas desses filmes, como cenas que se passam dentro de uma espaçonave, cenas que se passam ao chegar e sair de um planeta, e cenas de batalhas espaciais. Também podem ter características que sejam só deles, como a época do futuro em que o filme se passa e se existem alienígenas ou não. Ao criar um novo filme assim, em vez de começar do zero e recriar todos esses atributos e métodos do zero, é possível herdar essas características de um “filme pai” e, em seguida, modificar as caraterísticas específicas do novo filme. Além disso, o jeito de se fazer um filme pode ser um pouco diferente de outros filmes. O método <code class="docutils literal notranslate"><span class="pre">&quot;mudar</span> <span class="pre">câmera&quot;</span></code>, por exemplo, pode ser bem diferente porque teríamos que adicionar vários efeitos especiais do espaço na cena.</p>
+<p>Esse exemplo é a descrição de uma <em>herança</em>. Em POO, ela é uma forma de criar novas classes baseadas em classes existentes, <strong>reutilizando assim o código já existente e evitando a redundância</strong>. Uma classe pode ser criada com atributos e métodos específicos, e outra classe pode ser criada para “herdar” esses atributos e métodos e adicionar mais recursos a eles. A classe que é herdada é chamada de classe pai ou <em>superclasse</em>, enquanto a nova classe é chamada de classe filho ou <em>subclasse</em>. A subclasse pode adicionar novos atributos e métodos, ou pode substituir ou modificar os existentes.</p>
+<p>Vamos imaginar como seria no caso dos filmes:</p>
+<ul class="simple">
+<li><p>Superclasse <code class="docutils literal notranslate"><span class="pre">filme</span></code>:</p>
+<ul>
+<li><p>Atributos:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">nome</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">protagonista</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">antagonista</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ano</span></code></p></li>
+</ul>
+</li>
+<li><p>Métodos:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">trocar</span> <span class="pre">de</span> <span class="pre">cena</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iniciar</span> <span class="pre">diálogo</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">terminar</span> <span class="pre">diálogo</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mudar</span> <span class="pre">câmera</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Subclasse <code class="docutils literal notranslate"><span class="pre">filme</span> <span class="pre">no</span> <span class="pre">espaço</span></code>:</p>
+<ul>
+<li><p>Atributos:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ano</span> <span class="pre">em</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">passa</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tem</span> <span class="pre">alienígenas?</span></code></p></li>
+<li><p><em>E mais todos os outros atributos de <code class="docutils literal notranslate"><span class="pre">filme</span></code></em></p></li>
+</ul>
+</li>
+<li><p>Métodos</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">iniciar</span> <span class="pre">batalha</span> <span class="pre">espacial</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">terminar</span> <span class="pre">batalha</span> <span class="pre">espacial</span></code></p></li>
+<li><p><em>E mais todos os outros métodos de <code class="docutils literal notranslate"><span class="pre">filme</span></code></em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Quer outro exemplo? Este é bem usado em livros e tutoriais por aí, e funciona muito bem. Imagine que temos uma classe <code class="docutils literal notranslate"><span class="pre">Animal</span></code> com atributos como <code class="docutils literal notranslate"><span class="pre">peso</span></code>, <code class="docutils literal notranslate"><span class="pre">tamanho</span></code> e <code class="docutils literal notranslate"><span class="pre">cor</span></code>, bem como métodos como <code class="docutils literal notranslate"><span class="pre">comer</span></code> e <code class="docutils literal notranslate"><span class="pre">dormir</span></code>. Uma subclasse, como a classe <code class="docutils literal notranslate"><span class="pre">Cachorro</span></code>, pode herdar os atributos e métodos da classe <code class="docutils literal notranslate"><span class="pre">Animal</span></code> (já que um cachorro não deixa de ser um animal) e adicionar atributos e métodos específicos de cachorro, como <code class="docutils literal notranslate"><span class="pre">latir</span></code> e <code class="docutils literal notranslate"><span class="pre">buscar</span> <span class="pre">objetos</span></code>.</p>
+<p>Também podemos modificar os métodos já existentes para que sejam específicos de um cachorro. Por exemplo: o jeito que um cachorro dorme pode ser diferente do jeito que outro animal (como uma galinha) dorme.</p>
+</section>
+<section id="polimorfismo">
+<h3>Polimorfismo<a class="headerlink" href="#polimorfismo" title="Permalink to this heading">#</a></h3>
+<p>Agora, vamos imaginar um filme de ação. Em uma determinada cena, dois personagens diferentes precisam atravessar um rio. O primeiro personagem é um nadador profissional e decide nadar pelo rio. O segundo personagem é um especialista em parkour e escolhe pular entre pedras para atravessar o rio. Mesmo que eles tenham habilidades diferentes, ambos conseguem atravessar o rio e cumprir a tarefa.</p>
+<p>Esse exemplo é um caso de <em>polimorfismo</em>. Em POO, polimorfismo trata da capacidade de objetos de diferentes classes serem tratados de forma semelhante. Isso pode tornar o código mais flexível e reutilizável.</p>
+<p>Quer outro exemplo? Por exemplo, imagine que temos uma classe <code class="docutils literal notranslate"><span class="pre">Animal</span></code> que contém o método <code class="docutils literal notranslate"><span class="pre">fazer</span> <span class="pre">som</span></code>. Um objeto <code class="docutils literal notranslate"><span class="pre">Cachorro</span></code> pode responder a esse método latindo, enquanto um objeto <code class="docutils literal notranslate"><span class="pre">Gato</span></code> pode responder com um miado.</p>
+</section>
+<section id="resumo">
+<h3>🖐 Resumo<a class="headerlink" href="#resumo" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Classes</strong>: moldes para criar objetos.</p></li>
+<li><p><strong>Objetos</strong>: instâncias de uma classe.</p></li>
+<li><p><strong>Atributos</strong>: características de um objeto.</p></li>
+<li><p><strong>Métodos</strong>: ações que um objeto pode executar (funções de um objeto).</p></li>
+<li><p><strong>Acesso público</strong>: é quando qualquer objeto de fora pode acessar um atributo ou método.</p></li>
+<li><p><strong>Acesso privado</strong>: é quando somente o objeto que possui o atributo ou método pode acessá-lo.</p></li>
+<li><p><strong>Herança</strong>: é quando uma classe herda atributos e métodos de outra.</p></li>
+<li><p><strong>Polimorfismo</strong>: é quando um objeto pode assumir diferentes formas e comportamentos.</p></li>
+</ul>
+<p>Analogias com personagens de filmes:</p>
+<ul class="simple">
+<li><p><strong>Classes</strong>: um molde de tudo o que um personagem deve ter.</p></li>
+<li><p><strong>Objetos</strong>: os personagens.</p></li>
+<li><p><strong>Atributos</strong>: características de um personagem como o nome, ator/atriz que o interpreta, e cor do cabelo.</p></li>
+<li><p><strong>Métodos</strong>: ações que o personagem pode fazer em um filme, como lutar, falar, correr, nadar e pular.</p></li>
+<li><p><strong>Acesso público</strong>: atributos e métodos que podem ser acessados por outros personagens no filme, como conversar com o personagem.</p></li>
+<li><p><strong>Acesso privado</strong>: atributos e métodos que só o próprio personagem pode ter acesso, como entrar em uma sala secreta.</p></li>
+<li><p><strong>Herança</strong>: a habilidade de um personagem ter características de outro personagem, como se fossem da mesma família em um filme.</p></li>
+<li><p><strong>Polimorfismo</strong>: quando um mesmo método pode ser usado por diferentes personagens de forma diferente em um filme, como lutar.</p></li>
+</ul>
+<p>Analogias, agora (novamente) com bolos:</p>
+<ul class="simple">
+<li><p><strong>Classes</strong>: receitas de bolo</p></li>
+<li><p><strong>Objetos</strong>: os bolos que você pode comer</p></li>
+<li><p><strong>Atributos</strong>: ingredientes</p></li>
+<li><p><strong>Métodos</strong>: as etapas de preparo</p></li>
+<li><p><strong>Acesso público</strong>: um ingrediente que qualquer pessoa pode adicionar ao bolo</p></li>
+<li><p><strong>Acesso privado</strong>: é um ingrediente secreto que somente o dono da receita pode usar</p></li>
+<li><p><strong>Herança</strong>: é quando uma receita é adaptada de outra</p></li>
+<li><p><strong>Polimorfismo</strong>: é um bolo que pode ser decorado de diferentes formas.</p></li>
+</ul>
+<blockquote>
+<div><p>👩‍💻 <em>Usamos POO para desenvolver games, software de gerenciamento, aplicativos para celulares e tablets ou, ainda, para a criação de interfaces gráficas de usuário. A POO é especialmente útil quando há necessidade de reutilização de código e para construção de programas complexos que precisam ser facilmente modificados e mantidos.</em></p>
+</div></blockquote>
+</section>
+</section>
+<section id="poo-em-python">
+<h2>POO em Python<a class="headerlink" href="#poo-em-python" title="Permalink to this heading">#</a></h2>
+<p>Agora você já conhece alguns dos principais termos de POO, certo? É claro que existem mais terminologias como interfaces e classes abstratas, mas como isso aqui é uma introdução eu entendo que é importante deixar de forma clara esses conceitos-base de POO. Dito isso, vamos ao Python!</p>
+<section id="classes-construtores-atributos-e-metodos">
+<h3>Classes, Construtores, Atributos e Métodos<a class="headerlink" href="#classes-construtores-atributos-e-metodos" title="Permalink to this heading">#</a></h3>
+<p>Teste o código abaixo no PyCharm. Você verá que não acontecerá muita coisa. Pode ficar de boa - em breve você já começará a ver os resultados. Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pessoa</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nome_informado</span><span class="p">,</span> <span class="n">idade_informada</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nome</span> <span class="o">=</span> <span class="n">nome_informado</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idade</span> <span class="o">=</span> <span class="n">idade_informada</span>
+</pre></div>
+</div>
+<p>Esse código define uma <strong>classe</strong> chamada <code class="docutils literal notranslate"><span class="pre">Pessoa</span></code>. Veja que na primeira linha definimos uma classe com a palavra-chave <code class="docutils literal notranslate"><span class="pre">class</span></code> e, logo em seguida, o nome daquela classe (que, aqui, é <code class="docutils literal notranslate"><span class="pre">Pessoa</span></code>). Veja que não usamos aspas nem nada nesta definição da classe.</p>
+<p>Depois disso, veja que temos uma função chamada <code class="docutils literal notranslate"><span class="pre">__init__</span></code>. Quer dizer: o nome em POO para isso não é mais função, mas sim <strong>método</strong>. Em Python, todo método chamado <code class="docutils literal notranslate"><span class="pre">__init__</span></code> dentro de uma classe é chamado de <strong>construtor</strong>. É um método especial que é executado toda vez que um novo objeto é criado a partir dessa classe.</p>
+<p>Este método define dois <strong>atributos</strong>, <code class="docutils literal notranslate"><span class="pre">nome</span></code> e <code class="docutils literal notranslate"><span class="pre">idade</span></code>, que são especificados durante a criação do objeto. Esses atributos são referenciados através da palavra-chave <code class="docutils literal notranslate"><span class="pre">self</span></code>, que se refere ao objeto atual sendo criado. Ou seja: <em>essa classe permite criar objetos que representam pessoas com nome e idade</em>.</p>
+<blockquote>
+<div><p>O <code class="docutils literal notranslate"><span class="pre">self</span></code> é bastante usado para se referir aos atributos que estão dentro daquela mesma classe.</p>
+</div></blockquote>
+<p>Está mais ou menos claro, não é? Esse código criou uma classe com dois atributos, e é uma classe que representa algo do mundo real (no caso, pessoas). Ainda não criamos nenhuma pessoa em si, este é apenas um molde com tudo o que qualquer pessoa deve ter.</p>
+</section>
+<section id="objetos">
+<h3>Objetos<a class="headerlink" href="#objetos" title="Permalink to this heading">#</a></h3>
+<p>Agora, e para criar objetos? Vamos supor que precisamos criar 3 pessoas utilizando a classe <code class="docutils literal notranslate"><span class="pre">Pessoa</span></code>. Como faríamos isto? Teste este código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pessoa1</span> <span class="o">=</span> <span class="n">Pessoa</span><span class="p">(</span><span class="s2">&quot;Maria&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">pessoa2</span> <span class="o">=</span> <span class="n">Pessoa</span><span class="p">(</span><span class="s2">&quot;João&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">pessoa3</span> <span class="o">=</span> <span class="n">Pessoa</span><span class="p">(</span><span class="s2">&quot;Pedro&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pessoa1</span><span class="o">.</span><span class="n">nome</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pessoa3</span><span class="o">.</span><span class="n">idade</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A saída será isto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Maria
+<span class="m">20</span>
+</pre></div>
+</div>
+<p>Lembra que a classe <code class="docutils literal notranslate"><span class="pre">Pessoa</span></code> tinha um construtor que recebia dois parâmetros: <code class="docutils literal notranslate"><span class="pre">nome</span></code> e <code class="docutils literal notranslate"><span class="pre">idade</span></code>, certo? Ao criar os objetos, precisamos passar os valores correspondentes a estes dois parâmetros e seguindo exatamente a mesma ordem. Os objetos são armazenados nas variáveis <code class="docutils literal notranslate"><span class="pre">pessoa1</span></code>, <code class="docutils literal notranslate"><span class="pre">pessoa2</span></code> e <code class="docutils literal notranslate"><span class="pre">pessoa3</span></code>, respectivamente.</p>
+<p>Veja que também conseguimos ler os valores dentro dos atributos de cada pessoa. Conseguimos ler o nome da primeira pessoa ao usar <code class="docutils literal notranslate"><span class="pre">pessoa1.nome</span></code>, e a idade da terceira pessoa com <code class="docutils literal notranslate"><span class="pre">pessoa3.idade</span></code>. Perceba que sempre existe um ponto (<code class="docutils literal notranslate"><span class="pre">.</span></code>) entre o objeto que queremos acessar e o atributo que está dentro deste objeto.</p>
+</section>
+<section id="id1">
+<h3>Métodos<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Até agora você viu um exemplo de classe, atributo e objetos em Python. O que acha de pensarmos em um caso com métodos? Vamos imaginar a implementação de uma classe chamada <code class="docutils literal notranslate"><span class="pre">Circulo</span></code> que possui 3 atributos (raio, cor da borda e cor do preenchimento do círculo) e 4 métodos (calcular área, calcular perímetro, mudar as cores e redimensionar o raio):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">class</span> <span class="nc">Circulo</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raio_circulo</span><span class="p">,</span> <span class="n">cor_borda</span><span class="p">,</span> <span class="n">cor_preenchimento</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raio</span> <span class="o">=</span> <span class="n">raio_circulo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cor_borda</span> <span class="o">=</span> <span class="n">cor_borda</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cor_preenchimento</span> <span class="o">=</span> <span class="n">cor_preenchimento</span>
+
+    <span class="k">def</span> <span class="nf">calcular_area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">raio</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">calcular_perimetro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">raio</span>
+
+    <span class="k">def</span> <span class="nf">mudar_cor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nova_cor_borda</span><span class="p">,</span> <span class="n">nova_cor_preenchimento</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cor_borda</span> <span class="o">=</span> <span class="n">nova_cor_borda</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cor_preenchimento</span> <span class="o">=</span> <span class="n">nova_cor_preenchimento</span>
+
+    <span class="k">def</span> <span class="nf">redimensionar_raio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">novo_raio</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raio</span> <span class="o">=</span> <span class="n">novo_raio</span>
+</pre></div>
+</div>
+<p>Primeiro: aquele <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span></code> não tem nenhuma relação com POO. Usamos ele somente para que possamos pegar o valor de <span class="math notranslate nohighlight">\(\pi\)</span>, e este valor está dentro do módulo <code class="docutils literal notranslate"><span class="pre">math</span></code> do Python. Isso é bem mais assertivo do que digitar na mão <span class="math notranslate nohighlight">\(3.1415...\)</span>. Aqui, a classe <code class="docutils literal notranslate"><span class="pre">Circulo</span></code> recebe três atributos em seu construtor: o <code class="docutils literal notranslate"><span class="pre">raio</span></code>, a <code class="docutils literal notranslate"><span class="pre">cor_borda</span></code> e a <code class="docutils literal notranslate"><span class="pre">cor_preenchimento</span></code>.</p>
+<blockquote>
+<div><p>Veja que o <code class="docutils literal notranslate"><span class="pre">self</span></code> sempre é o primeiro parâmetro. Isso permite que o método acesse e modifique os atributos do próprio objeto. O <code class="docutils literal notranslate"><span class="pre">self</span></code> também é usado para diferenciar as variáveis locais da classe e os atributos do objeto.</p>
+</div></blockquote>
+<p>Os métodos <code class="docutils literal notranslate"><span class="pre">calcular_area()</span></code> e <code class="docutils literal notranslate"><span class="pre">calcular_perimetro()</span></code> são responsáveis por calcular a área e o perímetro do círculo, respectivamente. O método <code class="docutils literal notranslate"><span class="pre">mudar_cor()</span></code> permite que o usuário mude as cores da borda e do preenchimento se quiser. Por fim, o método <code class="docutils literal notranslate"><span class="pre">redimensionar_raio()</span></code> permite que o usuário altere o raio do círculo para um novo valor (<code class="docutils literal notranslate"><span class="pre">novo_raio</span></code>).</p>
+<p>Vamos criar 3 objetos de <code class="docutils literal notranslate"><span class="pre">Circulo</span></code>? Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">circulo1</span> <span class="o">=</span> <span class="n">Circulo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;amarelo&quot;</span><span class="p">,</span> <span class="s2">&quot;azul&quot;</span><span class="p">)</span>
+<span class="n">circulo2</span> <span class="o">=</span> <span class="n">Circulo</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;verde&quot;</span><span class="p">,</span> <span class="s2">&quot;verde&quot;</span><span class="p">)</span>
+<span class="n">circulo3</span> <span class="o">=</span> <span class="n">Circulo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;azul&quot;</span><span class="p">,</span> <span class="s2">&quot;roxo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Criamos 3 círculos diferentes, e cada um deles com um raio e cores diferentes, certo? Agora podemos chamar os métodos da classe para realizar cálculos ou alterar os atributos dos objetos:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;O raio do círculo 3 é </span><span class="si">{</span><span class="n">circulo3</span><span class="o">.</span><span class="n">raio</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;A área do círculo 3 é </span><span class="si">{</span><span class="n">circulo3</span><span class="o">.</span><span class="n">calcular_area</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">circulo3</span><span class="o">.</span><span class="n">redimensionar_raio</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;O novo raio do círculo 3 é </span><span class="si">{</span><span class="n">circulo3</span><span class="o">.</span><span class="n">raio</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;A nova área do círculo 3 é </span><span class="si">{</span><span class="n">circulo3</span><span class="o">.</span><span class="n">calcular_area</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">circulo1</span><span class="o">.</span><span class="n">cor_borda</span><span class="p">,</span> <span class="n">circulo1</span><span class="o">.</span><span class="n">cor_preenchimento</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circulo2</span><span class="o">.</span><span class="n">calcular_perimetro</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>O resultado deve ser o seguinte:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">O</span> <span class="n">raio</span> <span class="n">do</span> <span class="n">círculo</span> <span class="mi">3</span> <span class="n">é</span> <span class="mi">2</span>
+<span class="n">A</span> <span class="n">área</span> <span class="n">do</span> <span class="n">círculo</span> <span class="mi">3</span> <span class="n">é</span> <span class="mf">12.566370614359172</span>
+<span class="n">O</span> <span class="n">novo</span> <span class="n">raio</span> <span class="n">do</span> <span class="n">círculo</span> <span class="mi">3</span> <span class="n">é</span> <span class="mi">4</span>
+<span class="n">A</span> <span class="n">nova</span> <span class="n">área</span> <span class="n">do</span> <span class="n">círculo</span> <span class="mi">3</span> <span class="n">é</span> <span class="mf">50.26548245743669</span>
+<span class="n">amarelo</span> <span class="n">azul</span>
+<span class="mf">31.41592653589793</span>
+</pre></div>
+</div>
+<p>Perceba algumas coisas no exemplo acima:</p>
+<ul class="simple">
+<li><p>Acessamos os atributos sempre seguindo o padrão <code class="docutils literal notranslate"><span class="pre">$OBJETO.$ATRIBUTO</span></code> e os métodos usando <code class="docutils literal notranslate"><span class="pre">$OBJETO.$MÉTODO($PARÂMETROS)</span></code>. Veja que para acessar o <code class="docutils literal notranslate"><span class="pre">raio</span></code> do <code class="docutils literal notranslate"><span class="pre">circulo3</span></code> faríamos <code class="docutils literal notranslate"><span class="pre">circulo3.raio</span></code>. Se fosse do <code class="docutils literal notranslate"><span class="pre">circulo1</span></code>, seria <code class="docutils literal notranslate"><span class="pre">circulo1.raio</span></code>.</p>
+<ul>
+<li><p>Para chamar os atributos <strong>não usamos</strong> parênteses. Para chamar método usamos parênteses. Veja que sempre usamos <code class="docutils literal notranslate"><span class="pre">circulo1.raio</span></code>, e não <code class="docutils literal notranslate"><span class="pre">circulo1.raio()</span></code>. Isto acontece porque o <code class="docutils literal notranslate"><span class="pre">raio</span></code> é um atributo, e não uma função (método).</p></li>
+<li><p>Métodos podem ou não ter retorno e parâmetros, igual como aprendemos em funções, anteriormente. No exemplo acima, <code class="docutils literal notranslate"><span class="pre">redimensionar_raio()</span></code> tem um parâmetro de entrada (que é o novo raio) e não tem retorno. Já <code class="docutils literal notranslate"><span class="pre">calcular_area()</span></code> não tem parâmetro de entrada, mas tem um retorno.</p></li>
+</ul>
+</li>
+<li><p>Veja que sempre “salvamos” um ajuste no atributo dentro do objeto antes de usá-lo. Pegue, por exemplo, o <code class="docutils literal notranslate"><span class="pre">calcular_area()</span></code>. Em nenhum momento informamos o raio para este método porque ele precisa obrigatoriamente calcular isso usando todos os atributos que já estão dentro daquele objeto. Se precisarmos alterar por qualquer motivo que seja o raio ou outros atributos precisaremos, obrigatoriamente, chamar outro método somente para fazer isto.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Acesso público e privado<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Os exemplos acima só tiveram atributos e métodos públicos. E se quiséssemos também incluir atributos e métodos privados? Veja só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">class</span> <span class="nc">Circulo</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raio_circulo</span><span class="p">,</span> <span class="n">cor_borda</span><span class="p">,</span> <span class="n">cor_preenchimento</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__raio</span> <span class="o">=</span> <span class="n">raio_circulo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cor_borda</span> <span class="o">=</span> <span class="n">cor_borda</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cor_preenchimento</span> <span class="o">=</span> <span class="n">cor_preenchimento</span>
+
+    <span class="k">def</span> <span class="nf">calcular_area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__raio</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">calcular_perimetro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__raio</span>
+
+    <span class="k">def</span> <span class="nf">mudar_cor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nova_cor_borda</span><span class="p">,</span> <span class="n">nova_cor_preenchimento</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cor_borda</span> <span class="o">=</span> <span class="n">nova_cor_borda</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cor_preenchimento</span> <span class="o">=</span> <span class="n">nova_cor_preenchimento</span>
+
+    <span class="k">def</span> <span class="nf">redimensionar_raio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">novo_raio</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__raio</span> <span class="o">=</span> <span class="n">novo_raio</span>
+
+    <span class="k">def</span> <span class="nf">__metodo_privado</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Este é um método privado.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Veja que o atributo raio foi modificado para <code class="docutils literal notranslate"><span class="pre">__raio</span></code> e que o método privado foi criado com o prefixo de dois underscores (<code class="docutils literal notranslate"><span class="pre">__metodo_privado</span></code>). Isso indica que esses elementos são privados e só devem ser acessados internamente na classe. Simples assim. Isto não significa que o acesso externo será <em>proibido</em>: da mesma forma que as pessoas ainda podem pisar na grama mesmo que tenha uma placa escrito <em>“Proibido pisar na grama”</em>, outros métodos poderão acessar estes atributos e métodos privados. Os dois underscores (<code class="docutils literal notranslate"><span class="pre">__</span></code>) servem para <em>recomendar</em> que não se acesse externamente, somente. Por isso, não entenda que isto funciona como algum tipo de trava de segurança neste sentido.</p>
+</section>
+<section id="heranca-e-polimorfismo">
+<h3>Herança e Polimorfismo<a class="headerlink" href="#heranca-e-polimorfismo" title="Permalink to this heading">#</a></h3>
+<p>Beleza, e para testarmos heranças? Bom, o círculo não deixa de ser uma forma, não é? Assim como o retângulo também é. Então, vamos mudar um pouco as coisas. Teste o código abaixo no PyCharm:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">class</span> <span class="nc">Forma</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">calcular_area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Ainda não tenho uma lógica implementada para calcular esta área.&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">calcular_perimetro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Ainda não tenho uma lógica implementada para calcular este perímetro.&quot;</span>
+
+<span class="k">class</span> <span class="nc">Circulo</span><span class="p">(</span><span class="n">Forma</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raio</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raio</span> <span class="o">=</span> <span class="n">raio</span>
+    
+    <span class="k">def</span> <span class="nf">calcular_perimetro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">raio</span>
+    
+    <span class="k">def</span> <span class="nf">redimensionar_raio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">novo_raio</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raio</span> <span class="o">=</span> <span class="n">novo_raio</span>
+
+<span class="k">class</span> <span class="nc">Retangulo</span><span class="p">(</span><span class="n">Forma</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">altura</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">base</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">altura</span> <span class="o">=</span> <span class="n">altura</span>
+    
+    <span class="k">def</span> <span class="nf">redimensionar_base</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nova_base</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">nova_base</span>
+        
+    <span class="k">def</span> <span class="nf">redimensionar_altura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nova_altura</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">altura</span> <span class="o">=</span> <span class="n">nova_altura</span>
+        
+<span class="n">circulo1</span> <span class="o">=</span> <span class="n">Circulo</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">retangulo1</span> <span class="o">=</span> <span class="n">Retangulo</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">circulo1</span><span class="o">.</span><span class="n">calcular_area</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circulo1</span><span class="o">.</span><span class="n">calcular_perimetro</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">retangulo1</span><span class="o">.</span><span class="n">calcular_area</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">retangulo1</span><span class="o">.</span><span class="n">calcular_perimetro</span><span class="p">())</span>
+</pre></div>
+</div>
+<section id="id3">
+<h4>Herança<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<p>A classe <code class="docutils literal notranslate"><span class="pre">Forma</span></code> é uma classe base que contém os métodos que todas as outras classes irão herdar. A partir dela, foram criadas as subclasses <code class="docutils literal notranslate"><span class="pre">Circulo</span></code> e <code class="docutils literal notranslate"><span class="pre">Retangulo</span></code>, cada uma com seus próprios métodos e atributos. Perceba que temos agora <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Circulo(Forma)</span></code> e <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Retangulo(Forma)</span></code>. Este <code class="docutils literal notranslate"><span class="pre">(Forma)</span></code> presente em ambos os casos é o que diz que estas duas classes são herdadas de <code class="docutils literal notranslate"><span class="pre">Forma</span></code>.</p>
+<p>Veja também que cada classe herdada possui um construtor diferente: o círculo possui somente um parâmetro no construtor (<code class="docutils literal notranslate"><span class="pre">raio</span></code>) e o retângulo possui dois (<code class="docutils literal notranslate"><span class="pre">base</span></code> e <code class="docutils literal notranslate"><span class="pre">altura</span></code>). Além disso, cada classe herdada pode ter os seus próprios métodos.</p>
+<p>A classe <code class="docutils literal notranslate"><span class="pre">Circulo</span></code>, por exemplo, possui o método <code class="docutils literal notranslate"><span class="pre">redimensionar_raio()</span></code>, que permite alterar o valor do raio do círculo. A classe <code class="docutils literal notranslate"><span class="pre">Retangulo</span></code> possui a <code class="docutils literal notranslate"><span class="pre">redimensionar_base()</span></code> e <code class="docutils literal notranslate"><span class="pre">redimensionar_altura()</span></code>.</p>
+<p>Ao rodar o código, o seguinte resultado aparecerá:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ainda</span> <span class="n">não</span> <span class="n">tenho</span> <span class="n">uma</span> <span class="n">lógica</span> <span class="n">implementada</span> <span class="n">para</span> <span class="n">calcular</span> <span class="n">esta</span> <span class="n">área</span><span class="o">.</span>
+<span class="mf">18.84955592153876</span>
+<span class="n">Ainda</span> <span class="n">não</span> <span class="n">tenho</span> <span class="n">uma</span> <span class="n">lógica</span> <span class="n">implementada</span> <span class="n">para</span> <span class="n">calcular</span> <span class="n">esta</span> <span class="n">área</span><span class="o">.</span>
+<span class="n">Ainda</span> <span class="n">não</span> <span class="n">tenho</span> <span class="n">uma</span> <span class="n">lógica</span> <span class="n">implementada</span> <span class="n">para</span> <span class="n">calcular</span> <span class="n">este</span> <span class="n">perímetro</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Veja que somente a segunda linha retornou um valor numérico. Se olharmos o código, verá que a classe <code class="docutils literal notranslate"><span class="pre">Forma</span></code> retorna somente uma mensagem para os métodos <code class="docutils literal notranslate"><span class="pre">calcular_area()</span></code> e <code class="docutils literal notranslate"><span class="pre">calcular_perimetro()</span></code>, e somente a classe <code class="docutils literal notranslate"><span class="pre">Circulo</span></code> reimplementou o método <code class="docutils literal notranslate"><span class="pre">calcular_perimetro()</span></code> para que ela tenha a sua própria lógica.</p>
+<blockquote>
+<div><p>👉 Ou seja: não precisamos implementar todos os métodos da superclasse para todas as classes herdadas. Se não implementarmos, a classe herdada usará a mesma lógica implementada pela superclasse. Como não implementamos a nossa própria lógica de <code class="docutils literal notranslate"><span class="pre">calcular_area()</span></code> para <code class="docutils literal notranslate"><span class="pre">Circulo</span></code> e <code class="docutils literal notranslate"><span class="pre">Retangulo</span></code> e nem implementamos a nossa lógica de <code class="docutils literal notranslate"><span class="pre">calcular_perimetro()</span></code> para o <code class="docutils literal notranslate"><span class="pre">Retangulo</span></code>, o algoritmo usou a lógica que existia lá em <code class="docutils literal notranslate"><span class="pre">Forma</span></code>.</p>
+</div></blockquote>
+</section>
+<section id="id4">
+<h4>Polimorfismo<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
+<p>Ah, e o polimorfismo! Achou que eu ia me esquecer? Vamos alterar o código acima para implementar a lógica de <code class="docutils literal notranslate"><span class="pre">calcular_perimetro()</span></code> e <code class="docutils literal notranslate"><span class="pre">calcular_area()</span></code> para as duas classes herdadas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">class</span> <span class="nc">Forma</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">calcular_area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Ainda não tenho uma lógica implementada para calcular esta área.&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">calcular_perimetro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Ainda não tenho uma lógica implementada para calcular este perímetro.&quot;</span>
+
+<span class="k">class</span> <span class="nc">Circulo</span><span class="p">(</span><span class="n">Forma</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raio</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raio</span> <span class="o">=</span> <span class="n">raio</span>
+    
+    <span class="k">def</span> <span class="nf">calcular_area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">raio</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">calcular_perimetro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">raio</span>
+    
+    <span class="k">def</span> <span class="nf">redimensionar_raio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">novo_raio</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raio</span> <span class="o">=</span> <span class="n">novo_raio</span>
+
+<span class="k">class</span> <span class="nc">Retangulo</span><span class="p">(</span><span class="n">Forma</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">altura</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">base</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">altura</span> <span class="o">=</span> <span class="n">altura</span>
+    
+    <span class="k">def</span> <span class="nf">calcular_area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">altura</span>
+
+    <span class="k">def</span> <span class="nf">calcular_perimetro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">altura</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">redimensionar_base</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nova_base</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">nova_base</span>
+        
+    <span class="k">def</span> <span class="nf">redimensionar_altura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nova_altura</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">altura</span> <span class="o">=</span> <span class="n">nova_altura</span>
+        
+<span class="n">circulo1</span> <span class="o">=</span> <span class="n">Circulo</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">retangulo1</span> <span class="o">=</span> <span class="n">Retangulo</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">circulo1</span><span class="o">.</span><span class="n">calcular_area</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circulo1</span><span class="o">.</span><span class="n">calcular_perimetro</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">retangulo1</span><span class="o">.</span><span class="n">calcular_area</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">retangulo1</span><span class="o">.</span><span class="n">calcular_perimetro</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Se você rodar este código verá que teremos o seguinte resultado:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">28.274333882308138</span>
+<span class="mf">18.84955592153876</span>
+<span class="mi">20</span>
+<span class="mi">24</span>
+</pre></div>
+</div>
+<p>Consegue ver que tanto para o círculo quanto para o retângulo pedimos pelo mesmo nome do método? Ou seja: para ambos, chamamos o <code class="docutils literal notranslate"><span class="pre">calcular_area()</span></code> e <code class="docutils literal notranslate"><span class="pre">calcular_retangulo()</span></code>. Por outro lado, os dois possuem lógicas de implementação totalmente diferentes. Isto é um exemplo prático de polimorfismo.</p>
+<p>Quer outro exemplo de polimorfismo que já existe no Python? O operador <code class="docutils literal notranslate"><span class="pre">+</span></code>. Veja que ele consegue somar números (<code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">2</span></code> será igual a <code class="docutils literal notranslate"><span class="pre">4</span></code>), mas ele também funciona para string (<code class="docutils literal notranslate"><span class="pre">&quot;Teste&quot;</span> <span class="pre">+</span> <span class="pre">&quot;Chinelo&quot;</span></code> será igual a <code class="docutils literal notranslate"><span class="pre">TesteChinelo</span></code>). Perceba que o mesmo operador tem comportamentos diferentes para tipos de dados diferentes: isto também é polimorfismo.</p>
+</section>
+</section>
+</section>
+<section id="exercicios">
+<h2>Exercícios<a class="headerlink" href="#exercicios" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Crie uma classe chamada <code class="docutils literal notranslate"><span class="pre">Animal</span></code> com atributos <code class="docutils literal notranslate"><span class="pre">nome</span></code> e <code class="docutils literal notranslate"><span class="pre">especie</span></code>. Crie um método para mostrar na tela o som que o animal faz. Crie um objeto para demonstrar o seu uso.</p></li>
+<li><p>Crie uma classe <code class="docutils literal notranslate"><span class="pre">Calculadora</span></code> com os métodos <code class="docutils literal notranslate"><span class="pre">somar</span></code>, <code class="docutils literal notranslate"><span class="pre">subtrair</span></code>, <code class="docutils literal notranslate"><span class="pre">multiplicar</span></code> e <code class="docutils literal notranslate"><span class="pre">dividir</span></code>. Crie um objeto dessa classe e utilize os métodos para realizar operações aritméticas simples.</p></li>
+<li><p>Crie uma classe <code class="docutils literal notranslate"><span class="pre">Funcionario</span></code> com os atributos <code class="docutils literal notranslate"><span class="pre">nome</span></code> e <code class="docutils literal notranslate"><span class="pre">salario</span></code>. Em seguida, crie um método para calcular o salário anual do funcionário, incluindo o décimo-terceiro salário. Crie um objeto dessa classe com salário definido e exiba na tela o salário anual.</p></li>
+<li><p>Crie uma classe <code class="docutils literal notranslate"><span class="pre">Estudante</span></code> com os atributos <code class="docutils literal notranslate"><span class="pre">nome</span></code>, <code class="docutils literal notranslate"><span class="pre">idade</span></code> e <code class="docutils literal notranslate"><span class="pre">nota</span></code>. Em seguida, crie um método para calcular a média das notas de dois alunos. Crie dois objetos dessa classe com notas definidas e exiba na tela a média calculada.</p></li>
+<li><p>Crie uma classe chamada <code class="docutils literal notranslate"><span class="pre">Livro</span></code> com atributos <code class="docutils literal notranslate"><span class="pre">titulo</span></code>, <code class="docutils literal notranslate"><span class="pre">autor</span></code> e <code class="docutils literal notranslate"><span class="pre">ano_publicacao</span></code>. Crie um método para imprimir as informações do livro. Crie um objeto para demonstrar o seu uso.</p></li>
+</ol>
+<section id="respostas">
+<h3>Respostas<a class="headerlink" href="#respostas" title="Permalink to this heading">#</a></h3>
+<p><strong>1. Crie uma classe chamada <code class="docutils literal notranslate"><span class="pre">Animal</span></code> com atributos <code class="docutils literal notranslate"><span class="pre">nome</span></code> e <code class="docutils literal notranslate"><span class="pre">especie</span></code>. Crie um método para mostrar na tela o som que o animal faz. Crie um objeto para demonstrar o seu uso.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">especie</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nome</span> <span class="o">=</span> <span class="n">nome</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">especie</span> <span class="o">=</span> <span class="n">especie</span>
+    
+    <span class="k">def</span> <span class="nf">fazer_som</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> está fazendo um som de </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nome</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">especie</span><span class="p">))</span>
+
+<span class="c1"># Cria um objeto da classe Animal</span>
+<span class="n">meu_animal</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="s2">&quot;Kora&quot;</span><span class="p">,</span> <span class="s2">&quot;cachorro&quot;</span><span class="p">)</span>
+
+<span class="c1"># Chama o método som do objeto criado</span>
+<span class="n">meu_animal</span><span class="o">.</span><span class="n">fazer_som</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Este código define uma classe chamada <code class="docutils literal notranslate"><span class="pre">Animal</span></code> com dois atributos: <code class="docutils literal notranslate"><span class="pre">nome</span></code> e <code class="docutils literal notranslate"><span class="pre">especie</span></code>. Além disso, há um método chamado <code class="docutils literal notranslate"><span class="pre">fazer_som()</span></code> que imprime na tela o som que o animal está fazendo, utilizando as informações dos atributos <code class="docutils literal notranslate"><span class="pre">nome</span></code> e <code class="docutils literal notranslate"><span class="pre">especie</span></code>. O <code class="docutils literal notranslate"><span class="pre">self</span></code> é uma referência para a instância da classe, permitindo acessar os atributos e métodos da mesma.</p>
+<p>Para exemplificar, criamos objeto chamado <code class="docutils literal notranslate"><span class="pre">meu_animal</span></code> a partir da classe <code class="docutils literal notranslate"><span class="pre">Animal</span></code>, passando <code class="docutils literal notranslate"><span class="pre">&quot;Kora&quot;</span></code> como o nome do animal e <code class="docutils literal notranslate"><span class="pre">&quot;cão&quot;</span></code> como a espécie. Para testar isso, usamos o método <code class="docutils literal notranslate"><span class="pre">fazer_som()</span></code> do objeto <code class="docutils literal notranslate"><span class="pre">meu_animal</span></code>, que imprime na tela o som que o animal está fazendo. Neste caso, a saída será <em><code class="docutils literal notranslate"><span class="pre">&quot;Kora</span> <span class="pre">está</span> <span class="pre">fazendo</span> <span class="pre">um</span> <span class="pre">som</span> <span class="pre">de</span> <span class="pre">cachorro.&quot;</span></code></em>.</p>
+<p><strong>2. Crie uma classe <code class="docutils literal notranslate"><span class="pre">Calculadora</span></code> com os métodos <code class="docutils literal notranslate"><span class="pre">somar</span></code>, <code class="docutils literal notranslate"><span class="pre">subtrair</span></code>, <code class="docutils literal notranslate"><span class="pre">multiplicar</span></code> e <code class="docutils literal notranslate"><span class="pre">dividir</span></code>. Crie um objeto dessa classe e utilize os métodos para realizar operações aritméticas simples.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Calculadora</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">somar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+    
+    <span class="k">def</span> <span class="nf">subtrair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+    
+    <span class="k">def</span> <span class="nf">multiplicar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+    
+    <span class="k">def</span> <span class="nf">dividir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Não é possível dividir por zero&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+        
+<span class="c1"># Cria um objeto da classe Calculadora</span>
+<span class="n">minha_calculadora</span> <span class="o">=</span> <span class="n">Calculadora</span><span class="p">()</span>
+
+<span class="c1"># Realiza algumas operações aritméticas simples</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">minha_calculadora</span><span class="o">.</span><span class="n">somar</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>  <span class="c1"># Imprime 5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">minha_calculadora</span><span class="o">.</span><span class="n">subtrair</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># Imprime 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">minha_calculadora</span><span class="o">.</span><span class="n">multiplicar</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>  <span class="c1"># Imprime 24</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">minha_calculadora</span><span class="o">.</span><span class="n">dividir</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># Imprime 2.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">minha_calculadora</span><span class="o">.</span><span class="n">dividir</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>  <span class="c1"># Imprime &quot;Não é possível dividir por zero&quot;</span>
+</pre></div>
+</div>
+<p>Percebeu que este código não tem o construtor (<code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">__init__</span></code>)? O código não tem construtor porque ele não precisa de nenhum atributo específico para funcionar corretamente. Todas as operações aritméticas podem ser realizadas apenas com os parâmetros de entrada dos métodos. Por isso, não é necessário criar um construtor que inicialize algum atributo da classe.</p>
+<p>Veja que este é um caso específico em que não precisamos guardar nenhum atributo antes para calcular. Como uma calculadora é usada para testar diferentes combinações de valores, o propósito dela realmente não precisa de nenhum construtor neste cenário.</p>
+<p><strong>3. Crie uma classe <code class="docutils literal notranslate"><span class="pre">Funcionario</span></code> com os atributos <code class="docutils literal notranslate"><span class="pre">nome</span></code> e <code class="docutils literal notranslate"><span class="pre">salario</span></code>. Em seguida, crie um método para calcular o salário anual do funcionário, incluindo o décimo-terceiro salário. Crie um objeto dessa classe com salário definido e exiba na tela o salário anual.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Funcionario</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">salario</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nome</span> <span class="o">=</span> <span class="n">nome</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">salario</span> <span class="o">=</span> <span class="n">salario</span>
+    
+    <span class="k">def</span> <span class="nf">calcular_salario_anual</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">salario</span> <span class="o">*</span> <span class="mi">13</span>
+    
+<span class="c1"># Cria um objeto da classe Funcionario</span>
+<span class="n">funcionario1</span> <span class="o">=</span> <span class="n">Funcionario</span><span class="p">(</span><span class="s2">&quot;João&quot;</span><span class="p">,</span> <span class="mi">3000</span><span class="p">)</span>
+
+<span class="c1"># Calcula o salário anual do funcionário</span>
+<span class="n">salario_anual</span> <span class="o">=</span> <span class="n">funcionario1</span><span class="o">.</span><span class="n">calcular_salario_anual</span><span class="p">()</span>
+
+<span class="c1"># Exibe na tela o salário anual do funcionário</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O salário anual do funcionário </span><span class="si">{}</span><span class="s2"> é R$ </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">funcionario1</span><span class="o">.</span><span class="n">nome</span><span class="p">,</span> <span class="n">salario_anual</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Veja que este código possui uma classe chamada <code class="docutils literal notranslate"><span class="pre">Funcionario</span></code>, um método construtor que recebe o <code class="docutils literal notranslate"><span class="pre">nome</span></code> e o <code class="docutils literal notranslate"><span class="pre">salario</span></code> de um funcionário e, ainda, um método especializado em calcular o salário anual levando em consideração o décimo-terceiro salário (<code class="docutils literal notranslate"><span class="pre">calcular_salario_anual()</span></code>). Se testarmos um objeto da classe Funcionario com nome <code class="docutils literal notranslate"><span class="pre">&quot;João&quot;</span></code> e R<span>$</span> 3000,00 (<code class="docutils literal notranslate"><span class="pre">3000</span></code>), o método <code class="docutils literal notranslate"><span class="pre">calcular_salario_anual()</span></code> retornará o valor <code class="docutils literal notranslate"><span class="pre">39000</span></code>. Este resultado é mostrado no final em uma frase assim: <code class="docutils literal notranslate"><span class="pre">&quot;O</span> <span class="pre">salário</span> <span class="pre">anual</span> <span class="pre">do</span> <span class="pre">funcionário</span> <span class="pre">João</span> <span class="pre">é</span> <span class="pre">R$</span> <span class="pre">39000.00&quot;</span></code>.</p>
+<p><strong>4. Crie uma classe <code class="docutils literal notranslate"><span class="pre">Estudante</span></code> com os atributos <code class="docutils literal notranslate"><span class="pre">nome</span></code>, <code class="docutils literal notranslate"><span class="pre">idade</span></code> e <code class="docutils literal notranslate"><span class="pre">nota</span></code>. Em seguida, crie um método para calcular a média das notas de dois alunos. Crie dois objetos dessa classe com notas definidas e exiba na tela a média calculada.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Estudante</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">idade</span><span class="p">,</span> <span class="n">nota</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nome</span> <span class="o">=</span> <span class="n">nome</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idade</span> <span class="o">=</span> <span class="n">idade</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nota</span> <span class="o">=</span> <span class="n">nota</span>
+
+    <span class="k">def</span> <span class="nf">calcular_media</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outro_estudante</span><span class="p">):</span>
+        <span class="n">media</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nota</span> <span class="o">+</span> <span class="n">outro_estudante</span><span class="o">.</span><span class="n">nota</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">media</span>
+
+<span class="c1"># Cria os objetos da classe Estudante</span>
+<span class="n">estudante1</span> <span class="o">=</span> <span class="n">Estudante</span><span class="p">(</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">)</span>
+<span class="n">estudante2</span> <span class="o">=</span> <span class="n">Estudante</span><span class="p">(</span><span class="s2">&quot;João&quot;</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">)</span>
+
+<span class="c1"># Chama o método calcular_media para calcular a média das notas dos dois estudantes</span>
+<span class="n">media_notas</span> <span class="o">=</span> <span class="n">estudante1</span><span class="o">.</span><span class="n">calcular_media</span><span class="p">(</span><span class="n">estudante2</span><span class="p">)</span>
+
+<span class="c1"># Exibe a média calculada na tela</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A média das notas dos estudantes </span><span class="si">{}</span><span class="s2"> e </span><span class="si">{}</span><span class="s2"> é: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">estudante1</span><span class="o">.</span><span class="n">nome</span><span class="p">,</span> <span class="n">estudante2</span><span class="o">.</span><span class="n">nome</span><span class="p">,</span> <span class="n">media_notas</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Aqui, criamos uma classe <code class="docutils literal notranslate"><span class="pre">Estudante</span></code> com os atributos <code class="docutils literal notranslate"><span class="pre">nome</span></code>, <code class="docutils literal notranslate"><span class="pre">idade</span></code> e <code class="docutils literal notranslate"><span class="pre">nota</span></code>. Em seguida, criamos o método <code class="docutils literal notranslate"><span class="pre">calcular_media()</span></code> que recebe como parâmetro outro objeto da classe <code class="docutils literal notranslate"><span class="pre">Estudante</span></code>, e que calcula a média das notas do objeto atual e do objeto passado como parâmetro (percebe o <code class="docutils literal notranslate"><span class="pre">outro_estudante</span></code>?).</p>
+<p>São criados dois objetos da classe <code class="docutils literal notranslate"><span class="pre">Estudante</span></code> com notas definidas e é chamado o método <code class="docutils literal notranslate"><span class="pre">calcular_media()</span></code> para calcular a média das notas desses dos dois estudantes. Neste caso em específico, a seguinte mensagem seria mostrada na tela: <em><code class="docutils literal notranslate"><span class="pre">&quot;A</span> <span class="pre">média</span> <span class="pre">das</span> <span class="pre">notas</span> <span class="pre">dos</span> <span class="pre">estudantes</span> <span class="pre">Ana</span> <span class="pre">e</span> <span class="pre">João</span> <span class="pre">é:</span> <span class="pre">8.0&quot;</span></code></em>.</p>
+<p><strong>5. Crie uma classe chamada <code class="docutils literal notranslate"><span class="pre">Livro</span></code> com atributos <code class="docutils literal notranslate"><span class="pre">titulo</span></code>, <code class="docutils literal notranslate"><span class="pre">autor</span></code> e <code class="docutils literal notranslate"><span class="pre">ano_publicacao</span></code>. Crie um método para imprimir as informações do livro. Crie um objeto para demonstrar o seu uso.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Livro</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo_informado</span><span class="p">,</span> <span class="n">autor_informado</span><span class="p">,</span> <span class="n">ano_publicacao_informado</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">titulo</span> <span class="o">=</span> <span class="n">titulo_informado</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">autor</span> <span class="o">=</span> <span class="n">autor_informado</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ano_publicacao</span> <span class="o">=</span> <span class="n">ano_publicacao_informado</span>
+    
+    <span class="k">def</span> <span class="nf">mostrar_informacoes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Título: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">titulo</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Autor: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">autor</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ano de publicação: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ano_publicacao</span><span class="p">))</span>
+
+<span class="c1"># Cria um objeto da classe Livro</span>
+<span class="n">meu_livro</span> <span class="o">=</span> <span class="n">Livro</span><span class="p">(</span><span class="s2">&quot;O Senhor dos Anéis: A Sociedade do Anel&quot;</span><span class="p">,</span> <span class="s2">&quot;J. R. R. Tolkien&quot;</span><span class="p">,</span> <span class="mi">1954</span><span class="p">)</span>
+
+<span class="c1"># Chama o método imprimir_info do objeto criado</span>
+<span class="n">meu_livro</span><span class="o">.</span><span class="n">mostrar_informacoes</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Veja que criamos a classe <code class="docutils literal notranslate"><span class="pre">Livro</span></code> com três atributos no construtor: <code class="docutils literal notranslate"><span class="pre">titulo</span></code>, <code class="docutils literal notranslate"><span class="pre">autor</span></code> e <code class="docutils literal notranslate"><span class="pre">ano_publicacao</span></code>. Temos também um método: <code class="docutils literal notranslate"><span class="pre">mostrar_informacoes()</span></code>, responsável por mostrar as informações do livro na tela (nome sugestivo, não?). Depois, criamos um objeto da classe <code class="docutils literal notranslate"><span class="pre">Livro</span></code> com as informações do livro “O Senhor dos Anéis: A Sociedade do Anel”, e testamos com o método <code class="docutils literal notranslate"><span class="pre">mostrar_informacoes()</span></code>.</p>
+<p>Aqui, usei no construtor uns nomes um pouco modificados (<code class="docutils literal notranslate"><span class="pre">titulo_informado</span></code>, <code class="docutils literal notranslate"><span class="pre">autor_informado</span></code>, e <code class="docutils literal notranslate"><span class="pre">ano_publicacao_informado</span></code>) para que você perceba que essas variáveis são coisas diferentes em relação a <code class="docutils literal notranslate"><span class="pre">self.titulo</span></code>, <code class="docutils literal notranslate"><span class="pre">self.autor</span></code> e <code class="docutils literal notranslate"><span class="pre">self.ano_publicacao</span></code>.</p>
+</section>
+</section>
+<section id="referencias-bibliograficas">
+<h2>Referências bibliográficas<a class="headerlink" href="#referencias-bibliograficas" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>DOWNEY, A. B. Think Python: How to Think Like a Computer Scientist (2ª ed.). O’Reilly Media, 2015.</p></li>
+<li><p>MICROSOFT. Herança em C#. Disponível em: <a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/inheritance">https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/inheritance</a>. Acesso em 14 mar. 2023.</p></li>
+<li><p>ORACLE. Site da Oracle sobre herança em Java. Disponível em: <a class="reference external" href="https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html">https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html</a>. Acesso em: 14 mar. 2023.</p></li>
+<li><p>PYTHON. Documentação oficial. Classes. Disponível em: <a class="reference external" href="https://docs.python.org/3/tutorial/classes.html">https://docs.python.org/3/tutorial/classes.html</a>. Acesso em 14 mar. 2023.</p></li>
+<li><p>PYTHON. Documentação oficial. Polimorfismo. Disponível em: <a class="reference external" href="https://docs.python.org/3/library/functions.html#callable">https://docs.python.org/3/library/functions.html#callable</a>. Acesso em 14 mar. 2023.</p></li>
+<li><p>PROGRAMIZ. Class and Objects. Disponível em: <a class="reference external" href="https://www.programiz.com/python-programming/class">https://www.programiz.com/python-programming/class</a>. Acesso em 14 mar. 2023.</p></li>
+<li><p>PROGRAMIZ. Object-Oriented Programming. Disponível em: <a class="reference external" href="https://www.programiz.com/python-programming/object-oriented-programming">https://www.programiz.com/python-programming/object-oriented-programming</a>. Acesso em 14 mar. 2023.</p></li>
+<li><p>SCHILD, H. Java: A Beginner’s Guide, Seventh Edition. McGraw Hill Professional, 2018.</p></li>
+<li><p>SIERRA, K.; BATES, B. Head First Java: A Brain-Friendly Guide. O’Reilly Media, Inc., 2005.</p></li>
+<li><p>VANDERPLAS, J. Python Data Science Handbook. Disponível em: <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">https://jakevdp.github.io/PythonDataScienceHandbook/</a>. Acesso em: 14 mar. 2023</p></li>
+<li><p>W3SCHOOLS. Python Classes. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_classes.asp">https://www.w3schools.com/python/python_classes.asp</a>. Acesso em 14 mar. 2023.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="08-Manipulacao-Arquivos.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="10-Erros-Comuns.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Erros/exceções em Python</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">O que você saberá se você ler todo este capítulo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-terror-das-universidades">O terror das universidades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programacao-orientada-a-objetos-poo">Programação Orientada a Objetos (POO)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classe">Classe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objeto">Objeto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributo">Atributo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos">Métodos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acesso-publico-e-privado">Acesso público e privado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heranca">Herança</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polimorfismo">Polimorfismo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumo">🖐 Resumo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poo-em-python">POO em Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-construtores-atributos-e-metodos">Classes, Construtores, Atributos e Métodos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetos">Objetos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Métodos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Acesso público e privado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heranca-e-polimorfismo">Herança e Polimorfismo</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Herança</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Polimorfismo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicios">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respostas">Respostas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas">Referências bibliográficas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Wellington Rodrigo Monteiro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Aug 25, 2023.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

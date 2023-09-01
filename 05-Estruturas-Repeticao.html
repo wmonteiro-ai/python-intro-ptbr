@@ -1,0 +1,1026 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Repetições, repetições, repetições: loops em Python &#8212; Python Descomplicado</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-0LGPFVV5N2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-0LGPFVV5N2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05-Estruturas-Repeticao';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tudo em blocos: trabalhando com funções" href="06-Funcoes.html" />
+    <link rel="prev" title="Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)" href="04-Estruturas-Selecao.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python Descomplicado</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Python Descomplicado: Aprendendo Algoritmos de Forma Simples
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1: Sabendo onde estamos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-Introducao-Ambiente.html">Arrumando as coisas para começar a trabalhar com Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Introducao-Algoritmos.html">Arrumando as coisas para começar a falar de algoritmos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2: Fazendo coisas legais</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03-Variaveis-IO.html">Primeiros (ou segundos) passos em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Estruturas-Selecao.html">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Repetições, repetições, repetições: loops em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Funcoes.html">Tudo em blocos: trabalhando com funções</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Listas-Dicionarios-Tuplas.html">De um bolo para uma festa: listas, dicionários e tuplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Manipulacao-Arquivos.html">Saindo da telinha sem cor do terminal: trabalhando com arquivos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-POO.html">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3: Resolvendo tretas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="10-Erros-Comuns.html">Erros/exceções em Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr/issues/new?title=Issue%20on%20page%20%2F05-Estruturas-Repeticao.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/05-Estruturas-Repeticao.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Repetições, repetições, repetições: loops em Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">O que você saberá se você ler todo este capítulo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explicando-loops-com-bolos-e-brigadeiros">Explicando loops com bolos e brigadeiros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ingredientes">Ingredientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modo-de-preparo">Modo de preparo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">Resultado esperado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#um-exemplo-em-python">Um exemplo em Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#repeticoes-com-for-para-e-while-enquanto">Repetições com <code class="docutils literal notranslate"><span class="pre">for</span></code> (“para”) e <code class="docutils literal notranslate"><span class="pre">while</span></code> (“enquanto”)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for"><code class="docutils literal notranslate"><span class="pre">for</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos">Exemplos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#soma-de-1-a-10">Soma de 1 a 10</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#soma-de-10-a-50">Soma de 10 a 50</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#quadrado">Quadrado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#percorrendo-strings">Percorrendo strings</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#percorrendo-listas-de-palavras">Percorrendo listas de palavras</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#filtrando-numeros-pares">Filtrando números pares</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while"><code class="docutils literal notranslate"><span class="pre">while</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Soma de 1 a 10</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testando-uma-senha">Testando uma senha</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fazendo-um-menu">Fazendo um menu</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testando-numeros-positivos-e-negativos">Testando números positivos e negativos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inserindo-notas-validas">Inserindo notas válidas</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicios">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respostas">Respostas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas">Referências bibliográficas</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="repeticoes-repeticoes-repeticoes-loops-em-python">
+<h1>Repetições, repetições, repetições: loops em Python<a class="headerlink" href="#repeticoes-repeticoes-repeticoes-loops-em-python" title="Permalink to this heading">#</a></h1>
+<section id="o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
+<h2>O que você saberá se você ler todo este capítulo?<a class="headerlink" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Que os laços (loops) ajudam a executar um mesmo pedaço de código várias vezes, e é muito melhor do que copiar e colar o mesmo código algumas vezes seguidas.</p></li>
+<li><p>Saberá que existem dois principais tipos de loops: “para” (<code class="docutils literal notranslate"><span class="pre">for</span></code>) e “enquanto” (<code class="docutils literal notranslate"><span class="pre">while</span></code>).</p></li>
+<li><p>Também entenderá que geralmente usamos o <code class="docutils literal notranslate"><span class="pre">for</span></code> quando sabemos exatamente quantas vezes queremos executar uma ação.</p></li>
+<li><p>Verá também que geralmente usamos o <code class="docutils literal notranslate"><span class="pre">while</span></code> quando queremos executar uma ação enquanto uma determinada condição for verdadeira (e não sabemos necessariamente com antecedência <em>quando</em> parar).</p></li>
+<li><p>Que é possível combinar <code class="docutils literal notranslate"><span class="pre">if</span></code> com loops.</p></li>
+<li><p>E, finalmente, que temos mais funções úteis em Python: no caso, a <code class="docutils literal notranslate"><span class="pre">range</span></code> para gerar sequências e a <code class="docutils literal notranslate"><span class="pre">len</span></code> para medir o tamanho de palavras ou de listas (e que veremos mais sobre listas em breve).</p></li>
+</ol>
+</section>
+<section id="explicando-loops-com-bolos-e-brigadeiros">
+<h2>Explicando loops com bolos e brigadeiros<a class="headerlink" href="#explicando-loops-com-bolos-e-brigadeiros" title="Permalink to this heading">#</a></h2>
+<p>Lembra quando introduzimos o conceito de algoritmos com uma receita de bolo? Vamos agora pensar em uma receita de brigadeiros. O que acha?</p>
+<figure>
+    <img alt="Imagem contendo vários doces do tipo brigadeiro." src="Brigadeiro.jpg" style="max-width:400px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Brigadeiros. Servido? Créditos: <a href="https://www.flickr.com/photos/mayra/31394483/">Mayra Chiachia, no Flickr</a>.</figcaption>
+</figure><hr class="docutils" />
+<section id="ingredientes">
+<h3>Ingredientes<a class="headerlink" href="#ingredientes" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>1 lata de leite condensado</p></li>
+<li><p>2 colheres (sopa) de cacau em pó</p></li>
+<li><p>1 colher (sopa) de manteiga sem sal</p></li>
+<li><p>Granulado de chocolate para cobrir</p></li>
+</ul>
+</section>
+<section id="modo-de-preparo">
+<h3>Modo de preparo<a class="headerlink" href="#modo-de-preparo" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Em uma panela, adicione o leite condensado, o cacau em pó e a manteiga sem sal.</p></li>
+<li><p>Leve a panela ao fogo baixo e mexa sem parar até que a mistura comece a soltar do fundo da panela.</p></li>
+<li><p>Desligue o fogo e continue mexendo a mistura até que ela esfrie um pouco.</p></li>
+<li><p>Coloque o granulado em um prato.</p></li>
+<li><p>Enquanto ainda tiver mistura sobrando, faça:</p></li>
+<li><p><em>Pegue uma pequena porção da mistura e faça uma bolinha do tamanho de uma cereja.</em></p></li>
+<li><p><em>Passe a bolinha de brigadeiro no granulado, cobrindo-a completamente.</em></p></li>
+<li><p><em>Coloque a bolinha em uma forma.</em></p></li>
+<li><p>No final, coloque as bolinhas em forminhas de papel ou em um prato para servir.</p></li>
+</ol>
+</section>
+<section id="resultado-esperado">
+<h3>Resultado esperado<a class="headerlink" href="#resultado-esperado" title="Permalink to this heading">#</a></h3>
+<p>Brigadeiros cobertos com granulado de chocolate.</p>
+<hr class="docutils" />
+<p>Agora, imagine outro exemplo - agora, com bolo. Você está preparando uma receita de bolo de chocolate e precisa misturar os ingredientes até obter uma massa homogênea. Neste exemplo, é necessário utilizar um loop (uma repetição) para misturar os ingredientes secos de forma adequada e obter uma mistura homogênea. Esta repetição trata dos mesmos passos para todos os ingredientes: no caso, colocar em uma tigela e misturar com os demais ingredientes.</p>
+<p>Percebeu algo parecido entre o exemplo do brigadeiro e o bolo? A <strong>repetição</strong>. No caso do bolo, nós estaríamos repetindo a mesma operação de colocar um ingrediente em uma tigela e misturar com os demais por algumas vezes.</p>
+<p>Agora, preste atenção nos passos 6, 7 e 8 da receita de brigadeiro. Você consegue se enxergar repetindo aqueles passos por várias e várias vezes até a massa de brigadeiro acabar? Dependendo de quem faz (e da fome), poderíamos fazer com 10 brigadeiros grandes ou 50 brigadeiros pequenos - independentemente disso, iremos por algumas vezes repetir os passos 6, 7 e 8 em sequência. Se fôssemos colocar um exemplo de como alguém percorreria estes passos sairia algo mais ou menos assim:</p>
+<p><code class="docutils literal notranslate"><span class="pre">1-2-3-4-5-6-7-8-6-7-8-6-7-8-6-7-8-6-7-8-6-7-8-6-7-8-6-7-8-6-7-8-9-10</span></code>.</p>
+</section>
+</section>
+<section id="um-exemplo-em-python">
+<h2>Um exemplo em Python<a class="headerlink" href="#um-exemplo-em-python" title="Permalink to this heading">#</a></h2>
+<p>E como este tipo de operação seria no Python? Melhor: como as coisas <em>não</em> seriam com o uso de loops? Imagine criar um algoritmo que mostre na tela todos os números de 1 a 10. Fácil, né? Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>E se eu pedisse a você para mudar este código para mostrar todos os números de 1 a 1000? Aí complica, né?</p>
+</section>
+<section id="repeticoes-com-for-para-e-while-enquanto">
+<h2>Repetições com <code class="docutils literal notranslate"><span class="pre">for</span></code> (“para”) e <code class="docutils literal notranslate"><span class="pre">while</span></code> (“enquanto”)<a class="headerlink" href="#repeticoes-com-for-para-e-while-enquanto" title="Permalink to this heading">#</a></h2>
+<p>As <strong>estruturas de repetição</strong> como o <code class="docutils literal notranslate"><span class="pre">para</span></code> e <code class="docutils literal notranslate"><span class="pre">enquanto</span></code> servem para resolver problemas como esse cenário de mostrar todos os números de 1 a 1000 de forma inteligente ao executar um conjunto de instruções várias vezes, sem que tenhamos que repetir na mão todas essas instruções.</p>
+<p>Vamos imaginar um cenário em que precisamos caminhar por um trajeto pré-determinado ou explorar uma área desconhecida.</p>
+<p>O <em>“para”</em> é como caminhar por um trajeto conhecido, onde você sabe onde está o ponto de partida e o ponto de chegada. Você pode contar o número de passos e ter uma ideia de quanto tempo levará para chegar ao destino. Na programação, isso significa que você usa o <em>“para”</em> <strong>quando sabe exatamente quantas vezes quer executar uma ação</strong>.</p>
+<p>Já o <em>“enquanto”</em> é como explorar uma área desconhecida, onde você não sabe exatamente onde está indo, mas continua caminhando enquanto houver caminho. Na programação, isso significa que você usa o <em>“enquanto”</em> <strong>quando quer executar uma ação enquanto uma determinada condição for verdadeira</strong>.</p>
+<blockquote>
+<div><p>📝 Em resumo, o “para” é usado quando você sabe quantas vezes precisa fazer algo, enquanto o “enquanto” é usado quando não se sabe quantas vezes precisa fazer algo, mas sabe quando parar.</p>
+</div></blockquote>
+<p>Veja como seria o uso do <em>“para”</em> em pseudocódigo para escrever todos os números de 1 a 1000 na tela:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">1</span>.<span class="w"> </span>Início
+<span class="m">2</span>.<span class="w">   </span>Inteiro:<span class="w"> </span>i
+<span class="m">3</span>.
+<span class="m">4</span>.<span class="w">   </span>Para<span class="w"> </span>todo<span class="w"> </span>i<span class="w"> </span>de<span class="w"> </span><span class="m">1</span><span class="w"> </span>até<span class="w"> </span><span class="m">1000</span>,<span class="w"> </span>faça:
+<span class="m">5</span>.<span class="w">     </span>Escreva<span class="o">(</span>i<span class="o">)</span>
+<span class="m">6</span>.<span class="w">   </span>Fim<span class="w"> </span>Para
+<span class="m">7</span>.<span class="w"> </span>Fim
+</pre></div>
+</div>
+<p>Aqui, observe que existe uma variável chamada <code class="docutils literal notranslate"><span class="pre">i</span></code>. Este nome é uma convenção comum usada em loops para representar um índice ou contador. O nome <code class="docutils literal notranslate"><span class="pre">i</span></code> é uma abreviação de <em>índice</em> e é frequentemente usado em loops para rastrear a posição atual na sequência que está sendo iterada. Por exemplo, no código acima o <code class="docutils literal notranslate"><span class="pre">i</span></code> começará com o valor de <code class="docutils literal notranslate"><span class="pre">1</span></code> na linha 4, e escreverá este valor na tela com a linha 5. Depois, <strong>voltamos para a linha 4</strong> e incrementamos em um o valor de <code class="docutils literal notranslate"><span class="pre">i</span></code>, que agora vale <code class="docutils literal notranslate"><span class="pre">2</span></code>, e mostraremos este valor na linha 5. Depois, <strong>voltamos novamente para a linha 4</strong> e incrementamos <code class="docutils literal notranslate"><span class="pre">i</span></code>, que agora vale <code class="docutils literal notranslate"><span class="pre">3</span></code>, e mostraremos este valor na linha 5. Repetiremos isto até chegar ao valor de <code class="docutils literal notranslate"><span class="pre">1000</span></code>, mostrando-o na tela. Após alcançar o <code class="docutils literal notranslate"><span class="pre">1000</span></code> finalmente iremos para a linha 6, saindo do loop e encerrando o código.</p>
+<p>Agora, veja o uso do <em>“enquanto”</em> para resolver o mesmo problema:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">1</span>.<span class="w"> </span>Início
+<span class="m">2</span>.<span class="w">   </span>Inteiro:<span class="w"> </span>i
+<span class="m">3</span>.
+<span class="m">4</span>.<span class="w">   </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="m">5</span>.<span class="w">   </span>Enquanto<span class="w"> </span>i<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span><span class="m">1000</span>,<span class="w"> </span>faça:
+<span class="m">6</span>.<span class="w">     </span>Escreva<span class="o">(</span>i<span class="o">)</span>
+<span class="m">7</span>.<span class="w">     </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>i<span class="w"> </span>+<span class="w"> </span><span class="m">1</span>
+<span class="m">8</span>.<span class="w">   </span>Fim<span class="w"> </span>Enquanto
+<span class="m">9</span>.<span class="w"> </span>Fim
+</pre></div>
+</div>
+<p>Aqui, na linha 4 inicializamos o <code class="docutils literal notranslate"><span class="pre">i</span></code> para valer 1. Enquanto a condição da linha 5 for verdadeira iremos percorrer as linhas 6 e 7 infinitamente: como <code class="docutils literal notranslate"><span class="pre">i</span></code> agora vale 1, a condição da linha 5 é verdade. Com isso, vamos para a linha 6 (mostrando <code class="docutils literal notranslate"><span class="pre">1</span></code> na tela) e incrementamos o valor de <code class="docutils literal notranslate"><span class="pre">i</span></code>, que agora vale <code class="docutils literal notranslate"><span class="pre">2</span></code>. Agora, <strong>voltamos para a linha 5</strong>. A condição ainda é verdade, já que 2 é menor do que 1000. Com isso, vamos à linha 6 (mostrando <code class="docutils literal notranslate"><span class="pre">2</span></code> na tela) e incrementamos novamente o valor de <code class="docutils literal notranslate"><span class="pre">i</span></code>, que agora vale <code class="docutils literal notranslate"><span class="pre">3</span></code>. Assim, vamos sucessivamente até chegar ao 1000. Após mostrar <code class="docutils literal notranslate"><span class="pre">1000</span></code> na tela, incrementamos novamente o valor de <code class="docutils literal notranslate"><span class="pre">i</span></code>, que agora vale <code class="docutils literal notranslate"><span class="pre">1001</span></code>. Com isso, <strong>voltamos para a linha 5</strong>. Agora, a condição é falsa, já que 1001 não é maior ou igual a 1000. Como é falsa, finalmente sairemos do loop e pularemos as linhas 6 e 7, indo diretamente para a linha 8 e finalizando o código.</p>
+<section id="for">
+<h3><code class="docutils literal notranslate"><span class="pre">for</span></code><a class="headerlink" href="#for" title="Permalink to this heading">#</a></h3>
+<p>Em Python, o <em>“para”</em> se chama <code class="docutils literal notranslate"><span class="pre">for</span></code>. Lembra daquele problema de mostrar na tela todos os números de 1 a 1000? Olha como isso ficaria usando <code class="docutils literal notranslate"><span class="pre">for</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1001</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A estrutura <code class="docutils literal notranslate"><span class="pre">for</span></code> é usada em Python quando temos que executar um bloco de código um número específico de vezes, baseado em uma sequência de valores. No exemplo acima, o loop vai executar mil vezes, uma vez para cada número na sequência. Lemos aquele <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(1,</span> <span class="pre">1001)</span></code> como <em>“Para todo <code class="docutils literal notranslate"><span class="pre">i</span></code> que está no intervalo de 1 a 1000, faça:”</em>.</p>
+<blockquote>
+<div><p>🔄 <em><strong>Função</strong></em> <code class="docutils literal notranslate"><span class="pre">range()</span></code>: Nesse caso, a função <code class="docutils literal notranslate"><span class="pre">range()</span></code>, que gera automaticamente uma sequência de números inteiros de acordo com os parâmetros fornecidos. No exemplo acima, a sequência começa em 1 e termina em 1000 (o número final não é incluso: um jeito de ler aquele <code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">1001)</span></code> seria <em>“gere uma sequência de valores de 1 até 1001, mas sem contar o 1001.”</em>). Experimente como funcionaria aquele código com <code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">1001,</span> <span class="pre">2)</span></code> e <code class="docutils literal notranslate"><span class="pre">range(-1000,</span> <span class="pre">1)</span></code>.</p>
+</div></blockquote>
+<section id="exemplos">
+<h4>Exemplos<a class="headerlink" href="#exemplos" title="Permalink to this heading">#</a></h4>
+<p>Bom, o que acha de colocar a mão na massa com alguns exemplos? Recomendo que você teste comigo todos estes códigos no seu PyCharm. Se possível use o debugger para entender o que está acontecendo com o código a cada linha executada. Vamos lá?</p>
+</section>
+<section id="soma-de-1-a-10">
+<h4>Soma de 1 a 10<a class="headerlink" href="#soma-de-1-a-10" title="Permalink to this heading">#</a></h4>
+<p>Este é um código que tem como objetivo calcular a soma dos números inteiros de 1 a 10 e mostrar o resultado na tela:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="n">soma</span> <span class="o">+=</span> <span class="n">num</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A soma dos números é:&quot;</span><span class="p">,</span> <span class="n">soma</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Primeiramente, é criada uma variável chamada <code class="docutils literal notranslate"><span class="pre">soma</span></code> e atribuído o valor zero a ela. Em seguida, é utilizado o loop <code class="docutils literal notranslate"><span class="pre">for</span></code> para percorrer todos os números de 1 a 10, representados pela função <code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">11)</span></code> (lembra que eu falei que o último número desse <code class="docutils literal notranslate"><span class="pre">range</span></code> não é considerado, né? Seria um <em>“de 1 até 11, mas sem contar o 11”</em>. A cada iteração do loop, o número é adicionado à variável <code class="docutils literal notranslate"><span class="pre">soma</span></code> por meio do operador <code class="docutils literal notranslate"><span class="pre">+=</span></code>. <code class="docutils literal notranslate"><span class="pre">soma</span> <span class="pre">+=</span> <span class="pre">num</span></code> é outra forma de escrever <code class="docutils literal notranslate"><span class="pre">soma</span> <span class="pre">=</span> <span class="pre">soma</span> <span class="pre">+</span> <span class="pre">num</span></code>, mas de um jeito mais curto.</p>
+<p>Ao final do loop, a variável <code class="docutils literal notranslate"><span class="pre">soma</span></code> terá armazenado a soma de todos os números de 1 a 10. Então, a função <code class="docutils literal notranslate"><span class="pre">print()</span></code> é usada para mostrar a mensagem <em>“A soma dos números é:”</em> seguida do valor da variável <code class="docutils literal notranslate"><span class="pre">soma</span></code>.</p>
+</section>
+<section id="soma-de-10-a-50">
+<h4>Soma de 10 a 50<a class="headerlink" href="#soma-de-10-a-50" title="Permalink to this heading">#</a></h4>
+<p>E se não quiséssemos usar <code class="docutils literal notranslate"><span class="pre">range()</span></code>, ou se tivéssemos um conjunto de números que não fossem necessariamente uma sequência? Também podemos usar o <code class="docutils literal notranslate"><span class="pre">for</span></code> para isso. Veja e rode o código abaixo em seu computador:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numeros</span><span class="p">:</span>
+    <span class="n">soma</span> <span class="o">+=</span> <span class="n">num</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A soma dos números é:&quot;</span><span class="p">,</span> <span class="n">soma</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O código acima começa criando uma lista de números, chamada <code class="docutils literal notranslate"><span class="pre">numeros</span></code>, contendo 5 elementos. Sabemos que é uma lista porque é um conjunto de valores delimitados por colchetes (<code class="docutils literal notranslate"><span class="pre">[]</span></code>) e separados por vírgulas.</p>
+<blockquote>
+<div><p>🐱‍🏍 <em>Fique tranquilo! Um pouco depois deste capítulo iremos nos aprofundar em listas.</em></p>
+</div></blockquote>
+<p>Em seguida, é criada uma variável chamada <code class="docutils literal notranslate"><span class="pre">soma</span></code> com valor inicial igual a 0.</p>
+<p>O loop for percorre cada elemento da lista <code class="docutils literal notranslate"><span class="pre">numeros</span></code>, e para cada elemento, o valor é adicionado à variável <code class="docutils literal notranslate"><span class="pre">soma</span></code>. Ou seja, o loop está somando cada número da lista. Primeiro, ele soma o valor 10, que é o primeiro elemento da lista. Depois, soma o 25. Depois, o 1. Depois, o 40. Finalmente, o -4.</p>
+<p>Por fim, o programa imprime a mensagem <em>“A soma dos números é:”</em> seguida do valor da variável <code class="docutils literal notranslate"><span class="pre">soma</span></code>, que é a soma total dos elementos da lista <code class="docutils literal notranslate"><span class="pre">numeros</span></code>.</p>
+</section>
+<section id="quadrado">
+<h4>Quadrado<a class="headerlink" href="#quadrado" title="Permalink to this heading">#</a></h4>
+<p>Agora, e se fôssemos calcular o quadrado de cada número de uma sequência? Veja só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numeros</span><span class="p">:</span>
+    <span class="n">quadrado</span> <span class="o">=</span> <span class="n">num</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">quadrado</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O código acima começa criando uma lista de números chamada <code class="docutils literal notranslate"><span class="pre">numeros</span></code>, contendo os valores de 1 a 5. Em seguida, é utilizado um loop <code class="docutils literal notranslate"><span class="pre">for</span></code> para percorrer cada um dos números da lista.</p>
+<p>Para cada número, o loop realiza o cálculo do quadrado do número através da operação de exponenciação com o operador <code class="docutils literal notranslate"><span class="pre">**</span></code>, atribuindo o resultado à variável <code class="docutils literal notranslate"><span class="pre">quadrado</span></code>. Depois, o loop imprime na tela o valor de “quadrado” correspondente a cada número da lista. A cada loop este valor de <code class="docutils literal notranslate"><span class="pre">quadrado</span></code> é sobrescrito (substituído) com um novo valor.</p>
+<p>Dessa forma, o código irá imprimir os valores dos quadrados dos números de 1 a 5, ou seja: <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">16</span></code> e <code class="docutils literal notranslate"><span class="pre">25</span></code>.</p>
+</section>
+<section id="percorrendo-strings">
+<h4>Percorrendo strings<a class="headerlink" href="#percorrendo-strings" title="Permalink to this heading">#</a></h4>
+<p>Sabia que também podemos usar o <code class="docutils literal notranslate"><span class="pre">for</span></code> em strings? E se quiséssemos mostrar todas as letras do seu nome com uma letra a cada linha? Então teste este código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nome</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o seu nome: &quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">letra</span> <span class="ow">in</span> <span class="n">nome</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">letra</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O código acima começa solicitando ao usuário que digite seu nome e armazena esse nome na variável <code class="docutils literal notranslate"><span class="pre">nome</span></code>. Em seguida, é iniciado um loop for que vai percorrer cada letra contida na variável <code class="docutils literal notranslate"><span class="pre">nome</span></code>.</p>
+<p>A cada iteração do loop, a variável <code class="docutils literal notranslate"><span class="pre">letra</span></code> recebe a próxima letra contida em <code class="docutils literal notranslate"><span class="pre">nome</span></code>, que é então impressa com a função <code class="docutils literal notranslate"><span class="pre">print(letra)</span></code>. O resultado final é a impressão de cada letra do nome digitado pelo usuário em uma linha separada.</p>
+<p>Por exemplo, se o usuário digitar <em>“Maria”</em>, o resultado mostrado na tela será:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>M
+a
+r
+i
+a
+</pre></div>
+</div>
+</section>
+<section id="percorrendo-listas-de-palavras">
+<h4>Percorrendo listas de palavras<a class="headerlink" href="#percorrendo-listas-de-palavras" title="Permalink to this heading">#</a></h4>
+<p>E se quiséssemos percorrer uma lista de palavras e verificar se alguma delas contém a letra <code class="docutils literal notranslate"><span class="pre">r</span></code>? Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">palavra</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;casa&quot;</span><span class="p">,</span> <span class="s2">&quot;amor&quot;</span><span class="p">,</span> <span class="s2">&quot;árvore&quot;</span><span class="p">,</span> <span class="s2">&quot;abacaxi&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="s1">&#39;r&#39;</span> <span class="ow">in</span> <span class="n">palavra</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">palavra</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A estrutura <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">palavra</span> <span class="pre">in</span> <span class="pre">[&quot;casa&quot;,</span> <span class="pre">&quot;amor&quot;,</span> <span class="pre">&quot;arvore&quot;,</span> <span class="pre">&quot;abacaxi&quot;]:</span></code> indica que o loop irá percorrer cada palavra da lista <code class="docutils literal notranslate"><span class="pre">[&quot;casa&quot;,</span> <span class="pre">&quot;amor&quot;,</span> <span class="pre">&quot;arvore&quot;,</span> <span class="pre">&quot;abacaxi&quot;]</span></code>.</p>
+<p>Dentro do loop, a condição <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">'r'</span> <span class="pre">in</span> <span class="pre">palavra:</span></code> verifica se a letra <code class="docutils literal notranslate"><span class="pre">&quot;r&quot;</span></code> está presente (está dentro) em cada palavra. Se estiver, o <code class="docutils literal notranslate"><span class="pre">print(palavra)</span></code> será executado, exibindo a palavra que contém a letra <code class="docutils literal notranslate"><span class="pre">&quot;r&quot;</span></code>.</p>
+<p>Portanto, ao executar esse código, serão exibidas as palavras “amor” e “arvore”, que são as palavras da lista que possuem a letra <code class="docutils literal notranslate"><span class="pre">&quot;r&quot;</span></code>.</p>
+<p>Esse tipo de estrutura é muito útil para <strong>filtrar</strong> informações em uma lista, de acordo com uma condição específica. Ah, percebeu também que estamos começando a combinar <code class="docutils literal notranslate"><span class="pre">if</span></code> com <code class="docutils literal notranslate"><span class="pre">for</span></code>? Pois bem: esta flexibilidade no uso de diferentes estruturas em desenvolvimento de software é o que contribui para que os códigos sejam tão poderosos para resolver diferentes tipos de problemas.</p>
+</section>
+<section id="filtrando-numeros-pares">
+<h4>Filtrando números pares<a class="headerlink" href="#filtrando-numeros-pares" title="Permalink to this heading">#</a></h4>
+<p>Para fechar: como seria um código que pudesse percorrer uma sequência de números e mostrar na tela somente aqueles que fossem pares? Veja só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot; é um número par&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Este código mostrará na tela apenas os números pares dentro de um intervalo de 1 a 20. A linha <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">num</span> <span class="pre">in</span> <span class="pre">range(1,</span> <span class="pre">21):</span></code> cria um loop que percorre todos os números de 1 a 20, atribuindo cada um deles à variável <code class="docutils literal notranslate"><span class="pre">num</span></code>, um de cada vez.</p>
+<p>Em seguida, o <code class="docutils literal notranslate"><span class="pre">if</span></code> verifica se o número é par, o que é feito usando o operador módulo <code class="docutils literal notranslate"><span class="pre">%</span></code>. Se o resto da divisão do número por 2 for igual a zero, isso significa que o número é par. Caso contrário, ele é ímpar e será ignorado pelo código.</p>
+<p>Por fim, a linha <code class="docutils literal notranslate"><span class="pre">print(num,</span> <span class="pre">&quot;</span> <span class="pre">é</span> <span class="pre">um</span> <span class="pre">número</span> <span class="pre">par&quot;)</span></code> imprime o número par encontrado.</p>
+</section>
+</section>
+<section id="while">
+<h3><code class="docutils literal notranslate"><span class="pre">while</span></code><a class="headerlink" href="#while" title="Permalink to this heading">#</a></h3>
+<p>Em Python, o <em>“enquanto”</em> se chama <code class="docutils literal notranslate"><span class="pre">while</span></code>. Aquele problema de mostrar na tela todos os números de 1 a 1000 usando o <code class="docutils literal notranslate"><span class="pre">while</span></code> ficaria assim:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">1000</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Este código começa definindo uma variável chamada <code class="docutils literal notranslate"><span class="pre">i</span></code> com o valor inicial de 1. Em seguida, ele entra em um loop que continuará enquanto <code class="docutils literal notranslate"><span class="pre">i</span></code> for menor ou igual a 1000.</p>
+<p>Dentro do loop, ele executa a ação de imprimir o valor de <code class="docutils literal notranslate"><span class="pre">i</span></code> e, em seguida, <strong>incrementa o valor de <code class="docutils literal notranslate"><span class="pre">i</span></code> em 1</strong>. Agora, queria chamar a sua atenção para isso: experimente testar o seu código <em>sem</em> usar aquela linha <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">+=</span> <span class="pre">1</span></code> (que é a mesma coisa de <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">i</span> <span class="pre">+</span> <span class="pre">1</span></code>): o loop se repetiria infinitamente e imprimiria o número 1 infinitamente. Isto acontece porque, sem esta linha, o número em <code class="docutils literal notranslate"><span class="pre">i</span></code> jamais mudaria e ficaríamos infinitamente executando o <code class="docutils literal notranslate"><span class="pre">print(i)</span></code> porque a condição <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&lt;=</span> <span class="pre">1000</span></code> seria para sempre verdade.</p>
+<p>Ah, e como comentei antes, o <code class="docutils literal notranslate"><span class="pre">while</span></code> é usado quando <strong>não se sabe exatamente</strong> quantas vezes um loop precisa ser executado. Ele continuará executando até que a condição seja falsa. Neste exemplo, a condição é <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&lt;=</span> <span class="pre">1000</span></code>, o que significa que o loop continuará até que <code class="docutils literal notranslate"><span class="pre">i</span></code> seja maior que 1000.</p>
+<section id="id1">
+<h4>Soma de 1 a 10<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<p>Como seria aquele código que mostra a soma de todos os números de 1 a 10 que já vimos antes com o <code class="docutils literal notranslate"><span class="pre">for</span></code>, mas com o <code class="docutils literal notranslate"><span class="pre">while</span></code> no lugar? Veja e teste:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="n">soma</span> <span class="o">+=</span> <span class="n">i</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">soma</span><span class="p">)</span>
+    
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>No início e <em>antes</em> de entrar no loop, a variável <code class="docutils literal notranslate"><span class="pre">i</span></code> é iniciada com o valor de 1 e a variável <code class="docutils literal notranslate"><span class="pre">soma</span></code> com o valor de 0 (até porque não somamos nada até agora). A condição do loop é que a variável <code class="docutils literal notranslate"><span class="pre">i</span></code> seja menor ou igual a 10. Enquanto essa condição for verdadeira, o código dentro do loop será executado.</p>
+<p>Dentro do loop, primeiro fazemos a soma do valor atual de <code class="docutils literal notranslate"><span class="pre">i</span></code> com o que já estava armazenado na variável <code class="docutils literal notranslate"><span class="pre">soma</span></code>, e mostramos isto na tela. Em seguida, a variável <code class="docutils literal notranslate"><span class="pre">i</span></code> é incrementada em 1 unidade com a linha <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">+=</span> <span class="pre">1</span></code>. O loop é encerrado quando a variável <code class="docutils literal notranslate"><span class="pre">i</span></code> atingir o valor 11, pois a condição do loop deixará de ser verdadeira. Portanto, o resultado na tela será a soma da sequência numérica de 1 a 10, com cada número em uma linha diferente. O funcionamento será assim:</p>
+<ol class="arabic simple">
+<li><p>Primeiro passo: <code class="docutils literal notranslate"><span class="pre">soma</span></code> (0) + <code class="docutils literal notranslate"><span class="pre">i</span></code> (1) = 1, que passará a ser o novo valor de <code class="docutils literal notranslate"><span class="pre">soma</span></code>.</p></li>
+<li><p>Segundo passo: <code class="docutils literal notranslate"><span class="pre">soma</span></code> (1) + <code class="docutils literal notranslate"><span class="pre">i</span></code> (2) = 3, que passará a ser o novo valor de <code class="docutils literal notranslate"><span class="pre">soma</span></code>.</p></li>
+<li><p>Terceiro passo: <code class="docutils literal notranslate"><span class="pre">soma</span></code> (3) + <code class="docutils literal notranslate"><span class="pre">i</span></code> (3) = 6, que passará a ser o novo valor de <code class="docutils literal notranslate"><span class="pre">soma</span></code>.</p></li>
+<li><p>Quarto passo: <code class="docutils literal notranslate"><span class="pre">soma</span></code> (6) + <code class="docutils literal notranslate"><span class="pre">i</span></code> (4) = 10, que passará a ser o novo valor de <code class="docutils literal notranslate"><span class="pre">soma</span></code>.</p></li>
+<li><p>Quinto passo: <code class="docutils literal notranslate"><span class="pre">soma</span></code> (10) + <code class="docutils literal notranslate"><span class="pre">i</span></code> (5) = 15, que passará a ser o novo valor de <code class="docutils literal notranslate"><span class="pre">soma</span></code>.</p></li>
+<li><p>Sexto passo: <code class="docutils literal notranslate"><span class="pre">soma</span></code> (15) + <code class="docutils literal notranslate"><span class="pre">i</span></code> (6) = 21, que passará a ser o novo valor de <code class="docutils literal notranslate"><span class="pre">soma</span></code>.</p></li>
+<li><p>Sétimo passo: <code class="docutils literal notranslate"><span class="pre">soma</span></code> (21) + <code class="docutils literal notranslate"><span class="pre">i</span></code> (7) = 28, que passará a ser o novo valor de <code class="docutils literal notranslate"><span class="pre">soma</span></code>.</p></li>
+<li><p>Oitavo passo: <code class="docutils literal notranslate"><span class="pre">soma</span></code> (28) + <code class="docutils literal notranslate"><span class="pre">i</span></code> (8) = 36, que passará a ser o novo valor de <code class="docutils literal notranslate"><span class="pre">soma</span></code>.</p></li>
+<li><p>Nono passo: <code class="docutils literal notranslate"><span class="pre">soma</span></code> (36) + <code class="docutils literal notranslate"><span class="pre">i</span></code> (9) = 45, que passará a ser o novo valor de <code class="docutils literal notranslate"><span class="pre">soma</span></code>.</p></li>
+<li><p>Décimo passo: <code class="docutils literal notranslate"><span class="pre">soma</span></code> (45) + <code class="docutils literal notranslate"><span class="pre">i</span></code> (10) = 55, que passará a ser o novo valor de <code class="docutils literal notranslate"><span class="pre">soma</span></code>.</p></li>
+</ol>
+</section>
+<section id="testando-uma-senha">
+<h4>Testando uma senha<a class="headerlink" href="#testando-uma-senha" title="Permalink to this heading">#</a></h4>
+<p>E um algoritmo simples para validar uma senha e que só mostre a frase <em>“Acesso permitido!”</em> somente depois do usuário informar uma senha correta? Veja:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">senha</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">while</span> <span class="n">senha</span> <span class="o">!=</span> <span class="s2">&quot;12345&quot;</span><span class="p">:</span>
+    <span class="n">senha</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a senha: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Acesso permitido!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O código acima cria um loop usando a estrutura <code class="docutils literal notranslate"><span class="pre">while</span></code> que pede ao usuário que digite uma senha. Ele mantém o loop enquanto a senha digitada não for igual à string <code class="docutils literal notranslate"><span class="pre">&quot;12345&quot;</span></code>. Enquanto o usuário não digitar a senha correta, ele solicitará para que o usuário insira a senha e armazena a entrada em uma variável chamada <code class="docutils literal notranslate"><span class="pre">senha</span></code>. Se a senha estiver correta e for igual a <code class="docutils literal notranslate"><span class="pre">&quot;12345&quot;</span></code>, o loop é interrompido e a mensagem <em>“Acesso permitido!”</em> é exibida. Se a senha digitada não for igual a <code class="docutils literal notranslate"><span class="pre">&quot;12345&quot;</span></code>, o loop continuará a pedir que o usuário insira a senha correta infinitamente.</p>
+</section>
+<section id="fazendo-um-menu">
+<h4>Fazendo um menu<a class="headerlink" href="#fazendo-um-menu" title="Permalink to this heading">#</a></h4>
+<p>E o que acha de fazer um menu bonitão para o usuário? Com o <code class="docutils literal notranslate"><span class="pre">while</span></code>, isto é possível. Veja:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">opcao</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="k">while</span> <span class="n">opcao</span> <span class="o">!=</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MENU:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a. Opção 1&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;b. Opção 2&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;c. Opção 3&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;s. Sair&quot;</span><span class="p">)</span>
+    <span class="n">opcao</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite uma opção: &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">opcao</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Opção 1 selecionada&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">opcao</span> <span class="o">==</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Opção 2 selecionada&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">opcao</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Opção 3 selecionada&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">opcao</span> <span class="o">==</span> <span class="s1">&#39;s&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Saindo...&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Opção inválida.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Este código mostra um menu para o usuário e permite que ele selecione uma opção digitando a letra correspondente à opção. O programa entra em um loop enquanto o usuário não digita a opção <code class="docutils literal notranslate"><span class="pre">&quot;s&quot;</span></code> (sair). Em cada iteração do loop, o programa imprime o menu e solicita ao usuário que digite uma opção. Depois disso, o programa verifica qual opção foi selecionada pelo usuário e executa a ação correspondente. Se o usuário selecionar a opção <code class="docutils literal notranslate"><span class="pre">&quot;s&quot;</span></code>, o programa encerra o loop e imprime a mensagem <em>“Saindo…”</em>. Se o usuário selecionar uma opção inválida, o programa imprime a mensagem <em>“Opção inválida.”</em> e retorna ao início do loop para apresentar o menu novamente e aguardar uma nova seleção do usuário.</p>
+<blockquote>
+<div><p>👉 Pontos importantes neste código: veja que há uma combinação de <code class="docutils literal notranslate"><span class="pre">while</span></code> e <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code>. Experimente remover por completo o <code class="docutils literal notranslate"><span class="pre">else</span></code>: como seria a experiência do usuário em não se ter nenhuma mensagem apresentada para ele quando ele digita uma opção inválida? Talvez sejam em casos assim em que a utilidade do <code class="docutils literal notranslate"><span class="pre">else</span></code> fique mais clara para você.</p>
+</div></blockquote>
+</section>
+<section id="testando-numeros-positivos-e-negativos">
+<h4>Testando números positivos e negativos<a class="headerlink" href="#testando-numeros-positivos-e-negativos" title="Permalink to this heading">#</a></h4>
+<p>Agora, vamos imaginar um código em que pediremos para que o usuário digite um número. Se o número for zero, sairemos do programa. Enquanto não for zero, testaremos se aquele número é positivo ou negativo, mostraremos este resultado na tela, e pediremos por um outro número logo em seguida. Veja e teste:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número (digite 0 para sair): &quot;</span><span class="p">))</span>
+<span class="k">while</span> <span class="n">num</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O número é positivo&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O número é negativo&quot;</span><span class="p">)</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite outro número (digite 0 para sair): &quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>O código começa pedindo ao usuário para digitar um número e armazena essa entrada na variável <code class="docutils literal notranslate"><span class="pre">num</span></code>. Em seguida, o código entra em um loop <code class="docutils literal notranslate"><span class="pre">while</span></code> que só será interrompido quando o usuário digitar o número <code class="docutils literal notranslate"><span class="pre">0</span></code>. Dentro desse loop, o código verifica se o número digitado é maior que zero (positivo) ou menor que zero (negativo), imprimindo a mensagem correspondente na tela.</p>
+<p>Em seguida, o código pede ao usuário para digitar outro número e armazena a entrada na variável <code class="docutils literal notranslate"><span class="pre">num</span></code> novamente. Esse processo continua até que o usuário digite zero e, assim, interrompa o loop.</p>
+<p>O uso do while é importante aqui, pois permite que o código continue pedindo novos números <strong>até que o usuário decida sair, sem que seja necessário determinar previamente quantas vezes o loop será executado</strong>.</p>
+</section>
+<section id="inserindo-notas-validas">
+<h4>Inserindo notas válidas<a class="headerlink" href="#inserindo-notas-validas" title="Permalink to this heading">#</a></h4>
+<p>Lembra dos exemplos com notas que vimos no capítulo anterior? Em nenhum momento testamos casos em que a nota era menor do que 0 ou maior do que 10, certo? O que acha de usarmos o <code class="docutils literal notranslate"><span class="pre">while</span></code> para <strong>validar</strong> o que o usuário digitou, garantindo assim que ele informe apenas valores válidos? Teste isto:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nota</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="k">while</span> <span class="n">nota</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">nota</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="n">nota</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite uma nota entre 0 e 10: &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nota válida:&quot;</span><span class="p">,</span> <span class="n">nota</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Esse código solicita ao usuário que digite uma nota entre 0 e 10. Caso a nota digitada não esteja dentro desse intervalo, o programa continuará pedindo para que o usuário digite uma nota válida. Esse processo é feito por meio de um loop <code class="docutils literal notranslate"><span class="pre">while</span></code>. Para testar este código, tente informar notas inválidas como <code class="docutils literal notranslate"><span class="pre">1000</span></code>, <code class="docutils literal notranslate"><span class="pre">-5</span></code> e <code class="docutils literal notranslate"><span class="pre">1234</span></code>. Veja que o programa irá rejeitar estas notas. Se você testar letras no lugar de números você verá um erro bem feio (resolveremos isso mais adiante, também).</p>
+<p>Na primeira linha do loop, a variável <code class="docutils literal notranslate"><span class="pre">nota</span></code> é inicializada com o valor -1. Em seguida, a expressão <code class="docutils literal notranslate"><span class="pre">nota</span> <span class="pre">&lt;</span> <span class="pre">0</span> <span class="pre">or</span> <span class="pre">nota</span> <span class="pre">&gt;</span> <span class="pre">10</span></code> verifica se a nota digitada está dentro do intervalo desejado. Se a nota não estiver dentro desse intervalo, o loop continuará executando e pedindo para que o usuário digite outra nota válida.</p>
+<p>Quando o usuário finalmente digita uma nota válida, o loop para de ser executado e o programa imprime a mensagem <em>“Nota válida:”</em> seguida da nota digitada.</p>
+</section>
+</section>
+</section>
+<section id="exercicios">
+<h2>Exercícios<a class="headerlink" href="#exercicios" title="Permalink to this heading">#</a></h2>
+<p>Neste momento eu espero que você já tenha entendido como funciona (de maneira geral) o <code class="docutils literal notranslate"><span class="pre">for</span></code> e o <code class="docutils literal notranslate"><span class="pre">while</span></code>. O que acha de colocar a mão na massa e experimentar?</p>
+<ol class="arabic simple">
+<li><p>Crie um algoritmo que pede ao usuário para que digite um número inicial e um número final. Em seguida, ele mostrará todos os números pares neste intervalo usando <code class="docutils literal notranslate"><span class="pre">for</span></code>.</p>
+<ul class="simple">
+<li><p>Exemplo: um usuário digita os números <code class="docutils literal notranslate"><span class="pre">1</span></code> e <code class="docutils literal notranslate"><span class="pre">10</span></code>. O algoritmo deve retornar várias mensagens falando que os números 2, 4, 6, 8 e 10 são pares.</p></li>
+</ul>
+</li>
+<li><p>Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela se ele é primo ou não usando o <code class="docutils literal notranslate"><span class="pre">for</span></code>.</p>
+<ul class="simple">
+<li><p>Exemplo: um usuário digita o número <code class="docutils literal notranslate"><span class="pre">53</span></code>. O algoritmo deve retornar a mensagem <em>“53 é um número primo”</em>.</p></li>
+</ul>
+</li>
+<li><p>Crie um algoritmo que mostra todos números de 5 a -5 usando o for.</p>
+<ul class="simple">
+<li><p>Exemplo: o algoritmo deve mostrar na tela e na ordem correta: <code class="docutils literal notranslate"><span class="pre">5,</span> <span class="pre">4,</span> <span class="pre">3,</span> <span class="pre">2,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">-1,</span> <span class="pre">-2,</span> <span class="pre">-3,</span> <span class="pre">-4,</span> <span class="pre">-5</span></code>. Pode ser mostrado um número por linha.</p></li>
+</ul>
+</li>
+<li><p>Crie um algoritmo para calcular o fatorial de um número usando o for.</p>
+<ul class="simple">
+<li><p>Exemplo: um usuário digita <code class="docutils literal notranslate"><span class="pre">5</span></code>. O algoritmo deve retornar <code class="docutils literal notranslate"><span class="pre">120</span></code> (<span class="math notranslate nohighlight">\(5! = 5 * 4 * 3 * 2 * 1 = 120\)</span>).</p></li>
+</ul>
+</li>
+<li><p>Escreva um algoritmo para verificar se uma palavra é um palíndromo usando o <code class="docutils literal notranslate"><span class="pre">while</span></code>.</p>
+<ul class="simple">
+<li><p>Exemplo: <code class="docutils literal notranslate"><span class="pre">radar</span></code> é um palíndromo (se ler a palavra de trás para frente resultará na mesma palavra). <code class="docutils literal notranslate"><span class="pre">banana</span></code> não é um palíndromo.</p></li>
+</ul>
+</li>
+</ol>
+<section id="respostas">
+<h3>Respostas<a class="headerlink" href="#respostas" title="Permalink to this heading">#</a></h3>
+<p><strong>1. Crie um algoritmo que pede ao usuário para que digite um número inicial e um número final. Em seguida, ele mostrará todos os números pares neste intervalo usando <code class="docutils literal notranslate"><span class="pre">for</span></code>.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inicio</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insira um número para começar a contagem: &quot;</span><span class="p">))</span>
+<span class="n">fim</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insira um número para terminar a contagem: &quot;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">inicio</span><span class="p">,</span> <span class="n">fim</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;é um número par&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O código acima pede ao usuário para inserir dois números, um para começar a contagem (<code class="docutils literal notranslate"><span class="pre">inicio</span></code>) e outro para terminar a contagem (<code class="docutils literal notranslate"><span class="pre">fim</span></code>). Em seguida, ele utiliza um loop for que percorre cada número no intervalo entre o número em <code class="docutils literal notranslate"><span class="pre">inicio</span></code> e <code class="docutils literal notranslate"><span class="pre">fim</span></code>. Como o <code class="docutils literal notranslate"><span class="pre">range()</span></code> retorna uma sequência sem considerar o último número no segundo parâmetro, colocamos o <code class="docutils literal notranslate"><span class="pre">fim+1</span></code> para que a sequência termine em <code class="docutils literal notranslate"><span class="pre">fim</span></code>.</p>
+<p>Dentro do loop, há uma verificação para determinar se o número é par ou não. Se o número for par, o programa exibe o número e uma mensagem informando que ele é par. Caso contrário, o loop continua para o próximo número.</p>
+<p>O operador <code class="docutils literal notranslate"><span class="pre">%</span></code> é utilizado para verificar se o número é par. O operador <code class="docutils literal notranslate"><span class="pre">%</span></code> retorna o resto da divisão entre dois números. Se o resto da divisão por 2 for 0, então o número é par.</p>
+<p>Por exemplo, se o usuário inserir 1 como número inicial e 10 como número final, o programa irá percorrer os números 1, 2, 3, 4, 5, 6, 7, 8, 9 e 10. Dentre esses números, somente 2, 4, 6, 8 e 10 são pares e, portanto, serão exibidos na tela acompanhados da mensagem <em>“é um número par”</em>.</p>
+<p><strong>2. Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela se ele é primo ou não usando o <code class="docutils literal notranslate"><span class="pre">for</span></code>.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">))</span>
+<span class="n">primo</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">primo</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">break</span>
+
+<span class="k">if</span> <span class="n">primo</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;é um número primo&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;não é um número primo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Primeiro, o usuário é solicitado a digitar um número e essa entrada é armazenada na variável <code class="docutils literal notranslate"><span class="pre">num</span></code>. Em seguida, é criada uma variável booleana <code class="docutils literal notranslate"><span class="pre">primo</span></code> com valor inicial <code class="docutils literal notranslate"><span class="pre">True</span></code>. Isto garantiria que casos como <code class="docutils literal notranslate"><span class="pre">num</span> <span class="pre">=</span> <span class="pre">2</span></code> funcionariam ainda que pulássemos o loop.</p>
+<p>Dito isso, depois desta linha é criado um loop <code class="docutils literal notranslate"><span class="pre">for</span></code> que itera sobre todos os números de 2 até <code class="docutils literal notranslate"><span class="pre">num-1</span></code>. Para cada número <code class="docutils literal notranslate"><span class="pre">i</span></code> dentro desse intervalo, é verificado se <code class="docutils literal notranslate"><span class="pre">num</span></code> é divisível por <code class="docutils literal notranslate"><span class="pre">i</span></code> usando o operador <code class="docutils literal notranslate"><span class="pre">%</span></code> (que retorna o resto da divisão). Se a condição <code class="docutils literal notranslate"><span class="pre">num</span> <span class="pre">%</span> <span class="pre">i</span> <span class="pre">==</span> <span class="pre">0</span></code> for verdadeira, então <code class="docutils literal notranslate"><span class="pre">num</span></code> não é um número primo e a variável <code class="docutils literal notranslate"><span class="pre">primo</span></code> é atualizada para <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<blockquote>
+<div><p>👉 Veja que este exemplo possui a palavra-chave <code class="docutils literal notranslate"><span class="pre">break</span></code>. Esta palavra serve para interromper a execução do loop imediatamente naquela linha, e tem a intenção de evitar testes desnecessários. Por exemplo: 1000 não é um número primo. Logo, não faria sentido testar com todos os números de 2 a 999 se já percebermos que ele é divisível por 2 e, portanto, não seria um número primo.</p>
+</div></blockquote>
+<p>Finalmente, o código verifica o valor da variável <code class="docutils literal notranslate"><span class="pre">primo</span></code> com um <code class="docutils literal notranslate"><span class="pre">if</span></code>. Se ela ainda for <code class="docutils literal notranslate"><span class="pre">True</span></code>, isso significa que o número é primo e uma mensagem é impressa na tela indicando isso. Caso contrário, é impressa uma mensagem indicando que o número não é primo.</p>
+<p><strong>3. Crie um algoritmo que mostra todos números de 5 a -5 usando o for.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O código acima usa o loop <code class="docutils literal notranslate"><span class="pre">for</span></code> para percorrer um intervalo de números decrescente, de 5 até -5 (incluindo o zero), de um em um. Isso é feito usando a função <code class="docutils literal notranslate"><span class="pre">range()</span></code> com três argumentos:</p>
+<ul class="simple">
+<li><p>Primeiro argumento: o valor inicial (5).</p></li>
+<li><p>Segundo argumento: o valor final (-6).</p></li>
+<li><p>Terceiro argumento: como devemos percorrer do valor inicial para o final (no caso, avançando de -1 em -1).</p></li>
+</ul>
+<p>Ou seja, o loop começa com <code class="docutils literal notranslate"><span class="pre">i</span></code> igual a 5, imprime o valor e, em seguida, diminui <code class="docutils literal notranslate"><span class="pre">i</span></code> em 1, repetindo esse processo até que <code class="docutils literal notranslate"><span class="pre">i</span></code> chegue a -6 e o loop seja encerrado.</p>
+<p>Dessa forma, o código imprimirá na tela os números de 5 a -5, nessa ordem: <code class="docutils literal notranslate"><span class="pre">5,</span> <span class="pre">4,</span> <span class="pre">3,</span> <span class="pre">2,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">-1,</span> <span class="pre">-2,</span> <span class="pre">-3,</span> <span class="pre">-4,</span> <span class="pre">-5</span></code>.</p>
+<p><strong>4. Crie um algoritmo para calcular o fatorial de um número usando o for.</strong></p>
+<p>Lembrando mais uma vez da premissa: o fatorial é o resultado da multiplicação de um número inteiro por todos os seus antecessores positivos. Por exemplo, o fatorial de 5 é <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">*</span> <span class="pre">4</span> <span class="pre">*</span> <span class="pre">3</span> <span class="pre">*</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">1</span></code>, que resulta em 120. Isto posto, vamos ao código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">))</span>
+
+<span class="n">fatorial</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">fatorial</span> <span class="o">*=</span> <span class="n">i</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O fatorial de&quot;</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="s2">&quot;é&quot;</span><span class="p">,</span> <span class="n">fatorial</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Na primeira linha, o programa pede ao usuário para inserir um número, armazenando o mesmo em uma variável chamada <code class="docutils literal notranslate"><span class="pre">num</span></code>. Em seguida, o programa cria uma variável <code class="docutils literal notranslate"><span class="pre">fatorial</span></code> e atribui o valor 1 a ela. Isso é necessário porque a multiplicação por zero sempre resulta em zero, então é necessário começar com um valor diferente de zero.</p>
+<p>Em seguida, o programa entra em um loop for que vai de 1 até o número digitado pelo usuário. A cada iteração do loop, o valor de <code class="docutils literal notranslate"><span class="pre">i</span></code> é multiplicado pelo valor de fatorial (<code class="docutils literal notranslate"><span class="pre">fatorial</span> <span class="pre">*=</span> <span class="pre">i</span></code> é a mesma coisa de <code class="docutils literal notranslate"><span class="pre">fatorial</span> <span class="pre">=</span> <span class="pre">fatorial</span> <span class="pre">*</span> <span class="pre">i</span></code>). Quando o loop termina, a variável <code class="docutils literal notranslate"><span class="pre">fatorial</span></code> contém o fatorial do número digitado pelo usuário.</p>
+<p>Por fim, o programa exibe na tela o resultado da operação, informando o número digitado e o seu fatorial correspondente.</p>
+<p><strong>5. Escreva um algoritmo para verificar se uma palavra é um palíndromo usando o <code class="docutils literal notranslate"><span class="pre">while</span></code>.</strong></p>
+<p>Sei que este aqui é bem mais difícil e complexo. Na verdade, a ideia é muito mais a de compartilhar funcionalidades novas. Teste isto:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">palavra</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite uma palavra: &quot;</span><span class="p">)</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">j</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">palavra</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">palindromo</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">palavra</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">palavra</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+        <span class="n">palindromo</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">break</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+
+<span class="k">if</span> <span class="n">palindromo</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">palavra</span><span class="p">,</span> <span class="s2">&quot;é um palíndromo&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">palavra</span><span class="p">,</span> <span class="s2">&quot;não é um palíndromo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>🆕 A função <code class="docutils literal notranslate"><span class="pre">len()</span></code> não foi mostrada até o momento, mas ela serve para lhe mostrar o comprimento (<em>length</em>) de uma palavra ou de uma lista de elementos. Por exemplo: <code class="docutils literal notranslate"><span class="pre">banana</span></code> tem 6 caracteres. Logo, <code class="docutils literal notranslate"><span class="pre">len('banana')</span></code> resultaria no valor <code class="docutils literal notranslate"><span class="pre">6</span></code>. Já <code class="docutils literal notranslate"><span class="pre">banana</span> </code> tem 7 caracteres (viu o espaço no final da palavra? Ele conta também). Então, <code class="docutils literal notranslate"><span class="pre">len('banana</span> <span class="pre">')</span></code> resultaria em <code class="docutils literal notranslate"><span class="pre">7</span></code>.</p>
+</div></blockquote>
+<p>Primeiro, é solicitado ao usuário que digite uma palavra, e armazenamos isso na variável <code class="docutils literal notranslate"><span class="pre">palavra</span></code>. Depois disso, a variável <code class="docutils literal notranslate"><span class="pre">i</span></code> é iniciada em 0, e a variável <code class="docutils literal notranslate"><span class="pre">j</span></code> é iniciada com o comprimento da palavra menos 1, pois vamos usá-la para percorrer do final da palavra para a frente (ou seja: de trás para frente). Usamos a função <code class="docutils literal notranslate"><span class="pre">len()</span></code> para ver a quantidade de caracteres da palavra. A variável <code class="docutils literal notranslate"><span class="pre">palindromo</span></code> é iniciada como verdadeira, pois é o valor que será usado para testar no final se a palavra é ou não um palíndromo.</p>
+<p>O loop <code class="docutils literal notranslate"><span class="pre">while</span></code> verifica se os caracteres da palavra são iguais do começo ao final. Se os caracteres em posições diferentes não forem iguais, a variável <code class="docutils literal notranslate"><span class="pre">palindromo</span></code> é atribuída como falsa e o loop é interrompido com o <code class="docutils literal notranslate"><span class="pre">break</span></code>. Se o loop continuar até o final, a variável <code class="docutils literal notranslate"><span class="pre">palindromo</span></code> permanece verdadeira.</p>
+<p>Suponha que o usuário digite a palavra <code class="docutils literal notranslate"><span class="pre">soltas</span></code> como entrada. O código calculará o valor do primeiro e último caracteres da palavra e os comparará – no caso, a letra <code class="docutils literal notranslate"><span class="pre">s</span></code> com a letra <code class="docutils literal notranslate"><span class="pre">s</span></code>. Como as letras são iguais, avançaremos para o próximo teste: agora, comparando a segunda letra com a penúltima. Agora, a comparação é a letra <code class="docutils literal notranslate"><span class="pre">o</span></code> com a letra <code class="docutils literal notranslate"><span class="pre">a</span></code>. Como elas são diferentes, já sabemos que esta palavra não é um palíndromo e, com isso, interrompemos a execução do loop.</p>
+<p>No fim, vemos o valor final da variável <code class="docutils literal notranslate"><span class="pre">palindromo</span></code>. Se ela for verdadeira, é impresso na tela que a palavra é um palíndromo, caso contrário é impresso que a palavra não é um palíndromo.</p>
+</section>
+</section>
+<section id="referencias-bibliograficas">
+<h2>Referências bibliográficas<a class="headerlink" href="#referencias-bibliograficas" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>COZINHA TÉCNICA. Brigadeiro de chocolate. Disponível em: <a class="reference external" href="https://www.cozinhatecnica.com/2014/10/brigadeiro/">https://www.cozinhatecnica.com/2014/10/brigadeiro/</a>. Acesso em: 05 mar. 2023.</p></li>
+<li><p>DOWNEY, Allen B. Think Python: How to Think Like a Computer Scientist. Green Tea Press, 2nd edition, 2012.</p></li>
+<li><p>FORBELLONE, André Luiz Villar; EBERSPACHER, Henri Frederico L. Lógica de Programação: A Construção de Algoritmos e Estruturas de Dados. São Paulo: Pearson, 3ª edição, 2017.</p></li>
+<li><p>PYTHON. Control Flow Tools: for statements. Disponível em: <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#for-statements">https://docs.python.org/3/tutorial/controlflow.html#for-statements</a>. Acesso em: 05 mar. 2023.</p></li>
+<li><p>PYTHON. Control Flow Tools: while statements. Disponível em: <a class="reference external" href="https://docs.python.org/3/tutorial/introduction.html#first-steps-towards-programming">https://docs.python.org/3/tutorial/introduction.html#first-steps-towards-programming</a>. Acesso em: 05</p></li>
+<li><p>PYTHON. Control Flow Tools: for statements. Disponível em: <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#for-statements">https://docs.python.org/3/tutorial/controlflow.html#for-statements</a>. Acesso em: 05 mar. 2023.</p></li>
+<li><p>PYTHON. 4. More Control Flow Tools. Disponível em: <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#more-control-flow-tools">https://docs.python.org/3/tutorial/controlflow.html#more-control-flow-tools</a>. Acesso em: 06 mar. 2023.</p></li>
+<li><p>PYTHON. 4.2. for Statements. Disponível em: <a class="reference external" href="https://docs.python.org/3/reference/compound_stmts.html#for">https://docs.python.org/3/reference/compound_stmts.html#for</a>. Acesso em: 06 mar. 2023.</p></li>
+<li><p>W3SCHOOLS. Python for Loops. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_for_loops.asp">https://www.w3schools.com/python/python_for_loops.asp</a>. Acesso em: 06 mar. 2023.</p></li>
+<li><p>W3SCHOOLS. Python while Loops. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_while_loops.asp">https://www.w3schools.com/python/python_while_loops.asp</a>. Acesso em: 06 mar. 2023.</p></li>
+<li><p>ZIVIANI, Nivio. Projeto de Algoritmos com Implementações em Pascal e C. São Paulo: Cengage Learning, 2007.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04-Estruturas-Selecao.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06-Funcoes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tudo em blocos: trabalhando com funções</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">O que você saberá se você ler todo este capítulo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explicando-loops-com-bolos-e-brigadeiros">Explicando loops com bolos e brigadeiros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ingredientes">Ingredientes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modo-de-preparo">Modo de preparo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado-esperado">Resultado esperado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#um-exemplo-em-python">Um exemplo em Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#repeticoes-com-for-para-e-while-enquanto">Repetições com <code class="docutils literal notranslate"><span class="pre">for</span></code> (“para”) e <code class="docutils literal notranslate"><span class="pre">while</span></code> (“enquanto”)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for"><code class="docutils literal notranslate"><span class="pre">for</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos">Exemplos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#soma-de-1-a-10">Soma de 1 a 10</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#soma-de-10-a-50">Soma de 10 a 50</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#quadrado">Quadrado</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#percorrendo-strings">Percorrendo strings</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#percorrendo-listas-de-palavras">Percorrendo listas de palavras</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#filtrando-numeros-pares">Filtrando números pares</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while"><code class="docutils literal notranslate"><span class="pre">while</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Soma de 1 a 10</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testando-uma-senha">Testando uma senha</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fazendo-um-menu">Fazendo um menu</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testando-numeros-positivos-e-negativos">Testando números positivos e negativos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inserindo-notas-validas">Inserindo notas válidas</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicios">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respostas">Respostas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas">Referências bibliográficas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Wellington Rodrigo Monteiro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Aug 25, 2023.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

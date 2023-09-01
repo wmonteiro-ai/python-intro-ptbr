@@ -1,0 +1,966 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Saindo da telinha sem cor do terminal: trabalhando com arquivos &#8212; Python Descomplicado</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-0LGPFVV5N2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-0LGPFVV5N2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '08-Manipulacao-Arquivos';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos" href="09-POO.html" />
+    <link rel="prev" title="De um bolo para uma festa: listas, dicionários e tuplas" href="07-Listas-Dicionarios-Tuplas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python Descomplicado</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Python Descomplicado: Aprendendo Algoritmos de Forma Simples
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1: Sabendo onde estamos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-Introducao-Ambiente.html">Arrumando as coisas para começar a trabalhar com Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Introducao-Algoritmos.html">Arrumando as coisas para começar a falar de algoritmos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2: Fazendo coisas legais</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03-Variaveis-IO.html">Primeiros (ou segundos) passos em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Estruturas-Selecao.html">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Estruturas-Repeticao.html">Repetições, repetições, repetições: loops em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Funcoes.html">Tudo em blocos: trabalhando com funções</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Listas-Dicionarios-Tuplas.html">De um bolo para uma festa: listas, dicionários e tuplas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Saindo da telinha sem cor do terminal: trabalhando com arquivos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-POO.html">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3: Resolvendo tretas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="10-Erros-Comuns.html">Erros/exceções em Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr/issues/new?title=Issue%20on%20page%20%2F08-Manipulacao-Arquivos.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/08-Manipulacao-Arquivos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Saindo da telinha sem cor do terminal: trabalhando com arquivos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">O que você saberá se você ler todo este capítulo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#livro-de-receitas">Livro de receitas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abrindo-e-fechando-arquivos">Abrindo e fechando arquivos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-coisas">Criando coisas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lendo-coisas">Lendo coisas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adicionando-coisas">Adicionando coisas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumo">✍ Resumo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#escrevendo-diferentes-tipos-de-arquivo">Escrevendo diferentes tipos de arquivo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#salvando-em-texto">Salvando em texto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#salvando-em-json">Salvando em JSON</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#salvando-em-pickle">Salvando em Pickle</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicios">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respostas">Respostas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas">Referências bibliográficas</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="saindo-da-telinha-sem-cor-do-terminal-trabalhando-com-arquivos">
+<h1>Saindo da telinha sem cor do terminal: trabalhando com arquivos<a class="headerlink" href="#saindo-da-telinha-sem-cor-do-terminal-trabalhando-com-arquivos" title="Permalink to this heading">#</a></h1>
+<section id="o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
+<h2>O que você saberá se você ler todo este capítulo?<a class="headerlink" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Que dá para trabalhar com arquivos em Python ao invés de ficar mexendo só no terminal.</p></li>
+<li><p>A diferença entre arquivos de texto, JSON e pickle.</p></li>
+<li><p>Que trabalhar com arquivos é mais fácil do que parece: é só abrir, escrever (ou ler) e fechar novamente.</p></li>
+<li><p>E que, sob um ponto de vista de trabalho, é muito mais comum usarmos JSON do que outros formatos.</p></li>
+</ol>
+</section>
+<section id="livro-de-receitas">
+<h2>Livro de receitas<a class="headerlink" href="#livro-de-receitas" title="Permalink to this heading">#</a></h2>
+<p>Achou que eu esqueci da receita de bolo? Claro que não, jamais esqueceria de um bolo. Com um café então, nem se fala! Bom, vamos imaginar que você tem uma receita de bolo e você quer dar o seu toque pessoal. Transformar aquela receita de bolo da internet em uma <em>receita de família</em>, sabe? Quem sabe, você se animou bastante e agora quer fazer o seu próprio caderno de receitas usando como base algumas receitas comuns que você já viu por aí. Como você faria isso?</p>
+<p>Para isso, você precisa abrir o seu caderno, procurar uma folha em branco, e escrever uma nova receita do seu jeito. Precisou mudar algo? Sem problemas: você vai até a folha em que precisará mudar algo e escreve em cima. Ah, e sabe qual é a vantagem disso? Você pode compartilhar com todo mundo: as pessoas podem tirar fotos ou cópias do seu caderno e, com isso, algum dia você poderá ser reconhecido como o maior boleiro (é esse o nome?) do mundo! Quem diria, né? Por causa desse livro aqui você se tornou o maior mestre dos bolos do mundo e até conseguiu comprar um iate, como esse aqui na imagem abaixo.</p>
+<figure>
+    <img alt="Um iate navegando no mar." src="robert-linder-o8XhkMVAWks-unsplash.jpg" style="max-width:400px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Créditos: <a href="https://unsplash.com/@rwlinder?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Robert Linder</a> no <a href="https://unsplash.com/photos/o8XhkMVAWks?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </figcaption>
+</figure><p>Ou, se você quiser continuar estudando desenvolvimento de software, a explicação acima ainda se aplica. Você pode ter percebido que as variáveis que trabalhamos até o momento nunca eram salvas no seu computador, não é? Isto é: você clicava em <code class="docutils literal notranslate"><span class="pre">Run</span></code>, o seu código aparecia no terminal, você interagia com ele, e acabou. Tirou o computador da tomada, ou acabou a bateria do notebook? Todas as variáveis foram apagadas.</p>
+<p>Por outro lado, os arquivos existem para ajudar a salvar e transmitir esta informação para outros lugares. <em>E se</em> nós quiséssemos usar Python para adicionar, modificar ou excluir informações de um arquivo? É possível? Claro que é! É isto que veremos a partir de agora. Vamos lá?</p>
+</section>
+<section id="abrindo-e-fechando-arquivos">
+<h2>Abrindo e fechando arquivos<a class="headerlink" href="#abrindo-e-fechando-arquivos" title="Permalink to this heading">#</a></h2>
+<p>Lembra que no pseudocódigo tínhamos o <code class="docutils literal notranslate"><span class="pre">leia</span></code> e <code class="docutils literal notranslate"><span class="pre">escreva</span></code>, né? E que, em Python, eles eram traduzidos como <code class="docutils literal notranslate"><span class="pre">input()</span></code> e <code class="docutils literal notranslate"><span class="pre">print()</span></code>. Então, será que o Python teria algo para <code class="docutils literal notranslate"><span class="pre">abrir</span></code> e <code class="docutils literal notranslate"><span class="pre">fechar</span></code> arquivos? Mas é claro! E, como você deve adivinhar, os nomes das funções para isso são <code class="docutils literal notranslate"><span class="pre">open()</span></code> e <code class="docutils literal notranslate"><span class="pre">close()</span></code>, respectivamente. Vamos começar com um trabalho simples: vamos escrever uma receita de bolo <em>dentro</em> de um arquivo em Python.</p>
+<section id="criando-coisas">
+<h3>Criando coisas<a class="headerlink" href="#criando-coisas" title="Permalink to this heading">#</a></h3>
+<p>Rode o código abaixo em um arquivo <code class="docutils literal notranslate"><span class="pre">.py</span></code>, tal qual você vem fazendo até o momento no PyCharm:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;receita.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Bolo de chocolate</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Ingredientes:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;- 2 xícaras de açúcar</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;- 1 e 3/4 xícaras de farinha de trigo</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;- 3/4 xícara de cacau em pó</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finalizou!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Muita coisa nova, né? Agora tem <code class="docutils literal notranslate"><span class="pre">with</span></code>, tem <code class="docutils literal notranslate"><span class="pre">open</span></code>, tem aquele <code class="docutils literal notranslate"><span class="pre">&quot;w&quot;</span></code> também. O que quer dizer tudo isso? Calma! É mais simples do que parece. Este código cria um arquivo chamado <code class="docutils literal notranslate"><span class="pre">&quot;receita.txt&quot;</span></code> no modo de escrita (<code class="docutils literal notranslate"><span class="pre">&quot;w&quot;</span></code>) usando a função <code class="docutils literal notranslate"><span class="pre">open()</span></code> na primeira linha. Ou seja, <code class="docutils literal notranslate"><span class="pre">open(&quot;receita.txt&quot;,</span> <span class="pre">&quot;w&quot;)</span></code> é, em bom português, algo como <em>“abra um arquivo chamado “receita.txt” para a gente escrever coisas dentro dele”</em>. A partir de agora, nós chamaremos este arquivo aberto pelo nome de <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<p>Ah, veja que a primeira linha também possui o <code class="docutils literal notranslate"><span class="pre">with</span></code>. Essa palavra-chave existe para garantir que o arquivo seja fechado após o uso dele.</p>
+<p>Já a função <code class="docutils literal notranslate"><span class="pre">write()</span></code> é usada para escrever cada linha da receita no arquivo <code class="docutils literal notranslate"><span class="pre">f</span></code> que acabamos de abrir anteriormente. Perceba que chamamos o <code class="docutils literal notranslate"><span class="pre">write()</span></code> cinco vezes: estamos escrevendo coisas no arquivo cinco vezes, e uma linha de texto a cada vez. Consegue perceber que isso é bem parecido com o jeito que estamos acostumados a usar o <code class="docutils literal notranslate"><span class="pre">print()</span></code>?</p>
+<p>Ao final da execução do bloco <code class="docutils literal notranslate"><span class="pre">with</span></code>, o nosso arquivo é automaticamente fechado, e todas as alterações feitas durante a execução do bloco são salvas. No final, temos até uma mensagem na tela mostrando que o código finalizou. Depois de rodar este código, experimente abrir o arquivo <code class="docutils literal notranslate"><span class="pre">receita.txt</span></code>, que agora existe em seu computador e na mesma pasta em que está o seu arquivo <code class="docutils literal notranslate"><span class="pre">.py</span></code>. Percebe que contém exatamente as mesmas 5 linhas que pedimos para serem inseridas antes?</p>
+</section>
+<section id="lendo-coisas">
+<h3>Lendo coisas<a class="headerlink" href="#lendo-coisas" title="Permalink to this heading">#</a></h3>
+<p>Bom, e para lermos o arquivo? Teste o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;receita.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">conteudo</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">conteudo</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Percebe que trocamos o <code class="docutils literal notranslate"><span class="pre">open(&quot;receita.txt&quot;,</span> <span class="pre">&quot;w&quot;)</span></code> para <code class="docutils literal notranslate"><span class="pre">open(&quot;receita.txt&quot;,</span> <span class="pre">&quot;r&quot;)</span></code>? O parâmetro <code class="docutils literal notranslate"><span class="pre">&quot;r&quot;</span></code> indica que agora estamos no modo de leitura: ao invés de escrever, queremos ler o arquivo. Em seguida, usamos o método <code class="docutils literal notranslate"><span class="pre">.read()</span></code> para ler todo o conteúdo do arquivo e armazená-lo na variável <code class="docutils literal notranslate"><span class="pre">conteudo</span></code>. Por fim, mostramos o conteúdo na tela utilizando a função <code class="docutils literal notranslate"><span class="pre">print()</span></code>.</p>
+<p>Outro jeito de fazermos a mesmíssima coisa, mas sem recorrermos ao <code class="docutils literal notranslate"><span class="pre">with</span></code> é assim:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;receita.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">conteudo</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">conteudo</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Temos aqui três grandes diferenças. A primeira é que deixamos de usar o <code class="docutils literal notranslate"><span class="pre">with</span></code> na primeira linha, e o arquivo aberto encontra-se ainda dentro da variável <code class="docutils literal notranslate"><span class="pre">f</span></code>, mas com o código escrito de uma forma ligeiramente diferente. A segunda diferença fica na segunda e terceira linhas: como não temos mais o <code class="docutils literal notranslate"><span class="pre">with</span></code>, não temos mais aquela indentação. A terceira diferença está na última linha: sem o <code class="docutils literal notranslate"><span class="pre">with</span></code>, precisamos dizer explicitamente quando o arquivo deve ser fechado com a função <code class="docutils literal notranslate"><span class="pre">close()</span></code>.</p>
+<p>Dito isso, vale reforçar que por uma questão de boa prática é recomendável que você utilize o <code class="docutils literal notranslate"><span class="pre">with</span></code> para evitar dores de cabeça como, por exemplo, esquecer de fechar o seu arquivo.</p>
+</section>
+<section id="adicionando-coisas">
+<h3>Adicionando coisas<a class="headerlink" href="#adicionando-coisas" title="Permalink to this heading">#</a></h3>
+<p>Finalmente, e se quiséssemos só adicionar mais alguma coisinha no arquivo sem apagar o que já temos até o momento? Também tem como. Veja só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;receita.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;- 1 colher de sopa de fermento em pó</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;- Granulado a gosto</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Veja que usamos o <code class="docutils literal notranslate"><span class="pre">f.write()</span></code> igual como fizemos no primeiro exemplo. A diferença está no parâmetro da primeira linha: agora estamos usando <code class="docutils literal notranslate"><span class="pre">open(&quot;receita.txt&quot;,</span> <span class="pre">&quot;a&quot;)</span></code>. Este <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code> indica que queremos adicionar um conteúdo extra no final deste arquivo sem remover nada do que fizemos até o momento. Em resumo, temos o seguinte:</p>
+</section>
+<section id="resumo">
+<h3>✍ Resumo<a class="headerlink" href="#resumo" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">open()</span></code>: serve para abrir um arquivo.</p>
+<ul>
+<li><p>Modo <code class="docutils literal notranslate"><span class="pre">r</span></code> (<em>read</em>): abre o arquivo para leitura. Se o arquivo não existir, ocorrerá um erro.</p></li>
+<li><p>Modo <code class="docutils literal notranslate"><span class="pre">a</span></code> (<em>append</em>): abre o arquivo para escrita, adicionando conteúdo ao final do arquivo caso ele já exista. Se o arquivo não existir, ele será criado.</p></li>
+<li><p>Modo <code class="docutils literal notranslate"><span class="pre">w</span></code> (<em>write</em>): abre o arquivo para escrita, <strong>apagando todo o conteúdo anterior caso ele já exista</strong>. Se o arquivo não existir, ele será criado.</p></li>
+<li><p>Também existem outros modos:</p>
+<ul>
+<li><p>Modo <code class="docutils literal notranslate"><span class="pre">x</span></code> (<em>exclusive</em>): cria um arquivo para escrita, mas retorna um erro se ele já existe.</p></li>
+<li><p>Modo <code class="docutils literal notranslate"><span class="pre">b</span></code> (<em>binary</em>): cria um arquivo para escrita de dados binários como imagens, vídeos, músicas e demais conteúdos que não são texto puro.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">close()</span></code>: serve para fechar um arquivo. Não precisa usar o <code class="docutils literal notranslate"><span class="pre">close()</span></code> se estiver abrindo um arquivo com o <code class="docutils literal notranslate"><span class="pre">with</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">with</span></code>: o uso dele é bem parecido com um <code class="docutils literal notranslate"><span class="pre">if</span></code> ou <code class="docutils literal notranslate"><span class="pre">for</span></code>. Ele garante que o arquivo será aberto no início do bloco contendo esta palavra-chave e fechado automaticamente no final do bloco, mesmo que ocorra um erro (exceção).</p></li>
+</ul>
+</section>
+</section>
+<section id="escrevendo-diferentes-tipos-de-arquivo">
+<h2>Escrevendo diferentes tipos de arquivo<a class="headerlink" href="#escrevendo-diferentes-tipos-de-arquivo" title="Permalink to this heading">#</a></h2>
+<p>Todos os exemplos acima somente trabalharam com arquivos de texto. Um arquivo de texto (geralmente identificados pela extensão <code class="docutils literal notranslate"><span class="pre">.txt</span></code>, como o <code class="docutils literal notranslate"><span class="pre">receita.txt</span></code> que você testou acima) é um arquivo que contém somente caracteres de texto simples. Isto é: só texto puro, e nada de cores, negrito, itálico, ou fontes diferentes. Ele é usado para armazenar informações de texto em formato legível por humanos e é geralmente usado para processamento de texto, editores de código, manuais simples, entre outros. Isto posto, existem jeitos diferentes de armazenarmos os dados. Para isso, vamos usar um código como exemplo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">valor_pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
+<span class="n">lista_frutas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;maçã&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;laranja&quot;</span><span class="p">,</span> <span class="s2">&quot;manga&quot;</span><span class="p">]</span>
+<span class="n">dicionario_pessoas</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;João&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;Maria&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;Pedro&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;Marcos&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>São três variáveis, e cada um possui um tipo diferente, certo? Uma delas é uma variável do tipo <code class="docutils literal notranslate"><span class="pre">float</span></code>, outra é uma lista e, a outra, um dicionário. Agora, como guardaríamos estas informações em arquivos? Vamos testar de quatro jeitos diferentes: com arquivos de texto (que acabei de explicar o que são), CSVs, JSON e, finalmente, Pickle. Também vamos falar para que servem cada um desses tipos, beleza? Ah, para cada um desses jeitos, salvaremos essas três variáveis em arquivos separados e, depois, abriremos elas para ver como ficaram.</p>
+<section id="salvando-em-texto">
+<h3>Salvando em texto<a class="headerlink" href="#salvando-em-texto" title="Permalink to this heading">#</a></h3>
+<p>Vamos começar escrevendo aquela variável <code class="docutils literal notranslate"><span class="pre">valor_pi</span></code> em um arquivo de texto, o que acha? Usando as mesmas funções que vimos até agora, teríamos:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># salvar valor_pi em um arquivo txt</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;valor_pi.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">valor_pi</span><span class="p">))</span>
+
+<span class="c1"># ler valor_pi de um arquivo txt   </span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;valor_pi.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">valor_pi_lido</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">valor_pi_lido</span><span class="si">}</span><span class="s1">, tipo </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">valor_pi_lido</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Percebe a linha <code class="docutils literal notranslate"><span class="pre">f.write(str(valor_pi))</span></code>? Para salvarmos texto precisaremos, obrigatoriamente, converter as variáveis para texto. É por isso que o valor da variável é convertido em uma string usando a função <code class="docutils literal notranslate"><span class="pre">str()</span></code> antes de o gravarmos no arquivo.</p>
+<p>Quanto à leitura, veja que na penúltima linha estamos lendo o conteúdo do arquivo <code class="docutils literal notranslate"><span class="pre">valor_pi.txt</span></code> usando o modo de leitura <code class="docutils literal notranslate"><span class="pre">&quot;r&quot;</span></code> do método <code class="docutils literal notranslate"><span class="pre">open()</span></code>. O conteúdo do arquivo é armazenado na variável <code class="docutils literal notranslate"><span class="pre">valor_pi_lido</span></code> como uma string. Para comprovar isso, veja que na última linha eu mostro na tela o valor de <code class="docutils literal notranslate"><span class="pre">valor_pi_lido</span></code> e o tipo de dado da variável usando a função <code class="docutils literal notranslate"><span class="pre">print()</span></code>. No caso, aquele <code class="docutils literal notranslate"><span class="pre">type(valor_pi_lido)</span></code> mostra na tela o tipo daquela variável que, no caso, é uma string.</p>
+<p>O resultado, portanto, seria:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">3</span>.14159,<span class="w"> </span>tipo<span class="w"> </span>&lt;class<span class="w"> </span><span class="s1">&#39;str&#39;</span>&gt;
+</pre></div>
+</div>
+<p>Quer converter aquele valor lido do arquivo de volta para um número? Então você precisaria fazer um <code class="docutils literal notranslate"><span class="pre">float(valor_pi_lido)</span></code> para isso. Agora, e se quiséssemos salvar a lista em arquivo? Veja só (e teste, se possível):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># salvar lista_frutas em um arquivo txt</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;lista_frutas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">lista_frutas</span><span class="p">))</span>
+
+<span class="c1"># ler lista_frutas de um arquivo txt</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;lista_frutas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lista_frutas_lida</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">lista_frutas_lida</span><span class="si">}</span><span class="s1">, tipo </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">lista_frutas_lida</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A mesma coisa: convertemos primeiro a lista para string para poder salvar (por isso o <code class="docutils literal notranslate"><span class="pre">str()</span></code> em <code class="docutils literal notranslate"><span class="pre">f.write(str(lista_frutas))</span></code>).  E, para ler, também teremos o resultado em string, igualzinho como no exemplo anterior. Aqui, a saída será:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="s1">&#39;maçã&#39;</span>,<span class="w"> </span><span class="s1">&#39;banana&#39;</span>,<span class="w"> </span><span class="s1">&#39;laranja&#39;</span>,<span class="w"> </span><span class="s1">&#39;manga&#39;</span><span class="o">]</span>,<span class="w"> </span>tipo<span class="w"> </span>&lt;class<span class="w"> </span><span class="s1">&#39;str&#39;</span>&gt;
+</pre></div>
+</div>
+<p>Também existe outra forma de salvar os dados dessa lista em arquivo. Poderíamos, por exemplo, salvar cada fruta em uma linha separada. Assim, teríamos o seguinte:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># salvar lista_frutas em um arquivo txt</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;lista_frutas_split.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">fruta</span> <span class="ow">in</span> <span class="n">lista_frutas</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fruta</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># ler lista_frutas de um arquivo txt</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;lista_frutas_split.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lista_frutas_lida</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">lista_frutas_lida</span><span class="si">}</span><span class="s1">, tipo </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">lista_frutas_lida</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O primeiro <code class="docutils literal notranslate"><span class="pre">for</span></code> irá percorrer cada elemento da <code class="docutils literal notranslate"><span class="pre">lista_frutas</span></code> e escreverá cada elemento em uma linha separada no arquivo de texto. Já a linha <code class="docutils literal notranslate"><span class="pre">f.write(fruta</span> <span class="pre">+</span> <span class="pre">&quot;\n&quot;)</span></code> adiciona uma quebra de linha depois de cada fruta, para que cada uma fique em uma linha separada no arquivo.</p>
+<p>Outra mudança: viu a função <code class="docutils literal notranslate"><span class="pre">readlines()</span></code>? Ela lerá o arquivo linha por linha e retornará uma lista contendo cada linha como um elemento separado. Interessante, não é? Agora, e para salvarmos o dicionário? Poderíamos fazer o seguinte:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># salvar dicionario_pessoas em um arquivo txt</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;dicionario_pessoas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dicionario_pessoas</span><span class="p">))</span>
+
+<span class="c1"># ler dicionario_pessoas de um arquivo txt</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;dicionario_pessoas.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">dicionario_pessoas_lido</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dicionario_pessoas_lido</span><span class="si">}</span><span class="s1">, tipo </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">dicionario_pessoas_lido</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Aqui, a mesma coisa dos outros exemplos anteriores também acontece: convertemos o dicionário para texto, e lemos de volta um texto. É por isso que para guardarmos estruturas de dados um pouco mais complexas como um dicionário ou uma lista não seria muito interessante trabalhar com esse <code class="docutils literal notranslate"><span class="pre">read()</span></code> ou <code class="docutils literal notranslate"><span class="pre">readlines()</span></code> do jeito que são. Afinal, teríamos uma certa dor de cabeça para convertermos o resultado do arquivo lido (que é sempre em string) de volta para uma lista, um dicionário ou qualquer outra estrutura.</p>
+</section>
+<section id="salvando-em-json">
+<h3>Salvando em JSON<a class="headerlink" href="#salvando-em-json" title="Permalink to this heading">#</a></h3>
+<p>O JSON é outra maneira bem comum para salvarmos arquivos. Ele é usado para transmitir informações entre diferentes aplicações, permitindo que dados sejam facilmente compartilhados e manipulados. Geralmente sites, aplicativos e outros serviços que se comunicam com um usuário também trocam informações com servidores e bancos de dados usando JSON.</p>
+<p>Um arquivo JSON é composto por pares chave-valor, onde a chave é uma string que identifica o valor correspondente, que pode ser um número, string, objeto ou lista. Os objetos e listas podem ser aninhados, o que permite a criação de estruturas complexas de dados. Aqui, uma analogia para entender um arquivo JSON seria pensar em um mapa de cidade. Cada chave seria como uma rua, e seu valor correspondente seria como as casas ou prédios nessa rua. Assim como um mapa, um arquivo JSON fornece um meio organizado de acessar informações e entender a estrutura de um conjunto de dados.</p>
+<p>Sabe o dicionário em Python que você está acostumado (eu espero) a trabalhar? Então, está praticamente (senão totalmente) em formato JSON, já. Bom, vamos para os exemplos? Experimente rodar o código abaixo em Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># INÍCIO DO BLOCO 1</span>
+<span class="c1"># salvar valor_pi em um arquivo json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;valor_pi.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">valor_pi</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># ler valor_pi de um arquivo json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;valor_pi.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">valor_pi_lido</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">valor_pi_lido</span><span class="si">}</span><span class="s1">, tipo </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">valor_pi_lido</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># FIM DO BLOCO 1</span>
+
+<span class="c1"># INÍCIO DO BLOCO 2</span>
+<span class="c1"># salvar lista_frutas em um arquivo json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;lista_frutas.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">lista_frutas</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># ler lista_frutas de um arquivo json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;lista_frutas.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lista_frutas_lido</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">lista_frutas_lido</span><span class="si">}</span><span class="s1">, tipo </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">lista_frutas_lido</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># FIM DO BLOCO 2</span>
+
+<span class="c1"># INÍCIO DO BLOCO 3</span>
+<span class="c1"># salvar dicionario_pessoas em um arquivo json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;dicionario_pessoas.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dicionario_pessoas</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># ler dicionario_pessoas de um arquivo json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;dicionario_pessoas.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">dicionario_pessoas_lido</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dicionario_pessoas_lido</span><span class="si">}</span><span class="s1">, tipo </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">dicionario_pessoas_lido</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">nome</span><span class="p">,</span> <span class="n">idade</span> <span class="ow">in</span> <span class="n">dicionario_pessoas_lido</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">nome</span><span class="p">,</span> <span class="n">idade</span><span class="p">)</span>
+<span class="c1"># FIM DO BLOCO 3</span>
+</pre></div>
+</div>
+<p>Muito código? Calma, vou explicar. Tá vendo aquele <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">json</span></code> na primeira linha? Este código é uma importação do módulo <code class="docutils literal notranslate"><span class="pre">json</span></code> em Python. O módulo <code class="docutils literal notranslate"><span class="pre">json</span></code> é utilizado para codificar e decodificar dados em formato JSON. Imagine estes módulos como se fossem itens adicionais de uma comida de um fast-food ou os itens opcionais de um carro: eles não vem “de fábrica”, e você precisa “pedir” por este item. Existem vários módulos já integrados ao Python que fornecem funções úteis para lidar com tarefas comuns, como manipulação de arquivos, processamento de dados, matemática, networking, entre outras. Como nem sempre precisamos desses módulos em todo código, só os importamos quando realmente é necessário. Como <em>somente</em> agora estamos precisando trabalhar com o JSON, nós chamamos agora por esta importação.</p>
+<p>Percebe que temos ao longo do código o <code class="docutils literal notranslate"><span class="pre">json.dump()</span></code> e <code class="docutils literal notranslate"><span class="pre">json.load()</span></code> no lugar do <code class="docutils literal notranslate"><span class="pre">f.write()</span></code> e <code class="docutils literal notranslate"><span class="pre">f.read()</span></code>? Então: estas funções são específicas para salvarmos os dados em formato JSON e lermos de volta os dados que estão em JSON, respectivamente. A função <code class="docutils literal notranslate"><span class="pre">json.dump()</span></code> sempre recebe dois parâmetros: primeiro, o objeto a ser salvo. Depois, o arquivo onde ele deve ser salvo.</p>
+<p>Em seguida, o código lê cada um dos arquivos utilizando a função <code class="docutils literal notranslate"><span class="pre">json.load()</span></code>, que recebe como parâmetro o arquivo de onde os dados devem ser lidos. O bloco 1 salva e lê o valor da variável <code class="docutils literal notranslate"><span class="pre">valor_pi</span></code> em um arquivo JSON (experimente abrir o arquivo <code class="docutils literal notranslate"><span class="pre">valor_pi.json</span></code> no bloco de notas depois de rodar este código). O bloco 2 salva e lê a lista de frutas <code class="docutils literal notranslate"><span class="pre">lista_frutas</span></code>. Por fim, o bloco 3 salva e lê o dicionário <code class="docutils literal notranslate"><span class="pre">dicionario_pessoas</span></code>, que é impresso na tela utilizando um <code class="docutils literal notranslate"><span class="pre">for</span></code>.</p>
+<p>O resultado desse código será isto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">3</span>.14159,<span class="w"> </span>tipo<span class="w"> </span>&lt;class<span class="w"> </span><span class="s1">&#39;float&#39;</span>&gt;
+<span class="o">[</span><span class="s1">&#39;maçã&#39;</span>,<span class="w"> </span><span class="s1">&#39;banana&#39;</span>,<span class="w"> </span><span class="s1">&#39;laranja&#39;</span>,<span class="w"> </span><span class="s1">&#39;manga&#39;</span><span class="o">]</span>,<span class="w"> </span>tipo<span class="w"> </span>&lt;class<span class="w"> </span><span class="s1">&#39;list&#39;</span>&gt;
+<span class="o">{</span><span class="s1">&#39;João&#39;</span>:<span class="w"> </span><span class="m">25</span>,<span class="w"> </span><span class="s1">&#39;Maria&#39;</span>:<span class="w"> </span><span class="m">30</span>,<span class="w"> </span><span class="s1">&#39;Pedro&#39;</span>:<span class="w"> </span><span class="m">20</span>,<span class="w"> </span><span class="s1">&#39;Marcos&#39;</span>:<span class="w"> </span><span class="m">15</span><span class="o">}</span>,<span class="w"> </span>tipo<span class="w"> </span>&lt;class<span class="w"> </span><span class="s1">&#39;dict&#39;</span>&gt;
+João<span class="w"> </span><span class="m">25</span>
+Maria<span class="w"> </span><span class="m">30</span>
+Pedro<span class="w"> </span><span class="m">20</span>
+Marcos<span class="w"> </span><span class="m">15</span>
+</pre></div>
+</div>
+<p>Percebeu que os tipos estão corretos? Temos <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code> e <code class="docutils literal notranslate"><span class="pre">dict</span></code>. Legal, né? Isto acontece porque a função <code class="docutils literal notranslate"><span class="pre">json.load()</span></code> já converte automaticamente os dados lidos para o formato Python correspondente.</p>
+</section>
+<section id="salvando-em-pickle">
+<h3>Salvando em Pickle<a class="headerlink" href="#salvando-em-pickle" title="Permalink to this heading">#</a></h3>
+<p>Beleza, mas e se quiséssemos salvar as variáveis do Python direto em um arquivo? Isto é: sem ser salvo em texto ou algo assim? E se quiséssemos salvar um dicionário como tal, ou uma lista do jeito que está, sem termos que nos preocupar em converter nada? É para resolver isso que temos em Python os arquivos pickle. Imagine que este pickle é como se fosse um pote de vidro onde podemos guardar alimentos na geladeira. Quando colocamos alimentos no pote, eles são armazenados em um formato que pode ser facilmente recuperado posteriormente, quando quisermos consumi-los. Assim como podemos armazenar diferentes tipos de alimentos em potes de vidro, podemos armazenar diferentes tipos de objetos Python em arquivos pickle.</p>
+<p>Arquivos pickle em Python são arquivos binários usados para serializar e desserializar objetos Python. Isso significa que podemos usar o formato pickle para converter objetos Python em uma sequência de bytes, que pode ser gravada em um arquivo, transmitida pela rede ou armazenada em um banco de dados, por exemplo. Posteriormente, podemos recuperar o objeto Python original a partir dos bytes usando a desserialização.</p>
+<p>Mas, e aí? Vamos testar?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+
+<span class="c1"># INÍCIO DO BLOCO 1</span>
+<span class="c1"># salvar valor_pi em um arquivo pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;valor_pi.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">valor_pi</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># ler valor_pi de um arquivo pickle   </span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;valor_pi.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">valor_pi_lido</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">valor_pi_lido</span><span class="si">}</span><span class="s1">, tipo </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">valor_pi_lido</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># FIM DO BLOCO 1</span>
+
+<span class="c1"># INÍCIO DO BLOCO 2</span>
+<span class="c1"># salvar lista_frutas em um arquivo pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;lista_frutas.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">lista_frutas</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># ler lista_frutas de um arquivo pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;lista_frutas.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lista_frutas_lida</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">lista_frutas_lida</span><span class="si">}</span><span class="s1">, tipo </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">lista_frutas_lida</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># FIM DO BLOCO 2</span>
+
+<span class="c1"># INÍCIO DO BLOCO 3</span>
+<span class="c1"># salvar dicionario_pessoas em um arquivo pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;dicionario_pessoas.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dicionario_pessoas</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># ler dicionario_pessoas de um arquivo pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;dicionario_pessoas.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">dicionario_pessoas_lido</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dicionario_pessoas_lido</span><span class="si">}</span><span class="s1">, tipo </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">dicionario_pessoas_lido</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">nome</span><span class="p">,</span> <span class="n">idade</span> <span class="ow">in</span> <span class="n">dicionario_pessoas_lido</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">nome</span><span class="p">,</span> <span class="n">idade</span><span class="p">)</span>
+<span class="c1"># FIM DO BLOCO 3</span>
+</pre></div>
+</div>
+<p>O código acima terá o mesmo resultado do que fizemos com o exemplo do JSON, mas a diferença é que agora estamos trabalhando com pickle. Agora, importamos o módulo <code class="docutils literal notranslate"><span class="pre">pickle</span></code> na primeira linha porque, afinal de contas, estaremos trabalhando com arquivos pickle. O que temos também de diferenças são:</p>
+<ul class="simple">
+<li><p>A abertura e escrita de arquivos com o <code class="docutils literal notranslate"><span class="pre">open()</span></code> deixou de usar os modos <code class="docutils literal notranslate"><span class="pre">&quot;w&quot;</span></code> e <code class="docutils literal notranslate"><span class="pre">&quot;r&quot;</span></code> para usar <code class="docutils literal notranslate"><span class="pre">&quot;wb&quot;</span></code> e <code class="docutils literal notranslate"><span class="pre">&quot;rb&quot;</span></code>. A letra <code class="docutils literal notranslate"><span class="pre">b</span></code> indica que estamos trabalhando com arquivos binários (ou seja: não é mais um arquivo de texto. Se você tentar abrir este arquivo pickle com o bloco de notas verá que não conseguirá entender nada).</p></li>
+<li><p>Para salvar um arquivo <code class="docutils literal notranslate"><span class="pre">pickle</span></code> passamos a usar o <code class="docutils literal notranslate"><span class="pre">pickle.dump()</span></code>.</p></li>
+<li><p>Para ler o conteúdo de um arquivo <code class="docutils literal notranslate"><span class="pre">pickle</span></code> passamos a usar o <code class="docutils literal notranslate"><span class="pre">pickle.load()</span></code>.</p></li>
+</ul>
+<p>Agora, quando preferimos usar JSON e quando pickle é melhor? A resposta é: <em>depende</em>. Se estivermos trabalhando com diferentes softwares, plataformas e linguagens de programação a resposta é clara: JSON. Se precisar abrir no bloco de notas/Visual Studio Code/similares, também seria o JSON. Agora, se a ideia é salvar uma variável dentro do seu computador para você continuar trabalhando depois em Python, aí seria pickle. Dito isso, não recomendo muito que você use pickle para transferir variáveis de lugares desconhecidos para você ou vice-versa: você pode estar carregando uma variável contendo algo que pode causar danos para o seu código ou para outros computadores sem querer.</p>
+</section>
+</section>
+<section id="exercicios">
+<h2>Exercícios<a class="headerlink" href="#exercicios" title="Permalink to this heading">#</a></h2>
+<p>Vamos colocar em prática os conhecimentos de manipulação de arquivos? Iremos também combinar com o conhecimento de listas e dicionários do último capítulo. Vamos lá?</p>
+<ol class="arabic simple">
+<li><p>Crie um dicionário com o nome e a profissão de duas pessoas e adicione uma terceira pessoa com nome e profissão. Salve o resultado em um arquivo JSON.</p></li>
+<li><p>Crie um código que peça para o usuário digitar uma frase. Salve o resultado em uma arquivo de texto. Depois, abra este arquivo de texto que salvou e mostre o resultado na tela.</p></li>
+<li><p>A partir do exercício 2 e após mostrar o resultado na tela, peça novamente para que o usuário digite uma nova frase. Adicione esta nova frase no mesmo arquivo de texto sem apagar o conteúdo que já estava lá, e mostre o resultado na tela.</p></li>
+<li><p>Crie uma lista com números de 1 a 10 e, em seguida, crie uma segunda lista contendo somente os números pares. Salve somente a lista dos números pares em um arquivo pickle. Depois, abra novamente o arquivo pickle que salvou e mostre na tela o seu conteúdo.</p></li>
+<li><p>Modifique o código do exercício 4 para que salve, dentro de um único arquivo, as duas listas. Depois, abra novamente o arquivo pickle que salvou e mostre na tela o seu conteúdo.</p></li>
+</ol>
+<section id="respostas">
+<h3>Respostas<a class="headerlink" href="#respostas" title="Permalink to this heading">#</a></h3>
+<p><strong>1. Crie um dicionário com o nome e a profissão de duas pessoas e adicione uma terceira pessoa com nome e profissão. Salve o resultado em um arquivo JSON.</strong></p>
+<p>Você deve ter percebido que é praticamente o mesmo exercício do capítulo anterior, mas com um passo final para salvar o resultado em JSON, não é? Veja só como ficaria um exemplo de resposta:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">pessoas</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># adiciona as duas primeiras pessoas</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">nome</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o nome da pessoa: &quot;</span><span class="p">)</span>
+    <span class="n">profissao</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a profissão da pessoa: &quot;</span><span class="p">)</span>
+    <span class="n">pessoas</span><span class="p">[</span><span class="n">nome</span><span class="p">]</span> <span class="o">=</span> <span class="n">profissao</span>
+
+<span class="c1"># adiciona a terceira pessoa</span>
+<span class="n">nome</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o nome da terceira pessoa: &quot;</span><span class="p">)</span>
+<span class="n">profissao</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a profissão da terceira pessoa: &quot;</span><span class="p">)</span>
+<span class="n">pessoas</span><span class="p">[</span><span class="n">nome</span><span class="p">]</span> <span class="o">=</span> <span class="n">profissao</span>
+
+<span class="c1"># salva o resultado em um arquivo JSON</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;pessoas.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">arquivo</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">pessoas</span><span class="p">,</span> <span class="n">arquivo</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O que temos de diferente neste código? Veja que, primeiramente, importamos a biblioteca <code class="docutils literal notranslate"><span class="pre">json</span></code> na primeira linha do Python para salvar o dicionário <code class="docutils literal notranslate"><span class="pre">pessoas</span></code> em um arquivo JSON. A função <code class="docutils literal notranslate"><span class="pre">json.dump()</span></code> é usada para escrever o dicionário no arquivo JSON. E, ainda, a opção <code class="docutils literal notranslate"><span class="pre">&quot;w&quot;</span></code> é passada para o <code class="docutils literal notranslate"><span class="pre">open()</span></code> para indicar que queremos escrever no arquivo.</p>
+<p>Experimente testar o código e abrir o arquivo <code class="docutils literal notranslate"><span class="pre">pessoas.json</span></code> logo em seguida para ver o que houve. No meu caso, o meu arquivo ficou assim:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;João&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Engenheiro&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Maria&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Advogada&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Pedro&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Médico&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>2. Crie um código que peça para o usuário digitar uma frase. Salve o resultado em uma arquivo de texto. Depois, abra este arquivo de texto que salvou e mostre o resultado na tela.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># pede para o usuário digitar uma frase</span>
+<span class="n">frase</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite uma frase: &quot;</span><span class="p">)</span>
+
+<span class="c1"># salva a frase em um arquivo de texto</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;frase.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">arquivo</span><span class="p">:</span>
+    <span class="n">arquivo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frase</span><span class="p">)</span>
+
+<span class="c1"># abre o arquivo de texto e exibe o conteúdo na tela</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;frase.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">arquivo</span><span class="p">:</span>
+    <span class="n">conteudo</span> <span class="o">=</span> <span class="n">arquivo</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conteúdo do arquivo:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">conteudo</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Veja que a função <code class="docutils literal notranslate"><span class="pre">input()</span></code> para solicitar que o usuário digite uma frase. Em seguida, a salvamos em um arquivo de texto chamado <code class="docutils literal notranslate"><span class="pre">frase.txt</span></code> usando a abertura do arquivo em modo de escrita (<code class="docutils literal notranslate"><span class="pre">&quot;w&quot;</span></code>) e a função <code class="docutils literal notranslate"><span class="pre">write()</span></code>.</p>
+<p>Depois, abrimos o arquivo em modo de leitura (<code class="docutils literal notranslate"><span class="pre">&quot;r&quot;</span></code>) e o conteúdo é lido usando o método <code class="docutils literal notranslate"><span class="pre">read()</span></code> e salvo na variável <code class="docutils literal notranslate"><span class="pre">conteudo</span></code>, que é mostrada na tela com o <code class="docutils literal notranslate"><span class="pre">print(conteudo)</span></code>.</p>
+<p><strong>3. A partir do exercício 2 e após mostrar o resultado na tela, peça novamente para que o usuário digite uma nova frase. Adicione esta nova frase no mesmo arquivo de texto sem apagar o conteúdo que já estava lá, e mostre o resultado na tela.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># pede para o usuário digitar uma frase</span>
+<span class="n">frase</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite uma frase: &quot;</span><span class="p">)</span>
+
+<span class="c1"># salva a frase em um arquivo de texto</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;frase.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">arquivo</span><span class="p">:</span>
+    <span class="n">arquivo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frase</span><span class="p">)</span>
+
+<span class="c1"># abre o arquivo de texto e exibe o conteúdo na tela</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;frase.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">arquivo</span><span class="p">:</span>
+    <span class="n">conteudo</span> <span class="o">=</span> <span class="n">arquivo</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conteúdo do arquivo:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">conteudo</span><span class="p">)</span>
+
+<span class="c1"># Pede ao usuário para digitar uma outra frase</span>
+<span class="n">frase</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite uma frase: &quot;</span><span class="p">)</span>
+
+<span class="c1"># Abre o arquivo em modo &quot;a&quot; para adicionar a nova frase</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;frases.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">arquivo</span><span class="p">:</span>
+    <span class="c1"># Adiciona a nova frase ao arquivo</span>
+    <span class="n">arquivo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frase</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Abre o arquivo novamente em modo &quot;r&quot; (leitura)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;frases.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">arquivo</span><span class="p">:</span>
+    <span class="c1"># Lê o conteúdo do arquivo e mostra na tela</span>
+    <span class="n">conteudo</span> <span class="o">=</span> <span class="n">arquivo</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">conteudo</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Perceba principalmente o que vem depois do comentário <em>“Pede ao usuário para digitar uma outra frase”</em>. Para adicionar a nova frase ao arquivo de texto sem apagar o conteúdo já existente, usamos o modo <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code> (append) na abertura do arquivo. Se usássemos o <code class="docutils literal notranslate"><span class="pre">&quot;w&quot;</span></code> de volta iríamos sobrescrever o que já havia sido salvo anteriormente.</p>
+<p><strong>4. Crie uma lista com números de 1 a 10 e, em seguida, crie uma segunda lista contendo somente os números pares. Salve somente a lista dos números pares em um arquivo pickle. Depois, abra novamente o arquivo pickle que salvou e mostre na tela o seu conteúdo.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+
+<span class="c1"># cria a lista de números de 1 a 10</span>
+<span class="n">numeros</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+
+<span class="c1"># filtra os números pares</span>
+<span class="n">numeros_pares</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numeros</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">numeros_pares</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+<span class="c1"># salva a lista de números pares em um arquivo pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;numeros_pares.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">numeros_pares</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># abre o arquivo pickle e mostra o conteúdo na tela</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;numeros_pares.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">numeros_pares_lidos</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">numeros_pares_lidos</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Veja que salvamos a lista <code class="docutils literal notranslate"><span class="pre">numeros_pares</span></code> em um arquivo pickle chamado <code class="docutils literal notranslate"><span class="pre">numeros_pares.pickle</span></code>. Como é um arquivo binário (isto é: não é legível por humanos ao abrir no bloco de notas), salvamos este arquivo usando <code class="docutils literal notranslate"><span class="pre">&quot;wb&quot;</span></code> e lemos usando <code class="docutils literal notranslate"><span class="pre">&quot;rb&quot;</span></code> (perceba a letra <code class="docutils literal notranslate"><span class="pre">b</span></code> presente em ambos os casos). Por fim, o código abre novamente o arquivo pickle com o uso do <code class="docutils literal notranslate"><span class="pre">pickle.load()</span></code> e mostra o conteúdo na tela. O resultado esperado é a exibição na tela da lista <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">4,</span> <span class="pre">6,</span> <span class="pre">8,</span> <span class="pre">10]</span></code>.</p>
+<p><strong>5. Modifique o código do exercício 4 para que salve, dentro de um único arquivo, as duas listas. Depois, abra novamente o arquivo pickle que salvou e mostre na tela o seu conteúdo.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+
+<span class="c1"># cria a lista de números de 1 a 10</span>
+<span class="n">numeros</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+
+<span class="c1"># filtra os números pares</span>
+<span class="n">numeros_pares</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numeros</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">numeros_pares</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+<span class="c1"># salva a lista de números pares em um arquivo pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;numeros_pares.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">([</span><span class="n">numeros</span><span class="p">,</span> <span class="n">numeros_pares</span><span class="p">],</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># abre o arquivo pickle e mostra o conteúdo na tela</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;numeros_pares.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">numeros_lidos</span><span class="p">,</span> <span class="n">numeros_pares_lidos</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">numeros_lidos</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">numeros_pares_lidos</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>É muito provável que você tenha dificuldades para fazer este aqui. Afinal, em nenhum momento lhe disse como salvaríamos mais de uma variável em um arquivo pickle. Sem problemas - a ideia aqui é a de demonstrar, mesmo. Perceba duas grandes modificações em relação ao código anterior:</p>
+<ul class="simple">
+<li><p>O <code class="docutils literal notranslate"><span class="pre">pickle.dump([numeros,</span> <span class="pre">numeros_pares],</span> <span class="pre">f)</span></code>: veja o <code class="docutils literal notranslate"><span class="pre">[numeros,</span> <span class="pre">numeros_pares]</span></code>. Para salvar mais de uma variável em um mesmo arquivo pickle basta informar todas as variáveis em uma lista.</p></li>
+<li><p>Para ler estas variáveis, basta informar a mesma quantidade na hora de chamar o <code class="docutils literal notranslate"><span class="pre">pickle.load()</span></code>. Como salvamos duas variáveis, teremos que armazenar o resultado do <code class="docutils literal notranslate"><span class="pre">pickle.load()</span></code> em duas variáveisl. É por isso que temos o <code class="docutils literal notranslate"><span class="pre">numeros_lidos,</span> <span class="pre">numeros_pares_lidos</span></code> na antepenúltima linha.</p></li>
+</ul>
+</section>
+</section>
+<section id="referencias-bibliograficas">
+<h2>Referências bibliográficas<a class="headerlink" href="#referencias-bibliograficas" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>PYTHON. CSV File Reading and Writing. Disponível em: <a class="reference external" href="https://docs.python.org/3/library/csv.html">https://docs.python.org/3/library/csv.html</a>. Acesso em: 14 mar. 2023.</p></li>
+<li><p>PYTHON. JSON - JavaScript Object Notation. Disponível em: <a class="reference external" href="https://docs.python.org/3/library/json.html">https://docs.python.org/3/library/json.html</a>. Acesso em: 14 mar. 2023.</p></li>
+<li><p>PYTHON. pickle — Python object serialization. Disponível em: <a class="reference external" href="https://docs.python.org/3/library/pickle.html">https://docs.python.org/3/library/pickle.html</a>. Acesso em: 14 mar. 2023.</p></li>
+<li><p>PYTHON. Tutorial de Python 3.9.6rc1. Disponível em: <a class="reference external" href="https://docs.python.org/pt-br/3/tutorial/index.html">https://docs.python.org/pt-br/3/tutorial/index.html</a>. Acesso em: 14 mar. 2023.</p></li>
+<li><p>GEEKSFORGEEKS. JSON with Python. Disponível em: <a class="reference external" href="https://www.geeksforgeeks.org/json-with-python/">https://www.geeksforgeeks.org/json-with-python/</a>. Acesso em: 14 mar. 2023.</p></li>
+<li><p>GEEKSFORGEEKS. Reading CSV files in Python. Disponível em: <a class="reference external" href="https://www.geeksforgeeks.org/reading-csv-files-in-python/">https://www.geeksforgeeks.org/reading-csv-files-in-python/</a>. Acesso em: 14 mar. 2023.</p></li>
+<li><p><a class="reference external" href="http://JSON.org">JSON.org</a>. Introducing JSON. Disponível em: <a class="reference external" href="https://www.json.org/json-en.html">https://www.json.org/json-en.html</a>. Acesso em: 14 mar. 2023.</p></li>
+<li><p>W3SCHOOLS. Python File Handling. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_file_handling.asp">https://www.w3schools.com/python/python_file_handling.asp</a>. Acesso em: 14 mar. 2023.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07-Listas-Dicionarios-Tuplas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">De um bolo para uma festa: listas, dicionários e tuplas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09-POO.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">O que você saberá se você ler todo este capítulo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#livro-de-receitas">Livro de receitas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abrindo-e-fechando-arquivos">Abrindo e fechando arquivos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-coisas">Criando coisas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lendo-coisas">Lendo coisas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adicionando-coisas">Adicionando coisas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumo">✍ Resumo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#escrevendo-diferentes-tipos-de-arquivo">Escrevendo diferentes tipos de arquivo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#salvando-em-texto">Salvando em texto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#salvando-em-json">Salvando em JSON</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#salvando-em-pickle">Salvando em Pickle</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicios">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respostas">Respostas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas">Referências bibliográficas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Wellington Rodrigo Monteiro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Aug 25, 2023.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

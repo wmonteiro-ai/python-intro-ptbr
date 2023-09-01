@@ -1,0 +1,1075 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Tudo em blocos: trabalhando com funções &#8212; Python Descomplicado</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-0LGPFVV5N2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-0LGPFVV5N2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '06-Funcoes';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="De um bolo para uma festa: listas, dicionários e tuplas" href="07-Listas-Dicionarios-Tuplas.html" />
+    <link rel="prev" title="Repetições, repetições, repetições: loops em Python" href="05-Estruturas-Repeticao.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python Descomplicado</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Python Descomplicado: Aprendendo Algoritmos de Forma Simples
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1: Sabendo onde estamos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-Introducao-Ambiente.html">Arrumando as coisas para começar a trabalhar com Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Introducao-Algoritmos.html">Arrumando as coisas para começar a falar de algoritmos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2: Fazendo coisas legais</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03-Variaveis-IO.html">Primeiros (ou segundos) passos em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Estruturas-Selecao.html">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Estruturas-Repeticao.html">Repetições, repetições, repetições: loops em Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tudo em blocos: trabalhando com funções</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Listas-Dicionarios-Tuplas.html">De um bolo para uma festa: listas, dicionários e tuplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Manipulacao-Arquivos.html">Saindo da telinha sem cor do terminal: trabalhando com arquivos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-POO.html">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3: Resolvendo tretas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="10-Erros-Comuns.html">Erros/exceções em Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr/issues/new?title=Issue%20on%20page%20%2F06-Funcoes.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/06-Funcoes.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tudo em blocos: trabalhando com funções</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">O que você saberá se você ler todo este capítulo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-uma-receita-para-varias-receitas-de-culinaria">De uma receita para várias receitas de culinária</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcoes">Funções</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vou-te-contar-um-segredo-a-meia-noite">Vou te contar um segredo à meia-noite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcoes-que-ja-vem-de-brinde-para-voce">Funções que já vem de brinde para você</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outras-funcoes">Outras funções</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-a-sua-propria-funcao">Criando a sua própria função</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#um-outro-exemplo">Um outro exemplo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-com-parametros-e-com-retorno">Função com parâmetros e com retorno</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-com-fatorial">Exemplo com fatorial</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#um-outro-exemplo-com-dois-parametros-de-entrada">Um outro exemplo com dois parâmetros de entrada</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-la-vem-mais-outro-exemplo">E lá vem mais outro exemplo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#um-outro-exemplo-retornando-dois-valores">Um outro exemplo retornando dois valores</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-sem-parametros-e-com-retorno">Função sem parâmetros e com retorno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-com-parametros-e-sem-retorno">Função com parâmetros e sem retorno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-sem-parametros-e-sem-retorno">Função sem parâmetros e sem retorno</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicios">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respostas">Respostas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas">Referências bibliográficas</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tudo-em-blocos-trabalhando-com-funcoes">
+<h1>Tudo em blocos: trabalhando com funções<a class="headerlink" href="#tudo-em-blocos-trabalhando-com-funcoes" title="Permalink to this heading">#</a></h1>
+<section id="o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
+<h2>O que você saberá se você ler todo este capítulo?<a class="headerlink" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Que as funções são formas de criarmos pedaços de código que podemos reaproveitar em diferentes momentos do nosso algoritmo.</p></li>
+<li><p>Que as funções permitem e facilitam a reusabilidade, refatoração, organização e limpeza do nosso código.</p></li>
+<li><p>Que você <em>já estava</em> usando funções – provavelmente, sem saber.</p></li>
+<li><p>Além disso, que existem também outras funções já disponíveis em Python.</p></li>
+<li><p>E, finalmente, que você também pode criar as suas próprias funções.</p></li>
+</ol>
+</section>
+<section id="de-uma-receita-para-varias-receitas-de-culinaria">
+<h2>De uma receita para várias receitas de culinária<a class="headerlink" href="#de-uma-receita-para-varias-receitas-de-culinaria" title="Permalink to this heading">#</a></h2>
+<p>Até o momento tentei conectar conceitos de algoritmos com receitas de bolo. Vamos continuar assim, mas agora vamos avançar mais um passo em complexidade. Por isso, preste bastante atenção nas explicações, beleza?</p>
+<figure>
+    <img alt="Imagem contendo vários doces do tipo brigadeiro." src="frank-holleman-rN_RMqSXRKw-unsplash.jpg" style="max-width:400px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Créditos: <a href="https://unsplash.com/@fraenkly?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Frank Holleman</a> no <a href="https://unsplash.com/pt-br/fotografias/rN_RMqSXRKw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></figcaption>
+</figure><p>Pensemos que a sua receita de bolo fez <strong>muito</strong> sucesso e que, agora, você foi contratado para escrever um livro de várias receitas. Legal, né? Bom, vamos supor que você começou a trabalhar assim:</p>
+<ol class="arabic simple">
+<li><p>Primeiro, você escreveu uma receita de bolo de chocolate, que é uma receita na qual você domina muito bem. Você descreveu os ingredientes, o modo de preparo e o resultado esperado.</p></li>
+<li><p>Depois, você escreveu uma receita de brownie. Você percebeu que um ou outro ingrediente também tinha na receita de bolo de chocolate, mas continuou escrevendo mesmo assim. Por isso, descreveu os ingredientes, modo de preparo, e o resultado esperado.</p></li>
+<li><p>Depois, você fez a mesma coisa com uma torta de limão, um bolo de cenoura, uma torta de maçã, uma torta holandesa, um bolo de baunilha com cobertura de chocolate, e assim sucessivamente.</p></li>
+<li><p>Na sua centésima receita, você estava de saco cheio: você percebeu que o processo de fazer os mesmos passos (descrever os ingredientes, modo de preparo e o resultado esperado) era um processo <strong>chato</strong>.</p></li>
+<li><p>Pior: como você se cansou, percebeu que aquelas receitas que você fez durante o final de noite ou na madrugada tinham algumas pequenas falhas porque você <strong>esqueceu</strong> de copiar e colar alguma instrução de outra receita. Como o processo era tão mecânico (fazer 100 vezes coisas parecidas), isso acabou acontecendo algumas vezes.</p></li>
+<li><p>Você também percebeu que algumas coisas eram <strong>exatamente iguais</strong> entre as receitas. O passo-a-passo de como fazer a cobertura, por exemplo, era o mesmo texto copiado e colado umas vinte vezes entre diferentes receitas.</p></li>
+<li><p>Você quase teve um <strong>ataque de raiva</strong> quando percebeu que esse passo-a-passo de como fazer a cobertura tinha um erro de digitação. Por isso, você teve que olhar receita a receita para corrigir isso, e pelo menos vinte vezes.</p></li>
+</ol>
+<p>Por isso, você teve o seguinte pensamento:</p>
+<blockquote>
+<div><p>💭 <em>Puxa, seria legal se tivesse um jeito de escrever lá no começo do livro algo como “Instruções para fazer a cobertura”, e aí depois no livro e no meio das receitas eu só referenciaria a página contendo estas instruções quando precisasse.</em></p>
+</div></blockquote>
+<p>Bom, em programação isto também é possível com o uso de <strong>funções</strong>. Vamos lá?</p>
+</section>
+<section id="funcoes">
+<h2>Funções<a class="headerlink" href="#funcoes" title="Permalink to this heading">#</a></h2>
+<p>As funções são usadas em linguagem de programação (como o Python) para <strong>agrupar instruções</strong> que realizam uma determinada tarefa e que podem ser <strong>reutilizadas</strong> em diferentes partes do código. Elas permitem que você crie uma sequência de ações que podem ser executadas repetidamente sem precisar reescrever todo o código a cada vez que a tarefa precisa ser executada.</p>
+<p>Por exemplo, imagine que você tenha que executar uma tarefa que envolve diversas etapas, como fazer a cobertura de um bolo (já falamos sobre isso, não é?). Cada etapa pode ser vista como uma função separada, como misturar os ingredientes, bater a massa, levar ao forno, etc. Ao criar funções separadas para cada uma dessas tarefas, você pode reutilizá-las em outras receitas de bolo sem precisar escrever as mesmas coisas novamente.</p>
+<p>Além disso, as funções ajudam a tornar o <strong>código mais organizado e legível, facilitando a manutenção e o desenvolvimento de novas funcionalidades</strong>. Por exemplo, se você precisar corrigir um erro em uma função, pode fazê-lo sem afetar o restante do código. Quer outra analogia? Vamos começar a tratar o seu código como sendo uma receita de bolo (isto é: uma sequência de passos) para vários blocos de Lego, onde cada bloco possui uma função específica. Você poderá trabalhar, organizar e encaixar os blocos como quiser. Em Python, diria que podemos organizar as funções assim:</p>
+<ol class="arabic simple">
+<li><p>Quem criou a função?</p>
+<ul class="simple">
+<li><p>Funções que já são inclusas no Python por padrão (<em>built-in</em>);</p></li>
+<li><p>Funções que outras empresas ou desenvolvedores fizeram, e que estão disponíveis para você usar (em bibliotecas, que poderemos ver depois se este livro realmente se tornar de alguma forma popular e precisar ampliá-lo);</p></li>
+<li><p>Funções que você irá criar para o seu próprio código.</p></li>
+</ul>
+</li>
+<li><p>Como podemos usar a função?</p>
+<ul class="simple">
+<li><p>Função sem entrada e sem retorno;</p></li>
+<li><p>Função sem entrada e com retorno;</p></li>
+<li><p>Função com entrada e sem retorno;</p></li>
+<li><p>Função com entrada e com retorno.</p></li>
+</ul>
+</li>
+</ol>
+<p>Ah, e antes que me esqueça: usar funções é uma das maneiras de melhorarmos o código pela <strong>refatoração</strong>.</p>
+<blockquote>
+<div><p><em>A refatoração é importante porque torna o código mais limpo, fácil de entender e manter, evitando problemas como bugs e falhas no sistema, além de facilitar a adição de novas funcionalidades. A refatoração pode envolver a modificação de nomes de variáveis, extração de trechos de código em funções separadas, eliminação de código redundante, melhoria do desempenho e otimização do código em geral.</em></p>
+</div></blockquote>
+</section>
+<section id="vou-te-contar-um-segredo-a-meia-noite">
+<h2>Vou te contar um segredo à meia-noite<a class="headerlink" href="#vou-te-contar-um-segredo-a-meia-noite" title="Permalink to this heading">#</a></h2>
+<p>E se eu te disser que você <strong>já está usando</strong> funções? Veja o código abaixo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solicita que o usuário digite um número em formato de string</span>
+<span class="n">num_string</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">)</span>
+
+<span class="c1"># Converte a string para um número de ponto flutuante (float)</span>
+<span class="n">num_float</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">num_string</span><span class="p">)</span>
+
+<span class="c1"># Formata o número em uma string com duas casas decimais</span>
+<span class="n">num_formatado</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_float</span><span class="p">)</span>
+
+<span class="c1"># Imprime o número formatado na tela</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O número digitado foi: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_formatado</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>É um código que pede para que um usuário digite um número com quantas casas decimais o usuário quiser e que, no final, mostra este número arredondado com duas casas decimais, certo? Agora, observe o seguinte: as palavras-chave <code class="docutils literal notranslate"><span class="pre">input</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code> e <code class="docutils literal notranslate"><span class="pre">print</span></code> sempre estão com uma cor diferente, e sempre depois delas temos um abre-e-fecha parênteses. Curioso, né?</p>
+<p>Agora, vamos voltar um passo:</p>
+<ol class="arabic simple">
+<li><p>Percebe que <code class="docutils literal notranslate"><span class="pre">input()</span></code>, <code class="docutils literal notranslate"><span class="pre">float()</span></code> e <code class="docutils literal notranslate"><span class="pre">print()</span></code> sempre funcionam do mesmo jeito independentemente do código? Quer dizer: não importa se você está estudando loops, <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> ou qualquer outra coisa.</p>
+<ul class="simple">
+<li><p>Se você chama no seu código um <code class="docutils literal notranslate"><span class="pre">print()</span></code>, a sua expectativa é a de que uma mensagem seja mostrada ao usuário, não é? Você não sabe que mágica existe dentro deste <code class="docutils literal notranslate"><span class="pre">print()</span></code> e nem como ele funciona: é uma caixa-preta em que você só dá um texto para ele e, como resultado, aquilo é mostrado na tela, né?</p></li>
+<li><p>A mesma coisa é o <code class="docutils literal notranslate"><span class="pre">input()</span></code>: como o Python se conecta ao seu sistema operacional e ao seu teclado para ler o que o usuário digita? Como ele traduz o movimento de uma pessoa de apertar um botão para um texto que aparece na tela e dentro do Python? É uma outra caixa-preta: não sabemos <em>como</em>, mas sabemos que tem uma entrada esperada (uma mensagem que você pode querer mostrar ao usuário) e uma saída esperada (um texto que o usuário digitou).</p></li>
+<li><p>O <code class="docutils literal notranslate"><span class="pre">float()</span></code>, a mesma coisa: ele faz outra mágica dentro de outra caixa-preta em que a entrada é um texto e a saída é aquele texto convertido em um número decimal.</p></li>
+</ul>
+</li>
+<li><p>A mesma lógica de caixa-preta é usada pelo <code class="docutils literal notranslate"><span class="pre">format</span></code>. Ele também possui um abre-e-fecha parênteses. Ele não tem uma cor diferente, mas é porque ele está sendo chamado de uma forma diferente depois da string (sempre a sintaxe é <code class="docutils literal notranslate"><span class="pre">&quot;texto</span> <span class="pre">entre</span> <span class="pre">aspas</span> <span class="pre">duplas&quot;</span></code> seguido de <code class="docutils literal notranslate"><span class="pre">.format()</span></code>). Ele é chamado desse jeito (depois de uma string) porque ele <em>atua sobre um objeto do tipo <code class="docutils literal notranslate"><span class="pre">str</span></code></em> (ou seja, uma string). O nome bonito para funções assim é <em>métodos</em>, mas veremos mais sobre isso depois.</p></li>
+<li><p>Veja que funções assim (e outras que você também já viu, como <code class="docutils literal notranslate"><span class="pre">int()</span></code>, <code class="docutils literal notranslate"><span class="pre">range()</span></code> e <code class="docutils literal notranslate"><span class="pre">str()</span></code>) sempre seguem alguns padrões:</p>
+<ul class="simple">
+<li><p>As funções <em>sempre</em> são seguidas por um abre-e-fecha parênteses (como <code class="docutils literal notranslate"><span class="pre">range(10)</span></code> e <code class="docutils literal notranslate"><span class="pre">print(&quot;Oi&quot;)</span></code>).</p></li>
+<li><p>As funções <em>sempre</em> fazem alguma ação. “Chamamos” o <code class="docutils literal notranslate"><span class="pre">print()</span></code> para mostrar algo na tela. “Chamamos” o <code class="docutils literal notranslate"><span class="pre">input()</span></code> para ler algo que o usuário digitou. “Chamamos” o <code class="docutils literal notranslate"><span class="pre">int()</span></code> para converter um número que está em formato de texto para um inteiro.</p></li>
+<li><p>Se as variáveis são como os ingredientes de uma receita de bolo, as funções são como pequenas receitas (ou passo-a-passo) que repetiremos algumas vezes ao longo do caminho. São, de certa forma, <em>pequenos algoritmos</em>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="funcoes-que-ja-vem-de-brinde-para-voce">
+<h2>Funções que já vem de brinde para você<a class="headerlink" href="#funcoes-que-ja-vem-de-brinde-para-voce" title="Permalink to this heading">#</a></h2>
+<p>Quer outro segredo? Saber ler documentações é o que te trará uma boa vantagem competitiva para o futuro. É neste sentido que eu <a class="reference external" href="https://docs.python.org/3/library/functions.html">te apresento a documentação oficial do Python</a>. Ler a documentação oficial de um software é uma habilidade essencial para programadores iniciantes e experientes. A documentação descreve o propósito e a funcionalidade de cada elemento de um código, tornando mais fácil entender como usá-lo e solucionar possíveis erros. Além disso, a documentação oficial também inclui exemplos e amostras de código que podem ser utilizados como modelos para soluções específicas.</p>
+<p>Ah, saber ler e interpretar estas documentações também é um jeito bem legal de aprender boas práticas de programação e descobrir recursos ocultos que podem simplificar tarefas complexas. Os desenvolvedores de bibliotecas e linguagens de programação trabalham continuamente para atualizar suas documentações com novas funcionalidades e recursos, portanto, manter-se atualizado sobre as novidades pode aprimorar a sua capacidade de auto-desenvolvimento.</p>
+<p>A documentação oficial é uma fonte de informação confiável e essencial para as pessoas de todos os níveis de habilidade e experiência. É bem mais confiável do que este livro que você está lendo, bem mais confiável do que qualquer outro livro e curso pela internet também. Afinal de contas, é a fonte oficial e que é atualizada <em>sempre</em>.</p>
+<p>Bom - <a class="reference external" href="https://docs.python.org/3/library/functions.html">voltando ao link que eu coloquei acima</a>. Você pode ver que é uma página com as funções que já vem por padrão no Python. Como elas já vem inclusas, o nome em inglês para isso é <em>built-in functions</em>. Você verá que além do <code class="docutils literal notranslate"><span class="pre">print()</span></code>, <code class="docutils literal notranslate"><span class="pre">input()</span></code>, <code class="docutils literal notranslate"><span class="pre">format()</span></code>, <code class="docutils literal notranslate"><span class="pre">range()</span></code>, <code class="docutils literal notranslate"><span class="pre">int()</span></code>, <code class="docutils literal notranslate"><span class="pre">float()</span></code> e <code class="docutils literal notranslate"><span class="pre">str()</span></code> existem várias outras como, por exemplo:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">abs()</span></code>: calcula o valor absoluto de um número. Teste <code class="docutils literal notranslate"><span class="pre">abs(-50.4)</span></code>, por exemplo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">len()</span></code>: calcula a quantidade de caracteres em uma string ou o total de elementos de uma sequência de valores. Teste <code class="docutils literal notranslate"><span class="pre">len([5,</span> <span class="pre">900,</span> <span class="pre">1,</span> <span class="pre">-2])</span></code>, por exemplo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max()</span></code>: calcula o maior valor que existe em uma sequência de valores. Teste <code class="docutils literal notranslate"><span class="pre">max([5,</span> <span class="pre">900,</span> <span class="pre">1,</span> <span class="pre">-2])</span></code>, por exemplo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min()</span></code>: calcula o menor valor que existe em uma sequência de valores. Teste <code class="docutils literal notranslate"><span class="pre">max([5,</span> <span class="pre">900,</span> <span class="pre">1,</span> <span class="pre">-2])</span></code>, por exemplo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">open()</span></code>: serve para abrir arquivos. Veremos isso em breve, mas você poderá usar essa função para ler o conteúdo de arquivos como textos, músicas e imagens.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pow()</span></code>: você poderá calcular exponenciais. Vamos supor que você queira calcular <span class="math notranslate nohighlight">\(34^5\)</span> em Python. Uma alternativa seria fazer <code class="docutils literal notranslate"><span class="pre">34</span> <span class="pre">**</span> <span class="pre">5</span></code>. Outra seria fazer <code class="docutils literal notranslate"><span class="pre">pow(34,</span> <span class="pre">5)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reversed()</span></code>: serve para reverter a ordem de uma sequência. Se você fizer <code class="docutils literal notranslate"><span class="pre">reversed([5,</span> <span class="pre">900,</span> <span class="pre">1,</span> <span class="pre">-2])</span></code> você terá um iterador para ver esses itens de trás pra frente.</p>
+<ul>
+<li><p><strong>Iterador:</strong> é um iterador é como se fosse uma “lista inteligente” que o programa usa para acessar uma série de valores. Como uma analogia, vamos supor que você tem uma caixa cheia de doces, mas não pode ver tudo o que tem dentro dessa caixa de uma vez só. O iterador seria como a sua mão, que pode pegar um doce de cada vez e mostrar para você.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">round()</span></code>: arredonda um número para a quantidade de casas pré-determinadas (segundo parâmetro). Se você não informar um segundo parâmetro, ele arrendondará para um número inteiro. Teste <code class="docutils literal notranslate"><span class="pre">round(90.5949)</span></code> e veja a diferença para <code class="docutils literal notranslate"><span class="pre">round(90.5949,</span> <span class="pre">1)</span></code>, <code class="docutils literal notranslate"><span class="pre">round(90.5949,</span> <span class="pre">3)</span></code> e <code class="docutils literal notranslate"><span class="pre">round(90.5949,</span> <span class="pre">10)</span></code>, por exemplo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sorted()</span></code>: serve para ordenar os elementos de uma sequência, do menor para o maior.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sum()</span></code>: calcula a soma total de uma sequência de valores. Teste <code class="docutils literal notranslate"><span class="pre">sum([5,</span> <span class="pre">900,</span> <span class="pre">1,</span> <span class="pre">-2])</span></code>, por exemplo.</p></li>
+</ul>
+<p>Ah, um comentário sobre o <code class="docutils literal notranslate"><span class="pre">reversed()</span></code> (isso também se aplica ao <code class="docutils literal notranslate"><span class="pre">range()</span></code>): algumas funções retornam iteradores. Veja o código abaixo e, logo em seguida, os resultados:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">elementos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Os elementos invertidos são </span><span class="si">{</span><span class="nb">reversed</span><span class="p">(</span><span class="n">elementos</span><span class="p">)</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Os elementos invertidos são </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">elementos</span><span class="p">))</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Os elementos ordenados são </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">elementos</span><span class="p">)</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Usando loop para mostrar os elementos invertidos:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">elementos</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Usando loop para mostrar os elementos ordenados:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">elementos</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Os<span class="w"> </span>elementos<span class="w"> </span>invertidos<span class="w"> </span>são<span class="w"> </span>&lt;list_reverseiterator<span class="w"> </span>object<span class="w"> </span>at<span class="w"> </span>0x000002107ABA7490&gt;.
+Os<span class="w"> </span>elementos<span class="w"> </span>invertidos<span class="w"> </span>são<span class="w"> </span><span class="o">[</span>-2,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">900</span>,<span class="w"> </span><span class="m">5</span><span class="o">]</span>.
+Os<span class="w"> </span>elementos<span class="w"> </span>ordenados<span class="w"> </span>são<span class="w"> </span><span class="o">[</span>-2,<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="m">5</span>,<span class="w"> </span><span class="m">900</span><span class="o">]</span>.
+
+Usando<span class="w"> </span>loop<span class="w"> </span>para<span class="w"> </span>mostrar<span class="w"> </span>os<span class="w"> </span>elementos<span class="w"> </span>invertidos:
+-2
+<span class="m">1</span>
+<span class="m">900</span>
+<span class="m">5</span>
+
+Usando<span class="w"> </span>loop<span class="w"> </span>para<span class="w"> </span>mostrar<span class="w"> </span>os<span class="w"> </span>elementos<span class="w"> </span>ordenados:
+-2
+<span class="m">1</span>
+<span class="m">5</span>
+<span class="m">900</span>
+</pre></div>
+</div>
+<p>Veja que o primeiro resultado do <code class="docutils literal notranslate"><span class="pre">print()</span></code> não foi a sequência de elementos, mas sim um <code class="docutils literal notranslate"><span class="pre">&lt;list_reverseiterator</span> <span class="pre">object&gt;</span></code>. Pensando na analogia da mão da caixa de doces, esta é a mão. Para ver o que tem dentro desta sequência invertida é possível usar a função <code class="docutils literal notranslate"><span class="pre">list()</span></code>, que converte para uma sequência do tipo lista. Veja que o segundo <code class="docutils literal notranslate"><span class="pre">print()</span></code> já deu o resultado esperado. Trouxe isto para você porque você pode ver alguma coisa assim quando estiver testando algumas funções como o <code class="docutils literal notranslate"><span class="pre">range()</span></code> ou <code class="docutils literal notranslate"><span class="pre">reversed()</span></code>.</p>
+<section id="outras-funcoes">
+<h3>Outras funções<a class="headerlink" href="#outras-funcoes" title="Permalink to this heading">#</a></h3>
+<p>Também existem outras funções que também já existem no Python como, por exemplo:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html">Manipulação de data e hora</a>;</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/string.html">Manipulação de strings</a>;</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/math.html">Mais funções matemáticas</a>;</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/statistics.html">Funções estatísticas</a>;</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/filesys.html">Manipulação de arquivos e pastas</a>.</p></li>
+</ul>
+<p>E, além disso, existem bibliotecas feitas por outras pessoas e empresas com funções específicas como, por exemplo:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://beautiful-soup-4.readthedocs.io/en/latest/">BeautifulSoup, para ler e encontrar dados de sites</a>;</p></li>
+<li><p><a class="reference external" href="https://www.pygame.org/wiki/GettingStarted">PyGame, para fazer jogos simples</a>;</p></li>
+<li><p><a class="reference external" href="https://librosa.org/doc/latest/install.html">Librosa, para análise de áudio</a>.</p></li>
+</ul>
+<p>Assim que você tiver mais experiência em Python você naturalmente começará a usar esses módulos e bibliotecas extras para criar algoritmos mais complexos. Compartilho isso aqui para que você saiba a direção que você seguirá, mas antes disso é legal que você saiba como criar as suas próprias funções. Vamos lá?</p>
+</section>
+</section>
+<section id="criando-a-sua-propria-funcao">
+<h2>Criando a sua própria função<a class="headerlink" href="#criando-a-sua-propria-funcao" title="Permalink to this heading">#</a></h2>
+<p>Para criar uma função em Python, basta usar a palavra-chave <code class="docutils literal notranslate"><span class="pre">def</span></code>, seguida pelo nome da função que explique de forma simples o que ela faz e, depois, o código. Por exemplo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">saudar_usuario</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Olá! Tudo bem por aí?&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Veja a estrutura: primeiro, defini a função com a palavra-chave <code class="docutils literal notranslate"><span class="pre">def</span></code> (entendeu? <em>Definir</em> -&gt; <code class="docutils literal notranslate"><span class="pre">def</span></code>). Depois que defini a função, dei um nome que mostrasse o que ela deve fazer. Este nome não pode ter acentos ou espaços, e deve sempre estar em minúsculas. Se for usar mais de uma palavra, separe-as com underscores (<code class="docutils literal notranslate"><span class="pre">_</span></code>). Depois, continuei com um abre-e-fecha parênteses (toda função tem isso, e vamos explorar isso em seguida) e os dois-pontos. Esses dois-pontos servem para que o Python entenda que logo depois disso teremos o código de dentro da função. No caso, somente mostraríamos uma mensagem para o usuário chamada <em>“Olá! Tudo bem por aí?”</em>.</p>
+<p>Agora, o que acontece se você <em>chamar</em> esta função cinco vezes?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">saudar_usuario</span><span class="p">()</span>
+<span class="n">saudar_usuario</span><span class="p">()</span>
+<span class="n">saudar_usuario</span><span class="p">()</span>
+<span class="n">saudar_usuario</span><span class="p">()</span>
+<span class="n">saudar_usuario</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A resposta é simples: a lógica da função será <em>executada</em> cinco vezes. Neste caso, significa que a mensagem será mostrada cinco vezes na tela.</p>
+<section id="um-outro-exemplo">
+<h3>Um outro exemplo<a class="headerlink" href="#um-outro-exemplo" title="Permalink to this heading">#</a></h3>
+<p>Agora, teste este código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">somar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">resultado</span>
+
+<span class="n">soma</span> <span class="o">=</span> <span class="n">somar</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">soma</span><span class="p">)</span>
+
+<span class="n">soma</span> <span class="o">=</span> <span class="n">somar</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">soma</span><span class="p">)</span>
+
+<span class="n">soma</span> <span class="o">=</span> <span class="n">somar</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">soma</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Este código define uma função chamada <code class="docutils literal notranslate"><span class="pre">somar</span></code>, que recebe dois argumentos: <code class="docutils literal notranslate"><span class="pre">a</span></code> e <code class="docutils literal notranslate"><span class="pre">b</span></code>. Dentro da função, os argumentos são somados e o resultado é armazenado na variável <code class="docutils literal notranslate"><span class="pre">resultado</span></code>. Em seguida, a função retorna o valor de resultado. Lembra que o funcionamento de uma função é uma caixa-preta? Todo o resto do seu código não tem a mínima noção do que esta função (isto é, as três primeiras linhas do código acima) fazem.</p>
+<p>Fora da função, temos três chamadas à função <code class="docutils literal notranslate"><span class="pre">somar()</span></code> com diferentes valores de <code class="docutils literal notranslate"><span class="pre">a</span></code> e <code class="docutils literal notranslate"><span class="pre">b</span></code>. Na primeira chamada, <code class="docutils literal notranslate"><span class="pre">a</span></code> é igual a 2 e <code class="docutils literal notranslate"><span class="pre">b</span></code> é igual a 5, resultando em uma soma de 7. Na segunda chamada, os valores de <code class="docutils literal notranslate"><span class="pre">a</span></code> e <code class="docutils literal notranslate"><span class="pre">b</span></code> são invertidos, mas ainda resultam em uma soma de 7. Na terceira chamada, <code class="docutils literal notranslate"><span class="pre">a</span></code> é igual a 1000 e <code class="docutils literal notranslate"><span class="pre">b</span></code> é igual a -20, resultando em uma <code class="docutils literal notranslate"><span class="pre">soma</span></code> de 980.</p>
+<p>O resultado de cada chamada à função é armazenado na variável <code class="docutils literal notranslate"><span class="pre">soma</span></code>, que é impressa na tela usando a função <code class="docutils literal notranslate"><span class="pre">print()</span></code>. Assim, a saída do programa será:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">7</span>
+<span class="m">7</span>
+<span class="m">980</span>
+</pre></div>
+</div>
+<p>Este exemplo ilustra como as funções podem ser usadas para reutilizar o código e simplificar a sua leitura e manutenção. Em vez de repetir o código da <code class="docutils literal notranslate"><span class="pre">soma</span></code> em cada uma das chamadas, podemos definir uma função para realizar a operação e chamá-la várias vezes com diferentes argumentos. Isso torna o código mais legível e fácil de modificar, se necessário.</p>
+<p>Com isso, vamos pensar em algumas formas diferentes de construirmos funções:</p>
+</section>
+<section id="funcao-com-parametros-e-com-retorno">
+<h3>Função com parâmetros e com retorno<a class="headerlink" href="#funcao-com-parametros-e-com-retorno" title="Permalink to this heading">#</a></h3>
+<p>O tipo de função mais comum é a que possui parâmetros (ou argumentos) de entrada e que retornam algo. Afinal, se falamos que uma função é como se fosse um pequeno pedaço de algoritmo e se também falamos que um algoritmo possui uma entrada e uma saída, a expectativa é a de que usemos as funções para produzir algo (uma saída) a partir de algo que entreguemos para a função (uma entrada).</p>
+<section id="exemplo-com-fatorial">
+<h4>Exemplo com fatorial<a class="headerlink" href="#exemplo-com-fatorial" title="Permalink to this heading">#</a></h4>
+<p>Teste o seguinte código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calcular_fatorial</span><span class="p">(</span><span class="n">numero</span><span class="p">):</span>
+    <span class="n">fatorial</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">numero</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">fatorial</span> <span class="o">*=</span> <span class="n">i</span>
+        
+    <span class="k">return</span> <span class="n">fatorial</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">calcular_fatorial</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">calcular_fatorial</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Nesse exemplo, a função recebe o argumento <code class="docutils literal notranslate"><span class="pre">numero</span></code> para calcular o fatorial. Este <code class="docutils literal notranslate"><span class="pre">numero</span></code> é um parâmetro de entrada que a função receberá para calcular o fatorial. Veja que este <code class="docutils literal notranslate"><span class="pre">numero</span></code> é usado somente dentro da função: em nenhum outro momento precisaríamos criar uma variável com este nome fora da função. O mesmo vale para a variável <code class="docutils literal notranslate"><span class="pre">fatorial</span></code>: ela só existe dentro da função. Ah, e no final, a função retrna o fatorial calculado como um único valor de retorno.</p>
+<p>Uma prova disso é que ao chamarmos a função com <code class="docutils literal notranslate"><span class="pre">calcular_fatorial(a)</span></code> e <code class="docutils literal notranslate"><span class="pre">calcular_fatorial(b)</span></code> usamos as variáveis <code class="docutils literal notranslate"><span class="pre">a</span></code> e <code class="docutils literal notranslate"><span class="pre">b</span></code>, e nada de <code class="docutils literal notranslate"><span class="pre">numero</span></code>, não é? Então, vale uma informação importante:</p>
+<blockquote>
+<div><p>💡 <em>As variáveis e parâmetros que existem <strong>dentro</strong> de uma função nascem e morrem dentro dela, e não existem fora dela.</em></p>
+</div></blockquote>
+</section>
+<section id="um-outro-exemplo-com-dois-parametros-de-entrada">
+<h4>Um outro exemplo com dois parâmetros de entrada<a class="headerlink" href="#um-outro-exemplo-com-dois-parametros-de-entrada" title="Permalink to this heading">#</a></h4>
+<p>A real é que é possível termos <em>vários</em> parâmetros de entrada. Imagine um caso em que precisemos calcular a área de um triângulo. Para tal, precisamos de dois parâmetros: <code class="docutils literal notranslate"><span class="pre">base</span></code> e <code class="docutils literal notranslate"><span class="pre">altura</span></code>. Teste a função abaixo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calcular_area_triangulo</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">altura</span><span class="p">):</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="n">altura</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">area</span>
+</pre></div>
+</div>
+<p>Neste exemplo, a função <code class="docutils literal notranslate"><span class="pre">calcular_area_triangulo</span></code> (percebe que esse nome é bem sugestivo?) recebe os argumentos <code class="docutils literal notranslate"><span class="pre">base</span></code> e <code class="docutils literal notranslate"><span class="pre">altura</span></code> para calcular a área de um triângulo. A função retorna a área calculada como um valor de retorno. Um teste dessa função seria:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">resultado</span> <span class="o">=</span> <span class="n">calcular_area_triangulo</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Percebeu que em <em>nenhum</em> momento criamos as variáveis <code class="docutils literal notranslate"><span class="pre">base</span></code>, <code class="docutils literal notranslate"><span class="pre">altura</span></code> e <code class="docutils literal notranslate"><span class="pre">area</span></code> fora da função? Elas não existem em nenhum momento dessas duas linhas acima. Isto reforça o que falei anteriormente sobre as funções serem caixas-pretas para o código: as variáveis, funções e afins que acontecem dentro daquela função ficam dentro daquela função somente. Quer uma analogia? Vamos supor que você está fazendo um pedido para um restaurante. Você não sabe quantas pessoas trabalham na cozinha e nem quantas pessoas efetivamente fizeram o seu alimento. Você não sabe quanto tempo demorou, e nem a ordem que fizeram o preparo. Não sabe a marca dos ingredientes, também. Tudo o que você tem é o seu pedido como entrada (análogo a esses parâmetros de entrada) e o seu prato pronto como saída (análogo ao retorno).</p>
+</section>
+<section id="e-la-vem-mais-outro-exemplo">
+<h4>E lá vem mais outro exemplo<a class="headerlink" href="#e-la-vem-mais-outro-exemplo" title="Permalink to this heading">#</a></h4>
+<p>E dá para combinar <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> ou um <code class="docutils literal notranslate"><span class="pre">for</span></code>/<code class="docutils literal notranslate"><span class="pre">while</span></code> em uma função? É claro! Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">eh_par</span><span class="p">(</span><span class="n">numero</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">numero</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">par</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">par</span> <span class="o">=</span> <span class="kc">False</span>
+        
+    <span class="k">return</span> <span class="n">par</span>
+
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">eh_par</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Nesse exemplo, a função <code class="docutils literal notranslate"><span class="pre">eh_par()</span></code> (já que não posso usar acentos para chamar de <code class="docutils literal notranslate"><span class="pre">é_par()</span></code> recebe o argumento <code class="docutils literal notranslate"><span class="pre">numero</span></code> para verificar se este valor é par ou não. A função retorna <code class="docutils literal notranslate"><span class="pre">True</span></code> se o número é par e <code class="docutils literal notranslate"><span class="pre">False</span></code> caso contrário. Percebeu como tem um <code class="docutils literal notranslate"><span class="pre">if</span></code> e <code class="docutils literal notranslate"><span class="pre">else</span></code> na função?</p>
+<p>Também poderíamos deixar o código ainda mais enxuto o reescrevendo assim:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">eh_par</span><span class="p">(</span><span class="n">numero</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">numero</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">eh_par</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Esse código faz exatamente a mesma coisa do exemplo anterior. A diferença é que coloquei o <code class="docutils literal notranslate"><span class="pre">return</span></code> (que retorna de volta um valor ao algoritmo principal) para estar <em>dentro</em> do <code class="docutils literal notranslate"><span class="pre">if</span></code> e do <code class="docutils literal notranslate"><span class="pre">else</span></code>. Assim, não precisaria mais daquela variável <code class="docutils literal notranslate"><span class="pre">par</span></code>. Como uma analogia, imagine um fast-food com drive-thru: você pode retirar a sua comida em dois lugares diferentes - tanto na janelinha que é disponível para pessoas que fazem os pedidos dentro de um carro, tanto no balcão dentro do restaurante.</p>
+</section>
+<section id="um-outro-exemplo-retornando-dois-valores">
+<h4>Um outro exemplo retornando dois valores<a class="headerlink" href="#um-outro-exemplo-retornando-dois-valores" title="Permalink to this heading">#</a></h4>
+<p>Tá, e se eu quisesse retornar mais de um valor ao mesmo tempo? Digamos que eu queira modificar aquela função que calcula a área de um triângulo para <strong>também</strong> retornar a área de um retângulo. Como seria? Simples!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calcular_areas</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">altura</span><span class="p">):</span>
+    <span class="n">area_triangulo</span> <span class="o">=</span> <span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="n">altura</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">area_retangulo</span> <span class="o">=</span> <span class="n">base</span> <span class="o">*</span> <span class="n">altura</span>
+    <span class="k">return</span> <span class="n">area_triangulo</span><span class="p">,</span> <span class="n">area_retangulo</span>
+
+<span class="n">triangulo</span><span class="p">,</span> <span class="n">retangulo</span> <span class="o">=</span> <span class="n">calcular_areas</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;A área do retângulo é </span><span class="si">{</span><span class="n">retangulo</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;A área do triângulo é </span><span class="si">{</span><span class="n">triangulo</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Consegue perceber que agora a nossa função <code class="docutils literal notranslate"><span class="pre">calcular_area_triangulo</span></code> foi modificada para se tornar <code class="docutils literal notranslate"><span class="pre">calcular_areas</span></code>? Agora, o <code class="docutils literal notranslate"><span class="pre">return</span></code> possui dois valores: o primeiro é a área do triângulo. Depois, a área do retângulo. Veja também que a antepenúltima linha do código armazena esses dois valores em duas variáveis chamadas <code class="docutils literal notranslate"><span class="pre">triangulo</span></code> e <code class="docutils literal notranslate"><span class="pre">retangulo</span></code>. Cada uma delas armazenará um dos dois valores do <code class="docutils literal notranslate"><span class="pre">return</span></code> seguindo a mesma ordem.</p>
+<p>O que acha de modificar esta função para ter um terceiro ou quarto <code class="docutils literal notranslate"><span class="pre">return</span></code>?</p>
+</section>
+</section>
+<section id="funcao-sem-parametros-e-com-retorno">
+<h3>Função sem parâmetros e com retorno<a class="headerlink" href="#funcao-sem-parametros-e-com-retorno" title="Permalink to this heading">#</a></h3>
+<p>Agora, não é <em>obrigatório</em> usarmos os parâmetros de entrada em cada função. Veja só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mostrar_nome_idade_exemplo</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;Fulano de Tal&quot;</span><span class="p">,</span> <span class="mi">42</span>
+    
+<span class="n">nome</span><span class="p">,</span> <span class="n">idade</span> <span class="o">=</span> <span class="n">mostrar_nome_idade_exemplo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Esta seria uma função que retorna um exemplo de nome e idade. Veja que não precisamos dar nenhum parâmetro de entrada: depois do <code class="docutils literal notranslate"><span class="pre">def</span></code> e do nome da função, temos os parênteses abrindo e fechando sem nada dentro. Isto significa que a função não precisa de nada externo para funcionar: ela retorna um nome e idade de exemplo para você sempre que precisar, e ela é “independente” para fazer isto.</p>
+</section>
+<section id="funcao-com-parametros-e-sem-retorno">
+<h3>Função com parâmetros e sem retorno<a class="headerlink" href="#funcao-com-parametros-e-sem-retorno" title="Permalink to this heading">#</a></h3>
+<p>Da mesma forma, o return também não é <em>obrigatório</em> para cada função. Veja só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">eh_par</span><span class="p">(</span><span class="n">numero</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">numero</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">numero</span><span class="p">,</span> <span class="s2">&quot;é um número par&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">numero</span><span class="p">,</span> <span class="s2">&quot;não é um número par&quot;</span><span class="p">)</span>
+        
+<span class="n">eh_par</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Perceba que adaptamos aquela função <code class="docutils literal notranslate"><span class="pre">eh_par</span></code> para não retornar nada. No lugar, ela somente mostrará algo na tela com o <code class="docutils literal notranslate"><span class="pre">print()</span></code>. Nesses casos em que não há um <code class="docutils literal notranslate"><span class="pre">return</span></code> poderemos chamar a função de forma direta. Lembra que antes precisávamos ter uma linha chamada <code class="docutils literal notranslate"><span class="pre">resultado</span> <span class="pre">=</span> <span class="pre">eh_par(10)</span></code> para poder guardar o resultado em uma variável? No exemplo acima, isto não é mais necessário.</p>
+<p>Isto posto, é importante que você saiba que o mais comum é usarmos um <code class="docutils literal notranslate"><span class="pre">return</span></code>. Imagine o seguinte: e se quiséssemos usar o resultado dessa função em um <code class="docutils literal notranslate"><span class="pre">if</span></code>? Ou, e se quiséssemos montar uma frase diferente na tela? Nestes casos, a falta de um <code class="docutils literal notranslate"><span class="pre">return</span></code> não permitiria cenários desse tipo. Como uma analogia, a função é um restaurante. Você faz o seu pedido no restaurante e só pode comer <em>dentro</em> do restaurante e seguindo todas as regras de lá. Pegar o que restou para comer em casa? Não pode. Pedir para delivery? Esquece. Só pode comer de um jeito, e é do jeito <em>deles</em>, e não o seu.</p>
+</section>
+<section id="funcao-sem-parametros-e-sem-retorno">
+<h3>Função sem parâmetros e sem retorno<a class="headerlink" href="#funcao-sem-parametros-e-sem-retorno" title="Permalink to this heading">#</a></h3>
+<p>É bem difícil termos funções assim. É como se fosse um restaurante em que servem só um único prato e de um único jeito. Sem adaptações, e sem espaço para discussão. E, ainda, só pode comer lá dentro. Existe um caso útil para funções assim: mostrar menus na tela:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mostrar_menu</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Olá! Digite uma opção do menu. Em seguida, aperte Enter.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1 - Listar todos os cadastros.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2 - Fazer um novo cadastro.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3 - Remover um cadastro já existente.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4 - Modificar um cadastro já existente.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;9 - Ajuda.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;0 - Sair.&quot;</span><span class="p">)</span>
+    
+<span class="n">mostrar_menu</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Veja que o código acima não possui nenhuma interação: não tem nenhum parâmetro de entrada e, por isso, esta função sempre mostrará as mesmas mensagens do mesmo jeito e na mesma ordenação. Também não retorna nada: não interage com o usuário e não cria nenhum valor que seria útil para manipular no algoritmo. Só mostra mensagens, e é isso.</p>
+</section>
+</section>
+<section id="exercicios">
+<h2>Exercícios<a class="headerlink" href="#exercicios" title="Permalink to this heading">#</a></h2>
+<p>Neste momento eu espero que você já tenha entendido como funciona (de maneira geral) o <code class="docutils literal notranslate"><span class="pre">for</span></code> e o <code class="docutils literal notranslate"><span class="pre">while</span></code>. O que acha de colocar a mão na massa e experimentar?</p>
+<ol class="arabic simple">
+<li><p>Crie uma função que recebe três notas. Ela deve retornar a média dessas notas para o usuário.</p>
+<ul class="simple">
+<li><p>Exemplo: a função deve receber as notas 8.5, 9.0 e 7.1. Ela deve retornar aproximadamente 8.2.</p></li>
+</ul>
+</li>
+<li><p>Escreva uma função que recebe como parâmetro uma temperatura em graus Celsius. Ela deve retornar a temperatura convertida para graus Fahrenheit.</p>
+<ul class="simple">
+<li><p>Exemplo: a função deve receber como parâmetro o valor 0 (referindo-se à temperatura em graus Celsius). Ela deve retornar o valor -32 (que é a mesma temperatura convertida para a escala Fahrenheit).</p></li>
+</ul>
+</li>
+<li><p>Adapte o código abaixo para que tenha uma função chamada <code class="docutils literal notranslate"><span class="pre">verificar_primo</span></code> em que recebe um parâmetro de entrada chamado <code class="docutils literal notranslate"><span class="pre">numero</span></code> e retorna <code class="docutils literal notranslate"><span class="pre">True</span></code> se ele for primo e <code class="docutils literal notranslate"><span class="pre">False</span></code> se não for primo.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">))</span>
+<span class="n">primo</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">primo</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">break</span>
+
+<span class="k">if</span> <span class="n">primo</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;é um número primo&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;não é um número primo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Adapte o código abaixo para que tenha uma função chamada <code class="docutils literal notranslate"><span class="pre">verificar_palindromo</span></code> em que recebe um parâmetro de entrada chamado <code class="docutils literal notranslate"><span class="pre">palavra</span></code> e retorna <code class="docutils literal notranslate"><span class="pre">True</span></code> se ele for palíndromo e <code class="docutils literal notranslate"><span class="pre">False</span></code> se não for palíndromo.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">palavra</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite uma palavra: &quot;</span><span class="p">)</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">j</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">palavra</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">palindromo</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">palavra</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">palavra</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+        <span class="n">palindromo</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">break</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+
+<span class="k">if</span> <span class="n">palindromo</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">palavra</span><span class="p">,</span> <span class="s2">&quot;é um palíndromo&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">palavra</span><span class="p">,</span> <span class="s2">&quot;não é um palíndromo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Adapte o código que você fez no exercício 4 para que a função seja chamada dentro de um <code class="docutils literal notranslate"><span class="pre">for</span></code>. O <code class="docutils literal notranslate"><span class="pre">for</span></code> deve repetir cinco vezes. A cada iteração você deve pedir para que o usuário digite uma palavra. Com isso, testaremos se cinco palavras diferentes são ou não palíndromos.</p>
+<ul class="simple">
+<li><p>Não se assuste: este aqui é um pouco mais complexo, mas é mais simples do que parece. Se não souber como começar, veja primeiro a resolução e, depois, tente fazer por conta própria.</p></li>
+</ul>
+</li>
+</ol>
+<section id="respostas">
+<h3>Respostas<a class="headerlink" href="#respostas" title="Permalink to this heading">#</a></h3>
+<p><strong>1. Crie uma função que recebe três notas. Ela deve retornar a média dessas notas para o usuário.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calcular_media</span><span class="p">(</span><span class="n">nota1</span><span class="p">,</span> <span class="n">nota2</span><span class="p">,</span> <span class="n">nota3</span><span class="p">):</span>
+    <span class="n">media</span> <span class="o">=</span> <span class="p">(</span><span class="n">nota1</span> <span class="o">+</span> <span class="n">nota2</span> <span class="o">+</span> <span class="n">nota3</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+    <span class="k">return</span> <span class="n">media</span>
+    
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">calcular_media</span><span class="p">(</span><span class="mf">8.5</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O código acima define uma função chamada <code class="docutils literal notranslate"><span class="pre">calcular_media</span></code> que recebe três parâmetros: <code class="docutils literal notranslate"><span class="pre">nota1</span></code>, <code class="docutils literal notranslate"><span class="pre">nota2</span></code> e <code class="docutils literal notranslate"><span class="pre">nota3</span></code>. Esses parâmetros são utilizados na função para calcular a média entre as três notas, armazenada na variável <code class="docutils literal notranslate"><span class="pre">media</span></code>. Em seguida, a função retorna a média calculada.</p>
+<p>Fora da função, a média é calculada chamando a função <code class="docutils literal notranslate"><span class="pre">calcular_media</span></code> e passando três valores como argumentos: 8.5, 9.0 e 7.1. O resultado retornado pela função é armazenado na variável <code class="docutils literal notranslate"><span class="pre">resultado</span></code>. Por fim, o resultado é mostrado na tela utilizando a função <code class="docutils literal notranslate"><span class="pre">print</span></code>.</p>
+<p><strong>2. Escreva uma função que recebe como parâmetro uma temperatura em graus Celsius. Ela deve retornar a temperatura convertida para graus Fahrenheit.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">celsius_para_fahrenheit</span><span class="p">(</span><span class="n">temp_celsius</span><span class="p">):</span>
+    <span class="n">temp_fahrenheit</span> <span class="o">=</span> <span class="p">(</span><span class="n">temp_celsius</span> <span class="o">*</span> <span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">32</span>
+    <span class="k">return</span> <span class="n">temp_fahrenheit</span>
+
+<span class="n">temperatura</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A temperatura em Fahrenheit é:&quot;</span><span class="p">,</span> <span class="n">celsius_para_fahrenheit</span><span class="p">(</span><span class="n">temperatura</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>A função é definida com o nome <code class="docutils literal notranslate"><span class="pre">celsius_para_fahrenheit</span></code> e tem um parâmetro de entrada <code class="docutils literal notranslate"><span class="pre">temp_celsius</span></code> que representa a temperatura em graus Celsius.</p>
+<p>Dentro da função, a temperatura em Celsius é convertida para Fahrenheit utilizando a fórmula de conversão: <code class="docutils literal notranslate"><span class="pre">temp_fahrenheit</span> <span class="pre">=</span> <span class="pre">(temp_celsius</span> <span class="pre">*</span> <span class="pre">9/5)</span> <span class="pre">+</span> <span class="pre">32</span></code>. Em seguida, a temperatura em Fahrenheit é retornada pela função com o uso da palavra-chave <code class="docutils literal notranslate"><span class="pre">return</span></code>.</p>
+<p>Fora da função, a variável <code class="docutils literal notranslate"><span class="pre">temperatura</span></code> é inicializada com o valor 0, e em seguida a função <code class="docutils literal notranslate"><span class="pre">celsius_para_fahrenheit</span></code> é chamada com esse valor como argumento. O resultado da função é então impresso na tela utilizando a função <code class="docutils literal notranslate"><span class="pre">print</span></code>.</p>
+<p><strong>3. Adapte o código para que tenha uma função chamada <code class="docutils literal notranslate"><span class="pre">verificar_primo</span></code> em que recebe um parâmetro de entrada chamado <code class="docutils literal notranslate"><span class="pre">numero</span></code> e retorna <code class="docutils literal notranslate"><span class="pre">True</span></code> se ele for primo e <code class="docutils literal notranslate"><span class="pre">False</span></code> se não for primo.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">verificar_primo</span><span class="p">(</span><span class="n">numero</span><span class="p">):</span>
+    <span class="n">primo</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">primo</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">break</span>
+            
+    <span class="k">return</span> <span class="n">primo</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite um número: &quot;</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">verificar_primo</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;é um número primo&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s2">&quot;não é um número primo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O código permanece bem parecido com o que estava no exemplo. A diferença é que o bloco de código responsável por determinar se um número era ou não primo encontra-se dentro da função chamada <code class="docutils literal notranslate"><span class="pre">verificar_primo</span></code>. Dentro dela existe toda a lógica necessária para determinar se <code class="docutils literal notranslate"><span class="pre">numero</span></code> é ou não primo.</p>
+<p>Veja que o <code class="docutils literal notranslate"><span class="pre">int(input(&quot;Digite</span> <span class="pre">um</span> <span class="pre">número&quot;))</span></code> está <em>fora</em> da função. Isto acontece porque a tarefa desta função é verificar se um número é primo ou não, como o próprio nome já diz. Como a tarefa dela não é a de solicitar números ao usuário, o <code class="docutils literal notranslate"><span class="pre">int(input())</span></code> fica do lado de fora. Além disso, ela precisa de um <code class="docutils literal notranslate"><span class="pre">numero</span></code> para funcionar. Por isso, precisamos tê-lo em mãos <em>antes</em> de entrar na função.</p>
+<p><strong>4. Adapte o código para que tenha uma função chamada <code class="docutils literal notranslate"><span class="pre">verificar_palindromo</span></code> em que recebe um parâmetro de entrada chamado <code class="docutils literal notranslate"><span class="pre">palavra</span></code> e retorna <code class="docutils literal notranslate"><span class="pre">True</span></code> se ele for palíndromo e <code class="docutils literal notranslate"><span class="pre">False</span></code> se não for palíndromo.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">verificar_palindromo</span><span class="p">(</span><span class="n">palavra</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">palavra</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">palindromo</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">palavra</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">palavra</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">palindromo</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">break</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        
+    <span class="k">return</span> <span class="n">palindromo</span>
+
+<span class="n">palavra_teste</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite uma palavra: &quot;</span><span class="p">)</span>
+<span class="n">eh_palindromo</span> <span class="o">=</span> <span class="n">verificar_palindromo</span><span class="p">(</span><span class="n">palavra_teste</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">eh_palindromo</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">palavra_teste</span><span class="p">,</span> <span class="s2">&quot;é um palíndromo&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">palavra_teste</span><span class="p">,</span> <span class="s2">&quot;não é um palíndromo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Aqui, a mesma lógica do exercício anterior se aplica: colocamos dentro da função o mínimo necessário para que ela funcione com o parâmetro de entrada fornecido (no caso, uma <code class="docutils literal notranslate"><span class="pre">palavra</span></code>). Como precisamos da <code class="docutils literal notranslate"><span class="pre">palavra</span></code> antes de começar, o <code class="docutils literal notranslate"><span class="pre">input()</span></code> que solicita uma palavra do usuário acontece <em>fora</em> da função. Além disso, com o resultado em mãos (e armazenado na variável <code class="docutils literal notranslate"><span class="pre">eh_palindromo</span></code>) conseguimos mostrar uma frase na tela. Perceba que chamei a variável com este nome (e não de <code class="docutils literal notranslate"><span class="pre">palindromo</span></code>) para não te confundir e, ainda, para deixar claro que as variáveis dentro de uma função não são as mesmas que estão fora.</p>
+<p><strong>5. Adapte o código que você fez no exercício 4 para que a função seja chamada dentro de um <code class="docutils literal notranslate"><span class="pre">for</span></code>. O <code class="docutils literal notranslate"><span class="pre">for</span></code> deve repetir cinco vezes. A cada iteração você deve pedir para que o usuário digite uma palavra. Com isso, testaremos se cinco palavras diferentes são ou não palíndromos.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">verificar_palindromo</span><span class="p">(</span><span class="n">palavra</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">palavra</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">palindromo</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">palavra</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">palavra</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">palindromo</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">break</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">palindromo</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">palavra_teste</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite uma palavra: &quot;</span><span class="p">)</span>
+    <span class="n">eh_palindromo</span> <span class="o">=</span> <span class="n">verificar_palindromo</span><span class="p">(</span><span class="n">palavra_teste</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">eh_palindromo</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">palavra_teste</span><span class="p">,</span> <span class="s2">&quot;é um palíndromo&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">palavra_teste</span><span class="p">,</span> <span class="s2">&quot;não é um palíndromo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A única mudança que de fato houve foi a adição do <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(5):</span></code>, e adicionei uma indentação em todas as linhas que vieram depois para colocá-las dentro do <code class="docutils literal notranslate"><span class="pre">for</span></code>. E só. Veja que conseguimos chamar esta função diferentes vezes e ela teve o mesmo funcionamento esperado (isto é, verificar se uma palavra é ou não um palíndromo) para diferentes palavras. Igualzinho quando esperamos que o <code class="docutils literal notranslate"><span class="pre">print()</span></code> funcione da mesma forma para frases diferentes ou quando esperamos que o <code class="docutils literal notranslate"><span class="pre">input()</span></code> também tenha a mesma serventia independentemente do lugar em que estamos o usando. Entende agora o objetivo por trás deste reuso das funções?</p>
+</section>
+</section>
+<section id="referencias-bibliograficas">
+<h2>Referências bibliográficas<a class="headerlink" href="#referencias-bibliograficas" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>FOWLER, Martin; BECK, Kent. Refactoring: Improving the Design of Existing Code. Addison-Wesley Professional, 1999.</p></li>
+<li><p>KENLON, Seth. Why you should always do documentation before development. Open <a class="reference external" href="http://Source.com">Source.com</a>, 2017. Disponível em: <a class="reference external" href="https://opensource.com/article/17/8/doc-driven-development">https://opensource.com/article/17/8/doc-driven-development</a>. Acesso em: 12 mar. 2023.</p></li>
+<li><p>PYTHON. Python Documentation: Built-in Functions. Disponível em: <a class="reference external" href="https://docs.python.org/3/library/functions.html#func-list">https://docs.python.org/3/library/functions.html#func-list</a>. Acesso em: 12 mar. 2023.</p></li>
+<li><p>PYTHON. Python Documentation: Defining Functions. Disponível em: <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#defining-functions">https://docs.python.org/3/tutorial/controlflow.html#defining-functions</a>. Acesso em: 12 mar. 2023.</p></li>
+<li><p>PROGRAMIZ. Python Functions. Disponível em: <a class="reference external" href="https://www.programiz.com/python-programming/function">https://www.programiz.com/python-programming/function</a>. Acesso em: 12 mar. 2023.</p></li>
+<li><p>TUTORIALSPOINT. Python Functions. Disponível em: <a class="reference external" href="https://www.tutorialspoint.com/python/python_functions.htm">https://www.tutorialspoint.com/python/python_functions.htm</a>. Acesso em: 12 mar. 2023.</p></li>
+<li><p>W3SCHOOLS. Python Functions. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_functions.asp">https://www.w3schools.com/python/python_functions.asp</a>. Acesso em: 12 mar. 2023.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05-Estruturas-Repeticao.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Repetições, repetições, repetições: loops em Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07-Listas-Dicionarios-Tuplas.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">De um bolo para uma festa: listas, dicionários e tuplas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">O que você saberá se você ler todo este capítulo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-uma-receita-para-varias-receitas-de-culinaria">De uma receita para várias receitas de culinária</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcoes">Funções</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vou-te-contar-um-segredo-a-meia-noite">Vou te contar um segredo à meia-noite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcoes-que-ja-vem-de-brinde-para-voce">Funções que já vem de brinde para você</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outras-funcoes">Outras funções</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-a-sua-propria-funcao">Criando a sua própria função</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#um-outro-exemplo">Um outro exemplo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-com-parametros-e-com-retorno">Função com parâmetros e com retorno</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-com-fatorial">Exemplo com fatorial</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#um-outro-exemplo-com-dois-parametros-de-entrada">Um outro exemplo com dois parâmetros de entrada</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-la-vem-mais-outro-exemplo">E lá vem mais outro exemplo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#um-outro-exemplo-retornando-dois-valores">Um outro exemplo retornando dois valores</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-sem-parametros-e-com-retorno">Função sem parâmetros e com retorno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-com-parametros-e-sem-retorno">Função com parâmetros e sem retorno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-sem-parametros-e-sem-retorno">Função sem parâmetros e sem retorno</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicios">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respostas">Respostas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas">Referências bibliográficas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Wellington Rodrigo Monteiro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Aug 25, 2023.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

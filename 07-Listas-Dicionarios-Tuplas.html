@@ -1,0 +1,1189 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>De um bolo para uma festa: listas, dicionários e tuplas &#8212; Python Descomplicado</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-0LGPFVV5N2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-0LGPFVV5N2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '07-Listas-Dicionarios-Tuplas';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Saindo da telinha sem cor do terminal: trabalhando com arquivos" href="08-Manipulacao-Arquivos.html" />
+    <link rel="prev" title="Tudo em blocos: trabalhando com funções" href="06-Funcoes.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python Descomplicado</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Python Descomplicado: Aprendendo Algoritmos de Forma Simples
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1: Sabendo onde estamos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-Introducao-Ambiente.html">Arrumando as coisas para começar a trabalhar com Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Introducao-Algoritmos.html">Arrumando as coisas para começar a falar de algoritmos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2: Fazendo coisas legais</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03-Variaveis-IO.html">Primeiros (ou segundos) passos em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Estruturas-Selecao.html">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Estruturas-Repeticao.html">Repetições, repetições, repetições: loops em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Funcoes.html">Tudo em blocos: trabalhando com funções</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">De um bolo para uma festa: listas, dicionários e tuplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Manipulacao-Arquivos.html">Saindo da telinha sem cor do terminal: trabalhando com arquivos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-POO.html">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3: Resolvendo tretas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="10-Erros-Comuns.html">Erros/exceções em Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr/issues/new?title=Issue%20on%20page%20%2F07-Listas-Dicionarios-Tuplas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/07-Listas-Dicionarios-Tuplas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>De um bolo para uma festa: listas, dicionários e tuplas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">O que você saberá se você ler todo este capítulo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sabe-o-que-e-melhor-do-que-um-bolo-bolo-coxinha-brigadeiro-empadao-cafe">Sabe o que é melhor do que um bolo? Bolo + coxinha + brigadeiro + empadão + café…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencas-e-semelhancas-de-listas-dicionarios-e-tuplas">Diferenças e semelhanças de listas, dicionários e tuplas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">Listas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-listas">Criando listas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-listas-do-zero">Criando listas do zero</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-listas">Operações com listas</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#percorrendo-listas">Percorrendo listas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#adicionando-elementos">Adicionando elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#removendo-elementos">Removendo elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ordenando">Ordenando</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#acessando-elementos">Acessando elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#modificando-elementos">Modificando elementos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuplas">Tuplas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-tuplas">Criando tuplas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-tuplas-do-zero">Criando tuplas do zero</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-tuplas">Operações com tuplas</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#percorrendo-tuplas">Percorrendo tuplas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#adicionando-e-removendo-elementos">Adicionando e removendo elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ordenando</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Acessando elementos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dicionarios">Dicionários</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-dicionarios">Criando dicionários</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-dicionarios-do-zero">Criando dicionários do zero</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-dicionarios">Operações com dicionários</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#percorrendo-dicionarios">Percorrendo dicionários</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Adicionando elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Removendo elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Ordenando</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Acessando elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Modificando elementos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicios">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respostas">Respostas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas">Referências bibliográficas</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="de-um-bolo-para-uma-festa-listas-dicionarios-e-tuplas">
+<h1>De um bolo para uma festa: listas, dicionários e tuplas<a class="headerlink" href="#de-um-bolo-para-uma-festa-listas-dicionarios-e-tuplas" title="Permalink to this heading">#</a></h1>
+<section id="o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
+<h2>O que você saberá se você ler todo este capítulo?<a class="headerlink" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>É possível armazenarmos mais de um valor dentro de uma variável.</p></li>
+<li><p>Para guardar mais de um valor em uma variável podemos usar listas, tuplas e dicionários.</p></li>
+<li><p>Que tuplas são imutáveis (depois de criada, não dá para alterar/adicionar/remover coisas), mas que listas e dicionários são mutáveis (dá para modificar depois de criados).</p></li>
+</ol>
+</section>
+<section id="sabe-o-que-e-melhor-do-que-um-bolo-bolo-coxinha-brigadeiro-empadao-cafe">
+<h2>Sabe o que é melhor do que um bolo? Bolo + coxinha + brigadeiro + empadão + café…<a class="headerlink" href="#sabe-o-que-e-melhor-do-que-um-bolo-bolo-coxinha-brigadeiro-empadao-cafe" title="Permalink to this heading">#</a></h2>
+<p>Sabe as variáveis que estudamos até agora? Então, até o momento elas guardavam somente um valor, não é? De certa forma, <em>ou</em> elas guardavam um número inteiro, <em>ou</em> um número real, <em>ou</em> um texto, <em>ou</em> um valor binário. Pensando em analogias, é como se uma variável guardasse um bolo de chocolate, outra guardasse um bolo de baunilha, outra guardasse um bolo de cenoura.</p>
+<p>Mas, e se quiséssemos juntar tudo? E se quiséssemos guardar dentro de uma só variável várias informações? Assim como uma rede de fast-food oferece seus combos contendo um sanduíche, uma bebida e uma batata, às vezes poderíamos ser aquela pessoa em uma festinha de aniversário que coloca, dentro de um só pratinho de plástico, 3 coxinhas, uma fatia de bolo, umas empadinhas, 5 beijinhos e, se sobrar espaço nesta obra arquitetônica brasileira efêmera, um cajuzinho. E que tal fazer isso nos nossos algoritmos? Vamos lá?</p>
+<figure>
+    <img alt="Imagem de uma mesa de festa simples, contendo coxinas, dois bolos de chocolate, brigadeiros, e pratos de plástico vazios." src="fotosdafesta.jpg" style="max-width:400px; display: block; margin: auto;">
+    <figcaption style="text-align:center;">Só faltou um guaraná. Créditos: <a href="https://www.flickr.com/photos/mcdemoura/4974954822/">Márcio Cabral de Moura, no Flickr</a>.</figcaption>
+</figure></section>
+<section id="diferencas-e-semelhancas-de-listas-dicionarios-e-tuplas">
+<h2>Diferenças e semelhanças de listas, dicionários e tuplas<a class="headerlink" href="#diferencas-e-semelhancas-de-listas-dicionarios-e-tuplas" title="Permalink to this heading">#</a></h2>
+<p>Listas, dicionário e tuplas são estruturas de dados que permitem que armazenemos mais de um dado dentro de uma variável. Você está acostumado a trabalhar com variáveis assim até agora, não é?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">peso</span> <span class="o">=</span> <span class="mi">75</span>
+<span class="n">nome</span> <span class="o">=</span> <span class="s1">&#39;João da Silva&#39;</span>
+<span class="n">pagou_ingresso</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">preco</span> <span class="o">=</span> <span class="mf">25.71</span>
+</pre></div>
+</div>
+<p>Veja que cada variável guarda somente <em>um</em> dado: ou é <em><strong>um</strong></em> número inteiro, ou <em><strong>uma</strong></em> string, ou <em><strong>um</strong></em> booleno, ou <em><strong>um</strong></em> número decimal. Porém, existem casos em que precisamos guardar mais de uma informação.</p>
+<section id="listas">
+<h3>Listas<a class="headerlink" href="#listas" title="Permalink to this heading">#</a></h3>
+<p>Vamos supor que você precise criar um algoritmo em que precisa armazenar todos os estudantes de uma disciplina e, em seguida, ordená-los seguindo uma ordem alfabética. Não seria nada produtivo você fazer assim:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">estudante1</span> <span class="o">=</span> <span class="s1">&#39;Fulano&#39;</span>
+<span class="n">estudante2</span> <span class="o">=</span> <span class="s1">&#39;João&#39;</span>
+<span class="n">estudante3</span> <span class="o">=</span> <span class="s1">&#39;Maria&#39;</span>
+<span class="n">estudante4</span> <span class="o">=</span> <span class="s1">&#39;Roberta&#39;</span>
+</pre></div>
+</div>
+<p>Primeiro, porque cada turma terá uma quantidade específica de estudantes (imagine ter que criar até o <code class="docutils literal notranslate"><span class="pre">estudante46</span></code> em uma turma e, depois, ter que modificar novamente para ir até o <code class="docutils literal notranslate"><span class="pre">estudante9</span></code> em outra). Segundo, porque criar um <code class="docutils literal notranslate"><span class="pre">for</span></code> ou <code class="docutils literal notranslate"><span class="pre">while</span></code> para comparar estudante por estudante seria meio chato e demorado.</p>
+<p>Imagine também um banco de dados: com o Python, você poderá se conectar a um banco de dados e ler as informações de lá. Digamos que você se conectou a um banco de dados de um supermercado e quer mostrar na tela para o usuário o nome de todos os produtos da seção de bebidas usando Python: como você poderia guardar todos aqueles nomes dentro de uma única variável?</p>
+<p>É para isso que existem as listas: uma estrutura de dados que armazena uma sequência de dados dentro de uma única variável. Como uma analogia, imagine que você vá ao supermercado e precisa comprar vários itens, como maçãs, bananas e laranjas. Você pode colocar todos esses itens em uma sacola e, ao chegar no caixa, retirar cada um deles conforme a necessidade. As listas são como estas sacolas que permitem guardar vários itens em um mesmo lugar.</p>
+<p>Veja um exemplo básico de lista:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">estudantes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fulano&#39;</span><span class="p">,</span> <span class="s1">&#39;João&#39;</span><span class="p">,</span> <span class="s1">&#39;Maria&#39;</span><span class="p">,</span> <span class="s1">&#39;Roberta&#39;</span><span class="p">]</span>
+<span class="n">frutas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;maçã&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;laranja&quot;</span><span class="p">,</span> <span class="s2">&quot;uva&quot;</span><span class="p">]</span>
+<span class="n">paises</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Brasil&quot;</span><span class="p">,</span> <span class="s2">&quot;Estados Unidos&quot;</span><span class="p">,</span> <span class="s2">&quot;Japão&quot;</span><span class="p">,</span> <span class="s2">&quot;Alemanha&quot;</span><span class="p">,</span> <span class="s2">&quot;Portugal&quot;</span><span class="p">]</span>
+<span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Em Python, as listas são definidas utilizando colchetes (<code class="docutils literal notranslate"><span class="pre">[]</span></code>) e separando seus elementos por vírgulas (<code class="docutils literal notranslate"><span class="pre">,</span></code>). Consegue perceber esse padrão em <em>todos</em> os casos acima?</p>
+<section id="criando-listas">
+<h4>Criando listas<a class="headerlink" href="#criando-listas" title="Permalink to this heading">#</a></h4>
+<p>A sintaxe básica para criar uma lista é a seguinte:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nomes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;João&#39;</span><span class="p">,</span> <span class="s1">&#39;Maria&#39;</span><span class="p">,</span> <span class="s1">&#39;Pedro&#39;</span><span class="p">,</span> <span class="s1">&#39;Ana&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Neste exemplo, uma variável do tipo lista e chamada de <code class="docutils literal notranslate"><span class="pre">nomes</span></code> foi criada com quatro elementos do tipo string.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Neste outro exemplo, uma variável do tipo lista e chamada de <code class="docutils literal notranslate"><span class="pre">numeros</span></code> foi criada com três números.</p>
+</section>
+<section id="criando-listas-do-zero">
+<h4>Criando listas do zero<a class="headerlink" href="#criando-listas-do-zero" title="Permalink to this heading">#</a></h4>
+<p>É possível também criar listas vazias ou adicionar elementos a uma lista existente utilizando o método <code class="docutils literal notranslate"><span class="pre">append()</span></code>. Veja como seria, um exemplo de como criar uma lista vazia e adicionar elementos a ela:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lista_vazia</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista_vazia</span><span class="p">)</span>
+
+<span class="n">lista_vazia</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">lista_vazia</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">lista_vazia</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista_vazia</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A lista <code class="docutils literal notranslate"><span class="pre">lista_vazia</span></code> foi inicializada vazia e, em seguida, três elementos do tipo inteiro foram adicionados ao final dela utilizando a função <code class="docutils literal notranslate"><span class="pre">append()</span></code>. O primeiro <code class="docutils literal notranslate"><span class="pre">print()</span></code> mostrará o resultado dela antes de incluirmos cada um dos três elementos. O segundo <code class="docutils literal notranslate"><span class="pre">print()</span></code> mostrará o resultado da mesma lista <em>após</em> incluirmos todos os elementos.</p>
+<blockquote>
+<div><p>🔓 As listas são <strong>manipuláveis</strong> em Python. Isso significa que podemos adicionar, remover ou modificarmos os elementos dentro dela como quisermos. É como se fosse uma sacola de supermercado onde podemos organizarmos, removermos ou adicionarmos as coisas como quisermos, mesmo.</p>
+</div></blockquote>
+</section>
+<section id="operacoes-com-listas">
+<h4>Operações com listas<a class="headerlink" href="#operacoes-com-listas" title="Permalink to this heading">#</a></h4>
+<section id="percorrendo-listas">
+<h5>Percorrendo listas<a class="headerlink" href="#percorrendo-listas" title="Permalink to this heading">#</a></h5>
+<p>E se quiséssemos <em>percorrer</em> uma lista? Isto é, ler cada um dos elementos dentro dela? Isto é possível por padrão, já. Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;maçã&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;laranja&quot;</span><span class="p">,</span> <span class="s2">&quot;uva&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">fruta</span> <span class="ow">in</span> <span class="n">frutas</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fruta</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O código acima cria uma lista chamada <code class="docutils literal notranslate"><span class="pre">frutas</span></code> que contém quatro elementos: “maçã”, “banana”, “laranja” e “uva”. Em seguida, ele percorre a lista utilizando um loop <code class="docutils literal notranslate"><span class="pre">for</span></code>, onde a cada iteração a variável <code class="docutils literal notranslate"><span class="pre">fruta</span></code> assume um dos valores da lista <code class="docutils literal notranslate"><span class="pre">frutas</span></code>. Dentro do loop, é executada a função <code class="docutils literal notranslate"><span class="pre">print()</span></code> que mostra na tela o valor da variável <code class="docutils literal notranslate"><span class="pre">fruta</span></code>.</p>
+<p>Assim, o resultado final é a impressão de cada elemento da lista frutas em linhas separadas, na ordem em que foram definidos na lista: “maçã”, “banana”, “laranja” e “uva”.</p>
+<p>Essa é uma das formas mais comuns de se trabalhar com listas em Python: percorrendo-as com loops <code class="docutils literal notranslate"><span class="pre">for</span></code> para realizar operações em cada elemento da lista.</p>
+</section>
+<section id="adicionando-elementos">
+<h5>Adicionando elementos<a class="headerlink" href="#adicionando-elementos" title="Permalink to this heading">#</a></h5>
+<p>Agora, e se quiséssemos adicionar elementos a uma lista? É o mesmo <code class="docutils literal notranslate"><span class="pre">append()</span></code> que vimos antes. Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">numeros</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numeros</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Esse código cria uma lista chamada <code class="docutils literal notranslate"><span class="pre">numeros</span></code> com os valores 1, 2, 3 e 4. Em seguida, a função <code class="docutils literal notranslate"><span class="pre">append()</span></code> é utilizada para adicionar o número 5 à lista, resultando em uma nova lista: <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5]</span></code>. Por fim, a nova lista é mostrada na tela utilizando a função <code class="docutils literal notranslate"><span class="pre">print()</span></code>.</p>
+<p>A função <code class="docutils literal notranslate"><span class="pre">append()</span></code> é uma das várias funções que podem ser utilizadas para manipular listas em Python. Ela adiciona um elemento ao final da lista, aumentando seu tamanho em uma unidade. A sintaxe básica para utilizar a função <code class="docutils literal notranslate"><span class="pre">append()</span></code> é a seguinte:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nome_da_lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elemento_a_ser_adicionado</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>No exemplo acima, o <code class="docutils literal notranslate"><span class="pre">nome_da_lista</span></code> é <code class="docutils literal notranslate"><span class="pre">numeros</span></code> e o <code class="docutils literal notranslate"><span class="pre">elemento_a_ser_adicionado</span></code> é o número <code class="docutils literal notranslate"><span class="pre">5</span></code>. Ah: veja que nós <strong>não</strong> fazemos algo como <code class="docutils literal notranslate"><span class="pre">numeros</span> <span class="pre">=</span> <span class="pre">numeros.append(5)</span></code>. Isto acontece porque o <code class="docutils literal notranslate"><span class="pre">numeros.append(5)</span></code> já atualizará o <code class="docutils literal notranslate"><span class="pre">numeros</span></code> por baixo dos panos e, com isso, não é necessário adicionarmos aquele <code class="docutils literal notranslate"><span class="pre">numeros</span> <span class="pre">=</span></code> no começo.</p>
+</section>
+<section id="removendo-elementos">
+<h5>Removendo elementos<a class="headerlink" href="#removendo-elementos" title="Permalink to this heading">#</a></h5>
+<p>E se quiséssemos remover elementos de uma lista? É simples: basta usarmos o <code class="docutils literal notranslate"><span class="pre">remove()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">paises</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Brasil&quot;</span><span class="p">,</span> <span class="s2">&quot;EUA&quot;</span><span class="p">,</span> <span class="s2">&quot;Japão&quot;</span><span class="p">,</span> <span class="s2">&quot;Alemanha&quot;</span><span class="p">]</span>
+<span class="n">paises</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;Japão&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">paises</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O código acima apresenta uma lista de países armazenados na variável <code class="docutils literal notranslate"><span class="pre">paises</span></code>. Através da função <code class="docutils literal notranslate"><span class="pre">remove()</span></code>, é removido o país <code class="docutils literal notranslate"><span class="pre">&quot;Japão&quot;</span></code> da lista.</p>
+<p>O <code class="docutils literal notranslate"><span class="pre">remove()</span></code> é utilizado para remover um item específico da lista. Ou seja, é necessário passar o elemento a ser removido como argumento da função. No caso do código, o item <code class="docutils literal notranslate"><span class="pre">&quot;Japão&quot;</span></code> foi passado como argumento, fazendo com que aquele país fosse removido da lista.</p>
+<p>Ao final, é exibida a lista atualizada sem o país “Japão” através da função <code class="docutils literal notranslate"><span class="pre">print()</span></code>.</p>
+</section>
+<section id="ordenando">
+<h5>Ordenando<a class="headerlink" href="#ordenando" title="Permalink to this heading">#</a></h5>
+<p>Assim como temos o <code class="docutils literal notranslate"><span class="pre">append()</span></code> para adicionar e o <code class="docutils literal notranslate"><span class="pre">remove()</span></code> para remover, o <code class="docutils literal notranslate"><span class="pre">sort()</span></code> serve para ordenar:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">numeros</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numeros</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O código acima cria uma lista de números chamada <code class="docutils literal notranslate"><span class="pre">numeros</span></code> com os valores 3, 1, 4, 2 e 5. Em seguida, a função <code class="docutils literal notranslate"><span class="pre">sort()</span></code> é usada para ordenar a lista em ordem crescente. Dessa forma, o código irá mostrar na tela a lista ordenada em ordem crescente, que no caso é: <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5]</span></code>.</p>
+<p>Se quiséssemos ordená-la de forma decrescente bastaria trocar a segunda linha para <code class="docutils literal notranslate"><span class="pre">numeros.sort(reverse=True)</span></code>. Assim, ela iria mostrar na tela os valores na ordem decrescente (<code class="docutils literal notranslate"><span class="pre">[5,</span> <span class="pre">4,</span> <span class="pre">3,</span> <span class="pre">2,</span> <span class="pre">1]</span></code>).</p>
+</section>
+<section id="acessando-elementos">
+<h5>Acessando elementos<a class="headerlink" href="#acessando-elementos" title="Permalink to this heading">#</a></h5>
+<p>E se você quisesse ler uma posição específica da lista? Quer dizer: e se, ao invés de fazer um <code class="docutils literal notranslate"><span class="pre">for</span></code> para mostrar cada elemento da lista, quisesse só mostrar o primeiro e terceiro itens? Veja no exemplo abaixo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;maçã&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;laranja&quot;</span><span class="p">,</span> <span class="s2">&quot;uva&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># imprime &quot;maçã&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># imprime &quot;laranja&quot;</span>
+</pre></div>
+</div>
+<p>O código acima cria uma lista chamada <code class="docutils literal notranslate"><span class="pre">frutas</span></code> que contém quatro elementos: “maçã”, “banana”, “laranja” e “uva”. Em seguida, o código usa o índice dos elementos da lista para imprimir o primeiro elemento (índice <code class="docutils literal notranslate"><span class="pre">0</span></code>), que é “maçã”, e o terceiro elemento (índice <code class="docutils literal notranslate"><span class="pre">2</span></code>), que é “laranja”.</p>
+<p>Agora, por que usamos os índices 0 e 2? O correto não seria 1 e 3, já que queríamos o primeiro e terceiro itens? <em><strong>Em Python, as listas são indexadas começando do zero</strong></em>. Ou seja, o primeiro elemento é representado pelo índice 0, o segundo elemento é representado pelo índice 1, e assim por diante. O índice é colocado entre colchetes depois do nome da lista. Portanto, para acessar um elemento específico de uma lista em Python, basta informar o índice desejado entre colchetes.</p>
+</section>
+<section id="modificando-elementos">
+<h5>Modificando elementos<a class="headerlink" href="#modificando-elementos" title="Permalink to this heading">#</a></h5>
+<p>E se quiséssemos mudar alguma coisa da lista? Também é possível. Veja só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">lista</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Neste código, a lista é inicializada com os valores <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5]</span></code>. Em seguida, o elemento de índice 2 (que hoje possui o valor <code class="docutils literal notranslate"><span class="pre">3</span></code>) é modificado para o valor <code class="docutils literal notranslate"><span class="pre">10</span></code> usando o código <code class="docutils literal notranslate"><span class="pre">lista[2]</span> <span class="pre">=</span> <span class="pre">10</span></code>. Por fim, a lista é impressa na tela com a função <code class="docutils literal notranslate"><span class="pre">print(lista)</span></code>, resultando na saída <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">10,</span> <span class="pre">4,</span> <span class="pre">5]</span></code>.</p>
+</section>
+</section>
+</section>
+<section id="tuplas">
+<h3>Tuplas<a class="headerlink" href="#tuplas" title="Permalink to this heading">#</a></h3>
+<p>Tanto listas quanto tuplas (não escrevi errado: não são <em>duplas</em>, mas sim <em>tuplas</em>) são tipos de dados usados para armazenar em uma única variável vários valores. A diferença entre elas está na forma como os elementos são armazenados. Em uma lista, os elementos são armazenados em uma <strong>estrutura mutável</strong>, ou seja, é possível adicionar, remover e alterar elementos depois que a lista é criada. Já em uma tupla, os elementos são armazenados em uma <strong>estrutura imutável, ou seja, uma vez criada, a tupla não pode ser alterada</strong>.</p>
+<p>Por essa razão, as tuplas são mais adequadas quando se deseja armazenar elementos que não precisam ser modificados, como as coordenadas de um ponto em um plano cartesiano ou os valores de uma data (dia, mês e ano). Já as listas são mais flexíveis e mais indicadas quando se deseja armazenar uma coleção de elementos que podem ser alterados ao longo do tempo.</p>
+<p>Está claro? Como uma analogia, as tuplas são como ingressos de cinema que contêm informações sobre um filme. Quando você compra um ingresso de cinema, recebe um bilhete que contém informações sobre o filme, como o título, o horário e o número da sala. Essas informações ficam agrupadas em um bilhete e não podem ser alteradas depois que o ingresso foi comprado.</p>
+<p>Quer dois exemplos de tuplas? Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pessoas</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;João&quot;</span><span class="p">,</span> <span class="s2">&quot;Maria&quot;</span><span class="p">,</span> <span class="s2">&quot;José&quot;</span><span class="p">)</span>
+<span class="n">elementos</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A primeira tupla é chamada <code class="docutils literal notranslate"><span class="pre">pessoas</span></code> e contém três valores: <code class="docutils literal notranslate"><span class="pre">&quot;João&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Maria&quot;</span></code> e <code class="docutils literal notranslate"><span class="pre">&quot;José&quot;</span></code>. Já a segunda tupla é chamada <code class="docutils literal notranslate"><span class="pre">elementos</span></code> e contém quatro valores diferentes: a string <code class="docutils literal notranslate"><span class="pre">&quot;banana&quot;</span></code>, o número inteiro <code class="docutils literal notranslate"><span class="pre">5</span></code>, o booleano <code class="docutils literal notranslate"><span class="pre">True</span></code> e o número real <code class="docutils literal notranslate"><span class="pre">3.14</span></code>. Em listas também podemos misturar tipos de dados diferentes, se quisermos. Mas e então, qual é a diferença na hora de criar uma lista para uma tupla? O que tem de diferente no código acima?</p>
+<p>Veja: as tuplas são definidas usando parênteses (<code class="docutils literal notranslate"><span class="pre">()</span></code>), em vez de colchetes (<code class="docutils literal notranslate"><span class="pre">[]</span></code>), que são usados para definir listas. Os elementos dentro de uma tupla são separados por vírgulas, assim como fazemos com as listas. Ainda, acessamos os elementos de uma tupla do mesmo jeito que fazemos com as listas.</p>
+<section id="criando-tuplas">
+<h4>Criando tuplas<a class="headerlink" href="#criando-tuplas" title="Permalink to this heading">#</a></h4>
+<p>Lembra que uma tupla não pode ser modificada, né? Isto é: do jeito que ela foi criada, assim ela continuará sempre. Para criar uma tupla, basta listar os elementos dentro de parênteses (<code class="docutils literal notranslate"><span class="pre">()</span></code>) e separados por vírgulas.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">coordenadas</span> <span class="o">=</span> <span class="p">(</span><span class="mf">40.7128</span><span class="p">,</span> <span class="o">-</span><span class="mf">74.0060</span><span class="p">)</span>
+<span class="n">dias_da_semana</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;segunda&quot;</span><span class="p">,</span> <span class="s2">&quot;terça&quot;</span><span class="p">,</span> <span class="s2">&quot;quarta&quot;</span><span class="p">,</span> <span class="s2">&quot;quinta&quot;</span><span class="p">,</span> <span class="s2">&quot;sexta&quot;</span><span class="p">,</span> <span class="s2">&quot;sábado&quot;</span><span class="p">,</span> <span class="s2">&quot;domingo&quot;</span><span class="p">)</span>
+<span class="n">pontuacao_jogo</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Aí nós temos quatro exemplos de tuplas. Perceba o padrão: valores separados por vírgulas e os parênteses para definir quando a tupla começa e quando ela termina.</p>
+</section>
+<section id="criando-tuplas-do-zero">
+<h4>Criando tuplas do zero<a class="headerlink" href="#criando-tuplas-do-zero" title="Permalink to this heading">#</a></h4>
+<p>Até dá para criar uma tupla vazia, mas não teria muita utilidade. Se a sequência é vazia, você usaria onde este tipo de cenário? Dito isso, veja abaixo um exemplo de tupla vazia, que nada mais é do que uma tupla que não possui elementos dentro dos parênteses:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tupla_vazia</span> <span class="o">=</span> <span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="operacoes-com-tuplas">
+<h4>Operações com tuplas<a class="headerlink" href="#operacoes-com-tuplas" title="Permalink to this heading">#</a></h4>
+<section id="percorrendo-tuplas">
+<h5>Percorrendo tuplas<a class="headerlink" href="#percorrendo-tuplas" title="Permalink to this heading">#</a></h5>
+<p>Também dá para percorrer as tuplas usando um loop como o <code class="docutils literal notranslate"><span class="pre">for</span></code>, e de um jeito bem parecido com as listas. Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">animais</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;gato&quot;</span><span class="p">,</span> <span class="s2">&quot;cachorro&quot;</span><span class="p">,</span> <span class="s2">&quot;papagaio&quot;</span><span class="p">,</span> <span class="s2">&quot;peixe&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">animais</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Temos aqui uma tupla chamada <code class="docutils literal notranslate"><span class="pre">animais</span></code> que possui quatro elementos: “gato”, “cachorro”, “papagaio” e “peixe”. Em seguida, percorremos a tupla com um loop <code class="docutils literal notranslate"><span class="pre">for</span></code> e mostramos cada elemento na tela. Acho que neste ponto você já sabe disso, mas a variável <code class="docutils literal notranslate"><span class="pre">animal</span></code> é uma variável temporária que assume o valor de cada elemento da tupla em cada iteração do loop. Ou seja, na primeira iteração, <code class="docutils literal notranslate"><span class="pre">animal</span></code> é <code class="docutils literal notranslate"><span class="pre">&quot;gato&quot;</span></code>, na segunda é <code class="docutils literal notranslate"><span class="pre">&quot;cachorro&quot;</span></code> e assim por diante até a última iteração em que animal é <code class="docutils literal notranslate"><span class="pre">&quot;peixe&quot;</span></code>.</p>
+<p>Agora, e se quiséssemos saber se um elemento está ou não em uma tupla? Veja só</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">carros</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;fusca&quot;</span><span class="p">,</span> <span class="s2">&quot;fiesta&quot;</span><span class="p">,</span> <span class="s2">&quot;oggi&quot;</span><span class="p">,</span> <span class="s2">&quot;uno&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="s2">&quot;fusca&quot;</span> <span class="ow">in</span> <span class="n">carros</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O fusca está na lista&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O fusca não está na lista&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Este código cria uma tupla chamada <code class="docutils literal notranslate"><span class="pre">carros</span></code> com alguns modelos de carros. Em seguida, vemos se o elemento <code class="docutils literal notranslate"><span class="pre">&quot;fusca&quot;</span></code> está presente na tupla. Se estiver presente, o código mostrará a mensagem <code class="docutils literal notranslate"><span class="pre">&quot;O</span> <span class="pre">fusca</span> <span class="pre">está</span> <span class="pre">na</span> <span class="pre">lista&quot;</span></code>. Caso contrário, ele imprime a mensagem <code class="docutils literal notranslate"><span class="pre">&quot;O</span> <span class="pre">fusca</span> <span class="pre">não</span> <span class="pre">está</span> <span class="pre">na</span> <span class="pre">lista&quot;</span></code>.</p>
+<p>No caso específico do código, como o elemento <code class="docutils literal notranslate"><span class="pre">&quot;fusca&quot;</span></code> está presente na tupla, a mensagem <code class="docutils literal notranslate"><span class="pre">&quot;O</span> <span class="pre">fusca</span> <span class="pre">está</span> <span class="pre">na</span> <span class="pre">lista&quot;</span></code> é exibida na tela.</p>
+</section>
+<section id="adicionando-e-removendo-elementos">
+<h5>Adicionando e removendo elementos<a class="headerlink" href="#adicionando-e-removendo-elementos" title="Permalink to this heading">#</a></h5>
+<p>Olha, como as tuplas são imutáveis, não dá para adicionar ou remover elementos depois que ela foi criada. Dito isso, temos uma alternativa: colocar as alterações que queremos em uma tupla dentro de uma nova tupla. Por exemplo:</p>
+<p>Para adicionar um novo item ao dicionário, podemos simplesmente atribuir um valor a uma nova chave, como por exemplo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tupla1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">tupla2</span> <span class="o">=</span> <span class="n">tupla1</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span><span class="p">,)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tupla2</span><span class="p">)</span>  <span class="c1"># saída: (1, 2, 3, 4)</span>
+</pre></div>
+</div>
+<p>Aqui, temos uma tupla chamada <code class="docutils literal notranslate"><span class="pre">tupla1</span></code> com três elementos. Para adicionar o número <code class="docutils literal notranslate"><span class="pre">4</span></code> dentro desta tupla tivemos que criar uma nova tupla chamada <code class="docutils literal notranslate"><span class="pre">tupla2</span></code>, que é formada pela concatenação (veja o símbolo <code class="docutils literal notranslate"><span class="pre">+</span></code>) da <code class="docutils literal notranslate"><span class="pre">tupla1</span></code> com uma nova tupla contendo apenas o número 4.</p>
+<p>A adição da vírgula depois do número 4 é importante para indicar que se trata de uma tupla de um único elemento. Caso contrário, o Python entenderia apenas como um inteiro comum e a operação de concatenação com a <code class="docutils literal notranslate"><span class="pre">tupla1</span></code> não seria possível. Agora, e se fosse para remover? Teríamos que fazer algo como:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tupla1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">tupla2</span> <span class="o">=</span> <span class="p">(</span><span class="n">tupla1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tupla1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">tupla1</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tupla2</span><span class="p">)</span>  <span class="c1"># saída: (10, 30, 50)</span>
+</pre></div>
+</div>
+<p>Nesse exemplo, foi criada uma nova tupla <code class="docutils literal notranslate"><span class="pre">tupla2</span></code>, contendo apenas o primeiro, terceiro e quinto elementos da tupla (lembra que sempre começamos a contar a partir do índice 0?).</p>
+</section>
+<section id="id1">
+<h5>Ordenando<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h5>
+<p>Hmmmm, <em>acho</em> que já falamos disso antes, mas as tuplas são imutáveis, lembra? Ou seja: não dá para mudar. De verdade! O máximo que dá seria criarmos uma nova tupla. Aí poderíamos fazer assim:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeros</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">numeros_ordenados</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">numeros</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numeros_ordenados</span><span class="p">)</span> <span class="c1"># saída: (1, 2, 3, 4, 5)</span>
+</pre></div>
+</div>
+<p>Aqui, ordenamos uma tupla chamada <code class="docutils literal notranslate"><span class="pre">numeros</span></code> com o uso da função <code class="docutils literal notranslate"><span class="pre">sorted()</span></code>, que já vimos antes. Só que temos um problema: o resultado dessa <code class="docutils literal notranslate"><span class="pre">sorted()</span></code> não retorna uma tupla, mas sim uma lista. Então, usamos a função <code class="docutils literal notranslate"><span class="pre">tuple()</span></code> para converter uma lista em tuplas. Epa, pera:</p>
+<blockquote>
+<div><p>🆕 Podemos converter listas para tuplas usando a função <code class="docutils literal notranslate"><span class="pre">tuple()</span></code>. Da mesma forma, podemos converter tuplas em listas usando a função <code class="docutils literal notranslate"><span class="pre">list()</span></code>. Funciona de um jeito bem parecido com a forma que usamos as funções <code class="docutils literal notranslate"><span class="pre">string()</span></code>, <code class="docutils literal notranslate"><span class="pre">int()</span></code> e <code class="docutils literal notranslate"><span class="pre">float()</span></code> para fazermos outras conversões com variáveis, sabe?</p>
+</div></blockquote>
+<p>Também podemos usar a mesma lógica com tuplas que contenham strings. Veja só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nomes</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Carlos&quot;</span><span class="p">,</span> <span class="s2">&quot;Beatriz&quot;</span><span class="p">,</span> <span class="s2">&quot;Daniel&quot;</span><span class="p">)</span>
+<span class="n">nomes_ordenados</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">nomes</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nomes_ordenados</span><span class="p">)</span> <span class="c1"># saída: (&#39;Ana&#39;, &#39;Beatriz&#39;, &#39;Carlos&#39;, &#39;Daniel&#39;)</span>
+</pre></div>
+</div>
+<p>Aqui, o funcionamento é igual: temos uma tupla chamada <code class="docutils literal notranslate"><span class="pre">nomes</span></code> e que possui uma lista de strings que não está ordenada alfabeticamente. Então, usamos a <code class="docutils literal notranslate"><span class="pre">sorted()</span></code> para ordenar. O resultado da <code class="docutils literal notranslate"><span class="pre">sorted()</span></code> é uma lista ordenada alfabeticamente. Para converter esta lista de volta em tupla utilizamos o <code class="docutils literal notranslate"><span class="pre">tuple()</span></code>.</p>
+</section>
+<section id="id2">
+<h5>Acessando elementos<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h5>
+<p>A lógica é a mesma de uma lista. Por isso, vou aproveitar para te ensinar algumas coisinhas a mais que também funcionam com as listas. Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tupla</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="n">elemento</span> <span class="o">=</span> <span class="n">tupla</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">elemento</span><span class="p">)</span>  <span class="c1"># saída: &#39;c&#39;</span>
+</pre></div>
+</div>
+<p>O código acima começou com uma variável chamada <code class="docutils literal notranslate"><span class="pre">tupla</span></code> e que tinha 5 elementos. Em seguida, é criada a variável <code class="docutils literal notranslate"><span class="pre">elemento</span></code> e atribuída a ela o terceiro elemento da tupla, ou seja, o elemento de índice <code class="docutils literal notranslate"><span class="pre">2</span></code> (lembrando mais uma vez que em Python a contagem dos índices começa em <code class="docutils literal notranslate"><span class="pre">0</span></code>). Por fim, é impresso na tela o valor da variável elemento, que nesse caso é a letra <code class="docutils literal notranslate"><span class="pre">'c'</span></code>. Até aí, tudo bem né? E se quiséssemos o segundo, terceiro e quarto elementos de uma vez só? Veja:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tupla</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="n">subtupla</span> <span class="o">=</span> <span class="n">tupla</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">subtupla</span><span class="p">)</span>  <span class="c1"># saída: (&#39;b&#39;, &#39;c&#39;, &#39;d&#39;)</span>
+</pre></div>
+</div>
+<p>Perceba a segunda linha: a <code class="docutils literal notranslate"><span class="pre">subtupla</span></code> é criada a partir da indexação dos elementos da tupla original usando o operador de fatiamento (<em>slice</em>). Nesta segunda linha, o operador de <em>slice</em> é utilizado para selecionar uma parte da tupla original. No caso, a <code class="docutils literal notranslate"><span class="pre">subtupla</span></code> vai conter todos os elementos de índice 1, 2 e 3 da tupla original <code class="docutils literal notranslate"><span class="pre">('b',</span> <span class="pre">'c',</span> <span class="pre">'d')</span></code>.</p>
+<blockquote>
+<div><p>💡 A sintaxe para selecionar um range de elementos em uma tupla é <code class="docutils literal notranslate"><span class="pre">[start:end]</span></code>, onde <code class="docutils literal notranslate"><span class="pre">start</span></code> é o índice do primeiro elemento a ser incluído na sub-tupla e <code class="docutils literal notranslate"><span class="pre">end</span></code> é o índice do primeiro elemento a ser excluído da sub-tupla.</p>
+</div></blockquote>
+<p>Agora, e se quiséssemos o <em>último</em> elemento? Também conseguimos fazer isso:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tupla</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">)</span>
+<span class="n">ultimo_elemento</span> <span class="o">=</span> <span class="n">tupla</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ultimo_elemento</span><span class="p">)</span>  <span class="c1"># saída: &#39;e&#39;</span>
+</pre></div>
+</div>
+<p>Estranhou aquele <code class="docutils literal notranslate"><span class="pre">tupla[-1]</span></code>? Em Python, é possível acessar os elementos de trás para frente usando índices negativos, onde <code class="docutils literal notranslate"><span class="pre">-1</span></code> representa o último elemento, <code class="docutils literal notranslate"><span class="pre">-2</span></code> o penúltimo e assim por diante. Lembrando mais uma vez: isso também funciona com listas, tá?</p>
+</section>
+</section>
+</section>
+<section id="dicionarios">
+<h3>Dicionários<a class="headerlink" href="#dicionarios" title="Permalink to this heading">#</a></h3>
+<p>Apesar das listas serem versáteis, não significa necessariamente que poderíamos fazer <em>tudo</em> nelas. Vamos supor que estamos criando um sistema de um condomínio de apartamentos e, para cada apartamento, precisamos guardar o nome de cada responsável e se o apartamento possui animais de estimação ou não.</p>
+<p>Até poderíamos fazer algo assim:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">apartamentos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">103</span><span class="p">]</span>
+<span class="n">nomes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fulano&#39;</span><span class="p">,</span> <span class="s1">&#39;Ana&#39;</span><span class="p">,</span> <span class="s1">&#39;Roberta&#39;</span><span class="p">,</span> <span class="s1">&#39;Maria&#39;</span><span class="p">,</span> <span class="s1">&#39;Eduardo&#39;</span><span class="p">]</span>
+<span class="n">pets</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Só que aí houve um problema: em algum momento, alguém fez um <code class="docutils literal notranslate"><span class="pre">append()</span></code> a mais lá em <code class="docutils literal notranslate"><span class="pre">nomes</span></code>. Temos 4 apartamentos, 5 nomes. O Eduardo é de qual apartamento? Estaria ele substituindo alguma outra pessoa? Como saber se os nomes seguem a mesma ordem dos apartamentos, já que estão em variáveis diferentes? Consegue entender o problema?</p>
+<p>É para resolver casos assim que temos as estruturas de dicionários. Os dicionários funcionam como um dicionário de palavras em um idioma estrangeiro, mesmo. Nesses dicionários de palavras você procura por uma palavra em específico (que é como se fosse uma <em>chave</em>). Dentro desta palavra você terá acesso aos significados dela, que geralmente são explicados em frases mais longas (que é como se fosse um <em>valor</em> que aquela chave estaria guardando).</p>
+<p>Assim como um dicionário de palavras, um dicionário em Python é uma coleção de informações organizadas por chaves e valores. Cada chave é única (isto é, não podemos ter duas chaves iguais), e cada chave possui dentro dela mais valores. O exemplo acima poderia ser escrito em formato de dicionário assim:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">apartamentos</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">100</span><span class="p">:</span> <span class="s1">&#39;Ana&#39;</span><span class="p">,</span>
+    <span class="mi">101</span><span class="p">:</span> <span class="s1">&#39;Roberta&#39;</span><span class="p">,</span>
+    <span class="mi">102</span><span class="p">:</span> <span class="s1">&#39;Fulano&#39;</span><span class="p">,</span>
+    <span class="mi">103</span><span class="p">:</span> <span class="s1">&#39;Eduardo&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="criando-dicionarios">
+<h4>Criando dicionários<a class="headerlink" href="#criando-dicionarios" title="Permalink to this heading">#</a></h4>
+<p>Agora sabemos que os nomes também estavam fora de ordem. Veja também que a sintaxe é um pouco diferente das listas. Em Python, a sintaxe básica para criar um dicionário é usando chaves (<code class="docutils literal notranslate"><span class="pre">{}</span></code>) e separando as chaves e seus valores correspondentes com dois pontos (<code class="docutils literal notranslate"><span class="pre">:</span></code>). Um exemplo simples de um dicionário com algumas informações de uma pessoa pode ser definido da seguinte forma:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pessoa</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;João&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;idade&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;cidade&quot;</span><span class="p">:</span> <span class="s2">&quot;São Paulo&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Nesse exemplo, <code class="docutils literal notranslate"><span class="pre">&quot;nome&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;idade&quot;</span></code> e <code class="docutils literal notranslate"><span class="pre">&quot;cidade&quot;</span></code> são as chaves do dicionário e <code class="docutils literal notranslate"><span class="pre">&quot;João&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">30</span></code> e <code class="docutils literal notranslate"><span class="pre">&quot;São</span> <span class="pre">Paulo&quot;</span></code> são seus valores correspondentes.</p>
+<blockquote>
+<div><p>🤚 <strong>Atenção</strong>: observe a ordem - sempre colocamos <em>primeiro</em> a chave, depois os dois-pontos e, depois, o valor. Dito isso, você pode colocar as chaves do jeito que quiser. Ou seja: você poderia criar esse dicionário com a <code class="docutils literal notranslate"><span class="pre">idade</span></code> primeiro, depois o <code class="docutils literal notranslate"><span class="pre">nome</span></code> e, por último, a <code class="docutils literal notranslate"><span class="pre">cidade</span></code>. Ou qualquer outra ordem que quiser. O que realmente importa é ter sempre a chave primeiro e, depois, o valor.</p>
+</div></blockquote>
+</section>
+<section id="criando-dicionarios-do-zero">
+<h4>Criando dicionários do zero<a class="headerlink" href="#criando-dicionarios-do-zero" title="Permalink to this heading">#</a></h4>
+<p>Para criar um dicionário vazio em Python, basta usar um par de chaves sem nenhum elemento dentro:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">meu_dicionario</span> <span class="o">=</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>Também é possível criar um dicionário vazio utilizando a função <code class="docutils literal notranslate"><span class="pre">dict()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">meu_dicionario</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Ambas as formas terão o mesmo resultado: um dicionário vazio que poderá ser preenchido posteriormente com chaves e valores.</p>
+</section>
+<section id="operacoes-com-dicionarios">
+<h4>Operações com dicionários<a class="headerlink" href="#operacoes-com-dicionarios" title="Permalink to this heading">#</a></h4>
+<section id="percorrendo-dicionarios">
+<h5>Percorrendo dicionários<a class="headerlink" href="#percorrendo-dicionarios" title="Permalink to this heading">#</a></h5>
+<p>Também dá para percorrer os dicionários usando um loop como o <code class="docutils literal notranslate"><span class="pre">for</span></code>, e de um jeito bem parecido com as listas. Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># criação de um dicionário com algumas informações</span>
+<span class="n">pessoa</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;João&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;idade&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;cidade&quot;</span><span class="p">:</span> <span class="s2">&quot;São Paulo&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># percorrendo as chaves do dicionário</span>
+<span class="k">for</span> <span class="n">chave</span> <span class="ow">in</span> <span class="n">pessoa</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chave</span><span class="p">)</span>
+    
+<span class="k">for</span> <span class="n">chave</span> <span class="ow">in</span> <span class="n">pessoa</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chave</span><span class="p">)</span>
+    
+<span class="c1"># percorrendo os valores do dicionário</span>
+<span class="k">for</span> <span class="n">valor</span> <span class="ow">in</span> <span class="n">pessoa</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+    
+<span class="c1"># percorrendo as chaves e valores do dicionário ao mesmo tempo</span>
+<span class="k">for</span> <span class="n">chave</span><span class="p">,</span> <span class="n">valor</span> <span class="ow">in</span> <span class="n">pessoa</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chave</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Este código cria um dicionário chamado <code class="docutils literal notranslate"><span class="pre">pessoa</span></code> que contém informações sobre uma pessoa, como o nome, idade e cidade. Em seguida, são usados três exemplos de percorrer os elementos do dicionário.</p>
+<p>No primeiro exemplo, o código usa um <code class="docutils literal notranslate"><span class="pre">for</span></code> para percorrer as chaves (<code class="docutils literal notranslate"><span class="pre">keys</span></code>) do dicionário. Dentro do loop, cada chave é mostrada na tela usando o comando <code class="docutils literal notranslate"><span class="pre">print()</span></code>. No caso, as chaves são <code class="docutils literal notranslate"><span class="pre">nome</span></code>, <code class="docutils literal notranslate"><span class="pre">idade</span></code> e <code class="docutils literal notranslate"><span class="pre">cidade</span></code>. O segundo loop possui o mesmo funcionamento - a diferença é que estamos pedindo explicitamente pelas chaves do dicionário ao fazermos um <code class="docutils literal notranslate"><span class="pre">pessoa.keys()</span></code> no código.</p>
+<p>No terceiro <code class="docutils literal notranslate"><span class="pre">for</span></code> nós percorremos os valores (<code class="docutils literal notranslate"><span class="pre">values</span></code>) do dicionário. Dentro do loop, cada valor é impresso na tela usando o comando <code class="docutils literal notranslate"><span class="pre">print()</span></code>. Consegue ver as diferenças e semelhanças entre o segundo e o terceiro <code class="docutils literal notranslate"><span class="pre">for</span></code>? Um deles é para mostrar somente as chaves e o outro, somente os valores. Dito isso, a forma de se usar o <code class="docutils literal notranslate"><span class="pre">for</span></code> é a mesma.</p>
+<p>No quarto <code class="docutils literal notranslate"><span class="pre">for</span></code> nós percorremos as chaves e valores do dicionário ao mesmo tempo com o uso do <code class="docutils literal notranslate"><span class="pre">items()</span></code>. Dentro do loop, tanto a chave quanto o valor são impressos na tela usando o comando <code class="docutils literal notranslate"><span class="pre">print()</span></code>. Esta função <code class="docutils literal notranslate"><span class="pre">items()</span></code> retorna uma lista de pares chave e valor do dicionário (ou seja: retorna a chave <strong>e também</strong> o seu valor correspondente).</p>
+<p>Quer ver outro exemplo de uso? Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># criação de um dicionário com algumas informações</span>
+<span class="n">estoque</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;banana&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">&#39;maçã&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;laranja&#39;</span><span class="p">:</span> <span class="mi">8</span>
+<span class="p">}</span>
+
+<span class="c1"># percorrendo as chaves e valores do dicionário e exibindo informações sobre o estoque</span>
+<span class="k">for</span> <span class="n">chave</span><span class="p">,</span> <span class="n">valor</span> <span class="ow">in</span> <span class="n">estoque</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Temos </span><span class="si">{</span><span class="n">valor</span><span class="si">}</span><span class="s2"> unidades de </span><span class="si">{</span><span class="n">chave</span><span class="si">}</span><span class="s2"> em estoque.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Aqui, temos um dicionário chamado <code class="docutils literal notranslate"><span class="pre">estoque</span></code> que armazena a quantidade de frutas disponíveis em um estabelecimento. A estrutura do dicionário é formada pelas chaves (que representam o nome das frutas) e pelos valores (que representam a quantidade de cada fruta).</p>
+<p>Para percorrer o dicionário, o código utiliza o método <code class="docutils literal notranslate"><span class="pre">items()</span></code> para obter uma lista de tuplas (lembra delas?) contendo as chaves e valores do dicionário. Em seguida, um loop <code class="docutils literal notranslate"><span class="pre">for</span></code> é utilizado para percorrer cada uma das tuplas e exibir a quantidade de cada fruta disponível em estoque.</p>
+<p>O código utiliza a função <code class="docutils literal notranslate"><span class="pre">print()</span></code> para exibir as informações na tela. Veja como formatamos uma frase mais bonita usando f-strings na última linha do código para facilitar a exibição das informações. Outra forma de mostrar os mesmos valores seria:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">chave</span> <span class="ow">in</span> <span class="n">estoque</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Temos </span><span class="si">{</span><span class="n">estoque</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span><span class="si">}</span><span class="s2"> unidades de </span><span class="si">{</span><span class="n">chave</span><span class="si">}</span><span class="s2"> em estoque.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O resultado seria o mesmo. A diferença é que usamos um loop <code class="docutils literal notranslate"><span class="pre">for</span></code> para percorrer todas as <strong>chaves</strong> do dicionário com a função <code class="docutils literal notranslate"><span class="pre">keys()</span></code>. Aqui, a variável <code class="docutils literal notranslate"><span class="pre">chave</span></code> é usada para armazenar cada chave do dicionário em cada iteração do loop.</p>
+<p>Dentro do loop, a string formatada é usada para imprimir informações sobre cada item do estoque. Veja a expressão <code class="docutils literal notranslate"><span class="pre">estoque[chave]</span></code>. Ela existe para acessar o valor correspondente à chave atual do dicionário. Por exemplo: <code class="docutils literal notranslate"><span class="pre">estoque['banana']</span></code> lê o valor que está dentro da chave <code class="docutils literal notranslate"><span class="pre">banana</span></code>, que é o valor <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
+</section>
+<section id="id3">
+<h5>Adicionando elementos<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h5>
+<p>Para adicionar um novo item ao dicionário, podemos simplesmente atribuir um valor a uma nova chave, como por exemplo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pessoa</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;João&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;idade&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;cidade&quot;</span><span class="p">:</span> <span class="s2">&quot;São Paulo&quot;</span>
+<span class="p">}</span>
+
+<span class="n">pessoa</span><span class="p">[</span><span class="s2">&quot;profissao&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;engenheiro&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pessoa</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Isso adiciona a chave <code class="docutils literal notranslate"><span class="pre">profissao</span></code> ao dicionário <code class="docutils literal notranslate"><span class="pre">pessoa</span></code> com o valor <code class="docutils literal notranslate"><span class="pre">&quot;engenheiro&quot;</span></code>. Simples assim!</p>
+</section>
+<section id="id4">
+<h5>Removendo elementos<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">meu_dicionario</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span>
+<span class="p">}</span>
+
+<span class="k">del</span> <span class="n">meu_dicionario</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">meu_dicionario</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Nesse exemplo, é criado um dicionário com três elementos: <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;:</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;b&quot;:</span> <span class="pre">2</span></code> e <code class="docutils literal notranslate"><span class="pre">&quot;c&quot;:</span> <span class="pre">3</span></code>. Em seguida, o <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">meu_dicionario[&quot;b&quot;]</span></code> remove o elemento com chave <code class="docutils literal notranslate"><span class="pre">&quot;b&quot;</span></code> do dicionário. O resultado da execução é um dicionário com os elementos <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;:</span> <span class="pre">1</span></code> e <code class="docutils literal notranslate"><span class="pre">&quot;c&quot;:</span> <span class="pre">3</span></code>.</p>
+<p>Agora, e se você quisesse reaproveitar aquele <code class="docutils literal notranslate"><span class="pre">2</span></code>? No caso, salvar aquele valor em uma variável <strong>e também</strong> remover este elemento no dicionário? Basta usarmos o <code class="docutils literal notranslate"><span class="pre">pop()</span></code>. Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">meu_dicionario</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span>
+<span class="p">}</span>
+
+<span class="n">valor</span> <span class="o">=</span> <span class="n">meu_dicionario</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">meu_dicionario</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Nesse exemplo, é criado o mesmo dicionário com os três elementos: <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;:</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;b&quot;:</span> <span class="pre">2</span></code> e <code class="docutils literal notranslate"><span class="pre">&quot;c&quot;:</span> <span class="pre">3</span></code>. Em seguida, o <code class="docutils literal notranslate"><span class="pre">valor</span> <span class="pre">=</span> <span class="pre">meu_dicionario.pop(&quot;b&quot;)</span></code> remove o elemento com chave <code class="docutils literal notranslate"><span class="pre">&quot;b&quot;</span></code> do dicionário <strong>e também</strong> armazena o valor associado a essa chave na variável <code class="docutils literal notranslate"><span class="pre">valor</span></code>. O resultado da execução é um dicionário com os elementos <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;:</span> <span class="pre">1</span></code> e <code class="docutils literal notranslate"><span class="pre">&quot;c&quot;:</span> <span class="pre">3&quot;</span></code>, e o valor <code class="docutils literal notranslate"><span class="pre">2</span></code> é posteriormente mostrado na tela e salvo dentro da variável <code class="docutils literal notranslate"><span class="pre">valor</span></code>.</p>
+</section>
+<section id="id5">
+<h5>Ordenando<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h5>
+<p>Agora, vou ficar devendo esta parte. Um dicionário em Python é uma estrutura de dados que <strong>não é ordenada</strong>. Dito isso, dá para ordenarmos as chaves ou os valores de forma separada. Veja só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dicionario</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="n">chaves_ordenadas</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dicionario</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chaves_ordenadas</span><span class="p">)</span> <span class="c1"># imprime [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span>
+</pre></div>
+</div>
+<p>Aqui, a função <code class="docutils literal notranslate"><span class="pre">sorted()</span></code> é usada para ordenar as chaves do dicionário <code class="docutils literal notranslate"><span class="pre">dicionario</span></code>. O resultado disso é uma lista de chaves ordenadas em ordem crescente. Por outro lado, isto não significa que o nosso dicionário foi ordenado: apenas criamos uma lista <em>separada</em> contendo as chaves ordenadas. O mesmo vale para os valores. Veja só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dicionario</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="n">valores_ordenados</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dicionario</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">valores_ordenados</span><span class="p">)</span> <span class="c1"># imprime [1, 2, 3, 4]</span>
+</pre></div>
+</div>
+<p>Aqui, a função <code class="docutils literal notranslate"><span class="pre">sorted()</span></code> é usada para ordenar os valores do dicionário <code class="docutils literal notranslate"><span class="pre">dicionario</span></code>. Assim como foi no caso das chaves, o nosso <code class="docutils literal notranslate"><span class="pre">dicionario</span></code> não está ordenado: apenas criamos uma lista <em>separada</em> contendo os valores ordenados.</p>
+</section>
+<section id="id6">
+<h5>Acessando elementos<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h5>
+<p>Beleza, e se quiséssemos ler o valor de uma chave específica em um dicionário? Acho que já dei um spoiler disso antes, mas lá vai:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definindo um dicionário</span>
+<span class="n">pessoa</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;João&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;idade&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;cidade&quot;</span><span class="p">:</span> <span class="s2">&quot;São Paulo&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Acessando um valor através da chave</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pessoa</span><span class="p">[</span><span class="s2">&quot;nome&quot;</span><span class="p">])</span> <span class="c1"># Saída: &quot;João&quot;</span>
+</pre></div>
+</div>
+<p>No exemplo acima, é definido um dicionário com três chaves e valores correspondentes. Para acessar o valor associado à chave <code class="docutils literal notranslate"><span class="pre">nome</span></code>, é utilizado o operador de colchetes (<code class="docutils literal notranslate"><span class="pre">[]</span></code>) e o nome da chave. O resultado é o valor <code class="docutils literal notranslate"><span class="pre">&quot;João&quot;</span></code> sendo mostrado na tela. Outra forma de fazermos isto é com a função <code class="docutils literal notranslate"><span class="pre">get()</span></code>. Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definindo um dicionário</span>
+<span class="n">pessoa</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;João&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;idade&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;cidade&quot;</span><span class="p">:</span> <span class="s2">&quot;São Paulo&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Acessando um valor com o método get()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pessoa</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;idade&quot;</span><span class="p">))</span> <span class="c1"># Saída: 30</span>
+</pre></div>
+</div>
+<p>Nesse exemplo, o <code class="docutils literal notranslate"><span class="pre">get()</span></code> é usado para acessar o valor associado à chave <code class="docutils literal notranslate"><span class="pre">idade</span></code>. Esse método recebe como argumento o nome da chave e retorna o valor correspondente, ou o valor <code class="docutils literal notranslate"><span class="pre">None</span></code> caso a chave não exista no dicionário. A saída no console é o valor <code class="docutils literal notranslate"><span class="pre">30</span></code>, que está associado à chave <code class="docutils literal notranslate"><span class="pre">idade</span></code> no dicionário <code class="docutils literal notranslate"><span class="pre">pessoa</span></code>.</p>
+</section>
+<section id="id7">
+<h5>Modificando elementos<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h5>
+<p>Agora, vamos supor que queremos <em>modificar</em> um valor de uma chave que já está no dicionário. A sintaxe é a mesma que usamos para adicionar elementos. Veja só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># criação do dicionário</span>
+<span class="n">pessoa</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;João&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;idade&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="s2">&quot;cidade&quot;</span><span class="p">:</span> <span class="s2">&quot;São Paulo&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># modificando um elemento</span>
+<span class="n">pessoa</span><span class="p">[</span><span class="s2">&quot;idade&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="c1"># impressão do dicionário após a modificação</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pessoa</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Neste exemplo, é criado um dicionário que representa uma pessoa, com as chaves <code class="docutils literal notranslate"><span class="pre">&quot;nome&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;idade&quot;</span></code> e <code class="docutils literal notranslate"><span class="pre">&quot;cidade&quot;</span></code> e seus respectivos valores. Em seguida, é feita a modificação da idade da pessoa para 30. Por fim, o dicionário atualizado é mostrado na tela (ou seja, com a <code class="docutils literal notranslate"><span class="pre">idade</span></code> igual a <code class="docutils literal notranslate"><span class="pre">30</span></code>). Quer outro exemplo? Olha só:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># criação do dicionário</span>
+<span class="n">estoque</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;laranja&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;maçã&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+    <span class="s2">&quot;banana&quot;</span><span class="p">:</span> <span class="mi">20</span>
+<span class="p">}</span>
+
+<span class="c1"># modificando um elemento</span>
+<span class="n">estoque</span><span class="p">[</span><span class="s2">&quot;banana&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="c1"># impressão do dicionário após a modificação</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">estoque</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Aqui, criamos um dicionário que representa um estoque de frutas com as chaves <code class="docutils literal notranslate"><span class="pre">&quot;laranja&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;maçã&quot;</span></code> e <code class="docutils literal notranslate"><span class="pre">&quot;banana&quot;</span></code> e seus respectivos valores. Em seguida, é feita a modificação do valor correspondente à chave <code class="docutils literal notranslate"><span class="pre">&quot;banana&quot;</span></code> para <code class="docutils literal notranslate"><span class="pre">30</span></code> (ou seja: estamos alterando o estoque de 20 para 30 bananas). Por fim, é impresso o dicionário atualizado.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="exercicios">
+<h2>Exercícios<a class="headerlink" href="#exercicios" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Crie uma lista com números de 1 a 10 e, em seguida, imprima apenas os números pares.</p></li>
+<li><p>Crie uma lista com nomes de frutas e, em seguida, remova a fruta “banana”.</p></li>
+<li><p>Crie uma lista com os números de 1 a 5 e, em seguida, adicione o número 6 ao final da lista.</p></li>
+<li><p>Escreva um código que armazena o nome de 5 frutas em uma tupla e imprime cada uma em uma linha.</p></li>
+<li><p>Crie um dicionário com o nome e a profissão de duas pessoas e adicione uma terceira pessoa com nome e profissão.</p></li>
+<li><p>Crie um dicionário com o nome e a idade de três pessoas e exiba a idade de cada uma delas na tela.</p></li>
+</ol>
+<section id="respostas">
+<h3>Respostas<a class="headerlink" href="#respostas" title="Permalink to this heading">#</a></h3>
+<p><strong>1. Crie uma lista com números de 1 a 10 e, em seguida, imprima apenas os números pares.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeros</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numeros</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Primeiro é criada uma lista de números de 1 a 10 utilizando a função <code class="docutils literal notranslate"><span class="pre">range()</span></code> e convertendo-a para uma lista utilizando a função <code class="docutils literal notranslate"><span class="pre">list()</span></code>. Em seguida, é utilizado um loop <code class="docutils literal notranslate"><span class="pre">for</span></code> para percorrer cada número na lista e, caso o número seja par (verificando se o resto da divisão por 2 é igual a zero), o número é mostrado na tela utilizando a função <code class="docutils literal notranslate"><span class="pre">print()</span></code>. Também poderíamos criar a lista manualmente. Dessa forma, o código poderia ser:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numeros</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>2. Crie uma lista com nomes de frutas e, em seguida, remova a fruta “banana”.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;maçã&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;laranja&quot;</span><span class="p">,</span> <span class="s2">&quot;uva&quot;</span><span class="p">]</span>
+<span class="n">frutas</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;banana&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frutas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>No exemplo acima, a função <code class="docutils literal notranslate"><span class="pre">remove()</span></code> é utilizada para remover a fruta <code class="docutils literal notranslate"><span class="pre">&quot;banana&quot;</span></code> da lista <code class="docutils literal notranslate"><span class="pre">frutas</span></code>. A função recebe como argumento o elemento que se deseja remover da lista. Em seguida, a lista atualizada é mostrada na tela com a função <code class="docutils literal notranslate"><span class="pre">print()</span></code>.</p>
+<p><strong>3. Crie uma lista com os números de 1 a 5 e, em seguida, adicione o número 6 ao final da lista.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">numeros</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numeros</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Primeiro, definimos uma lista contendo todos os números de 1 a 5 e armazenamos esta lista dentro da variável <code class="docutils literal notranslate"><span class="pre">numeros</span></code>. Então, usamos a função <code class="docutils literal notranslate"><span class="pre">append()</span></code> para adicionar o número 6 ao final da lista. No final, usamos o <code class="docutils literal notranslate"><span class="pre">print()</span></code> para mostrar a lista atualizada na tela.</p>
+<p><strong>4. Escreva um código que armazena o nome de 5 frutas em uma tupla e imprime cada uma em uma linha.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frutas</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;maçã&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;laranja&quot;</span><span class="p">,</span> <span class="s2">&quot;uva&quot;</span><span class="p">,</span> <span class="s2">&quot;morango&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">fruta</span> <span class="ow">in</span> <span class="n">frutas</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fruta</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Aqui, a tupla chamada <code class="docutils literal notranslate"><span class="pre">frutas</span></code> é criada com cinco elementos. Em seguida, é usado um <code class="docutils literal notranslate"><span class="pre">for</span></code> para percorrer cada elemento da tupla e imprimir na tela. A função <code class="docutils literal notranslate"><span class="pre">print()</span></code> é chamada dentro do loop para imprimir cada elemento em uma linha separada.</p>
+<p><strong>5. Crie um dicionário com o nome e a profissão de duas pessoas e adicione uma terceira pessoa com nome e profissão.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pessoas</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># adiciona as duas primeiras pessoas</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">nome</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o nome da pessoa: &quot;</span><span class="p">)</span>
+    <span class="n">profissao</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a profissão da pessoa: &quot;</span><span class="p">)</span>
+    <span class="n">pessoas</span><span class="p">[</span><span class="n">nome</span><span class="p">]</span> <span class="o">=</span> <span class="n">profissao</span>
+
+<span class="c1"># adiciona a terceira pessoa</span>
+<span class="n">nome</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite o nome da terceira pessoa: &quot;</span><span class="p">)</span>
+<span class="n">profissao</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Digite a profissão da terceira pessoa: &quot;</span><span class="p">)</span>
+<span class="n">pessoas</span><span class="p">[</span><span class="n">nome</span><span class="p">]</span> <span class="o">=</span> <span class="n">profissao</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pessoas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Aqui, observe que usamos o <code class="docutils literal notranslate"><span class="pre">for</span></code> para popular o dicionário <code class="docutils literal notranslate"><span class="pre">pessoas</span></code> pedindo ao usuário para que digite os dados das duas primeiras pessoas. Em seguida, o código também pede ao usuário o nome e a profissão da terceira pessoa e a adiciona ao dicionário usando a mesma sintaxe <code class="docutils literal notranslate"><span class="pre">dicionario[chave]</span> <span class="pre">=</span> <span class="pre">valor</span></code>. Por fim, o dicionário completo é impresso na tela usando a função <code class="docutils literal notranslate"><span class="pre">print()</span></code>.</p>
+<p><strong>6. Crie um dicionário com o nome e a idade de três pessoas e exiba a idade de cada uma delas na tela.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pessoas</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;João&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;Maria&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;José&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">nome</span><span class="p">,</span> <span class="n">idade</span> <span class="ow">in</span> <span class="n">pessoas</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">nome</span><span class="si">}</span><span class="s1"> tem </span><span class="si">{</span><span class="n">idade</span><span class="si">}</span><span class="s1"> anos.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Nesse exemplo, a variável <code class="docutils literal notranslate"><span class="pre">pessoas</span></code> é um dicionário que armazena o nome e idade de três pessoas. O código <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">nome,</span> <span class="pre">idade</span> <span class="pre">in</span> <span class="pre">pessoas.items()</span></code> percorre o dicionário e separa o nome e idade de cada pessoa. A função <code class="docutils literal notranslate"><span class="pre">items()</span></code> é usada para obter uma tupla de pares chave e valor (nome e idade) do dicionário. Finalmente, o <code class="docutils literal notranslate"><span class="pre">print(f'{nome}</span> <span class="pre">tem</span> <span class="pre">{idade}</span> <span class="pre">anos.')</span></code> exibirá o nome e idade de cada pessoa na tela.</p>
+</section>
+</section>
+<section id="referencias-bibliograficas">
+<h2>Referências bibliográficas<a class="headerlink" href="#referencias-bibliograficas" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>GEEKSFORGEEKS. Python Data Types. Disponível em: <a class="reference external" href="https://www.geeksforgeeks.org/python-data-types/">https://www.geeksforgeeks.org/python-data-types/</a>. Acesso em: 13 mar. 2023.</p></li>
+<li><p>NUMPY. NumPy. Disponível em: <a class="reference external" href="https://numpy.org/doc/stable/">https://numpy.org/doc/stable/</a>. Acesso em: 13 mar. 2023.</p></li>
+<li><p>PYTHON. 5.3. Tuples and Sequences. Disponível em: <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences">https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences</a>. Acesso em: 13 mar. 2023.</p></li>
+<li><p>PYTHON. 5.5. Dictionaries. Disponível em: <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">https://docs.python.org/3/tutorial/datastructures.html#dictionaries</a>. Acesso em: 13 mar. 2023.</p></li>
+<li><p>PYTHON. Data Structures. Disponível em: <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html">https://docs.python.org/3/tutorial/datastructures.html</a>. Acesso em: 13 mar. 2023.</p></li>
+<li><p>W3SCHOOLS. Python Dictionaries. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_dictionaries.asp">https://www.w3schools.com/python/python_dictionaries.asp</a>. Acesso em: 13 mar. 2023.</p></li>
+<li><p>W3SCHOOLS. Python Lists, Tuples, and Sets. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_lists.asp">https://www.w3schools.com/python/python_lists.asp</a>. Acesso em: 13 mar. 2023.</p></li>
+<li><p>W3SCHOOLS. Python Tuples. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_tuples.asp">https://www.w3schools.com/python/python_tuples.asp</a>. Acesso em: 13 mar. 2023.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06-Funcoes.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tudo em blocos: trabalhando com funções</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="08-Manipulacao-Arquivos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">O que você saberá se você ler todo este capítulo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sabe-o-que-e-melhor-do-que-um-bolo-bolo-coxinha-brigadeiro-empadao-cafe">Sabe o que é melhor do que um bolo? Bolo + coxinha + brigadeiro + empadão + café…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencas-e-semelhancas-de-listas-dicionarios-e-tuplas">Diferenças e semelhanças de listas, dicionários e tuplas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">Listas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-listas">Criando listas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-listas-do-zero">Criando listas do zero</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-listas">Operações com listas</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#percorrendo-listas">Percorrendo listas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#adicionando-elementos">Adicionando elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#removendo-elementos">Removendo elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ordenando">Ordenando</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#acessando-elementos">Acessando elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#modificando-elementos">Modificando elementos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuplas">Tuplas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-tuplas">Criando tuplas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-tuplas-do-zero">Criando tuplas do zero</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-tuplas">Operações com tuplas</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#percorrendo-tuplas">Percorrendo tuplas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#adicionando-e-removendo-elementos">Adicionando e removendo elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ordenando</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Acessando elementos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dicionarios">Dicionários</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-dicionarios">Criando dicionários</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criando-dicionarios-do-zero">Criando dicionários do zero</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-dicionarios">Operações com dicionários</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#percorrendo-dicionarios">Percorrendo dicionários</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Adicionando elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Removendo elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Ordenando</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Acessando elementos</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Modificando elementos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicios">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#respostas">Respostas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas">Referências bibliográficas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Wellington Rodrigo Monteiro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Aug 25, 2023.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

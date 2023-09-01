@@ -1,0 +1,688 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Erros/exceções em Python &#8212; Python Descomplicado</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-0LGPFVV5N2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-0LGPFVV5N2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '10-Erros-Comuns';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos" href="09-POO.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python Descomplicado</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Python Descomplicado: Aprendendo Algoritmos de Forma Simples
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1: Sabendo onde estamos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-Introducao-Ambiente.html">Arrumando as coisas para começar a trabalhar com Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Introducao-Algoritmos.html">Arrumando as coisas para começar a falar de algoritmos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2: Fazendo coisas legais</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03-Variaveis-IO.html">Primeiros (ou segundos) passos em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Estruturas-Selecao.html">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-Estruturas-Repeticao.html">Repetições, repetições, repetições: loops em Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Funcoes.html">Tudo em blocos: trabalhando com funções</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Listas-Dicionarios-Tuplas.html">De um bolo para uma festa: listas, dicionários e tuplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Manipulacao-Arquivos.html">Saindo da telinha sem cor do terminal: trabalhando com arquivos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-POO.html">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3: Resolvendo tretas</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Erros/exceções em Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/wmonteiro-ai/python-intro-ptbr/issues/new?title=Issue%20on%20page%20%2F10-Erros-Comuns.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/10-Erros-Comuns.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Erros/exceções em Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">O que você saberá se você ler todo este capítulo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grupos-de-excecoes-mais-comuns">Grupos de exceções mais comuns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexerror">IndexError</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ioerror">IOError</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keyerror">KeyError</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nameerror">NameError</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typeerror">TypeError</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valueerror">ValueError</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zerodivisionerror">ZeroDivisionError</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas">Referências bibliográficas</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="erros-excecoes-em-python">
+<span id="content-commonerrors"></span><h1>Erros/exceções em Python<a class="headerlink" href="#erros-excecoes-em-python" title="Permalink to this heading">#</a></h1>
+<section id="o-que-voce-sabera-se-voce-ler-todo-este-capitulo">
+<h2>O que você saberá se você ler todo este capítulo?<a class="headerlink" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo" title="Permalink to this heading">#</a></h2>
+<p>A ideia não é ler todo ele, mas que possa servir como uma consulta. Assim, a ideia é você encontrar o erro que está tendo, entender o <em>motivo</em> dele aparecer e como resolver.</p>
+</section>
+<section id="grupos-de-excecoes-mais-comuns">
+<h2>Grupos de exceções mais comuns<a class="headerlink" href="#grupos-de-excecoes-mais-comuns" title="Permalink to this heading">#</a></h2>
+<p>Os tipos de exceções mais comuns em Python incluem:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IndexError</span></code>: quando se tenta acessar um índice inexistente em uma lista ou tupla.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IOError</span></code>: quando ocorre um erro durante a leitura ou gravação de um arquivo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KeyError</span></code>: quando se tenta acessar uma chave inexistente em um dicionário.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NameError</span></code>: quando uma variável é usada antes de ser definida.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TypeError</span></code>: quando ocorre uma operação incompatível com um tipo de dado específico.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ValueError</span></code>: quando uma função recebe um argumento do tipo correto, mas com um valor inesperado.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>: quando se tenta dividir um número por zero.</p></li>
+</ul>
+<section id="indexerror">
+<h3>IndexError<a class="headerlink" href="#indexerror" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>Analogia: uma receita de bolo como uma lista de instruções a serem seguidas. Se tentarmos acessar uma instrução que não existe na lista, teremos um erro semelhante. Por exemplo, se a receita tem apenas 10 etapas numeradas de 1 a 10, e tentarmos seguir a instrução 11, teremos um erro.</p>
+</div></blockquote>
+<p>Para evitar esses erros, verifique se o índice está dentro do intervalo permitido antes de tentar acessar o elemento correspondente. É possível usar a função len() para obter o tamanho da lista ou sequência e a declaração if para verificar se o índice está dentro dos limites.</p>
+</section>
+<section id="ioerror">
+<h3>IOError<a class="headerlink" href="#ioerror" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Analogia com uma receita de bolo: a receita pede ovos. Você abre a geladeira e descobre que o ovo acabou.</p>
+</div></blockquote>
+<p>Ocorre quando o Python tenta acessar um arquivo que não existe no sistema. Veja se o arquivo que você está tentando abrir existe e se você está tentando abrir no lugar correto.</p>
+</section>
+<section id="keyerror">
+<h3>KeyError<a class="headerlink" href="#keyerror" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>Uma analogia com receita de bolo para o erro “KeyError” seria tentar encontrar uma receita em um livro de culinária usando uma página inexistente como referência. Por exemplo, imagine que um livro de culinária tenha receitas em suas páginas de 1 a 50, mas você tenta encontrar uma receita na página 60. Como essa página não existe, o livro não será capaz de encontrar a receita que você está procurando. Aqui é a mesma coisa.</p>
+</div></blockquote>
+<p>Acontece quando você tenta acessar uma chave que não existe em um dicionário. Um exemplo de erro do tipo KeyError em Python é quando tentamos acessar uma chave que não existe em um dicionário. Por exemplo, se tivermos um dicionário com as chaves “nome”, “idade” e “sexo”, e tentarmos acessar a chave “endereço”, teremos um erro do tipo KeyError.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pessoa</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;João&quot;</span><span class="p">,</span> <span class="s2">&quot;idade&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;sexo&quot;</span><span class="p">:</span> <span class="s2">&quot;masculino&quot;</span><span class="p">}</span>
+<span class="n">endereco</span> <span class="o">=</span> <span class="n">pessoa</span><span class="p">[</span><span class="s2">&quot;endereco&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Aqui, apareceria uma mensagem de erro com o conteúdo <code class="docutils literal notranslate"><span class="pre">KeyError:</span> <span class="pre">'endereco'</span></code>. Da mesma forma que o <code class="docutils literal notranslate"><span class="pre">endereco</span></code> não existe naquele dicionário chamado <code class="docutils literal notranslate"><span class="pre">pessoa</span></code>, veja se o que você está tentando acessar realmente existe no dicionário antes de prosseguir.</p>
+</section>
+<section id="nameerror">
+<h3>NameError<a class="headerlink" href="#nameerror" title="Permalink to this heading">#</a></h3>
+<p>Acontece quando o Python não encontrou a definição/onde está aquela variável ou função que você deseja usar.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NameError:</span> <span class="pre">name</span> <span class="pre">'nome_da_variavel'</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NameError:</span> <span class="pre">name</span> <span class="pre">'nome_da_funcao'</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Analogamente, podemos pensar em uma receita de bolo onde o cozinheiro precisa utilizar um ingrediente que não foi listado na receita. Nesse caso, ele precisaria verificar se está utilizando todos os ingredientes necessários, se leu direito a receita, e adicionar o ingrediente que está faltando antes de prosseguir com a mesma.</p>
+</div></blockquote>
+<p>Veja se você não digitou incorretamente o nome de uma variável ou função, ou se não está as usando no momento/local correto do código.</p>
+</section>
+<section id="typeerror">
+<h3>TypeError<a class="headerlink" href="#typeerror" title="Permalink to this heading">#</a></h3>
+<p>O tipo TypeError ocorre quando uma operação ou função é aplicada a um tipo de objeto incorreto.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">unsupported</span> <span class="pre">operand</span> <span class="pre">type(s)</span> <span class="pre">for</span> <span class="pre">+:</span> <span class="pre">'int'</span> <span class="pre">and</span> <span class="pre">'str'</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Usando uma analogia com uma receita de bolo, imagine que você está seguindo uma receita de bolo e, em determinado momento, a receita pede para que você misture 2 colheres de açúcar com 1 colher de farinha de trigo. Você sabe que açúcar e farinha de trigo são ingredientes diferentes e que não podem ser misturados diretamente, assim como inteiros e strings em Python não podem ser concatenados diretamente usando o operador “+”.</p>
+</div></blockquote>
+<p>Ocorre quando você tenta somar um número a uma string (texto). Para resolver esse erro, é necessário converter o número inteiro em uma string antes de somá-lo à outra string. Isso pode ser feito usando a função “str()”, que converte um objeto em sua representação em string.</p>
+<p>Por exemplo, se você quiser somar um número inteiro “x” à string “olá”, você deve fazer:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;olá&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Isso irá converter o número inteiro em uma string e concatená-lo à string <code class="docutils literal notranslate"><span class="pre">olá</span></code>, produzindo a saída <code class="docutils literal notranslate"><span class="pre">olá42</span></code>.</p>
+<p>Um erro assim também pode ocorrer ao tentar somar uma string a uma lista, por exemplo. Nesse caso, a solução é converter a string em uma lista antes de tentar somá-la à outra lista.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">'NoneType'</span> <span class="pre">object</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">iterable</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Usando uma analogia: imagine que estamos seguindo uma receita para fazer um bolo e uma das etapas é misturar os ingredientes secos em uma tigela. Porém, se não tivermos esses ingredientes disponíveis ou se misturarmos outros ingredientes que não sejam os corretos, não poderemos realizar essa etapa. Em outras palavras, a tigela estará vazia ou com ingredientes incompatíveis e, portanto, não será possível misturá-los para obter a massa do bolo.</p>
+</div></blockquote>
+<p>Ocorre quando tentamos iterar (percorrer/fazer um loop/usar um <code class="docutils literal notranslate"><span class="pre">for</span></code> ou um <code class="docutils literal notranslate"><span class="pre">while</span></code>) sobre uma variável que não tem nada dentro dela. Para resolver esse erro, é preciso verificar se o objeto em questão não é <code class="docutils literal notranslate"><span class="pre">None</span></code> (vazio) antes de tentar iterar sobre ele.</p>
+<p>Uma das formas de fazer isso é utilizando uma estrutura de condição (<code class="docutils literal notranslate"><span class="pre">if</span></code>) para ver se o objeto é diferente de <code class="docutils literal notranslate"><span class="pre">None</span></code> antes de iterar sobre ele. Por exemplo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">if</span> <span class="n">lista</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">lista</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A lista está vazia&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Nesse exemplo, antes de tentar iterar sobre a lista, verificamos se ela é diferente de <code class="docutils literal notranslate"><span class="pre">None</span></code>. Se for diferente, podemos iterar normalmente. Caso contrário, exibimos uma mensagem indicando que a lista é vazia.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">'int'</span> <span class="pre">object</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">callable</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Usando uma analogia com uma receita de bolo, é como se você estivesse seguindo uma receita que pede para misturar os ingredientes secos em uma tigela e depois adicionar o leite e o óleo vegetal, misturando tudo até formar uma massa homogênea. Porém, ao invés de colocar o leite, você acidentalmente adiciona um copo de água, resultando em uma massa muito líquida e difícil de trabalhar. Nesse exemplo, o leite seria o objeto correto que você deveria ter adicionado, enquanto a água seria o objeto <code class="docutils literal notranslate"><span class="pre">int</span></code> que não é <code class="docutils literal notranslate"><span class="pre">callable</span></code>, ou seja, não pode ser chamado para executar uma ação naquele contexto específico. Assim como a receita de bolo não funciona corretamente com a adição de um ingrediente errado, o código em Python também pode gerar erros quando o tipo de objeto utilizado não é compatível com a operação que está sendo realizada.</p>
+</div></blockquote>
+<p>Este erro acontece quando você tenta usar uma variável como sendo uma função. Para corrigir esse erro, basta verificar se a sua variável é realmente uma função antes de tentar chamá-la.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">'str'</span> <span class="pre">object</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">support</span> <span class="pre">item</span> <span class="pre">assignment</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Usando uma analogia com uma receita de bolo, seria como tentar substituir um ingrediente específico por outro em uma receita que já foi preparada e misturada. Uma solução seria criar uma nova receita com o ingrediente correto desde o início ou remover o ingrediente errado e acrescentar o ingrediente correto separadamente.</p>
+</div></blockquote>
+<p>Este erro acontece quando você tenta mudar o valor de um caractere específico de uma string em Python, o que não é permitido porque as strings são objetos imutáveis (ou seja: você não pode modificar ela depois que ela é criada).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">'tuple'</span> <span class="pre">object</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">support</span> <span class="pre">item</span> <span class="pre">assignment</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Podemos pensar na tupla como uma receita de bolo em que os ingredientes são listados na ordem correta e não podem ser modificados. Se quisermos adicionar um ingrediente ou alterar a quantidade de um ingrediente, não podemos simplesmente alterar a receita original. Precisamos criar uma nova receita ou escrever as mudanças em uma cópia da receita original.</p>
+</div></blockquote>
+<p>Ocorre quando tentamos atribuir um valor a um item específico de uma tupla, o que não é possível porque as tuplas são imutáveis em Python. Para resolver esse erro, podemos criar uma nova tupla com os valores atualizados ou converter a tupla em uma lista, modificar o valor desejado e, em seguida, converter a lista novamente em uma tupla.</p>
+</section>
+</section>
+<section id="valueerror">
+<h2>ValueError<a class="headerlink" href="#valueerror" title="Permalink to this heading">#</a></h2>
+<p>Ocorrem quando o tipo de dado é correto, mas o valor é inválido para a operação que está sendo realizada.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">invalid</span> <span class="pre">literal</span> <span class="pre">for</span> <span class="pre">int()</span> <span class="pre">with</span> <span class="pre">base</span> <span class="pre">10</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Uma analogia com uma receita de bolo para esse erro seria tentar usar uma xícara de farinha de trigo para medir uma xícara de açúcar. Ambos são ingredientes em pó, mas são diferentes em suas características e funções na receita. Da mesma forma, a função int() espera receber uma string que represente um número inteiro, mas se você passar uma string que não possa ser convertida em um número, como “cinco”, o erro ValueError será gerado.</p>
+</div></blockquote>
+<p>Ocorre quando você está tentando converter uma string que não é um número para um número. É como se você estivesse tentando converter o texto <code class="docutils literal notranslate"><span class="pre">banana</span></code> para número, mas <code class="docutils literal notranslate"><span class="pre">banana</span></code> possui letras, e não dígitos. Não é como se você estivesse convertendo um texto <code class="docutils literal notranslate"><span class="pre">15</span></code> para número, que aí sim possuiria somente dígitos.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">math</span> <span class="pre">domain</span> <span class="pre">error</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Analogia com receita de bolo: tentar assar o liquidificador. Você teria que assar a massa do bolo que você preparou, e não este eletrodoméstico.</p>
+</div></blockquote>
+<p>Acontece quando você tenta fazer uma operação que não faz sentido para aquele número. Um exemplo seria calcular a raiz quadrada de um número negativo.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">could</span> <span class="pre">not</span> <span class="pre">convert</span> <span class="pre">string</span> <span class="pre">to</span> <span class="pre">float</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Analogia com receita de bolo: a receita pede para você medir 1/2 xícara de açúcar, mas você acidentalmente coloca farinha na xícara em vez de açúcar. Quando você tenta adicionar a farinha à mistura, ela não funciona da mesma forma que o açúcar e pode estragar todo o bolo.</p>
+</div></blockquote>
+<p>Acontece quando você tenta converter uma string que não é um número para um número, ou quando você tenta converter um número que possui vírgulas no lugar de pontos. É como se você estivesse tentando converter o texto <code class="docutils literal notranslate"><span class="pre">banana</span></code> para número, mas <code class="docutils literal notranslate"><span class="pre">banana</span></code> possui letras, e não dígitos. Não é como se você estivesse convertendo um texto <code class="docutils literal notranslate"><span class="pre">15.5</span></code> para número, que aí sim possuiria somente dígitos e o ponto que divide separa o valor inteiro das casas decimais. Outro exemplo é quando você tentaria converter <code class="docutils literal notranslate"><span class="pre">15,5</span></code>. Em Python, precisamos usar pontos ao invés de vírgulas para dividir o valor inteiro do valor decimal.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">not</span> <span class="pre">enough</span> <span class="pre">values</span> <span class="pre">to</span> <span class="pre">unpack</span> <span class="pre">(expected</span> <span class="pre">x,</span> <span class="pre">got</span> <span class="pre">y)</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Em uma analogia com uma receita de bolo, podemos imaginar que estamos seguindo uma receita que pede para misturar dois ingredientes, mas acabamos adicionando três. Por exemplo, a receita pede para misturar açúcar e manteiga, mas adicionamos também a água. Quando chegamos na etapa de misturar, a receita pede para misturar os dois itens com cuidado para não estragar: só que agora é tarde demais.</p>
+</div></blockquote>
+<p>Ocorre quando tentamos extrair/trabalhar com mais valores do que uma função retorna. Por exemplo, se temos a sequência (1, 2) e tentamos atribuir os valores a três variáveis, teremos um erro desse tipo. Verifique quantos itens realmente existem naquele momento do código.</p>
+<section id="zerodivisionerror">
+<h3>ZeroDivisionError<a class="headerlink" href="#zerodivisionerror" title="Permalink to this heading">#</a></h3>
+<p>O tipo TypeError aparece quando se tenta dividir um número por zero em Python. Este erro pode ocorrer em diferentes situações, como em expressões matemáticas que envolvem divisão, ou quando se tenta calcular a média de uma lista vazia, por exemplo.</p>
+<p>Verifique se o denominador da sua divisão não é zero.</p>
+</section>
+</section>
+<section id="referencias-bibliograficas">
+<h2>Referências bibliográficas<a class="headerlink" href="#referencias-bibliograficas" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>GEEKSFORGEEKS. Python String Operations. Disponível em: <a class="reference external" href="https://www.geeksforgeeks.org/python-strings/">https://www.geeksforgeeks.org/python-strings/</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>MATTHES, E. Python Crash Course: A Hands-On, Project-Based Introduction to Programming. No Starch Press, 2019.</p></li>
+<li><p>PYTHON. Built-in Exceptions. Disponível em: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html">https://docs.python.org/3/library/exceptions.html</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>PYTHON. Built-in Types: Strings. Disponível em: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str">https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>PYTHON. 4. More Control Flow Tools. Python Documentation, 2022. Disponível em: <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#tuples-and-sequences">https://docs.python.org/3/tutorial/controlflow.html#tuples-and-sequences</a>. Acesso em: 03 mar. 2023.</p></li>
+<li><p>SWEIGART, A. Automate the Boring Stuff with Python: Practical Programming for Total Beginners. No Starch Press, 2019.</p></li>
+<li><p>W3SCHOOLS. Python Built-in Exceptions. Disponível em: <a class="reference external" href="https://www.w3schools.com/python/python_ref_exceptions.asp">https://www.w3schools.com/python/python_ref_exceptions.asp</a>. Acesso em: 03 mar. 2023.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09-POO.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-voce-sabera-se-voce-ler-todo-este-capitulo">O que você saberá se você ler todo este capítulo?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grupos-de-excecoes-mais-comuns">Grupos de exceções mais comuns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexerror">IndexError</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ioerror">IOError</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keyerror">KeyError</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nameerror">NameError</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#typeerror">TypeError</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valueerror">ValueError</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zerodivisionerror">ZeroDivisionError</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-bibliograficas">Referências bibliográficas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Wellington Rodrigo Monteiro
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Aug 25, 2023.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
