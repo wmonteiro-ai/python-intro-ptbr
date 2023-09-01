@@ -4,19 +4,10 @@
 format: jb-book
 root: intro
 parts:
-- caption: "Parte 1: Sabendo onde estamos"
+#- caption: "Parte 1: Sabendo onde estamos"
+#  chapters:
+#  - file: 01-Introducao-Ambiente.ipynb
+#  - file: 02-Introducao-Algoritmos.ipynb
+- caption: "Arquitetura"
   chapters:
-  - file: 01-Introducao-Ambiente.ipynb
-  - file: 02-Introducao-Algoritmos.ipynb
-- caption: "Parte 2: Fazendo coisas legais"
-  chapters:
-  - file: 03-Variaveis-IO.ipynb
-  - file: 04-Estruturas-Selecao.ipynb
-  - file: 05-Estruturas-Repeticao.ipynb
-  - file: 06-Funcoes.ipynb
-  - file: 07-Listas-Dicionarios-Tuplas.ipynb
-  - file: 08-Manipulacao-Arquivos.ipynb
-  - file: 09-POO.ipynb
-- caption: "Parte 3: Resolvendo tretas"
-  chapters:
-  - file: 10-Erros-Comuns.ipynb
+  - file: Git.ipynb
