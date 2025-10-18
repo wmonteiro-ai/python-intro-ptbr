@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11&nbsp; Erros/exceções em Python – Python Descomplicado</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./09-POO.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f2c6d6e2b784ddc5de38779acc06f37d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-Erros-Comuns.html">Parte 3: Resolvendo tretas</a></li><li class="breadcrumb-item"><a href="./10-Erros-Comuns.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erros/exceções em Python</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python Descomplicado</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 1: Sabendo onde estamos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introducao-Ambiente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Introducao-Algoritmos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 2: Fazendo coisas legais</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Variaveis-IO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeiros (ou segundos) passos em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Estruturas-Selecao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Estruturas-Repeticao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Repetições, repetições, repetições: loops em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tudo em blocos: trabalhando com funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Listas-Dicionarios-Tuplas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">De um bolo para uma festa: listas, dicionários e tuplas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Manipulacao-Arquivos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-POO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 3: Resolvendo tretas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Erros-Comuns.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erros/exceções em Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#o-que-você-saberá-se-você-ler-todo-este-capítulo" id="toc-o-que-você-saberá-se-você-ler-todo-este-capítulo" class="nav-link active" data-scroll-target="#o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">11.1</span> O que você saberá se você ler todo este capítulo?</a></li>
+  <li><a href="#grupos-de-exceções-mais-comuns" id="toc-grupos-de-exceções-mais-comuns" class="nav-link" data-scroll-target="#grupos-de-exceções-mais-comuns"><span class="header-section-number">11.2</span> Grupos de exceções mais comuns</a>
+  <ul class="collapse">
+  <li><a href="#indexerror" id="toc-indexerror" class="nav-link" data-scroll-target="#indexerror"><span class="header-section-number">11.2.1</span> IndexError</a></li>
+  <li><a href="#ioerror" id="toc-ioerror" class="nav-link" data-scroll-target="#ioerror"><span class="header-section-number">11.2.2</span> IOError</a></li>
+  <li><a href="#keyerror" id="toc-keyerror" class="nav-link" data-scroll-target="#keyerror"><span class="header-section-number">11.2.3</span> KeyError</a></li>
+  <li><a href="#nameerror" id="toc-nameerror" class="nav-link" data-scroll-target="#nameerror"><span class="header-section-number">11.2.4</span> NameError</a></li>
+  <li><a href="#typeerror" id="toc-typeerror" class="nav-link" data-scroll-target="#typeerror"><span class="header-section-number">11.2.5</span> TypeError</a></li>
+  </ul></li>
+  <li><a href="#valueerror" id="toc-valueerror" class="nav-link" data-scroll-target="#valueerror"><span class="header-section-number">11.3</span> ValueError</a>
+  <ul class="collapse">
+  <li><a href="#zerodivisionerror" id="toc-zerodivisionerror" class="nav-link" data-scroll-target="#zerodivisionerror"><span class="header-section-number">11.3.1</span> ZeroDivisionError</a></li>
+  </ul></li>
+  <li><a href="#referências-bibliográficas" id="toc-referências-bibliográficas" class="nav-link" data-scroll-target="#referências-bibliográficas"><span class="header-section-number">11.4</span> Referências bibliográficas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-Erros-Comuns.html">Parte 3: Resolvendo tretas</a></li><li class="breadcrumb-item"><a href="./10-Erros-Comuns.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erros/exceções em Python</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erros/exceções em Python</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>(content:commonerrors)=</p>
+<section id="o-que-você-saberá-se-você-ler-todo-este-capítulo" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">11.1</span> O que você saberá se você ler todo este capítulo?</h2>
+<p>A ideia não é ler todo ele, mas que possa servir como uma consulta. Assim, a ideia é você encontrar o erro que está tendo, entender o <em>motivo</em> dele aparecer e como resolver.</p>
+</section>
+<section id="grupos-de-exceções-mais-comuns" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="grupos-de-exceções-mais-comuns"><span class="header-section-number">11.2</span> Grupos de exceções mais comuns</h2>
+<p>Os tipos de exceções mais comuns em Python incluem:</p>
+<ul>
+<li><code>IndexError</code>: quando se tenta acessar um índice inexistente em uma lista ou tupla.</li>
+<li><code>IOError</code>: quando ocorre um erro durante a leitura ou gravação de um arquivo.</li>
+<li><code>KeyError</code>: quando se tenta acessar uma chave inexistente em um dicionário.</li>
+<li><code>NameError</code>: quando uma variável é usada antes de ser definida.</li>
+<li><code>TypeError</code>: quando ocorre uma operação incompatível com um tipo de dado específico.</li>
+<li><code>ValueError</code>: quando uma função recebe um argumento do tipo correto, mas com um valor inesperado.</li>
+<li><code>ZeroDivisionError</code>: quando se tenta dividir um número por zero.</li>
+</ul>
+<section id="indexerror" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="indexerror"><span class="header-section-number">11.2.1</span> IndexError</h3>
+<blockquote class="blockquote">
+<p>Analogia: uma receita de bolo como uma lista de instruções a serem seguidas. Se tentarmos acessar uma instrução que não existe na lista, teremos um erro semelhante. Por exemplo, se a receita tem apenas 10 etapas numeradas de 1 a 10, e tentarmos seguir a instrução 11, teremos um erro.</p>
+</blockquote>
+<p>Para evitar esses erros, verifique se o índice está dentro do intervalo permitido antes de tentar acessar o elemento correspondente. É possível usar a função len() para obter o tamanho da lista ou sequência e a declaração if para verificar se o índice está dentro dos limites.</p>
+</section>
+<section id="ioerror" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="ioerror"><span class="header-section-number">11.2.2</span> IOError</h3>
+<ul>
+<li><code>FileNotFoundError</code></li>
+</ul>
+<blockquote class="blockquote">
+<p>Analogia com uma receita de bolo: a receita pede ovos. Você abre a geladeira e descobre que o ovo acabou.</p>
+</blockquote>
+<p>Ocorre quando o Python tenta acessar um arquivo que não existe no sistema. Veja se o arquivo que você está tentando abrir existe e se você está tentando abrir no lugar correto.</p>
+</section>
+<section id="keyerror" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="keyerror"><span class="header-section-number">11.2.3</span> KeyError</h3>
+<blockquote class="blockquote">
+<p>Uma analogia com receita de bolo para o erro “KeyError” seria tentar encontrar uma receita em um livro de culinária usando uma página inexistente como referência. Por exemplo, imagine que um livro de culinária tenha receitas em suas páginas de 1 a 50, mas você tenta encontrar uma receita na página 60. Como essa página não existe, o livro não será capaz de encontrar a receita que você está procurando. Aqui é a mesma coisa.</p>
+</blockquote>
+<p>Acontece quando você tenta acessar uma chave que não existe em um dicionário. Um exemplo de erro do tipo KeyError em Python é quando tentamos acessar uma chave que não existe em um dicionário. Por exemplo, se tivermos um dicionário com as chaves “nome”, “idade” e “sexo”, e tentarmos acessar a chave “endereço”, teremos um erro do tipo KeyError.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pessoa <span class="op">=</span> {<span class="st">"nome"</span>: <span class="st">"João"</span>, <span class="st">"idade"</span>: <span class="dv">25</span>, <span class="st">"sexo"</span>: <span class="st">"masculino"</span>}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>endereco <span class="op">=</span> pessoa[<span class="st">"endereco"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aqui, apareceria uma mensagem de erro com o conteúdo <code>KeyError: 'endereco'</code>. Da mesma forma que o <code>endereco</code> não existe naquele dicionário chamado <code>pessoa</code>, veja se o que você está tentando acessar realmente existe no dicionário antes de prosseguir.</p>
+</section>
+<section id="nameerror" class="level3" data-number="11.2.4">
+<h3 data-number="11.2.4" class="anchored" data-anchor-id="nameerror"><span class="header-section-number">11.2.4</span> NameError</h3>
+<p>Acontece quando o Python não encontrou a definição/onde está aquela variável ou função que você deseja usar.</p>
+<ul>
+<li><code>NameError: name 'nome_da_variavel' is not defined</code></li>
+<li><code>NameError: name 'nome_da_funcao' is not defined</code></li>
+</ul>
+<blockquote class="blockquote">
+<p>Analogamente, podemos pensar em uma receita de bolo onde o cozinheiro precisa utilizar um ingrediente que não foi listado na receita. Nesse caso, ele precisaria verificar se está utilizando todos os ingredientes necessários, se leu direito a receita, e adicionar o ingrediente que está faltando antes de prosseguir com a mesma.</p>
+</blockquote>
+<p>Veja se você não digitou incorretamente o nome de uma variável ou função, ou se não está as usando no momento/local correto do código.</p>
+</section>
+<section id="typeerror" class="level3" data-number="11.2.5">
+<h3 data-number="11.2.5" class="anchored" data-anchor-id="typeerror"><span class="header-section-number">11.2.5</span> TypeError</h3>
+<p>O tipo TypeError ocorre quando uma operação ou função é aplicada a um tipo de objeto incorreto.</p>
+<ul>
+<li><code>TypeError: unsupported operand type(s) for +: 'int' and 'str'</code></li>
+</ul>
+<blockquote class="blockquote">
+<p>Usando uma analogia com uma receita de bolo, imagine que você está seguindo uma receita de bolo e, em determinado momento, a receita pede para que você misture 2 colheres de açúcar com 1 colher de farinha de trigo. Você sabe que açúcar e farinha de trigo são ingredientes diferentes e que não podem ser misturados diretamente, assim como inteiros e strings em Python não podem ser concatenados diretamente usando o operador “+”.</p>
+</blockquote>
+<p>Ocorre quando você tenta somar um número a uma string (texto). Para resolver esse erro, é necessário converter o número inteiro em uma string antes de somá-lo à outra string. Isso pode ser feito usando a função “str()”, que converte um objeto em sua representação em string.</p>
+<p>Por exemplo, se você quiser somar um número inteiro “x” à string “olá”, você deve fazer:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"olá"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> s <span class="op">+</span> <span class="bu">str</span>(x)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Isso irá converter o número inteiro em uma string e concatená-lo à string <code>olá</code>, produzindo a saída <code>olá42</code>.</p>
+<p>Um erro assim também pode ocorrer ao tentar somar uma string a uma lista, por exemplo. Nesse caso, a solução é converter a string em uma lista antes de tentar somá-la à outra lista.</p>
+<ul>
+<li><code>TypeError: 'NoneType' object is not iterable</code></li>
+</ul>
+<blockquote class="blockquote">
+<p>Usando uma analogia: imagine que estamos seguindo uma receita para fazer um bolo e uma das etapas é misturar os ingredientes secos em uma tigela. Porém, se não tivermos esses ingredientes disponíveis ou se misturarmos outros ingredientes que não sejam os corretos, não poderemos realizar essa etapa. Em outras palavras, a tigela estará vazia ou com ingredientes incompatíveis e, portanto, não será possível misturá-los para obter a massa do bolo.</p>
+</blockquote>
+<p>Ocorre quando tentamos iterar (percorrer/fazer um loop/usar um <code>for</code> ou um <code>while</code>) sobre uma variável que não tem nada dentro dela. Para resolver esse erro, é preciso verificar se o objeto em questão não é <code>None</code> (vazio) antes de tentar iterar sobre ele.</p>
+<p>Uma das formas de fazer isso é utilizando uma estrutura de condição (<code>if</code>) para ver se o objeto é diferente de <code>None</code> antes de iterar sobre ele. Por exemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> lista <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> item <span class="kw">in</span> lista:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(item)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"A lista está vazia"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Nesse exemplo, antes de tentar iterar sobre a lista, verificamos se ela é diferente de <code>None</code>. Se for diferente, podemos iterar normalmente. Caso contrário, exibimos uma mensagem indicando que a lista é vazia.</p>
+<ul>
+<li><code>TypeError: 'int' object is not callable</code></li>
+</ul>
+<blockquote class="blockquote">
+<p>Usando uma analogia com uma receita de bolo, é como se você estivesse seguindo uma receita que pede para misturar os ingredientes secos em uma tigela e depois adicionar o leite e o óleo vegetal, misturando tudo até formar uma massa homogênea. Porém, ao invés de colocar o leite, você acidentalmente adiciona um copo de água, resultando em uma massa muito líquida e difícil de trabalhar. Nesse exemplo, o leite seria o objeto correto que você deveria ter adicionado, enquanto a água seria o objeto <code>int</code> que não é <code>callable</code>, ou seja, não pode ser chamado para executar uma ação naquele contexto específico. Assim como a receita de bolo não funciona corretamente com a adição de um ingrediente errado, o código em Python também pode gerar erros quando o tipo de objeto utilizado não é compatível com a operação que está sendo realizada.</p>
+</blockquote>
+<p>Este erro acontece quando você tenta usar uma variável como sendo uma função. Para corrigir esse erro, basta verificar se a sua variável é realmente uma função antes de tentar chamá-la.</p>
+<ul>
+<li><code>TypeError: 'str' object does not support item assignment</code></li>
+</ul>
+<blockquote class="blockquote">
+<p>Usando uma analogia com uma receita de bolo, seria como tentar substituir um ingrediente específico por outro em uma receita que já foi preparada e misturada. Uma solução seria criar uma nova receita com o ingrediente correto desde o início ou remover o ingrediente errado e acrescentar o ingrediente correto separadamente.</p>
+</blockquote>
+<p>Este erro acontece quando você tenta mudar o valor de um caractere específico de uma string em Python, o que não é permitido porque as strings são objetos imutáveis (ou seja: você não pode modificar ela depois que ela é criada).</p>
+<ul>
+<li><code>TypeError: 'tuple' object does not support item assignment</code></li>
+</ul>
+<blockquote class="blockquote">
+<p>Podemos pensar na tupla como uma receita de bolo em que os ingredientes são listados na ordem correta e não podem ser modificados. Se quisermos adicionar um ingrediente ou alterar a quantidade de um ingrediente, não podemos simplesmente alterar a receita original. Precisamos criar uma nova receita ou escrever as mudanças em uma cópia da receita original.</p>
+</blockquote>
+<p>Ocorre quando tentamos atribuir um valor a um item específico de uma tupla, o que não é possível porque as tuplas são imutáveis em Python. Para resolver esse erro, podemos criar uma nova tupla com os valores atualizados ou converter a tupla em uma lista, modificar o valor desejado e, em seguida, converter a lista novamente em uma tupla.</p>
+</section>
+</section>
+<section id="valueerror" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="valueerror"><span class="header-section-number">11.3</span> ValueError</h2>
+<p>Ocorrem quando o tipo de dado é correto, mas o valor é inválido para a operação que está sendo realizada.</p>
+<ul>
+<li><code>ValueError: invalid literal for int() with base 10</code></li>
+</ul>
+<blockquote class="blockquote">
+<p>Uma analogia com uma receita de bolo para esse erro seria tentar usar uma xícara de farinha de trigo para medir uma xícara de açúcar. Ambos são ingredientes em pó, mas são diferentes em suas características e funções na receita. Da mesma forma, a função int() espera receber uma string que represente um número inteiro, mas se você passar uma string que não possa ser convertida em um número, como “cinco”, o erro ValueError será gerado.</p>
+</blockquote>
+<p>Ocorre quando você está tentando converter uma string que não é um número para um número. É como se você estivesse tentando converter o texto <code>banana</code> para número, mas <code>banana</code> possui letras, e não dígitos. Não é como se você estivesse convertendo um texto <code>15</code> para número, que aí sim possuiria somente dígitos.</p>
+<ul>
+<li><code>ValueError: math domain error</code></li>
+</ul>
+<blockquote class="blockquote">
+<p>Analogia com receita de bolo: tentar assar o liquidificador. Você teria que assar a massa do bolo que você preparou, e não este eletrodoméstico.</p>
+</blockquote>
+<p>Acontece quando você tenta fazer uma operação que não faz sentido para aquele número. Um exemplo seria calcular a raiz quadrada de um número negativo.</p>
+<ul>
+<li><code>ValueError: could not convert string to float</code></li>
+</ul>
+<blockquote class="blockquote">
+<p>Analogia com receita de bolo: a receita pede para você medir 1/2 xícara de açúcar, mas você acidentalmente coloca farinha na xícara em vez de açúcar. Quando você tenta adicionar a farinha à mistura, ela não funciona da mesma forma que o açúcar e pode estragar todo o bolo.</p>
+</blockquote>
+<p>Acontece quando você tenta converter uma string que não é um número para um número, ou quando você tenta converter um número que possui vírgulas no lugar de pontos. É como se você estivesse tentando converter o texto <code>banana</code> para número, mas <code>banana</code> possui letras, e não dígitos. Não é como se você estivesse convertendo um texto <code>15.5</code> para número, que aí sim possuiria somente dígitos e o ponto que divide separa o valor inteiro das casas decimais. Outro exemplo é quando você tentaria converter <code>15,5</code>. Em Python, precisamos usar pontos ao invés de vírgulas para dividir o valor inteiro do valor decimal.</p>
+<ul>
+<li><code>ValueError: not enough values to unpack (expected x, got y)</code></li>
+</ul>
+<blockquote class="blockquote">
+<p>Em uma analogia com uma receita de bolo, podemos imaginar que estamos seguindo uma receita que pede para misturar dois ingredientes, mas acabamos adicionando três. Por exemplo, a receita pede para misturar açúcar e manteiga, mas adicionamos também a água. Quando chegamos na etapa de misturar, a receita pede para misturar os dois itens com cuidado para não estragar: só que agora é tarde demais.</p>
+</blockquote>
+<p>Ocorre quando tentamos extrair/trabalhar com mais valores do que uma função retorna. Por exemplo, se temos a sequência (1, 2) e tentamos atribuir os valores a três variáveis, teremos um erro desse tipo. Verifique quantos itens realmente existem naquele momento do código.</p>
+<section id="zerodivisionerror" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="zerodivisionerror"><span class="header-section-number">11.3.1</span> ZeroDivisionError</h3>
+<p>O tipo TypeError aparece quando se tenta dividir um número por zero em Python. Este erro pode ocorrer em diferentes situações, como em expressões matemáticas que envolvem divisão, ou quando se tenta calcular a média de uma lista vazia, por exemplo.</p>
+<p>Verifique se o denominador da sua divisão não é zero.</p>
+</section>
+</section>
+<section id="referências-bibliográficas" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="referências-bibliográficas"><span class="header-section-number">11.4</span> Referências bibliográficas</h2>
+<ul>
+<li>GEEKSFORGEEKS. Python String Operations. Disponível em: https://www.geeksforgeeks.org/python-strings/. Acesso em: 03 mar. 2023.</li>
+<li>MATTHES, E. Python Crash Course: A Hands-On, Project-Based Introduction to Programming. No Starch Press, 2019.</li>
+<li>PYTHON. Built-in Exceptions. Disponível em: https://docs.python.org/3/library/exceptions.html. Acesso em: 03 mar. 2023.</li>
+<li>PYTHON. Built-in Types: Strings. Disponível em: https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str. Acesso em: 03 mar. 2023.</li>
+<li>PYTHON. 4. More Control Flow Tools. Python Documentation, 2022. Disponível em: https://docs.python.org/3/tutorial/controlflow.html#tuples-and-sequences. Acesso em: 03 mar. 2023.</li>
+<li>SWEIGART, A. Automate the Boring Stuff with Python: Practical Programming for Total Beginners. No Starch Press, 2019.</li>
+<li>W3SCHOOLS. Python Built-in Exceptions. Disponível em: https://www.w3schools.com/python/python_ref_exceptions.asp. Acesso em: 03 mar. 2023.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./09-POO.html" class="pagination-link" aria-label="O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Arrumando as coisas para começar a falar de algoritmos – Python Descomplicado</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03-Variaveis-IO.html" rel="next">
+<link href="./01-Introducao-Ambiente.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f2c6d6e2b784ddc5de38779acc06f37d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-Introducao-Ambiente.html">Parte 1: Sabendo onde estamos</a></li><li class="breadcrumb-item"><a href="./02-Introducao-Algoritmos.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python Descomplicado</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 1: Sabendo onde estamos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introducao-Ambiente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Introducao-Algoritmos.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 2: Fazendo coisas legais</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Variaveis-IO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeiros (ou segundos) passos em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Estruturas-Selecao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Estruturas-Repeticao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Repetições, repetições, repetições: loops em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tudo em blocos: trabalhando com funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Listas-Dicionarios-Tuplas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">De um bolo para uma festa: listas, dicionários e tuplas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Manipulacao-Arquivos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-POO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 3: Resolvendo tretas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Erros-Comuns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erros/exceções em Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#o-que-você-saberá-se-você-ler-todo-este-capítulo" id="toc-o-que-você-saberá-se-você-ler-todo-este-capítulo" class="nav-link active" data-scroll-target="#o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">3.1</span> O que você saberá se você ler todo este capítulo?</a></li>
+  <li><a href="#os-algoritmos-e-a-sua-vida" id="toc-os-algoritmos-e-a-sua-vida" class="nav-link" data-scroll-target="#os-algoritmos-e-a-sua-vida"><span class="header-section-number">3.2</span> Os algoritmos e a sua vida</a>
+  <ul class="collapse">
+  <li><a href="#exemplo-1-fazendo-um-bolo" id="toc-exemplo-1-fazendo-um-bolo" class="nav-link" data-scroll-target="#exemplo-1-fazendo-um-bolo"><span class="header-section-number">3.2.1</span> Exemplo 1: Fazendo um bolo</a></li>
+  <li><a href="#exemplo-2-pedindo-comida-por-aplicativo" id="toc-exemplo-2-pedindo-comida-por-aplicativo" class="nav-link" data-scroll-target="#exemplo-2-pedindo-comida-por-aplicativo"><span class="header-section-number">3.2.2</span> Exemplo 2: Pedindo comida por aplicativo</a></li>
+  </ul></li>
+  <li><a href="#os-algoritmos-e-os-computadores" id="toc-os-algoritmos-e-os-computadores" class="nav-link" data-scroll-target="#os-algoritmos-e-os-computadores"><span class="header-section-number">3.3</span> Os algoritmos e os computadores</a></li>
+  <li><a href="#pseudocódigo" id="toc-pseudocódigo" class="nav-link" data-scroll-target="#pseudocódigo"><span class="header-section-number">3.4</span> Pseudocódigo</a>
+  <ul class="collapse">
+  <li><a href="#um-exemplo-de-pseudocódigo" id="toc-um-exemplo-de-pseudocódigo" class="nav-link" data-scroll-target="#um-exemplo-de-pseudocódigo"><span class="header-section-number">3.4.1</span> Um exemplo de pseudocódigo</a></li>
+  <li><a href="#onde-usarcomo-trabalhar-com-pseudocódigos" id="toc-onde-usarcomo-trabalhar-com-pseudocódigos" class="nav-link" data-scroll-target="#onde-usarcomo-trabalhar-com-pseudocódigos"><span class="header-section-number">3.4.2</span> Onde usar/como trabalhar com pseudocódigos?</a></li>
+  </ul></li>
+  <li><a href="#quase-lá-para-começar" id="toc-quase-lá-para-começar" class="nav-link" data-scroll-target="#quase-lá-para-começar"><span class="header-section-number">3.5</span> Quase lá para começar</a>
+  <ul class="collapse">
+  <li><a href="#dados" id="toc-dados" class="nav-link" data-scroll-target="#dados"><span class="header-section-number">3.5.1</span> Dados</a></li>
+  <li><a href="#operadores" id="toc-operadores" class="nav-link" data-scroll-target="#operadores"><span class="header-section-number">3.5.2</span> Operadores</a></li>
+  <li><a href="#próximos-passos" id="toc-próximos-passos" class="nav-link" data-scroll-target="#próximos-passos"><span class="header-section-number">3.5.3</span> Próximos passos</a></li>
+  </ul></li>
+  <li><a href="#referências-bibliográficas" id="toc-referências-bibliográficas" class="nav-link" data-scroll-target="#referências-bibliográficas"><span class="header-section-number">3.6</span> Referências bibliográficas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-Introducao-Ambiente.html">Parte 1: Sabendo onde estamos</a></li><li class="breadcrumb-item"><a href="./02-Introducao-Algoritmos.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="o-que-você-saberá-se-você-ler-todo-este-capítulo" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">3.1</span> O que você saberá se você ler todo este capítulo?</h2>
+<ol type="1">
+<li>Você irá trabalhar em uma empresa ou em um mestrado/doutorado para resolver problemas usando Python, e não somente para apertar botões e comandos. Por isso, você precisará saber trabalhar com algoritmos (usando Python ou qualquer outra linguagem).</li>
+<li>Algoritmo não é sinônimo de inteligência artificial, e você pode pensar em casos da vida real em forma de algoritmos.</li>
+<li>Algoritmos podem conter dados.
+<ul>
+<li>Dados que não mudam são armazenados em constantes.</li>
+<li>Dados que mudam são armazenados em variáveis.</li>
+<li>Dados são manipulados com operadores (ex.: adição, subtração, divisão, comparação).</li>
+<li>Dados podem ser números, textos ou variáveis lógicas (verdadeiro/falso), dentre outros.</li>
+</ul></li>
+<li>Todo algoritmo é organizado da seguinte forma:
+<ul>
+<li>Entrada: são os pré-requisitos que um algoritmo tem para que possa funcionar, ou seja, os dados ou informações necessárias para realizar a tarefa.</li>
+<li>Processamento: é a sequência de passos ou instruções que serão executados para processar a entrada e produzir uma saída.</li>
+<li>Saída: é o resultado final que o algoritmo produz, que pode ser uma resposta, um valor ou uma ação.</li>
+</ul></li>
+<li>Algoritmos servem para resolver problemas de um jeito estruturado e organizado seguindo uma sequência lógica: não importa o computador/pessoa que execute aquele algoritmo - devemos esperar o mesmo resultado.
+<ul>
+<li><em>Exemplo:</em> não importa o modelo de celular, a cidade ou o restaurante - o aplicativo de delivery de comida deve funcionar da mesma forma para todas estas combinações possíveis.</li>
+</ul></li>
+<li>O algoritmo precisa ser claro, conciso e eficiente na solução do problema proposto.</li>
+</ol>
+<p>Ah, antes de começar: veja o vídeo abaixo (ele possui legendas traduzidas para o português, se quiser). É um exemplo do que acontece quando você faz um algoritmo sem pensar direito na sua organização. No caso, Josh Darnit pediu para que os seus filhos fizessem um algoritmo (um passo-a-passo) para fazer um sanduíche de manteiga de amendoim e geleia. E ele seguiu as instruções ao pé da letra, como um computador seguirá ao pé da letra um algoritmo que você irá desenvolver no futuro.</p>
+<a href="https://www.youtube.com/watch?v=cDA3_5982h8" target="_blank">
+<figure class="figure">
+<img alt="Imagem de um bolo redondo de chocolate" src="https://img.youtube.com/vi/cDA3_5982h8/0.jpg" style="max-width:400px; display: block; margin: auto;" class="figure-img">
+</figure>
+</a><p><a href="https://www.youtube.com/watch?v=cDA3_5982h8" target="_blank"></a></p>
+</section>
+<section id="os-algoritmos-e-a-sua-vida" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="os-algoritmos-e-a-sua-vida"><span class="header-section-number">3.2</span> Os algoritmos e a sua vida</h2>
+<p>Vamos supor que você quer preparar um bolo. Você sabe que para preparar um bolo, você precisa seguir uma receita passo a passo. Essa receita é um conjunto de instruções que você segue para chegar ao resultado desejado.</p>
+<p>Assim como na receita de bolo, um algoritmo é um <strong>conjunto de instruções que segue uma sequência lógica de passos para resolver um problema específico</strong>. Esses passos podem ser executados em ordem (ou seja: primeiro fazemos as instruções do passo 1, depois o passo 2, depois o passo 3 e assim sucessivamente) ou podem ter condições que definem <em>qual</em> passo deve ser executado em seguida.</p>
+<section id="exemplo-1-fazendo-um-bolo" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="exemplo-1-fazendo-um-bolo"><span class="header-section-number">3.2.1</span> Exemplo 1: Fazendo um bolo</h3>
+<p>Vejamos por exemplo uma receita de bolo de chocolate. Perceba principalmente no exemplo abaixo a organização sequencial da receita e como ela é preparada em uma sequência lógica (afinal, não faria sentido lhe dar o modo de preparo sem passar primeiro os ingredientes, não é?).</p>
+<figure class="figure">
+<img alt="Imagem de um bolo redondo de chocolate" src="assets/american-heritage-chocolate-Id8BO472TbY-unsplash.jpg" style="max-width:400px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Créditos: <a href="https://unsplash.com/@americanheritagechocolate?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">American Heritage Chocolate</a> no <a href="https://unsplash.com/photos/Id8BO472TbY?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+</figcaption>
+</figure>
+<section id="ingredientes" class="level5" data-number="3.2.1.0.1">
+<h5 data-number="3.2.1.0.1" class="anchored" data-anchor-id="ingredientes"><span class="header-section-number">3.2.1.0.1</span> Ingredientes</h5>
+<ul>
+<li>1 xícara de açúcar</li>
+<li>¾ xícara de farinha de trigo</li>
+<li>½ xícara de cacau em pó</li>
+<li>½ colher de chá de bicarbonato de sódio</li>
+<li>½ colher de chá de fermento em pó</li>
+<li>½ colher de chá de sal</li>
+<li>2 ovos</li>
+<li>½ xícara de leite</li>
+<li>¼ xícara de óleo vegetal</li>
+<li>1 colher de chá de essência de baunilha</li>
+<li>½ xícara de água quente</li>
+</ul>
+</section>
+<section id="modo-de-preparo" class="level5" data-number="3.2.1.0.2">
+<h5 data-number="3.2.1.0.2" class="anchored" data-anchor-id="modo-de-preparo"><span class="header-section-number">3.2.1.0.2</span> Modo de preparo</h5>
+<ol type="1">
+<li>Preaqueça o forno a 180°C. Unte uma forma redonda de 23 cm com manteiga ou óleo e enfarinhe.</li>
+<li>Em uma tigela grande, misture o açúcar, a farinha de trigo, o cacau em pó, o bicarbonato de sódio, o fermento em pó e o sal.</li>
+<li>Adicione os ovos, o leite, o óleo vegetal e a essência de baunilha. Bata em velocidade média por 2 minutos.</li>
+<li>Adicione a água quente e misture até ficar homogêneo. A massa ficará bem líquida.</li>
+<li>Se a massa estiver muito grossa, adicione mais água quente aos poucos, até que a massa atinja a consistência adequada.</li>
+<li>Despeje a massa na forma untada.</li>
+<li>Asse por 30 a 35 minutos ou até que um palito inserido no centro do bolo saia limpo.</li>
+<li>Deixe esfriar completamente antes de servir.</li>
+</ol>
+</section>
+<section id="resultado-esperado" class="level5" data-number="3.2.1.0.3">
+<h5 data-number="3.2.1.0.3" class="anchored" data-anchor-id="resultado-esperado"><span class="header-section-number">3.2.1.0.3</span> Resultado esperado</h5>
+<p>Um bolo de chocolate.</p>
+<p>Perceba que no passo 5 a condição “se” verifica se a massa está muito grossa. <strong><em>Se</em></strong> a massa estiver muito grossa, adicionamos mais água quente aos poucos até que a massa atinja a consistência adequada. Essa condição ajuda a garantir que o bolo não fique muito denso ou seco e que o resultado final seja o melhor possível.</p>
+<p>Em outras palavras, esta condição não é obrigatória: poderíamos pular do passo 4 para o passo 6 se a massa estivesse na consistência adequada. Também poderíamos repetir várias e várias vezes o passo 5 até que ela finalmente estivesse do jeito que gostaríamos.</p>
+<p>Perceba também que cada passo naquela receita de bolo é importante para garantir que o resultado seja o melhor possível. Por exemplo, a escolha dos ingredientes corretos e as medidas precisas são etapas cruciais para evitar erros na receita. Da mesma forma, a temperatura do forno e o tempo de cozimento são passos importantes para garantir que o bolo seja assado corretamente. Não importa o dia, local, a pessoa ou a marca do forno e da farinha de trigo: quem seguir os passos acima deverá ter o mesmo resultado. No caso, o bolo de chocolate.</p>
+</section>
+</section>
+<section id="exemplo-2-pedindo-comida-por-aplicativo" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="exemplo-2-pedindo-comida-por-aplicativo"><span class="header-section-number">3.2.2</span> Exemplo 2: Pedindo comida por aplicativo</h3>
+<p>Agora, vamos para outro exemplo de algoritmo: no caso, do pedido de comida em um aplicativo de delivery. Observe novamente a <em>organização</em> do algoritmo:</p>
+<section id="pré-requisitos" class="level5" data-number="3.2.2.0.1">
+<h5 data-number="3.2.2.0.1" class="anchored" data-anchor-id="pré-requisitos"><span class="header-section-number">3.2.2.0.1</span> Pré-requisitos</h5>
+<ul>
+<li>Ter um smartphone ou tablet com acesso à internet.</li>
+<li>Ter um aplicativo de delivery instalado e configurado com as informações do usuário, incluindo endereço de entrega e forma de pagamento.</li>
+</ul>
+</section>
+<section id="passo-a-passo" class="level5" data-number="3.2.2.0.2">
+<h5 data-number="3.2.2.0.2" class="anchored" data-anchor-id="passo-a-passo"><span class="header-section-number">3.2.2.0.2</span> Passo-a-passo</h5>
+<ol type="1">
+<li>Abra o aplicativo de delivery.</li>
+<li>Procure o restaurante desejado.</li>
+<li>Escolha os itens desejados do menu.</li>
+<li>Selecione as opções desejadas para cada item, como tamanho da porção, temperatura, ingredientes extras, etc.</li>
+<li>Adicione os itens ao carrinho.</li>
+<li>Verifique o carrinho para garantir que todos os itens estejam corretos e que as quantidades estejam de acordo com o desejado.</li>
+<li>Se quiser adicionar mais itens ao pedido, repita os passos 3 a 6 até que todos os itens desejados estejam no carrinho.</li>
+<li>Selecione a forma de pagamento desejada.</li>
+<li>Insira o endereço de entrega correto ou confirme o endereço já cadastrado.</li>
+<li>Se o endereço de entrega for diferente do endereço cadastrado, confirme o novo endereço de entrega.</li>
+<li>Confirme o pedido.</li>
+</ol>
+</section>
+<section id="resultado-esperado-1" class="level5" data-number="3.2.2.0.3">
+<h5 data-number="3.2.2.0.3" class="anchored" data-anchor-id="resultado-esperado-1"><span class="header-section-number">3.2.2.0.3</span> Resultado esperado</h5>
+<p>O usuário recebe a comida no endereço indicado dentro do tempo estimado.</p>
+<figure class="figure">
+<img alt="Imagem de um bolo redondo de chocolate" src="assets/abillion-F0e3AdcwVbM-unsplash.jpg" style="max-width:400px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">abillion</a> no <a href="https://unsplash.com/photos/F0e3AdcwVbM?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>.
+</figcaption>
+</figure>
+<p>Veja mais uma vez que a organização é parecida com o exemplo do bolo: temos uma lista de pré-requisitos (que antes eram os ingredientes), a sequência de instruções e, finalmente, o resultado esperado. De novo: não importa o que você está pedindo, o modelo do celular ou a sua cidade: o funcionamento deve ser o mesmo e o resultado esperado também deve ser o mesmo, beleza?</p>
+<p>Eu queria trazer estes exemplos para você para que ficasse claro que, ainda que sejam frequentemente associados à inteligência artificial e ao processamento de dados em computadores, os algoritmos podem ser encontrados em muitos outros contextos na vida real.</p>
+<p>Se você está começando a estudar desenvolvimento de software, este seria um bom exercício: começar a pensar em outros exemplos no seu cotidiano que poderiam ser descritos em formato de algoritmos. Alguns exemplos de exercícios que você pode fazer em um pedaço de papel ou em um documento do Word seriam:</p>
+<ul>
+<li>Limpar um cômodo da casa;</li>
+<li>Atendimento de um cliente em uma loja;</li>
+<li>Compra de um carro;</li>
+<li>Organização de um churrasco de fim de semana;</li>
+<li>Planejamento de uma viagem.</li>
+</ul>
+<p>Por isso, veja que os algoritmos podem ser executados em outras plataformas que não são computadores. Por exemplo, os algoritmos são usados em jogos de tabuleiro como xadrez e damas, onde as jogadas dos jogadores seguem uma sequência de instruções definidas. Os algoritmos também podem ser usados em processos industriais, como a produção de alimentos ou de produtos químicos, para garantir que as etapas de produção sejam realizadas com precisão e eficiência.</p>
+<p>Assim como na receita de bolo, um algoritmo é uma sequência de instruções que um computador segue para realizar uma tarefa específica. Os algoritmos são usados em uma ampla variedade de tarefas, desde buscas na internet até o processamento de imagens médicas e a previsão do tempo.</p>
+</section>
+</section>
+</section>
+<section id="os-algoritmos-e-os-computadores" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="os-algoritmos-e-os-computadores"><span class="header-section-number">3.3</span> Os algoritmos e os computadores</h2>
+<p>Neste momento você já deve saber que algoritmos não são limitados somente a computadores. Agora, o próximo passo é ficar claro <em>o que são</em> computadores para podermos (finalmente) colocar a mão na massa. Primeiro: os computadores não se limitam somente aos notebooks e desktops que as pessoas usam para mandar e-mails, ler este conteúdo, jogar Counter-Strike ou ficar mexendo na internet. Também não são somente os celulares e tablets. Logo, computadores também incluem coisas como os elevadores, microondas e máquinas de lavar roupa.</p>
+<p>Na verdade, a maioria dos dispositivos que usamos hoje em dia possui algum tipo de computador interno. Esses computadores são responsáveis por executar diversas tarefas que fazem com que esses dispositivos funcionem corretamente.</p>
+<p>Por exemplo, pensemos em um elevador. Ele não é apenas uma caixa que se move para cima e para baixo, mas também inclui um sistema de controle que é executado por um computador interno. Esse computador é responsável por garantir que o elevador se mova corretamente, pare no andar correto e abra as portas de forma segura.</p>
+<p>Da mesma forma, um microondas também inclui um computador interno que controla o tempo de cozimento e a intensidade das ondas de calor. Esse computador permite que o microondas aqueça sua comida de maneira uniforme e segura.</p>
+<p>Por fim, até mesmo uma máquina de lavar roupa pode incluir um computador interno. Esse computador é responsável por controlar o ciclo de lavagem, a temperatura da água e a duração do ciclo. Isso garante que suas roupas sejam lavadas corretamente e sem danos.</p>
+<p>O que eu queria trazer a você com estes pontos é que um algoritmo escrito para computador não incluem somente isso: - Algoritmos de busca em sites de busca como Google e Bing. - Algoritmos de recomendação em serviços de streaming de vídeo como Netflix e YouTube. - Algoritmos de filtragem de spam em serviços de e-mail como Gmail e Outlook. - Algoritmos de classificação de produtos em sites de comércio eletrônico como Amazon e Mercado Livre. - Algoritmos de previsão do clima em institutos de meteorologia. - Algoritmos de análise de dados em empresas de análise financeira. - Algoritmos de criptografia em sistemas de segurança de dados. - Algoritmos de compressão de dados em serviços de armazenamento em nuvem como Google Drive e Dropbox. - Algoritmos de reconhecimento de voz em assistentes pessoais como Siri e Alexa. - Algoritmos de reconhecimento facial em sistemas de segurança. - Algoritmos de diagnóstico em sistemas de saúde e medicina. - Algoritmos de recomendação em plataformas de música como Spotify e Apple Music.</p>
+<p>Mas incluem também isso: - Algoritmos de controle de velocidade em esteiras de academia para manter o usuário na velocidade e ritmo adequados. - Algoritmos de controle de temperatura em microondas para garantir que a comida seja aquecida uniformemente. - Algoritmos de controle de força em motores de elevadores para garantir que ele suba e desça de forma segura e eficiente. - Algoritmos de processamento de dados em smartwatches para monitorar a atividade física, frequência cardíaca e sono do usuário. - Algoritmos de análise de imagem em sistemas médicos para detecção de doenças e anomalias em imagens de raio-X, ressonância magnética e tomografia.</p>
+</section>
+<section id="pseudocódigo" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="pseudocódigo"><span class="header-section-number">3.4</span> Pseudocódigo</h2>
+<p>Agora, você sabe como pensar em algoritmos. Você sabe como fazer um algoritmo considerando os exemplos da vida real que comentei acima. Por isso, vamos avançar mais um passo com o <strong>pseudocódigo</strong>.</p>
+<p>O pseudocódigo é uma ferramenta essencial para quem está aprendendo a programar, pois ele permite que o desenvolvedor planeje e organize seu código de forma mais clara e estruturada. Ao escrever o pseudocódigo, o desenvolvedor pode visualizar o fluxo de execução do programa de forma mais clara e identificar possíveis problemas antes mesmo de começar a escrever o código propriamente dito. Além disso, o pseudocódigo também ajuda o desenvolvedor a entender melhor a lógica por trás do algoritmo que está sendo produzido, permitindo que ele faça ajustes e melhorias de forma mais eficiente.</p>
+<p>Outro benefício do pseudocódigo é que ele pode ser facilmente compartilhado e discutido com outros desenvolvedores, o que pode ajudar no processo de aprendizado. Ao mostrar o pseudocódigo para outros desenvolvedores, é possível receber feedback e sugestões de melhorias, o que pode ajudar a aprimorar a lógica do algoritmo e tornar o código final mais eficiente e robusto.</p>
+<p>A ideia é que, ao escrever um algoritmo em pseudocódigo, possamos identificar erros, antecipar problemas e entender melhor o fluxo de execução do programa. Isso torna o processo de codificação mais eficiente e menos suscetível a erros. Um exemplo simples de pseudocódigo pode ser um algoritmo para calcular a soma de dois números inteiros. Em pseudocódigo, ele seria assim:</p>
+<section id="um-exemplo-de-pseudocódigo" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="um-exemplo-de-pseudocódigo"><span class="header-section-number">3.4.1</span> Um exemplo de pseudocódigo</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">1.</span> Início</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">2.</span>   Inteiro: num1, num2, soma</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">3.</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">4.</span>   Escreva<span class="er">(</span><span class="st">"Digite o primeiro número: "</span><span class="kw">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">5.</span>   Leia<span class="er">(</span><span class="ex">num1</span><span class="kw">)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">6.</span>   </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">7.</span>   Escreva<span class="er">(</span><span class="st">"Digite o segundo número: "</span><span class="kw">)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">8.</span>   Leia<span class="er">(</span><span class="ex">num2</span><span class="kw">)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">9.</span>   </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">10.</span>   soma = num1 + num2</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">11.</span>   Escreva<span class="er">(</span><span class="st">"O resultado da soma é: "</span><span class="ex">,</span> soma<span class="kw">)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">12.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Todo algoritmo possui um início e fim. Isso era verdade com o exemplo do bolo (começamos tendo nada nas mãos e terminamos com um bolo), com o delivery (começamos com fome e acabamos com a comida entregue) e também é verdade aqui. No exemplo acima, o pseudocódigo começa com o passo <code>Início</code> na linha 1, que é uma convenção para indicar o início do algoritmo. Da mesma forma, o algoritmo termina com o passo <code>Fim</code> na linha 12, que indica o final do código.</p>
+<p>Dentro deste bloco (ou seja: entre o <code>Início</code> e <code>Fim</code>) temos duas variáveis que foram declaradas logo de cara para armazenar os números: <code>num1</code> e <code>num2</code>, ambas na linha 2. Estas variáveis poderiam ter qualquer outro nome como, por exemplo, <code>numero1</code> e <code>numero2</code>; <code>primeiro_numero</code> e <code>segundo_numero</code> ou <code>banana</code> e <code>abacaxi</code>. Dito isso, é recomendável que você use <strong>nomes claros e descritivos</strong> para variáveis e funções, a fim de tornar o código mais fácil de ler e entender. Além disso, é importante usar uma indentação adequada (isto é: o espaçamento antes de iniciar cada uma das linhas) para separar os blocos de instruções e tornar o código mais legível.</p>
+<p>Também definimos na linha 2 uma variável para armazenar o resultado da soma. Convenientemente, o nome desta variável é <code>soma</code>. Todas estas variáveis devem armazenar somente valores inteiros (isto é: sem casas decimais). isto também é definido pela linha 2.</p>
+<p>O próximo passo (linhas 4 a 8) é solicitar ao usuário que digite os dois números, utilizando a função <code>Escreva</code> para exibir uma mensagem na tela (ou seja: fazer com que o computador <em>escreva</em> uma mensagem na tela para o usuário) e a função <code>Leia</code> para ler o que o usuário digitou com o teclado e armazenar isto nas variáveis correspondentes.</p>
+<p>Depois disso, é feito o cálculo da soma na linha 10, utilizando a equação <code>num1 + num2</code>. O resultado é armazenado na variável <code>soma</code>.</p>
+<p>Por fim, é exibido na tela o resultado da soma, utilizando novamente a função <code>Escreva</code> na linha 11, que exibe a mensagem <em>“A soma dos dois números é:”</em> seguida do valor da variável <code>soma</code>.</p>
+</section>
+<section id="onde-usarcomo-trabalhar-com-pseudocódigos" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="onde-usarcomo-trabalhar-com-pseudocódigos"><span class="header-section-number">3.4.2</span> Onde usar/como trabalhar com pseudocódigos?</h3>
+<p>Os pseudocódigos são uma ferramenta útil para os desenvolvedores em diversos momentos, como na fase de planejamento e concepção de algoritmos e também para documentar um código já desenvolvido. Eles são uma espécie de “rascunho” que descreve, de forma abstrata e sem se preocupar com a sintaxe de uma linguagem de programação específica, as etapas e a lógica de um algoritmo.</p>
+<p>Para você, serve para praticar. Isso ajuda demais na hora de começar a trabalhar com Python ou qualquer outra linguagem de programação para organizar as suas ideias. Você verá que funções como o <code>Leia</code> e <code>Escreva</code> possuirão nomes e formas de usar bem parecidas em Python.</p>
+<p>Como exercício, tente escrever em um bloco de notas, folha de papel ou qualquer outro lugar algo que seja do seu dia-a-dia em um formato de algoritmo. Coloque início e fim pré-definidos e todos os passos de forma sequencial. Lembra do vídeo no início deste capítulo e da receita de bolo? Pois bem, o que acha de fazer algo parecido?</p>
+</section>
+</section>
+<section id="quase-lá-para-começar" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="quase-lá-para-começar"><span class="header-section-number">3.5</span> Quase lá para começar</h2>
+<p>Ok, estamos <em>quaaase</em> prontos para começar com o Python. Antes disso, valem reforçar alguns conceitos:</p>
+<section id="dados" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="dados"><span class="header-section-number">3.5.1</span> Dados</h3>
+<p>Dados são informações que são armazenadas e processadas por computadores. Um algoritmo irá processar dados para te dar algum resultado no final das contas. Da mesma forma que um algoritmo para fazer o bolo de chocolate processa os ingredientes para te entregar um bolo, um algoritmo de delivery também irá processar o seu pedido (e os dados do seu cartão de crédito) para lhe entregar a comida.</p>
+<p>Do mesmo jeito, um algoritmo de computadores irá processar números, textos e outros tipos de dados para lhe entregar algo no final das contas: isto pode ser uma transferência bancária, um sinal de alerta do microondas, uma mensagem de e-mail redirecionada à caixa de spam ou uma nova notificação no seu celular.</p>
+<section id="tipos-de-dados" class="level4" data-number="3.5.1.1">
+<h4 data-number="3.5.1.1" class="anchored" data-anchor-id="tipos-de-dados"><span class="header-section-number">3.5.1.1</span> Tipos de dados</h4>
+<p>Em um algoritmo, existem vários tipos de dados que podem ser usados para armazenar informações e realizar cálculos. Desses, os mais básicos são: 1. <strong>Numéricos</strong>: armazenam valores numéricos, como inteiros e reais. Elas podem ser usadas em operações matemáticas, como adição, subtração, multiplicação e divisão. Exemplos de variáveis numéricas em um pseudocódigo são “idade”, “peso” e “preço”. - Números inteiros: usados para representar valores inteiros (sem casas decimais). Exemplos: -1000, -5, 0, 20, 49, 2023. - Números reais: usados para representar valores com casas decimais. Exemplos: 3.1415, 1.72, 77.4, 0.001, -2.54. 2. <strong>Lógicos/booleanos</strong>: representam valores lógicos, como verdadeiro (True) ou falso (False). Exemplo: uma variável chamada “possui_passaporte” poderia indicar se uma pessoa tem ou não tem passaporte. 3. <strong>Alfanuméricos</strong>: armazenam valores de texto, como nomes, endereços, palavras e frases. Elas podem ser usadas em operações de concatenação, que unem duas ou mais strings em uma única string. Exemplos de variáveis alfanuméricas em um pseudocódigo são “nome”, “sobrenome” e “endereço”. <em>Strings</em> são sequências de caracteres (letras, números, espaços em branco, etc.) que representam textos.</p>
+</section>
+<section id="constantes-e-variáveis" class="level4" data-number="3.5.1.2">
+<h4 data-number="3.5.1.2" class="anchored" data-anchor-id="constantes-e-variáveis"><span class="header-section-number">3.5.1.2</span> Constantes e variáveis</h4>
+<p>Além disso, estes tipos de dados podem ser <em>tratados</em> de formas diferentes pelos algoritmos. Assim, temos: 1. <strong>Constante</strong>: um valor que não pode ser alterado durante a execução do programa. 2. <strong>Variável</strong>: é um espaço na memória do computador que pode armazenar diferentes valores ao longo da execução do programa.</p>
+<p>Por exemplo, em uma receita de bolo, a quantidade de açúcar que deve ser adicionada é uma constante, pois não varia de acordo com a situação ou contexto. É uma informação fixa e predefinida na receita. Por outro lado, a quantidade de farinha que deve ser adicionada pode variar de acordo com a quantidade de ovos que serão utilizados, ou de acordo com o tamanho da forma utilizada. É uma informação que pode mudar e, portanto, poderiam ser variáveis na receita.</p>
+<p>Pensando em computadores, as constantes são utilizadas quando há um valor que é conhecido previamente e que deve permanecer inalterado durante a execução do algoritmo ou programa. Por exemplo, pode-se utilizar uma constante para representar o valor da velocidade da luz, que é uma grandeza conhecida e que não muda durante a execução do programa.</p>
+<p>As variáveis, por outro lado, são usadas para armazenar valores que podem mudar durante a execução do programa. Por exemplo, em um programa de cálculo de notas de alunos, uma variável pode ser utilizada para armazenar a nota de cada aluno, e essa nota pode mudar à medida que o usuário insere novas informações no programa.</p>
+<p>Em resumo, as constantes e as variáveis são importantes conceitos em algoritmos e programação, e são utilizadas para armazenar e manipular diferentes tipos de dados. As constantes são usadas para valores que não mudam durante a execução do programa, enquanto as variáveis são usadas para valores que podem mudar.</p>
+</section>
+</section>
+<section id="operadores" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="operadores"><span class="header-section-number">3.5.2</span> Operadores</h3>
+<p>Lembra na receita do modelo onde tinha um passo escrito “misture o açúcar, a farinha de trigo, o cacau em pó, o bicarbonato de sódio, o fermento em pó e o sal”? E outro chamado “adicione os ovos, o leite, o óleo vegetal e a essência de baunilha”? Como isso funcionaria na prática? Ora: você deve imaginar alguém pegando os ingredientes e misturando todos eles na tigela. Misturar, neste caso, significa mexer todos eles até que você não saiba mais o que é leite, o que é ovo e o que seriam os outros ingredientes: é mexer até que tudo vire uma coisa só.</p>
+<p>Em algoritmos de computador, não temos tigelas e nem ferramentas para manipular estes ingredientes. No lugar, temos operadores para manipular números, textos e booleanos. São eles: 1. <strong>Aritméticos</strong>: realizam operações matemáticas como adição (<code>+</code>), subtração (<code>-</code>), multiplicação (<code>*</code>), divisão (<code>/</code>, módulo (resto de uma divisão, caracterizado nos algoritmos pelo símbolo <code>%</code>) e exponenciação (caracterizado dentro dos algoritmos pelo <code>**</code>). 2. <strong>Relacionais</strong>: comparam dois valores e retornam um resultado booleano (verdadeiro ou falso), como igualdade (<code>==</code>), desigualdade (<code>!=</code>), maior que (<code>&gt;</code>), menor que (<code>&lt;</code>), maior ou igual a (<code>&gt;=</code>) e menor ou igual a (<code>&lt;=</code>). 3. <strong>Lógicos</strong>: combinam resultados booleanos para obter um resultado final, como “e” (<code>and</code>), “ou” (<code>or</code>) e “não” (<code>not</code>). 4. <strong>Atribuição</strong>: atribuem valores a uma variável, como o sinal de igual (<code>=</code>). No pseudocódigo da soma dos dois números observe que a linha 10 tinha o código <code>soma = num1 + num2</code>. Isto é lido como: <em>“A variável <code>soma</code> <strong>recebe</strong> o resultado de <code>num1</code> mais <code>num2</code>”.</em></p>
+<p>(content:python:identation)= ### Indentação Você viu no exemplo do pseudocódigo alguns espaços à esquerda nas linhas 2 a 11? Aquilo são indentações. A indentação é uma técnica usada para organizar o código em um programa de computador. É como uma espécie de espaçamento (recuo) que ajuda a identificar <strong><em>quais linhas de código estão dentro de outras linhas</em></strong>. É como se fosse um “encaixe” do código, onde cada bloco está dentro do outro.</p>
+<p>Pense que você tem um conjunto de instruções para seguir. Algumas dessas instruções precisam ser executadas dentro de outras instruções. Para que você não se perca na sequência, você pode separar essas instruções com espaços, deixando mais claro quais instruções pertencem a qual conjunto. Na programação, isso é chamado de indentação. Como uma comparação simplista, imagine uma estrutura de tópicos e subtópicos de uma apresentação no PowerPoint ou, ainda, uma biblioteca em que cada livro é classificado e organizado por categorias e subcategorias que estão umas dentro das outras.</p>
+<p>Na prática, a indentação é feita com a adição de espaços ou tabulações (tecla <code>Tab</code> do teclado) no início de cada linha de código, criando um recuo que ajuda a identificar a hierarquia dos blocos de código. É uma prática importante porque torna o código mais legível e fácil de entender, e ajuda a evitar erros de sintaxe. Veremos mais sobre isso adiante.</p>
+</section>
+<section id="próximos-passos" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="próximos-passos"><span class="header-section-number">3.5.3</span> Próximos passos</h3>
+<p>Agora você sabe o que são algoritmos, como eles funcionam e como construímos um na prática. Também sabe alguns conceitos adicionais que são necessários para a construção de algoritmos como, por exemplo, dados (tipos, variáveis e constantes), operadores e indentações.</p>
+<p>Também conheceu os pseudocódigos: eles serão necessários para que possamos trabalhar com alguns exemplos e convertê-los em Python, que será o foco a partir de agora. Vamos lá?</p>
+</section>
+</section>
+<section id="referências-bibliográficas" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="referências-bibliográficas"><span class="header-section-number">3.6</span> Referências bibliográficas</h2>
+<ul>
+<li>ALALWAN, A. A. Mobile food ordering apps: An empirical study of the factors affecting customer e-satisfaction and continued intention to reuse. International Journal of Information Management, v. 50, p.&nbsp;28-44, 2020.</li>
+<li>BRYANT, R. E.; O.’HALLARON, D. R. Computer systems: a programmer’s perspective. Upper Saddle River: Prentice Hall, 2003.</li>
+<li>CHOI, J-C. User familiarity and satisfaction with food delivery mobile apps. Sage Open, v. 10, n.&nbsp;4, 2020.</li>
+<li>CHOO, C. W. The knowing organization: How organizations use information to construct meaning, create knowledge and make decisions. International journal of information management, v. 16, n.&nbsp;5, p.&nbsp;329-340, 1996.</li>
+<li>CORMEN, T. H. et al.&nbsp;Introduction to algorithms. 3rd ed.&nbsp;MIT Press, 2009.</li>
+<li>DOWNEY, A. B. Think Python: How to Think Like a Computer Scientist (2ª ed.). O’Reilly Media, 2015.</li>
+<li>FARRELL, J. Programming Logic and Design, Comprehensive. Cengage Learning, 2014.</li>
+<li>FORBELLONE, A. L. V.; EBERSPÄCHER, H. F. Lógica de programação: a construção de algoritmos e estruturas de dados. 2005.</li>
+<li>GRAHAM, R. L. et al.&nbsp;Concrete mathematics: a foundation for computer science. Computers in Physics, v. 3, n.&nbsp;5, p.&nbsp;106-107, 1989.</li>
+<li>HARRIS, S.; ROSS, J. Beginning algorithms. John Wiley &amp; Sons, 2005.</li>
+<li>KELLEHER, J. D.; TIERNEY, B. Data science: An introduction. MIT Press, 2018.</li>
+<li>KELTON, W. D. et al.&nbsp;Simulation with ARENA. 6th ed.&nbsp;McGraw-Hill, 2014.</li>
+<li>KNUTH, D. E. The Art of Computer Programming, Volume 1: Fundamental Algorithms. 3rd ed.&nbsp;Addison-Wesley, 1997.</li>
+<li>LOUDON, K. Mastering algorithms with C. O’Reilly Media, 1999.</li>
+<li>PRESSMAN, R. S.; MAXIM, B. R.; MAXIM, J. R. Engenharia de software: uma abordagem profissional. McGraw-Hill, 2016.</li>
+<li>PUGA, S.; RISSETTI, G. Lógica de programação e estruturas de dados, com aplicações em Java. Pearson Educación, 2008.</li>
+<li>SANTOS, R. L. Lógica de programação e estruturas de dados: com aplicações em Java. Editora Novatec, 2015.</li>
+<li>SEDGEWICK, R.; WAYNE, K. Algorithms. 4th ed.&nbsp;Addison-Wesley, 2011.</li>
+<li>TANENBAUM, A. S.; WOODHULL, A. S. Operating Systems: Design and Implementation. 3rd ed.&nbsp;Pearson, 2015.</li>
+<li>TASTY. Classic Chocolate Cake. Disponível em: https://tasty.co/recipe/classic-chocolate-cake. Acesso em: 03 mar. 2023.</li>
+<li>TURBAN, E.; SHARDA, R.; DELEN, D. Decision support and business intelligence systems. Pearson, 2019.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-Introducao-Ambiente.html" class="pagination-link" aria-label="Arrumando as coisas para começar a trabalhar com Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03-Variaveis-IO.html" class="pagination-link" aria-label="Primeiros (ou segundos) passos em Python">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeiros (ou segundos) passos em Python</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

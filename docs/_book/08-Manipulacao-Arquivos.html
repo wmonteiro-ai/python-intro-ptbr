@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; Saindo da telinha sem cor do terminal: trabalhando com arquivos – Python Descomplicado</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./09-POO.html" rel="next">
+<link href="./07-Listas-Dicionarios-Tuplas.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f2c6d6e2b784ddc5de38779acc06f37d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-Variaveis-IO.html">Parte 2: Fazendo coisas legais</a></li><li class="breadcrumb-item"><a href="./08-Manipulacao-Arquivos.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python Descomplicado</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 1: Sabendo onde estamos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introducao-Ambiente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Introducao-Algoritmos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 2: Fazendo coisas legais</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Variaveis-IO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeiros (ou segundos) passos em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Estruturas-Selecao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Estruturas-Repeticao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Repetições, repetições, repetições: loops em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tudo em blocos: trabalhando com funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Listas-Dicionarios-Tuplas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">De um bolo para uma festa: listas, dicionários e tuplas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Manipulacao-Arquivos.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-POO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 3: Resolvendo tretas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Erros-Comuns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erros/exceções em Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#o-que-você-saberá-se-você-ler-todo-este-capítulo" id="toc-o-que-você-saberá-se-você-ler-todo-este-capítulo" class="nav-link active" data-scroll-target="#o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">9.1</span> O que você saberá se você ler todo este capítulo?</a></li>
+  <li><a href="#livro-de-receitas" id="toc-livro-de-receitas" class="nav-link" data-scroll-target="#livro-de-receitas"><span class="header-section-number">9.2</span> Livro de receitas</a></li>
+  <li><a href="#abrindo-e-fechando-arquivos" id="toc-abrindo-e-fechando-arquivos" class="nav-link" data-scroll-target="#abrindo-e-fechando-arquivos"><span class="header-section-number">9.3</span> Abrindo e fechando arquivos</a>
+  <ul class="collapse">
+  <li><a href="#criando-coisas" id="toc-criando-coisas" class="nav-link" data-scroll-target="#criando-coisas"><span class="header-section-number">9.3.1</span> Criando coisas</a></li>
+  <li><a href="#lendo-coisas" id="toc-lendo-coisas" class="nav-link" data-scroll-target="#lendo-coisas"><span class="header-section-number">9.3.2</span> Lendo coisas</a></li>
+  <li><a href="#adicionando-coisas" id="toc-adicionando-coisas" class="nav-link" data-scroll-target="#adicionando-coisas"><span class="header-section-number">9.3.3</span> Adicionando coisas</a></li>
+  <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="header-section-number">9.3.4</span> ✍ Resumo</a></li>
+  </ul></li>
+  <li><a href="#escrevendo-diferentes-tipos-de-arquivo" id="toc-escrevendo-diferentes-tipos-de-arquivo" class="nav-link" data-scroll-target="#escrevendo-diferentes-tipos-de-arquivo"><span class="header-section-number">9.4</span> Escrevendo diferentes tipos de arquivo</a>
+  <ul class="collapse">
+  <li><a href="#salvando-em-texto" id="toc-salvando-em-texto" class="nav-link" data-scroll-target="#salvando-em-texto"><span class="header-section-number">9.4.1</span> Salvando em texto</a></li>
+  <li><a href="#salvando-em-json" id="toc-salvando-em-json" class="nav-link" data-scroll-target="#salvando-em-json"><span class="header-section-number">9.4.2</span> Salvando em JSON</a></li>
+  <li><a href="#salvando-em-pickle" id="toc-salvando-em-pickle" class="nav-link" data-scroll-target="#salvando-em-pickle"><span class="header-section-number">9.4.3</span> Salvando em Pickle</a></li>
+  </ul></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">9.5</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#respostas" id="toc-respostas" class="nav-link" data-scroll-target="#respostas"><span class="header-section-number">9.5.1</span> Respostas</a></li>
+  </ul></li>
+  <li><a href="#referências-bibliográficas" id="toc-referências-bibliográficas" class="nav-link" data-scroll-target="#referências-bibliográficas"><span class="header-section-number">9.6</span> Referências bibliográficas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-Variaveis-IO.html">Parte 2: Fazendo coisas legais</a></li><li class="breadcrumb-item"><a href="./08-Manipulacao-Arquivos.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="o-que-você-saberá-se-você-ler-todo-este-capítulo" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">9.1</span> O que você saberá se você ler todo este capítulo?</h2>
+<ol type="1">
+<li>Que dá para trabalhar com arquivos em Python ao invés de ficar mexendo só no terminal.</li>
+<li>A diferença entre arquivos de texto, JSON e pickle.</li>
+<li>Que trabalhar com arquivos é mais fácil do que parece: é só abrir, escrever (ou ler) e fechar novamente.</li>
+<li>E que, sob um ponto de vista de trabalho, é muito mais comum usarmos JSON do que outros formatos.</li>
+</ol>
+</section>
+<section id="livro-de-receitas" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="livro-de-receitas"><span class="header-section-number">9.2</span> Livro de receitas</h2>
+<p>Achou que eu esqueci da receita de bolo? Claro que não, jamais esqueceria de um bolo. Com um café então, nem se fala! Bom, vamos imaginar que você tem uma receita de bolo e você quer dar o seu toque pessoal. Transformar aquela receita de bolo da internet em uma <em>receita de família</em>, sabe? Quem sabe, você se animou bastante e agora quer fazer o seu próprio caderno de receitas usando como base algumas receitas comuns que você já viu por aí. Como você faria isso?</p>
+<p>Para isso, você precisa abrir o seu caderno, procurar uma folha em branco, e escrever uma nova receita do seu jeito. Precisou mudar algo? Sem problemas: você vai até a folha em que precisará mudar algo e escreve em cima. Ah, e sabe qual é a vantagem disso? Você pode compartilhar com todo mundo: as pessoas podem tirar fotos ou cópias do seu caderno e, com isso, algum dia você poderá ser reconhecido como o maior boleiro (é esse o nome?) do mundo! Quem diria, né? Por causa desse livro aqui você se tornou o maior mestre dos bolos do mundo e até conseguiu comprar um iate, como esse aqui na imagem abaixo.</p>
+<figure class="figure">
+<img alt="Um iate navegando no mar." src="assets/robert-linder-o8XhkMVAWks-unsplash.jpg" style="max-width:400px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Créditos: <a href="https://unsplash.com/@rwlinder?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Robert Linder</a> no <a href="https://unsplash.com/photos/o8XhkMVAWks?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+</figcaption>
+</figure>
+<p>Ou, se você quiser continuar estudando desenvolvimento de software, a explicação acima ainda se aplica. Você pode ter percebido que as variáveis que trabalhamos até o momento nunca eram salvas no seu computador, não é? Isto é: você clicava em <code>Run</code>, o seu código aparecia no terminal, você interagia com ele, e acabou. Tirou o computador da tomada, ou acabou a bateria do notebook? Todas as variáveis foram apagadas.</p>
+<p>Por outro lado, os arquivos existem para ajudar a salvar e transmitir esta informação para outros lugares. <em>E se</em> nós quiséssemos usar Python para adicionar, modificar ou excluir informações de um arquivo? É possível? Claro que é! É isto que veremos a partir de agora. Vamos lá?</p>
+</section>
+<section id="abrindo-e-fechando-arquivos" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="abrindo-e-fechando-arquivos"><span class="header-section-number">9.3</span> Abrindo e fechando arquivos</h2>
+<p>Lembra que no pseudocódigo tínhamos o <code>leia</code> e <code>escreva</code>, né? E que, em Python, eles eram traduzidos como <code>input()</code> e <code>print()</code>. Então, será que o Python teria algo para <code>abrir</code> e <code>fechar</code> arquivos? Mas é claro! E, como você deve adivinhar, os nomes das funções para isso são <code>open()</code> e <code>close()</code>, respectivamente. Vamos começar com um trabalho simples: vamos escrever uma receita de bolo <em>dentro</em> de um arquivo em Python.</p>
+<section id="criando-coisas" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="criando-coisas"><span class="header-section-number">9.3.1</span> Criando coisas</h3>
+<p>Rode o código abaixo em um arquivo <code>.py</code>, tal qual você vem fazendo até o momento no PyCharm:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"receita.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Bolo de chocolate</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Ingredientes:</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"- 2 xícaras de açúcar</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"- 1 e 3/4 xícaras de farinha de trigo</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"- 3/4 xícara de cacau em pó</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Finalizou!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Muita coisa nova, né? Agora tem <code>with</code>, tem <code>open</code>, tem aquele <code>"w"</code> também. O que quer dizer tudo isso? Calma! É mais simples do que parece. Este código cria um arquivo chamado <code>"receita.txt"</code> no modo de escrita (<code>"w"</code>) usando a função <code>open()</code> na primeira linha. Ou seja, <code>open("receita.txt", "w")</code> é, em bom português, algo como <em>“abra um arquivo chamado”receita.txt” para a gente escrever coisas dentro dele”</em>. A partir de agora, nós chamaremos este arquivo aberto pelo nome de <code>f</code>.</p>
+<p>Ah, veja que a primeira linha também possui o <code>with</code>. Essa palavra-chave existe para garantir que o arquivo seja fechado após o uso dele.</p>
+<p>Já a função <code>write()</code> é usada para escrever cada linha da receita no arquivo <code>f</code> que acabamos de abrir anteriormente. Perceba que chamamos o <code>write()</code> cinco vezes: estamos escrevendo coisas no arquivo cinco vezes, e uma linha de texto a cada vez. Consegue perceber que isso é bem parecido com o jeito que estamos acostumados a usar o <code>print()</code>?</p>
+<p>Ao final da execução do bloco <code>with</code>, o nosso arquivo é automaticamente fechado, e todas as alterações feitas durante a execução do bloco são salvas. No final, temos até uma mensagem na tela mostrando que o código finalizou. Depois de rodar este código, experimente abrir o arquivo <code>receita.txt</code>, que agora existe em seu computador e na mesma pasta em que está o seu arquivo <code>.py</code>. Percebe que contém exatamente as mesmas 5 linhas que pedimos para serem inseridas antes?</p>
+</section>
+<section id="lendo-coisas" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="lendo-coisas"><span class="header-section-number">9.3.2</span> Lendo coisas</h3>
+<p>Bom, e para lermos o arquivo? Teste o seguinte código:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"receita.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    conteudo <span class="op">=</span> f.read()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(conteudo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Percebe que trocamos o <code>open("receita.txt", "w")</code> para <code>open("receita.txt", "r")</code>? O parâmetro <code>"r"</code> indica que agora estamos no modo de leitura: ao invés de escrever, queremos ler o arquivo. Em seguida, usamos o método <code>.read()</code> para ler todo o conteúdo do arquivo e armazená-lo na variável <code>conteudo</code>. Por fim, mostramos o conteúdo na tela utilizando a função <code>print()</code>.</p>
+<p>Outro jeito de fazermos a mesmíssima coisa, mas sem recorrermos ao <code>with</code> é assim:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">"receita.txt"</span>, <span class="st">"r"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>conteudo <span class="op">=</span> f.read()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(conteudo)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>f.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Temos aqui três grandes diferenças. A primeira é que deixamos de usar o <code>with</code> na primeira linha, e o arquivo aberto encontra-se ainda dentro da variável <code>f</code>, mas com o código escrito de uma forma ligeiramente diferente. A segunda diferença fica na segunda e terceira linhas: como não temos mais o <code>with</code>, não temos mais aquela indentação. A terceira diferença está na última linha: sem o <code>with</code>, precisamos dizer explicitamente quando o arquivo deve ser fechado com a função <code>close()</code>.</p>
+<p>Dito isso, vale reforçar que por uma questão de boa prática é recomendável que você utilize o <code>with</code> para evitar dores de cabeça como, por exemplo, esquecer de fechar o seu arquivo.</p>
+</section>
+<section id="adicionando-coisas" class="level3" data-number="9.3.3">
+<h3 data-number="9.3.3" class="anchored" data-anchor-id="adicionando-coisas"><span class="header-section-number">9.3.3</span> Adicionando coisas</h3>
+<p>Finalmente, e se quiséssemos só adicionar mais alguma coisinha no arquivo sem apagar o que já temos até o momento? Também tem como. Veja só:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"receita.txt"</span>, <span class="st">"a"</span>) <span class="im">as</span> f:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"- 1 colher de sopa de fermento em pó</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"- Granulado a gosto</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Veja que usamos o <code>f.write()</code> igual como fizemos no primeiro exemplo. A diferença está no parâmetro da primeira linha: agora estamos usando <code>open("receita.txt", "a")</code>. Este <code>"a"</code> indica que queremos adicionar um conteúdo extra no final deste arquivo sem remover nada do que fizemos até o momento. Em resumo, temos o seguinte:</p>
+</section>
+<section id="resumo" class="level3" data-number="9.3.4">
+<h3 data-number="9.3.4" class="anchored" data-anchor-id="resumo"><span class="header-section-number">9.3.4</span> ✍ Resumo</h3>
+<ul>
+<li><code>open()</code>: serve para abrir um arquivo.
+<ul>
+<li>Modo <code>r</code> (<em>read</em>): abre o arquivo para leitura. Se o arquivo não existir, ocorrerá um erro.</li>
+<li>Modo <code>a</code> (<em>append</em>): abre o arquivo para escrita, adicionando conteúdo ao final do arquivo caso ele já exista. Se o arquivo não existir, ele será criado.</li>
+<li>Modo <code>w</code> (<em>write</em>): abre o arquivo para escrita, <strong>apagando todo o conteúdo anterior caso ele já exista</strong>. Se o arquivo não existir, ele será criado.</li>
+<li>Também existem outros modos:
+<ul>
+<li>Modo <code>x</code> (<em>exclusive</em>): cria um arquivo para escrita, mas retorna um erro se ele já existe.</li>
+<li>Modo <code>b</code> (<em>binary</em>): cria um arquivo para escrita de dados binários como imagens, vídeos, músicas e demais conteúdos que não são texto puro.<br>
+</li>
+</ul></li>
+</ul></li>
+<li><code>close()</code>: serve para fechar um arquivo. Não precisa usar o <code>close()</code> se estiver abrindo um arquivo com o <code>with</code>.</li>
+<li><code>with</code>: o uso dele é bem parecido com um <code>if</code> ou <code>for</code>. Ele garante que o arquivo será aberto no início do bloco contendo esta palavra-chave e fechado automaticamente no final do bloco, mesmo que ocorra um erro (exceção).</li>
+</ul>
+</section>
+</section>
+<section id="escrevendo-diferentes-tipos-de-arquivo" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="escrevendo-diferentes-tipos-de-arquivo"><span class="header-section-number">9.4</span> Escrevendo diferentes tipos de arquivo</h2>
+<p>Todos os exemplos acima somente trabalharam com arquivos de texto. Um arquivo de texto (geralmente identificados pela extensão <code>.txt</code>, como o <code>receita.txt</code> que você testou acima) é um arquivo que contém somente caracteres de texto simples. Isto é: só texto puro, e nada de cores, negrito, itálico, ou fontes diferentes. Ele é usado para armazenar informações de texto em formato legível por humanos e é geralmente usado para processamento de texto, editores de código, manuais simples, entre outros. Isto posto, existem jeitos diferentes de armazenarmos os dados. Para isso, vamos usar um código como exemplo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>valor_pi <span class="op">=</span> <span class="fl">3.14159</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lista_frutas <span class="op">=</span> [<span class="st">"maçã"</span>, <span class="st">"banana"</span>, <span class="st">"laranja"</span>, <span class="st">"manga"</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dicionario_pessoas <span class="op">=</span> {<span class="st">"João"</span>: <span class="dv">25</span>, <span class="st">"Maria"</span>: <span class="dv">30</span>, <span class="st">"Pedro"</span>: <span class="dv">20</span>, <span class="st">"Marcos"</span>: <span class="dv">15</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>São três variáveis, e cada um possui um tipo diferente, certo? Uma delas é uma variável do tipo <code>float</code>, outra é uma lista e, a outra, um dicionário. Agora, como guardaríamos estas informações em arquivos? Vamos testar de quatro jeitos diferentes: com arquivos de texto (que acabei de explicar o que são), CSVs, JSON e, finalmente, Pickle. Também vamos falar para que servem cada um desses tipos, beleza? Ah, para cada um desses jeitos, salvaremos essas três variáveis em arquivos separados e, depois, abriremos elas para ver como ficaram.</p>
+<section id="salvando-em-texto" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="salvando-em-texto"><span class="header-section-number">9.4.1</span> Salvando em texto</h3>
+<p>Vamos começar escrevendo aquela variável <code>valor_pi</code> em um arquivo de texto, o que acha? Usando as mesmas funções que vimos até agora, teríamos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar valor_pi em um arquivo txt</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"valor_pi.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="bu">str</span>(valor_pi))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ler valor_pi de um arquivo txt   </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"valor_pi.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    valor_pi_lido <span class="op">=</span> f.read()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>valor_pi_lido<span class="sc">}</span><span class="ss">, tipo </span><span class="sc">{</span><span class="bu">type</span>(valor_pi_lido)<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Percebe a linha <code>f.write(str(valor_pi))</code>? Para salvarmos texto precisaremos, obrigatoriamente, converter as variáveis para texto. É por isso que o valor da variável é convertido em uma string usando a função <code>str()</code> antes de o gravarmos no arquivo.</p>
+<p>Quanto à leitura, veja que na penúltima linha estamos lendo o conteúdo do arquivo <code>valor_pi.txt</code> usando o modo de leitura <code>"r"</code> do método <code>open()</code>. O conteúdo do arquivo é armazenado na variável <code>valor_pi_lido</code> como uma string. Para comprovar isso, veja que na última linha eu mostro na tela o valor de <code>valor_pi_lido</code> e o tipo de dado da variável usando a função <code>print()</code>. No caso, aquele <code>type(valor_pi_lido)</code> mostra na tela o tipo daquela variável que, no caso, é uma string.</p>
+<p>O resultado, portanto, seria:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">3.14159,</span> tipo <span class="op">&lt;</span>class <span class="st">'str'</span><span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Quer converter aquele valor lido do arquivo de volta para um número? Então você precisaria fazer um <code>float(valor_pi_lido)</code> para isso. Agora, e se quiséssemos salvar a lista em arquivo? Veja só (e teste, se possível):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar lista_frutas em um arquivo txt</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"lista_frutas.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="bu">str</span>(lista_frutas))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ler lista_frutas de um arquivo txt</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"lista_frutas.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    lista_frutas_lida <span class="op">=</span> f.read()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>lista_frutas_lida<span class="sc">}</span><span class="ss">, tipo </span><span class="sc">{</span><span class="bu">type</span>(lista_frutas_lida)<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A mesma coisa: convertemos primeiro a lista para string para poder salvar (por isso o <code>str()</code> em <code>f.write(str(lista_frutas))</code>). E, para ler, também teremos o resultado em string, igualzinho como no exemplo anterior. Aqui, a saída será:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[</span><span class="st">'maçã'</span><span class="ex">,</span> <span class="st">'banana'</span>, <span class="st">'laranja'</span>, <span class="st">'manga'</span>], tipo <span class="op">&lt;</span>class <span class="st">'str'</span><span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Também existe outra forma de salvar os dados dessa lista em arquivo. Poderíamos, por exemplo, salvar cada fruta em uma linha separada. Assim, teríamos o seguinte:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar lista_frutas em um arquivo txt</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"lista_frutas_split.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> fruta <span class="kw">in</span> lista_frutas:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        f.write(fruta <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ler lista_frutas de um arquivo txt</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"lista_frutas_split.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    lista_frutas_lida <span class="op">=</span> f.readlines()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>lista_frutas_lida<span class="sc">}</span><span class="ss">, tipo </span><span class="sc">{</span><span class="bu">type</span>(lista_frutas_lida)<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O primeiro <code>for</code> irá percorrer cada elemento da <code>lista_frutas</code> e escreverá cada elemento em uma linha separada no arquivo de texto. Já a linha <code>f.write(fruta + "\n")</code> adiciona uma quebra de linha depois de cada fruta, para que cada uma fique em uma linha separada no arquivo.</p>
+<p>Outra mudança: viu a função <code>readlines()</code>? Ela lerá o arquivo linha por linha e retornará uma lista contendo cada linha como um elemento separado. Interessante, não é? Agora, e para salvarmos o dicionário? Poderíamos fazer o seguinte:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar dicionario_pessoas em um arquivo txt</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"dicionario_pessoas.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="bu">str</span>(dicionario_pessoas))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ler dicionario_pessoas de um arquivo txt</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"dicionario_pessoas.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    dicionario_pessoas_lido <span class="op">=</span> f.read()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>dicionario_pessoas_lido<span class="sc">}</span><span class="ss">, tipo </span><span class="sc">{</span><span class="bu">type</span>(dicionario_pessoas_lido)<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aqui, a mesma coisa dos outros exemplos anteriores também acontece: convertemos o dicionário para texto, e lemos de volta um texto. É por isso que para guardarmos estruturas de dados um pouco mais complexas como um dicionário ou uma lista não seria muito interessante trabalhar com esse <code>read()</code> ou <code>readlines()</code> do jeito que são. Afinal, teríamos uma certa dor de cabeça para convertermos o resultado do arquivo lido (que é sempre em string) de volta para uma lista, um dicionário ou qualquer outra estrutura.</p>
+</section>
+<section id="salvando-em-json" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="salvando-em-json"><span class="header-section-number">9.4.2</span> Salvando em JSON</h3>
+<p>O JSON é outra maneira bem comum para salvarmos arquivos. Ele é usado para transmitir informações entre diferentes aplicações, permitindo que dados sejam facilmente compartilhados e manipulados. Geralmente sites, aplicativos e outros serviços que se comunicam com um usuário também trocam informações com servidores e bancos de dados usando JSON.</p>
+<p>Um arquivo JSON é composto por pares chave-valor, onde a chave é uma string que identifica o valor correspondente, que pode ser um número, string, objeto ou lista. Os objetos e listas podem ser aninhados, o que permite a criação de estruturas complexas de dados. Aqui, uma analogia para entender um arquivo JSON seria pensar em um mapa de cidade. Cada chave seria como uma rua, e seu valor correspondente seria como as casas ou prédios nessa rua. Assim como um mapa, um arquivo JSON fornece um meio organizado de acessar informações e entender a estrutura de um conjunto de dados.</p>
+<p>Sabe o dicionário em Python que você está acostumado (eu espero) a trabalhar? Então, está praticamente (senão totalmente) em formato JSON, já. Bom, vamos para os exemplos? Experimente rodar o código abaixo em Python:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># INÍCIO DO BLOCO 1</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar valor_pi em um arquivo json</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"valor_pi.json"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    json.dump(valor_pi, f)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ler valor_pi de um arquivo json</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"valor_pi.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    valor_pi_lido <span class="op">=</span> json.load(f)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>valor_pi_lido<span class="sc">}</span><span class="ss">, tipo </span><span class="sc">{</span><span class="bu">type</span>(valor_pi_lido)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># FIM DO BLOCO 1</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># INÍCIO DO BLOCO 2</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar lista_frutas em um arquivo json</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"lista_frutas.json"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    json.dump(lista_frutas, f)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ler lista_frutas de um arquivo json</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"lista_frutas.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    lista_frutas_lido <span class="op">=</span> json.load(f)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>lista_frutas_lido<span class="sc">}</span><span class="ss">, tipo </span><span class="sc">{</span><span class="bu">type</span>(lista_frutas_lido)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># FIM DO BLOCO 2</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># INÍCIO DO BLOCO 3</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar dicionario_pessoas em um arquivo json</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"dicionario_pessoas.json"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    json.dump(dicionario_pessoas, f)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co"># ler dicionario_pessoas de um arquivo json</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"dicionario_pessoas.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    dicionario_pessoas_lido <span class="op">=</span> json.load(f)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>dicionario_pessoas_lido<span class="sc">}</span><span class="ss">, tipo </span><span class="sc">{</span><span class="bu">type</span>(dicionario_pessoas_lido)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> nome, idade <span class="kw">in</span> dicionario_pessoas_lido.items():</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(nome, idade)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="co"># FIM DO BLOCO 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Muito código? Calma, vou explicar. Tá vendo aquele <code>import json</code> na primeira linha? Este código é uma importação do módulo <code>json</code> em Python. O módulo <code>json</code> é utilizado para codificar e decodificar dados em formato JSON. Imagine estes módulos como se fossem itens adicionais de uma comida de um fast-food ou os itens opcionais de um carro: eles não vem “de fábrica”, e você precisa “pedir” por este item. Existem vários módulos já integrados ao Python que fornecem funções úteis para lidar com tarefas comuns, como manipulação de arquivos, processamento de dados, matemática, networking, entre outras. Como nem sempre precisamos desses módulos em todo código, só os importamos quando realmente é necessário. Como <em>somente</em> agora estamos precisando trabalhar com o JSON, nós chamamos agora por esta importação.</p>
+<p>Percebe que temos ao longo do código o <code>json.dump()</code> e <code>json.load()</code> no lugar do <code>f.write()</code> e <code>f.read()</code>? Então: estas funções são específicas para salvarmos os dados em formato JSON e lermos de volta os dados que estão em JSON, respectivamente. A função <code>json.dump()</code> sempre recebe dois parâmetros: primeiro, o objeto a ser salvo. Depois, o arquivo onde ele deve ser salvo.</p>
+<p>Em seguida, o código lê cada um dos arquivos utilizando a função <code>json.load()</code>, que recebe como parâmetro o arquivo de onde os dados devem ser lidos. O bloco 1 salva e lê o valor da variável <code>valor_pi</code> em um arquivo JSON (experimente abrir o arquivo <code>valor_pi.json</code> no bloco de notas depois de rodar este código). O bloco 2 salva e lê a lista de frutas <code>lista_frutas</code>. Por fim, o bloco 3 salva e lê o dicionário <code>dicionario_pessoas</code>, que é impresso na tela utilizando um <code>for</code>.</p>
+<p>O resultado desse código será isto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">3.14159,</span> tipo <span class="op">&lt;</span>class <span class="st">'float'</span><span class="op">&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[</span><span class="st">'maçã'</span><span class="ex">,</span> <span class="st">'banana'</span>, <span class="st">'laranja'</span>, <span class="st">'manga'</span>], tipo <span class="op">&lt;</span>class <span class="st">'list'</span><span class="op">&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">{</span><span class="st">'João'</span><span class="ex">:</span> 25, <span class="st">'Maria'</span>: 30, <span class="st">'Pedro'</span>: 20, <span class="st">'Marcos'</span>: 15}, tipo <span class="op">&lt;</span>class <span class="st">'dict'</span><span class="op">&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">João</span> 25</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Maria</span> 30</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Pedro</span> 20</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Marcos</span> 15</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Percebeu que os tipos estão corretos? Temos <code>float</code>, <code>list</code> e <code>dict</code>. Legal, né? Isto acontece porque a função <code>json.load()</code> já converte automaticamente os dados lidos para o formato Python correspondente.</p>
+</section>
+<section id="salvando-em-pickle" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="salvando-em-pickle"><span class="header-section-number">9.4.3</span> Salvando em Pickle</h3>
+<p>Beleza, mas e se quiséssemos salvar as variáveis do Python direto em um arquivo? Isto é: sem ser salvo em texto ou algo assim? E se quiséssemos salvar um dicionário como tal, ou uma lista do jeito que está, sem termos que nos preocupar em converter nada? É para resolver isso que temos em Python os arquivos pickle. Imagine que este pickle é como se fosse um pote de vidro onde podemos guardar alimentos na geladeira. Quando colocamos alimentos no pote, eles são armazenados em um formato que pode ser facilmente recuperado posteriormente, quando quisermos consumi-los. Assim como podemos armazenar diferentes tipos de alimentos em potes de vidro, podemos armazenar diferentes tipos de objetos Python em arquivos pickle.</p>
+<p>Arquivos pickle em Python são arquivos binários usados para serializar e desserializar objetos Python. Isso significa que podemos usar o formato pickle para converter objetos Python em uma sequência de bytes, que pode ser gravada em um arquivo, transmitida pela rede ou armazenada em um banco de dados, por exemplo. Posteriormente, podemos recuperar o objeto Python original a partir dos bytes usando a desserialização.</p>
+<p>Mas, e aí? Vamos testar?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># INÍCIO DO BLOCO 1</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar valor_pi em um arquivo pickle</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"valor_pi.pickle"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    pickle.dump(valor_pi, f)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ler valor_pi de um arquivo pickle   </span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"valor_pi.pickle"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    valor_pi_lido <span class="op">=</span> pickle.load(f)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>valor_pi_lido<span class="sc">}</span><span class="ss">, tipo </span><span class="sc">{</span><span class="bu">type</span>(valor_pi_lido)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># FIM DO BLOCO 1</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># INÍCIO DO BLOCO 2</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar lista_frutas em um arquivo pickle</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"lista_frutas.pickle"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    pickle.dump(lista_frutas, f)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ler lista_frutas de um arquivo pickle</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"lista_frutas.pickle"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    lista_frutas_lida <span class="op">=</span> pickle.load(f)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>lista_frutas_lida<span class="sc">}</span><span class="ss">, tipo </span><span class="sc">{</span><span class="bu">type</span>(lista_frutas_lida)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co"># FIM DO BLOCO 2</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># INÍCIO DO BLOCO 3</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co"># salvar dicionario_pessoas em um arquivo pickle</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"dicionario_pessoas.pickle"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    pickle.dump(dicionario_pessoas, f)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="co"># ler dicionario_pessoas de um arquivo pickle</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"dicionario_pessoas.pickle"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    dicionario_pessoas_lido <span class="op">=</span> pickle.load(f)</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>dicionario_pessoas_lido<span class="sc">}</span><span class="ss">, tipo </span><span class="sc">{</span><span class="bu">type</span>(dicionario_pessoas_lido)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> nome, idade <span class="kw">in</span> dicionario_pessoas_lido.items():</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(nome, idade)</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="co"># FIM DO BLOCO 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O código acima terá o mesmo resultado do que fizemos com o exemplo do JSON, mas a diferença é que agora estamos trabalhando com pickle. Agora, importamos o módulo <code>pickle</code> na primeira linha porque, afinal de contas, estaremos trabalhando com arquivos pickle. O que temos também de diferenças são: - A abertura e escrita de arquivos com o <code>open()</code> deixou de usar os modos <code>"w"</code> e <code>"r"</code> para usar <code>"wb"</code> e <code>"rb"</code>. A letra <code>b</code> indica que estamos trabalhando com arquivos binários (ou seja: não é mais um arquivo de texto. Se você tentar abrir este arquivo pickle com o bloco de notas verá que não conseguirá entender nada). - Para salvar um arquivo <code>pickle</code> passamos a usar o <code>pickle.dump()</code>. - Para ler o conteúdo de um arquivo <code>pickle</code> passamos a usar o <code>pickle.load()</code>.</p>
+<p>Agora, quando preferimos usar JSON e quando pickle é melhor? A resposta é: <em>depende</em>. Se estivermos trabalhando com diferentes softwares, plataformas e linguagens de programação a resposta é clara: JSON. Se precisar abrir no bloco de notas/Visual Studio Code/similares, também seria o JSON. Agora, se a ideia é salvar uma variável dentro do seu computador para você continuar trabalhando depois em Python, aí seria pickle. Dito isso, não recomendo muito que você use pickle para transferir variáveis de lugares desconhecidos para você ou vice-versa: você pode estar carregando uma variável contendo algo que pode causar danos para o seu código ou para outros computadores sem querer.</p>
+</section>
+</section>
+<section id="exercícios" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">9.5</span> Exercícios</h2>
+<p>Vamos colocar em prática os conhecimentos de manipulação de arquivos? Iremos também combinar com o conhecimento de listas e dicionários do último capítulo. Vamos lá?</p>
+<ol type="1">
+<li>Crie um dicionário com o nome e a profissão de duas pessoas e adicione uma terceira pessoa com nome e profissão. Salve o resultado em um arquivo JSON.</li>
+<li>Crie um código que peça para o usuário digitar uma frase. Salve o resultado em uma arquivo de texto. Depois, abra este arquivo de texto que salvou e mostre o resultado na tela.</li>
+<li>A partir do exercício 2 e após mostrar o resultado na tela, peça novamente para que o usuário digite uma nova frase. Adicione esta nova frase no mesmo arquivo de texto sem apagar o conteúdo que já estava lá, e mostre o resultado na tela.</li>
+<li>Crie uma lista com números de 1 a 10 e, em seguida, crie uma segunda lista contendo somente os números pares. Salve somente a lista dos números pares em um arquivo pickle. Depois, abra novamente o arquivo pickle que salvou e mostre na tela o seu conteúdo.</li>
+<li>Modifique o código do exercício 4 para que salve, dentro de um único arquivo, as duas listas. Depois, abra novamente o arquivo pickle que salvou e mostre na tela o seu conteúdo.</li>
+</ol>
+<section id="respostas" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="respostas"><span class="header-section-number">9.5.1</span> Respostas</h3>
+<p><strong>1. Crie um dicionário com o nome e a profissão de duas pessoas e adicione uma terceira pessoa com nome e profissão. Salve o resultado em um arquivo JSON.</strong></p>
+<p>Você deve ter percebido que é praticamente o mesmo exercício do capítulo anterior, mas com um passo final para salvar o resultado em JSON, não é? Veja só como ficaria um exemplo de resposta:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>pessoas <span class="op">=</span> {}</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># adiciona as duas primeiras pessoas</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite o nome da pessoa: "</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    profissao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite a profissão da pessoa: "</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    pessoas[nome] <span class="op">=</span> profissao</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># adiciona a terceira pessoa</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite o nome da terceira pessoa: "</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>profissao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite a profissão da terceira pessoa: "</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>pessoas[nome] <span class="op">=</span> profissao</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># salva o resultado em um arquivo JSON</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"pessoas.json"</span>, <span class="st">"w"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    json.dump(pessoas, arquivo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O que temos de diferente neste código? Veja que, primeiramente, importamos a biblioteca <code>json</code> na primeira linha do Python para salvar o dicionário <code>pessoas</code> em um arquivo JSON. A função <code>json.dump()</code> é usada para escrever o dicionário no arquivo JSON. E, ainda, a opção <code>"w"</code> é passada para o <code>open()</code> para indicar que queremos escrever no arquivo.</p>
+<p>Experimente testar o código e abrir o arquivo <code>pessoas.json</code> logo em seguida para ver o que houve. No meu caso, o meu arquivo ficou assim:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">"João"</span><span class="fu">:</span> <span class="st">"Engenheiro"</span><span class="fu">,</span> <span class="dt">"Maria"</span><span class="fu">:</span> <span class="st">"Advogada"</span><span class="fu">,</span> <span class="dt">"Pedro"</span><span class="fu">:</span> <span class="st">"Médico"</span><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>2. Crie um código que peça para o usuário digitar uma frase. Salve o resultado em uma arquivo de texto. Depois, abra este arquivo de texto que salvou e mostre o resultado na tela.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pede para o usuário digitar uma frase</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>frase <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma frase: "</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># salva a frase em um arquivo de texto</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frase.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    arquivo.write(frase)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># abre o arquivo de texto e exibe o conteúdo na tela</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frase.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    conteudo <span class="op">=</span> arquivo.read()</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Conteúdo do arquivo:"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(conteudo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Veja que a função <code>input()</code> para solicitar que o usuário digite uma frase. Em seguida, a salvamos em um arquivo de texto chamado <code>frase.txt</code> usando a abertura do arquivo em modo de escrita (<code>"w"</code>) e a função <code>write()</code>.</p>
+<p>Depois, abrimos o arquivo em modo de leitura (<code>"r"</code>) e o conteúdo é lido usando o método <code>read()</code> e salvo na variável <code>conteudo</code>, que é mostrada na tela com o <code>print(conteudo)</code>.</p>
+<p><strong>3. A partir do exercício 2 e após mostrar o resultado na tela, peça novamente para que o usuário digite uma nova frase. Adicione esta nova frase no mesmo arquivo de texto sem apagar o conteúdo que já estava lá, e mostre o resultado na tela.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pede para o usuário digitar uma frase</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>frase <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma frase: "</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># salva a frase em um arquivo de texto</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frase.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    arquivo.write(frase)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># abre o arquivo de texto e exibe o conteúdo na tela</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frase.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    conteudo <span class="op">=</span> arquivo.read()</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Conteúdo do arquivo:"</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(conteudo)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Pede ao usuário para digitar uma outra frase</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>frase <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma frase: "</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Abre o arquivo em modo "a" para adicionar a nova frase</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frases.txt"</span>, <span class="st">"a"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Adiciona a nova frase ao arquivo</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    arquivo.write(frase <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Abre o arquivo novamente em modo "r" (leitura)</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frases.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lê o conteúdo do arquivo e mostra na tela</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    conteudo <span class="op">=</span> arquivo.read()</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(conteudo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Perceba principalmente o que vem depois do comentário <em>“Pede ao usuário para digitar uma outra frase”</em>. Para adicionar a nova frase ao arquivo de texto sem apagar o conteúdo já existente, usamos o modo <code>"a"</code> (append) na abertura do arquivo. Se usássemos o <code>"w"</code> de volta iríamos sobrescrever o que já havia sido salvo anteriormente.</p>
+<p><strong>4. Crie uma lista com números de 1 a 10 e, em seguida, crie uma segunda lista contendo somente os números pares. Salve somente a lista dos números pares em um arquivo pickle. Depois, abra novamente o arquivo pickle que salvou e mostre na tela o seu conteúdo.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cria a lista de números de 1 a 10</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>numeros <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>))</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># filtra os números pares</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>numeros_pares <span class="op">=</span> []</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> numeros:</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> num <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        numeros_pares.append(num)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># salva a lista de números pares em um arquivo pickle</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"numeros_pares.pickle"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    pickle.dump(numeros_pares, f)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># abre o arquivo pickle e mostra o conteúdo na tela</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"numeros_pares.pickle"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    numeros_pares_lidos <span class="op">=</span> pickle.load(f)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(numeros_pares_lidos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Veja que salvamos a lista <code>numeros_pares</code> em um arquivo pickle chamado <code>numeros_pares.pickle</code>. Como é um arquivo binário (isto é: não é legível por humanos ao abrir no bloco de notas), salvamos este arquivo usando <code>"wb"</code> e lemos usando <code>"rb"</code> (perceba a letra <code>b</code> presente em ambos os casos). Por fim, o código abre novamente o arquivo pickle com o uso do <code>pickle.load()</code> e mostra o conteúdo na tela. O resultado esperado é a exibição na tela da lista <code>[2, 4, 6, 8, 10]</code>.</p>
+<p><strong>5. Modifique o código do exercício 4 para que salve, dentro de um único arquivo, as duas listas. Depois, abra novamente o arquivo pickle que salvou e mostre na tela o seu conteúdo.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cria a lista de números de 1 a 10</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>numeros <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>))</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># filtra os números pares</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>numeros_pares <span class="op">=</span> []</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> numeros:</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> num <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>        numeros_pares.append(num)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co"># salva a lista de números pares em um arquivo pickle</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"numeros_pares.pickle"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    pickle.dump([numeros, numeros_pares], f)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co"># abre o arquivo pickle e mostra o conteúdo na tela</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"numeros_pares.pickle"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    numeros_lidos, numeros_pares_lidos <span class="op">=</span> pickle.load(f)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(numeros_lidos)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(numeros_pares_lidos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>É muito provável que você tenha dificuldades para fazer este aqui. Afinal, em nenhum momento lhe disse como salvaríamos mais de uma variável em um arquivo pickle. Sem problemas - a ideia aqui é a de demonstrar, mesmo. Perceba duas grandes modificações em relação ao código anterior: - O <code>pickle.dump([numeros, numeros_pares], f)</code>: veja o <code>[numeros, numeros_pares]</code>. Para salvar mais de uma variável em um mesmo arquivo pickle basta informar todas as variáveis em uma lista. - Para ler estas variáveis, basta informar a mesma quantidade na hora de chamar o <code>pickle.load()</code>. Como salvamos duas variáveis, teremos que armazenar o resultado do <code>pickle.load()</code> em duas variáveisl. É por isso que temos o <code>numeros_lidos, numeros_pares_lidos</code> na antepenúltima linha.</p>
+</section>
+</section>
+<section id="referências-bibliográficas" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="referências-bibliográficas"><span class="header-section-number">9.6</span> Referências bibliográficas</h2>
+<ul>
+<li>PYTHON. CSV File Reading and Writing. Disponível em: https://docs.python.org/3/library/csv.html. Acesso em: 14 mar. 2023.</li>
+<li>PYTHON. JSON - JavaScript Object Notation. Disponível em: https://docs.python.org/3/library/json.html. Acesso em: 14 mar. 2023.</li>
+<li>PYTHON. pickle — Python object serialization. Disponível em: https://docs.python.org/3/library/pickle.html. Acesso em: 14 mar. 2023.</li>
+<li>PYTHON. Tutorial de Python 3.9.6rc1. Disponível em: https://docs.python.org/pt-br/3/tutorial/index.html. Acesso em: 14 mar. 2023.</li>
+<li>GEEKSFORGEEKS. JSON with Python. Disponível em: https://www.geeksforgeeks.org/json-with-python/. Acesso em: 14 mar. 2023.</li>
+<li>GEEKSFORGEEKS. Reading CSV files in Python. Disponível em: https://www.geeksforgeeks.org/reading-csv-files-in-python/. Acesso em: 14 mar. 2023.</li>
+<li>JSON.org. Introducing JSON. Disponível em: https://www.json.org/json-en.html. Acesso em: 14 mar. 2023.</li>
+<li>W3SCHOOLS. Python File Handling. Disponível em: https://www.w3schools.com/python/python_file_handling.asp. Acesso em: 14 mar. 2023.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./07-Listas-Dicionarios-Tuplas.html" class="pagination-link" aria-label="De um bolo para uma festa: listas, dicionários e tuplas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">De um bolo para uma festa: listas, dicionários e tuplas</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./09-POO.html" class="pagination-link" aria-label="O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

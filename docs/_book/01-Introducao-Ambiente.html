@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Arrumando as coisas para começar a trabalhar com Python – Python Descomplicado</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02-Introducao-Algoritmos.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f2c6d6e2b784ddc5de38779acc06f37d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-Introducao-Ambiente.html">Parte 1: Sabendo onde estamos</a></li><li class="breadcrumb-item"><a href="./01-Introducao-Ambiente.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python Descomplicado</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 1: Sabendo onde estamos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introducao-Ambiente.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Introducao-Algoritmos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 2: Fazendo coisas legais</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Variaveis-IO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeiros (ou segundos) passos em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Estruturas-Selecao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Estruturas-Repeticao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Repetições, repetições, repetições: loops em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tudo em blocos: trabalhando com funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Listas-Dicionarios-Tuplas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">De um bolo para uma festa: listas, dicionários e tuplas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Manipulacao-Arquivos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-POO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 3: Resolvendo tretas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Erros-Comuns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erros/exceções em Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#o-que-você-saberá-se-você-ler-todo-este-capítulo" id="toc-o-que-você-saberá-se-você-ler-todo-este-capítulo" class="nav-link active" data-scroll-target="#o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">2.1</span> O que você saberá se você ler todo este capítulo?</a></li>
+  <li><a href="#por-que-python" id="toc-por-que-python" class="nav-link" data-scroll-target="#por-que-python"><span class="header-section-number">2.2</span> Por que Python?</a>
+  <ul class="collapse">
+  <li><a href="#nas-universidades" id="toc-nas-universidades" class="nav-link" data-scroll-target="#nas-universidades"><span class="header-section-number">2.2.1</span> Nas universidades</a></li>
+  </ul></li>
+  <li><a href="#instalando-ou-não-o-python" id="toc-instalando-ou-não-o-python" class="nav-link" data-scroll-target="#instalando-ou-não-o-python"><span class="header-section-number">2.3</span> Instalando (ou não) o Python</a>
+  <ul class="collapse">
+  <li><a href="#arquivos-do-python-.py-e-o-python-console" id="toc-arquivos-do-python-.py-e-o-python-console" class="nav-link" data-scroll-target="#arquivos-do-python-.py-e-o-python-console"><span class="header-section-number">2.3.1</span> Arquivos do Python (.py) e o Python Console</a></li>
+  </ul></li>
+  <li><a href="#referências-bibliográficas" id="toc-referências-bibliográficas" class="nav-link" data-scroll-target="#referências-bibliográficas"><span class="header-section-number">2.4</span> Referências bibliográficas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-Introducao-Ambiente.html">Parte 1: Sabendo onde estamos</a></li><li class="breadcrumb-item"><a href="./01-Introducao-Ambiente.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="o-que-você-saberá-se-você-ler-todo-este-capítulo" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">2.1</span> O que você saberá se você ler todo este capítulo?</h2>
+<ol type="1">
+<li>🏆 Você irá testar logo de cara o seu primeiro algoritmo!</li>
+<li>Python é legal, mas não é perfeito. Não seja fanboy/fangirl de linguagem de programação!</li>
+<li>Muita gente em universidades e empresas usam Python porque é simples, rápido e tem uma comunidade grande.</li>
+<li>Como configurar o seu computador para começar a trabalhar com Python (mais especificamente, com o PyCharm), e o que é o PyCharm e uma IDE.</li>
+<li>Você irá testar diferentes funções/comandos em Python dentro do PyCharm.</li>
+</ol>
+</section>
+<section id="por-que-python" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="por-que-python"><span class="header-section-number">2.2</span> Por que Python?</h2>
+<p>Python é uma das linguagens de programação mais utilizadas pelas empresas atualmente, devido à sua simplicidade e facilidade de aprendizado por ser uma linguagem de alto nível. Além disso, a sua grande comunidade de desenvolvedores cria bibliotecas e frameworks para diversas finalidades, o que aumenta a sua versatilidade e funcionalidade. Ah, e empresas de diversos segmentos também usam Python para as mais diversas finalidades, desde análise de dados e inteligência artificial até a automação de tarefas e desenvolvimento web.</p>
+<blockquote class="blockquote">
+<p><em>Linguagem de alto nível</em>: é uma linguagem de programação que permite escrever códigos de forma mais próxima da linguagem humana.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>Bibliotecas</em>: é um conjunto de módulos ou arquivos que contêm funcionalidades prontas para serem usadas em programas de computador, permitindo aos desenvolvedores economizar tempo e esforço na criação de novas funcionalidades.</p>
+</blockquote>
+<p>A primeira imagem que a humanidade gerou de um buraco negro também foi gerada por cientistas usando Python. Olha só:</p>
+<figure class="figure">
+<img alt="Buraco negro M87" src="https://numpy.org/images/content_images/cs/blackhole.jpg" style="max-width:400px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Buraco negro M87. Créditos: <a href="https://www.jpl.nasa.gov/images/universe/20190410/blackhole20190410.jpg">Event Horizon Telescope Collaboration</a>
+</figcaption>
+</figure>
+<p>Uma das empresas que mais utiliza Python é a Google, que a usa desde a análise de erros e testar coisas novas até a inteligência artificial. O Youtube (que também é da Google) também usa Python em grande parte de sua infraestrutura. Outra empresa que utiliza bastante Python é a NASA, que utiliza a linguagem para processamento de imagens, análise de dados e desenvolvimento de softwares de controle de missões espaciais.</p>
+<p>O uso de Python em empresas também se estende ao desenvolvimento web, com a utilização de frameworks como o Django e Flask, que permitem a criação de aplicações web com rapidez e eficiência. Empresas como Instagram, Spotify, Dropbox e Reddit utilizam Python em suas aplicações web, devido à sua facilidade de desenvolvimento e escalabilidade.</p>
+<p>Além disso, dentro do uso de inteligência artificial o Python é amplamente usado com bibliotecas como o NumPy, Pandas e Scikit-learn, que permitem a manipulação de grandes conjuntos de dados e a criação de modelos de machine learning com facilidade. É por isso que empresas como a Amazon, Netflix e Airbnb utilizam Python em seus processos de análise de dados e aprendizado de máquina (<em>machine learning</em>).</p>
+<p>Por fim, Python também é utilizado em automação de tarefas e scripts, permitindo a criação de rotinas automatizadas para diversos fins, desde backups até análise de logs. Empresas de diversos segmentos utilizam Python para automatizar tarefas rotineiras e melhorar a eficiência de seus processos.</p>
+<section id="nas-universidades" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="nas-universidades"><span class="header-section-number">2.2.1</span> Nas universidades</h3>
+<p>Nas universidades, o Python tem sido amplamente utilizado para ensinar conceitos básicos de programação, como variáveis, estruturas de controle de fluxo, funções e estruturas de dados (veremos esses itens em breve). Da mesma forma que as empresas usam Python, as universidades também o usam dentro das disciplinas de ciência de dados, inteligência artificial e machine learning.</p>
+<p>O Python também é utilizado em outros setores como finanças, marketing e automação de processos. A sua facilidade de aprendizado e rapidez no desenvolvimento de soluções têm sido fatores determinantes para a sua escolha, além de possuir um vasto suporte da comunidade, permitindo a utilização de bibliotecas e módulos já desenvolvidos e testados por outros usuários.</p>
+<p>Mas é claro: não é legal ser fanboy/fangirl de linguagem de programação e colocar o Python como a “melhor” linguagem de programação do Universo. Longe disso: existem várias outras <a href="https://www.tiobe.com/tiobe-index/">como você pode ver neste ranking</a>. Ela também possui algumas desvantagens como, por exemplo: - Desempenho inferior a linguagens de baixo nível, como C e C++, o que pode ser um problema em alguns tipos de aplicações muito específicas que exigem alta performance; - Falta de compatibilidade com versões anteriores, o que pode tornar a migração de versões um processo complexo em alguns casos; - Limitações em relação à criação de interfaces gráficas (como jogos), já que a maioria das bibliotecas disponíveis não são nativas do Python.</p>
+</section>
+</section>
+<section id="instalando-ou-não-o-python" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="instalando-ou-não-o-python"><span class="header-section-number">2.3</span> Instalando (ou não) o Python</h2>
+<p>Você pode usar o Word para escrever textos, o PowerPoint para fazer apresentações, a Steam para comprar jogos para o computador e o Chrome para navegar na internet. Mas, o que você usaria para trabalhar com algoritmos? Para isso poderíamos usar as IDEs.</p>
+<p>Uma IDE (<em>Integrated Development Environment</em>) é um ambiente de desenvolvimento integrado que reúne diversas ferramentas necessárias para a criação e edição de códigos de programação em um único lugar. Seria dentro da IDE que escreveríamos, testaríamos e analisaríamos o código.</p>
+<p>O Python possui várias IDEs disponíveis como, por exemplo, o PyCharm, Visual Studio, Visual Studio Code, e Spyder. Para desenvolver algoritmos em Python também seria possível desenvolver códigos direto do navegador com soluções como o <a href="https://repl.it">repl.it</a> e <a href="https://colab.research.google.com">Google Colab</a>.</p>
+<p>A recomendação é a de que você instale o PyCharm para fazer os seus algoritmos. Se você está interessado em seguir em frente com o PyCharm e gostaria de saber como instalá-lo, recomendo acessar este <a href="https://medium.com/@wmonteiro/instalando-o-pycharm-684bbd52bae9">passo-a-passo que eu criei</a> especificamente para isso.</p>
+<p>A partir de agora eu assumirei que você já está com o PyCharm (ou alguma outra alternativa) já instalada no seu computador. Se tudo deu certo, você terá uma janela com essa carinha:</p>
+<figure class="figure">
+<img alt="Tela inicial do PyCharm" src="assets/pycharm_new_project.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Tela inicial do PyCharm após a criação de um projeto
+</figcaption>
+</figure>
+<p>(content:environment:sourcecodefile)= ## Começando com código: colocando a mão na massa</p>
+<p>Sejamos sinceros: o legal mesmo é colocar a mão na massa logo de cara, não é mesmo? O que acha de um algoritmo em Python que gera uma tabela de um campeonato de Counter-Strike? Veja o código abaixo:</p>
+<figure class="figure">
+<img alt="Streamer da Twitch.tv 'Gaules'" src="assets/gau.jpg" style="max-width:400px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+<em>Começççççççççççou!</em>
+</figcaption>
+</figure>
+<div id="cb51d8a3-fb88-4f3f-b229-f452de9558e0" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista de times</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> [<span class="st">'Astralis'</span>, <span class="st">'Na`Vi'</span>, <span class="st">'G2'</span>, <span class="st">'Vitality'</span>, <span class="st">'Liquid'</span>, <span class="st">'FURIA'</span>]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista de resultados [time1, time2, resultado_time1, resultado_time2]</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>resultados <span class="op">=</span> [</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Astralis'</span>, <span class="st">'G2'</span>, <span class="dv">16</span>, <span class="dv">10</span>],</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Na`Vi'</span>, <span class="st">'Vitality'</span>, <span class="dv">16</span>, <span class="dv">8</span>],</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Liquid'</span>, <span class="st">'FURIA'</span>, <span class="dv">16</span>, <span class="dv">14</span>],</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Astralis'</span>, <span class="st">'Liquid'</span>, <span class="dv">16</span>, <span class="dv">13</span>],</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'G2'</span>, <span class="st">'FURIA'</span>, <span class="dv">16</span>, <span class="dv">12</span>],</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Vitality'</span>, <span class="st">'Astralis'</span>, <span class="dv">16</span>, <span class="dv">14</span>],</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Na`Vi'</span>, <span class="st">'Liquid'</span>, <span class="dv">16</span>, <span class="dv">11</span>],</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'FURIA'</span>, <span class="st">'Vitality'</span>, <span class="dv">16</span>, <span class="dv">13</span>],</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Astralis'</span>, <span class="st">'Na`Vi'</span>, <span class="dv">16</span>, <span class="dv">12</span>],</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'G2'</span>, <span class="st">'Vitality'</span>, <span class="dv">16</span>, <span class="dv">14</span>],</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Liquid'</span>, <span class="st">'Astralis'</span>, <span class="dv">16</span>, <span class="dv">12</span>],</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'FURIA'</span>, <span class="st">'Na`Vi'</span>, <span class="dv">16</span>, <span class="dv">14</span>],</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Dicionário para armazenar a pontuação de cada time</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>pontuacao <span class="op">=</span> {time: {<span class="st">'pontos'</span>: <span class="dv">0</span>, <span class="st">'jogos'</span>: <span class="dv">0</span>, <span class="st">'vitorias'</span>: <span class="dv">0</span>} <span class="cf">for</span> time <span class="kw">in</span> times}</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop para atualizar a pontuação de cada time</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> jogo <span class="kw">in</span> resultados:</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    time1, time2, resultado1, resultado2 <span class="op">=</span> jogo</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> resultado1 <span class="op">&gt;</span> resultado2:</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        pontuacao[time1][<span class="st">'pontos'</span>] <span class="op">+=</span> <span class="dv">3</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        pontuacao[time1][<span class="st">'vitorias'</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> resultado1 <span class="op">&lt;</span> resultado2:</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        pontuacao[time2][<span class="st">'pontos'</span>] <span class="op">+=</span> <span class="dv">3</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        pontuacao[time2][<span class="st">'vitorias'</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        pontuacao[time1][<span class="st">'pontos'</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        pontuacao[time2][<span class="st">'pontos'</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    pontuacao[time1][<span class="st">'jogos'</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    pontuacao[time2][<span class="st">'jogos'</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificar os times por pontos e exibir a tabela</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>classificacao <span class="op">=</span> <span class="bu">sorted</span>(pontuacao.items(), key<span class="op">=</span><span class="kw">lambda</span> x: (<span class="op">-</span>x[<span class="dv">1</span>][<span class="st">'pontos'</span>], <span class="op">-</span>x[<span class="dv">1</span>][<span class="st">'vitorias'</span>]))</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tabela de classificação:'</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="sc">{:&lt;15}</span><span class="st"> </span><span class="sc">{:&lt;10}</span><span class="st"> </span><span class="sc">{:&lt;10}</span><span class="st"> </span><span class="sc">{:&lt;10}</span><span class="st">'</span>.<span class="bu">format</span>(<span class="st">'Time'</span>, <span class="st">'Pontos'</span>, <span class="st">'Vitórias'</span>, <span class="st">'Jogos'</span>))</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, pontos <span class="kw">in</span> classificacao:</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'</span><span class="sc">{:&lt;15}</span><span class="st"> </span><span class="sc">{:&lt;10}</span><span class="st"> </span><span class="sc">{:&lt;10}</span><span class="st"> </span><span class="sc">{:&lt;10}</span><span class="st">'</span>.<span class="bu">format</span>(time, pontos[<span class="st">'pontos'</span>], pontos[<span class="st">'vitorias'</span>], pontos[<span class="st">'jogos'</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tabela de classificação:
+Time            Pontos     Vitórias   Jogos     
+Astralis        9          3          5         
+Na`Vi           6          2          4         
+G2              6          2          3         
+Liquid          6          2          4         
+FURIA           6          2          4         
+Vitality        3          1          4         </code></pre>
+</div>
+</div>
+<p>Viu o resultado acima? Ele gerou uma tabela toda bonita contendo os times já ordenados pela pontuação. Isso poderia servir para qualquer outro campeonato: futebol, sinuca ou qualquer outra coisa que poderia entrar neste formato.</p>
+<p>Quer testar isso? Volte lá no PyCharm e apague todo o conteúdo que está naquela aba <code>main.py</code>. Este arquivo <code>main.py</code> possui o seu código-fonte, e é isso que iremos substituir.</p>
+<blockquote class="blockquote">
+<p><em>Código-fonte</em>: É o arquivo que contém o código na sua forma original, antes de ser compilado ou interpretado, e é através dele que os desenvolvedores podem criar, editar e aprimorar os programas.</p>
+</blockquote>
+<p>Você deverá ficar com algo assim:</p>
+<figure class="figure">
+<img alt="Tela inicial do PyCharm com o código-fonte de exemplo removido" src="assets/pycharm_blank.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Tela inicial do PyCharm após apagar o conteúdo do “main.py”.
+</figcaption>
+</figure>
+<p>Agora, vamos copiar e colar o código acima dentro desta tela. Você deve ficar com algo assim:</p>
+<figure class="figure">
+<img alt="Tela inicial do PyCharm com o nosso código-fonte adicionado" src="assets/pycharm_pasted.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Tela inicial do PyCharm após inserir o código da tabela do campeonato dentro do “main.py”.
+</figcaption>
+</figure>
+<p>Agora é hora de rodar (executar) o código. Você pode fazer isso de algumas formas: 1. Apertar <code>Shift</code> e <code>F10</code> no seu teclado; 2. Clicando no botão de <code>Run</code> (triângulo verde no canto superior direito da tela, destacado abaixo); 3. No menu superior, clicando em <code>Run &gt; Run '$ARQUIVO'</code> (neste caso, seria <code>Run &gt; Run 'main'</code>).</p>
+<figure class="figure">
+<img alt="Botão para rodar o código" src="assets/pycharm_run.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Botão para rodar (executar) o código destacado em roxo.
+</figcaption>
+</figure>
+<p>Com isso, o seu código deve executar e os resultados aparecerão na parte inferior do PyCharm. Veja a imagem abaixo:</p>
+<figure class="figure">
+<img alt="Resultado da execução do algoritmo mostrando a tabela de classificação com 6 equipes e as colunas pontos, vitórias e jogos." src="assets/pycharm_results.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Resultado da execução do algoritmo, em roxo.
+</figcaption>
+</figure>
+<p>Você também deve ter notado a mensagem final <code>Process finished with exit code 0</code>. Isto significa que o código rodou sem problemas. Agora, o que aconteceria se você digitasse <em>qualquer</em> outra coisa no meio do arquivo? Por exemplo: na linha 24, troque o texto <code>resultados</code> por <code>abc</code>. Deve ficar assim:</p>
+<figure class="figure">
+<img alt="Linha 24 do algoritmo editada. O texto 'resultados' foi substituído pelo texto 'abc'. Há um realce em vermelho sob o texto 'abc'." src="assets/pycharm_typo.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Trocando o texto “resultados” por “abc” na linha 24.
+</figcaption>
+</figure>
+<p>Notou uma linha em ziguezague (ou uma “cobrinha”) embaixo do <code>abc</code>? O PyCharm ajuda a detectar erros para te mostrar com antecedência. Se você passar o mouse em cima do <code>abc</code> verá que aparecerá um texto com a mensagem <code>Unresolved reference 'abc'</code>.</p>
+<p>Isto, traduzindo para o português, significa <code>Referência 'abc' não-resolvida</code>. Reescrevendo de forma mais clara: <code>Você tá querendo usar um negócio chamado 'abc' que não existe em nenhum outro lugar no código. Tá certo isso?</code>. O PyCharm está avisando que vai dar erro isso aí. O que acontece se ignorarmos este erro e tentarmos rodar o código mesmo assim (seja clicando no triângulo verde, indo no menu <code>Run</code> ou apertando <code>Shift</code> + <code>F10</code>)? Olha só:</p>
+<figure class="figure">
+<img alt="Mensagem de erro com o texto 'NameError: name abc is not defined'." src="assets/pycharm_nameerror.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Deu erro. Tá em vermelho, e mensagens em vermelho não são coisas boas, né?
+</figcaption>
+</figure>
+<p>Parece confuso, mas não é. O Python é bem amigável quanto às mensagens de erro. Vamos traduzir por partes: 1. <code>Traceback (most recent call last):</code> <em>“Viu, esse aqui foi o último erro que achei e que fez o código parar de funcionar, ó:”</em> 2. <code>File "$ARQUIVO", line $LINHA, in &lt;module&gt;</code>: <em>“O erro aconteceu aqui ó, nesse $ARQUIVO (no nosso caso, no <code>main.py</code>) e nessa $LINHA (no nosso caso, na linha 24), entendeu?”</em> 3. <code>for jogo in abc:</code>: <em>“Tá com preguiça de abrir aquela linha 24 para ver o que tem lá? Não tem problema: a linha 24 tinha isso aqui ó.”</em> 4. <code>NameError: name 'abc' is not defined</code>: <em>“O erro que teve aqui foi um erro de nome. No caso, não achei em lugar nenhum alguém com o nome de ‘abc’. O que é isso? O que eu deveria fazer com isso? Me ajuda aí.”</em></p>
+<p>Diferentes erros terão diferentes tratamentos. Ou seja, não será sempre que aparecerá um <code>NameError</code>, mas as explicações farão sentido para você ao longo do caminho. Para te ajudar, também <a href="content:commonerrors">criei uma seção com os tratamentos mais comuns aos erros de código para você</a>.</p>
+<section id="arquivos-do-python-.py-e-o-python-console" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="arquivos-do-python-.py-e-o-python-console"><span class="header-section-number">2.3.1</span> Arquivos do Python (.py) e o Python Console</h3>
+<p>Você também poderá usar o PyCharm para usar o console do Python. Este console é bem útil para rodar de comandos e ver os resultados em tempo real. Além disso, o console é uma ferramenta de depuração (<em>debug</em>) muito útil, pois permite que o desenvolvedor teste comandos e veja imediatamente se eles estão funcionando como esperado.</p>
+<p>Assim, imagine que o console do Python pode te ajudar por ser uma maneira fácil e rápida de testar ideias e verificar o funcionamento de funções e scripts. Agora, qual é a diferença entre usar aquele arquivo (o <code>main.py</code> no exemplo anterior) e usar o console?</p>
+<p>Enquanto que o arquivo .py permite que você salve o código em um arquivo e o execute posteriormente quantas vezes quiser, o console do Python executa o código em tempo real e apenas permite que você execute o código que foi digitado enquanto o console está aberto. Em outras palavras, o arquivo .py permite que você escreva seu código em um ambiente mais estruturado, <strong>salve-o e execute-o quantas vezes quiser</strong>, enquanto o console do Python é mais útil para <strong>testar pequenos trechos de código</strong> ou para interagir com o código em tempo real.</p>
+<p>Fazendo uma comparação com o mundo real, podemos comparar o arquivo .py com uma receita de bolo escrita em um caderno de receitas. Você pode escrever a receita em um caderno, salvar e acessar novamente sempre que quiser fazer o bolo. Por outro lado, o console do Python seria como estar em uma cozinha, onde você pode testar pequenas partes da receita para ver como ficaria o sabor final do bolo, mas não seria apropriado para escrever e armazenar a receita completa.</p>
+<figure class="figure">
+<img alt="Botão 'Python Console' realçado dentro do PyCharm" src="assets/pycharm_console.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Observe o botão “Python Console” no canto inferior do PyCharm.
+</figcaption>
+</figure>
+<p>Quer testar o Python Console? Digite o comando abaixo dentro do console e logo após os <code>&gt;&gt;&gt;</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Alô alô, testando."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Depois de digitar, aperte <code>Enter</code>. Deverá aparecer a mensagem <code>Alô alô, testando.</code> logo abaixo no console. Deve aparecer algo desse jeito:</p>
+<figure class="figure">
+<img alt="Comando print('Alô alô, testando.') aparecendo no Python Console." src="assets/pycharm_print_input.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+O seu comando digitado deve aparecer mais ou menos desse jeito <em>antes</em> de apertar Enter.
+</figcaption>
+</figure>
+<figure class="figure">
+<img alt="Resultado da função print('Alô alô, testando.') no Python Console. A frase 'Alô alô, testando.' apareceu na tela." src="assets/pycharm_print_output.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Você deve ter este mesmo resultado na sua tela depois de apertar Enter.
+</figcaption>
+</figure>
+<p>A função <code>print</code> é responsável por mostrar uma mensagem na tela. A forma de escrever é sempre a mesma: o texto <code>print</code>, seguido pela abertura de parênteses e, dentro dos parênteses e circundados por aspas simples ou duplas, o texto que você quer mostrar. Os exemplos abaixo são permitidos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Alô alô, testando."</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Alô alô, testando.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Assim não seria uma boa prática de formatação/organização:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Alô alô, testando."</span>)  <span class="co"># veja o espaço entre `print` e `(`</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( <span class="st">"Alô alô, testando."</span> ) <span class="co"># veja o espaço antes e depois do fechamento das aspas</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>E isso aqui daria um erro, já que você começaria de um jeito (aspas simples) e terminaria de outro (aspas duplas):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Alô alô, testando.")   </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Quer testar mais exemplos? Digite os comandos abaixo, sempre apertando <code>Enter</code> no final de cada comando. Fique tranquilo se alguns desses conceitos não estiverem muito claros: veremos com mais calma adiante.</p>
+<ul>
+<li><code>print("Olá de novo!")</code>: exibe uma outra mensagem na tela. No caso, <em>“Olá de novo!”</em>.</li>
+<li><code>5 + 1</code>: soma cinco mais um e mostra o resultado (<code>6</code>) na tela.</li>
+<li><code>"Olá" + " " + "de novo!"</code>: concatena os textos (strings) <em>“Olá”</em> e <em>“de novo!”</em> com um espaço entre eles e exibe o resultado na tela.</li>
+<li><code>len("Python")</code>: retorna o comprimento (<em>length</em>, ou total de caracteres) da string “Python”.</li>
+<li><code>type(5)</code>: retorna o tipo de dado do número 5. Como 5 é um número inteiro (<em>integer</em>), aparecerá <code>int</code> na tela.</li>
+<li><code>type("Python")</code>: retorna o tipo de dado do valor “Python”. Como ele é um texto (<em>string</em>), aparecerá <code>str</code> na tela.</li>
+<li><code>max([1, 7, 2, 3])</code>: retorna o maior número da lista [1, 7, 2, 3]. No caso, <code>7</code>.</li>
+<li><code>min([1, 7, 2, 3])</code>: retorna o menor número da lista [1, 7, 2, 3]. No caso, <code>1</code>.</li>
+<li><code>sum([1, 7, 2, 3])</code>: retorna a soma dos números da lista [1, 7, 2, 3]. No caso, <code>13</code>.</li>
+<li><code>round(3.14159265359, 2)</code>: arredonda o número pi para 2 casas decimais. No caso, <code>3.14</code>.</li>
+<li><code>bool(1)</code>: retorna <code>True</code>, pois 1 representa o valor <code>verdadeiro</code> em Python quando estamos tratando de operações binárias (isto é, verdadeiro/falso, ligado/desligado).</li>
+<li><code>bool(0)</code>: retorna <code>False</code>, pois 0 representa o valor <code>falso</code> em Python.</li>
+<li><code>str(123)</code>: converte o número 123 para uma string. No caso, resultará em <code>"123"</code> (observe as aspas que explicitam que trata-se de um texto, e não de um número).</li>
+<li><code>'Olá de novo!'.split()</code>: divide a string em uma lista de palavras toda vez que um espaço for encontrado. No caso, retornará <code>['Olá', 'de', 'novo!']</code>.</li>
+<li><code>"wellington".capitalize()</code>: retorna a string <code>"Wellington"</code>. Observe que a primeira letra está em maiúscula.</li>
+<li><code>abs(-5)</code>: retorna o valor absoluto de -5. No caso, <code>5</code>.</li>
+<li><code>" São José dos Pinhais ".strip()</code>: remove os espaços em branco no início e no fim da string, mas vai ignorar os espaços entre as palavras. No caso, retornará <code>São José dos Pinhais</code>.</li>
+<li><code>"Olá de novo!".replace("novo", "volta")</code>: substitui a palavra <code>"novo"</code> por <code>"volta"</code> na string.</li>
+<li><code>list(range(10))</code>: cria uma lista de números inteiros de 0 até 10, mas sem considerar o 10. Ou seja: <code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</code>.</li>
+</ul>
+<p>Neste livro você aprenderá a fazer algoritmos como aquele da tabela de classificação. Por outro lado, este livro não é um passo-a-passo somente: se assim fosse, você só seria capaz de replicar os passos que eu estaria lhe falando para executar.</p>
+<p>Veja só: um profissional de TI recebe o seu salário para resolver problemas e não para apertar teclas no computador para gerar código porque, além de ter habilidades técnicas em sua área de atuação, ele também possui habilidades analíticas e de resolução de problemas que o capacitam a encontrar soluções eficazes e eficientes para os desafios que surgem no trabalho. Isso pode envolver a criação de novos algoritmos, adaptação de algoritmos existentes, integração de sistemas e outras atividades que vão além do simples seguimento de tutoriais de código.</p>
+<p>Além disso, muitos dos desafios enfrentados na área de TI não têm soluções prontas e, portanto, exigem que o profissional utilize sua experiência e criatividade para encontrar soluções inovadoras e personalizadas para os problemas em questão. Isso significa que o profissional de TI deve ser capaz de analisar e entender os problemas, desenvolver hipóteses, testar soluções e avaliar resultados, muitas vezes em um ambiente de constante mudança e evolução.</p>
+<p>Portanto, ainda que seguir tutoriais pode ser uma forma útil de aprender novas habilidades e conceitos na área de TI, um desenvolvedor pode ser valorizado principalmente por sua capacidade de resolver problemas de maneira eficaz e inovadora, usando suas habilidades técnicas, analíticas e de pensamento crítico. Por isso, é importante você entender um pouco mais sobre algoritmo antes de voltarmos ao Python. E é para isto que o próximo capítulo servirá. Vamos lá?</p>
+</section>
+</section>
+<section id="referências-bibliográficas" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="referências-bibliográficas"><span class="header-section-number">2.4</span> Referências bibliográficas</h2>
+<ul>
+<li>MARTIN, R. C. Clean Code: A Handbook of Agile Software Craftsmanship. Prentice Hall, 2009.</li>
+<li>MCKINNEY, W. Python for data analysis: Data wrangling with Pandas, NumPy, and IPython. O’Reilly Media, 2012.</li>
+<li>REITZ, K. et al.&nbsp;Requests: HTTP for Humans™. 2021. Disponível em: https://docs.python-requests.org/en/latest/. Acesso em: 01 mar. 2023.</li>
+<li>REYNOLDS, J. 8 World-Class Software Companies That Use Python?. Disponível em: https://realpython.com/world-class-companies-using-python/. Acesso em: 03 mar. 2023.</li>
+<li>RICHARDSON, L. et al.&nbsp;Beautiful Soup Documentation. 2021. Disponível em: https://www.crummy.com/software/BeautifulSoup/bs4/doc/. Acesso em: 01 mar. 2023.</li>
+<li>RAYOME, A. Why Python is so popular with developers: 3 reasons the language has exploded. TechRepublic, 2015. Disponível em: https://www.techrepublic.com/article/why-python-is-so-popular-with-developers-3-reasons-the-language-has-exploded/. Acesso em: 03 mar. 2023.</li>
+<li>THOMAS, D.; HUNT, A. The pragmatic programmer. Addison-Wesley Professional, 2019.</li>
+<li>VAN ROSSUM, G. Computer Programming for Everybody. Disponível em: https://www.python.org/doc/essays/cp4e. Acesso em: 02 mar. 2023.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Python Descomplicado: Aprendendo Algoritmos de Forma Simples">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02-Introducao-Algoritmos.html" class="pagination-link" aria-label="Arrumando as coisas para começar a falar de algoritmos">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

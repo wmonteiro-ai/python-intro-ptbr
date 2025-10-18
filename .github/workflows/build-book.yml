@@ -1,0 +1,43 @@
+name: Build Book
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r docs/requirements.txt
+        
+    - name: Setup Quarto
+      uses: quarto-dev/setup-quarto@v2
+      with:
+        version: latest
+        
+    - name: Render Book
+      run: |
+        cd docs
+        quarto render
+        
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/_book

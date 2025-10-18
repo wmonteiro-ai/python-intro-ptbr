@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else) – Python Descomplicado</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05-Estruturas-Repeticao.html" rel="next">
+<link href="./03-Variaveis-IO.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f2c6d6e2b784ddc5de38779acc06f37d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-Variaveis-IO.html">Parte 2: Fazendo coisas legais</a></li><li class="breadcrumb-item"><a href="./04-Estruturas-Selecao.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python Descomplicado</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 1: Sabendo onde estamos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introducao-Ambiente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Introducao-Algoritmos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 2: Fazendo coisas legais</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Variaveis-IO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeiros (ou segundos) passos em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Estruturas-Selecao.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Estruturas-Repeticao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Repetições, repetições, repetições: loops em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tudo em blocos: trabalhando com funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Listas-Dicionarios-Tuplas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">De um bolo para uma festa: listas, dicionários e tuplas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Manipulacao-Arquivos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-POO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 3: Resolvendo tretas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Erros-Comuns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erros/exceções em Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#o-que-você-saberá-se-você-ler-todo-este-capítulo" id="toc-o-que-você-saberá-se-você-ler-todo-este-capítulo" class="nav-link active" data-scroll-target="#o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">5.1</span> O que você saberá se você ler todo este capítulo?</a></li>
+  <li><a href="#respirando-um-pouco-antes-de-continuar" id="toc-respirando-um-pouco-antes-de-continuar" class="nav-link" data-scroll-target="#respirando-um-pouco-antes-de-continuar"><span class="header-section-number">5.2</span> Respirando um pouco antes de continuar</a></li>
+  <li><a href="#se-senão-se-senão" id="toc-se-senão-se-senão" class="nav-link" data-scroll-target="#se-senão-se-senão"><span class="header-section-number">5.3</span> Se, senão-se, senão</a>
+  <ul class="collapse">
+  <li><a href="#bloqueando-um-usuário" id="toc-bloqueando-um-usuário" class="nav-link" data-scroll-target="#bloqueando-um-usuário"><span class="header-section-number">5.3.1</span> Bloqueando um usuário</a></li>
+  <li><a href="#dirigindo" id="toc-dirigindo" class="nav-link" data-scroll-target="#dirigindo"><span class="header-section-number">5.3.2</span> Dirigindo</a></li>
+  <li><a href="#aprovação-de-crédito" id="toc-aprovação-de-crédito" class="nav-link" data-scroll-target="#aprovação-de-crédito"><span class="header-section-number">5.3.3</span> Aprovação de crédito</a></li>
+  <li><a href="#um-resumo-até-aqui" id="toc-um-resumo-até-aqui" class="nav-link" data-scroll-target="#um-resumo-até-aqui"><span class="header-section-number">5.3.4</span> Um resumo até aqui</a></li>
+  <li><a href="#if-elif-else" id="toc-if-elif-else" class="nav-link" data-scroll-target="#if-elif-else"><span class="header-section-number">5.3.5</span> <code>if</code>, <code>elif</code>, <code>else</code></a></li>
+  </ul></li>
+  <li><a href="#uma-alternativa-o-switchmatch" id="toc-uma-alternativa-o-switchmatch" class="nav-link" data-scroll-target="#uma-alternativa-o-switchmatch"><span class="header-section-number">5.4</span> Uma alternativa: o <code>switch</code>/<code>match</code></a>
+  <ul class="collapse">
+  <li><a href="#comentários" id="toc-comentários" class="nav-link" data-scroll-target="#comentários"><span class="header-section-number">5.4.1</span> Comentários</a></li>
+  </ul></li>
+  <li><a href="#teste-de-mesa-e-debugging" id="toc-teste-de-mesa-e-debugging" class="nav-link" data-scroll-target="#teste-de-mesa-e-debugging"><span class="header-section-number">5.5</span> Teste de mesa e debugging</a>
+  <ul class="collapse">
+  <li><a href="#teste-de-mesa" id="toc-teste-de-mesa" class="nav-link" data-scroll-target="#teste-de-mesa"><span class="header-section-number">5.5.1</span> Teste de mesa</a></li>
+  <li><a href="#debugging" id="toc-debugging" class="nav-link" data-scroll-target="#debugging"><span class="header-section-number">5.5.2</span> Debugging</a></li>
+  </ul></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">5.6</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#respostas" id="toc-respostas" class="nav-link" data-scroll-target="#respostas"><span class="header-section-number">5.6.1</span> Respostas</a></li>
+  </ul></li>
+  <li><a href="#referências-bibliográficas" id="toc-referências-bibliográficas" class="nav-link" data-scroll-target="#referências-bibliográficas"><span class="header-section-number">5.7</span> Referências bibliográficas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-Variaveis-IO.html">Parte 2: Fazendo coisas legais</a></li><li class="breadcrumb-item"><a href="./04-Estruturas-Selecao.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="o-que-você-saberá-se-você-ler-todo-este-capítulo" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">5.1</span> O que você saberá se você ler todo este capítulo?</h2>
+<ol type="1">
+<li>Como funcionam as estruturas de seleção (se/senão-se/senão) (em Python, <code>if</code>/<code>elif</code>/<code>else</code>).</li>
+<li>Que é possível montar estas estruturas de forma que façam sentido no nosso código: assim, podemos usar só <code>if</code>, ou <code>if</code> com vários <code>elif</code> e sem <code>else</code> ou <code>if</code> com <code>else</code>.</li>
+<li>Que não podemos ter <code>if</code> com dois <code>else</code>, ou <code>elif</code> e <code>else</code> sem <code>if</code>.</li>
+<li>Que podemos colocar uma estrutura de seleção dentro da outra, ainda que não seja muito legal e nem muito recomendado.</li>
+<li>Que podemos usar várias estruturas de seleção de forma separada ao longo do código onde fizer sentido.</li>
+<li>Que testes de mesa e debuggers ajudam a identificar problemas no código sem quebrar (tanto) a cabeça.</li>
+<li>Que é legal usar debuggers! 🐛</li>
+</ol>
+<figure class="figure">
+<img alt="Primeiro bug identificado na história. A imagem mostra um inseto grudado com uma fita adesiva em uma folha de caderno de 1947." src="bug.jfif" style="max-width:400px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Primeiro bug da história, de 1947. Você vai começar a encontrar outros bugs no seu código conforme ele aumenta em complexidade. Créditos: Transfer from United States Department of Defense, Naval Surface Warfare Center. National Museum of American History.
+</figcaption>
+</figure>
+</section>
+<section id="respirando-um-pouco-antes-de-continuar" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="respirando-um-pouco-antes-de-continuar"><span class="header-section-number">5.2</span> Respirando um pouco antes de continuar</h2>
+<p>Oi de novo! Parabéns por ter aprendido a programar em Python! É incrível como você já conseguiu dominar as coisas básicas da linguagem em tão pouco tempo. Saber como desenvolver algoritmos (isso é diferente de seguir tutoriais e seguir um passo-a-passo, tá?) é uma habilidade muito importante na sua carreira e pode ser útil em diversas áreas.</p>
+<p>Não desanime se encontrar desafios ao longo do caminho. A programação é uma habilidade que exige persistência e dedicação, mas os resultados podem ser extremamente gratificantes. Continue aprendendo, desenvolvendo seus próprios projetos e participando da comunidade Python. Você verá que em pouco tempo será capaz de criar programas ainda mais complexos e úteis.</p>
+<p>Veja só: até agora você aprendeu vários operadores e funções em Python. Imagine trabalhar com algoritmos como sendo brincar com vários blocos de Lego. Você tem diferentes tipos de blocos (funções, operadores e variáveis) que podem ser combinados de várias maneiras para construir coisas novas. Cada bloco tem sua própria função e você pode usá-los em diferentes combinações para alcançar o resultado desejado.</p>
+<p>Assim como no Lego, você precisa de criatividade e raciocínio para construir algo novo. Você pode começar com um conjunto básico de blocos (as funções e operadores básicos do Python que você viu no capítulo anterior) e, à medida que se familiariza com eles, pode experimentar combinações mais avançadas e construir coisas mais complexas.</p>
+<p>Por exemplo, imagine que você queira construir um robô com o jogo de Lego. Você pode começar com blocos simples, como aquelas peças retangulares que todo mundo conhece, para construir o corpo do robô. Em seguida, você pode adicionar blocos mais específicos, como engrenagens e motores para torná-lo mais funcional.</p>
+<p>Da mesma forma, no Python, você pode começar com funções simples, como <code>input()</code> e <code>print()</code> para criar um programa básico que pede ao usuário para inserir um número e o imprime na tela. À medida que você aprende mais, pode adicionar funções mais específicas e criar as suas próprias funções, ou usar loops e condicionais para tornar seu programa mais complexo e interativo.</p>
+<p>Por isso, agora vamos aprender sobre as estruturas de seleção (ou controle) para que você tenha um repertório um pouco mais avançado. Com as estruturas de seleção em Python, como o <code>if</code>, o <code>else</code> e o <code>elif</code>, você pode criar programas que tomam decisões baseadas em condições específicas. Lembra das analogias da receita de bolo? Então: imagine agora uma receita de bolo em que você decide seguir um conjunto de instruções com base nos ingredientes disponíveis na sua cozinha. Se você tem açúcar e cenoura, você pode fazer um bolo de cenoura. Se você tem cacau e açúcar, você pode fazer um bolo de chocolate. As possibilidades são muitas e dependem das condições que você tem em mãos.</p>
+<p>Até porque nem sempre é um caminho direto que sempre vai chegar a uma única decisão. Nem sempre quando você vai no supermercado comprar alguma coisa você sai com <em>exatamente</em> os mesmos itens que você planejou no começo que iria comprar, não é? Vamos ver como trabalhar com essas seleções em Python?</p>
+<figure class="figure">
+<img alt="Imagem de um homem olhando para geladeiras cheias de bebidas em um supermercado." src="assets/victoriano-izquierdo-JG35CpZLfVs-unsplash.jpg" style="max-width:400px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Créditos: <a href="https://unsplash.com/@victoriano?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Victoriano Izquierdo</a> no <a href="https://unsplash.com/photos/JG35CpZLfVs?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>.
+</figcaption>
+</figure>
+</section>
+<section id="se-senão-se-senão" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="se-senão-se-senão"><span class="header-section-number">5.3</span> Se, senão-se, senão</h2>
+<p>O que você viu e construiu até agora são algoritmos sequenciais. Um algoritmo sequencial é uma sequência de instruções executadas na ordem em que aparecem. Ele é utilizado quando uma tarefa precisa ser executada de forma linear, passo a passo, sem a necessidade de tomar decisões ou realizar desvios de fluxo. É como uma receita simples de bolo, onde as instruções precisam ser seguidas em ordem para obter o resultado esperado: você tem que seguir exatamente as instruções seguindo uma ordem pré-definida. Não há como escapar ou como pular ou trocar passo nenhum.</p>
+<p>Por outro lado, nem tudo na vida é tão rígido assim. Imagine um algoritmo que poderia ser construído para controlar um semáforo de trânsito. O algoritmo leva em consideração o tempo em que cada sinal deve permanecer aberto para permitir a passagem de veículos e, em seguida, muda para a próxima cor. Afinal de contas, não seria muito legal que ele ficasse aberto e fechado pelo mesmo período de tempo em ruas bem movimentadas em cidades grandes, não é? Ou, imagine um algoritmo de uma loja online oferece diferentes opções de frete para seus clientes. O tempo de entrega e até as opções de transportadora vão depender do lugar em que o cliente mora e o tamanho da encomenda.</p>
+<p>É para casos como estes que existem as estruturas de seleções. Por isso, saiba que usamos estruturas de seleção quando precisamos <strong>tomar decisões ou realizar desvios durante</strong> o fluxo do algoritmo. Ele permite que o algoritmo execute diferentes conjuntos de instruções, dependendo de uma condição. É como um jogo de escolhas, onde as decisões que tomamos alteram o desenrolar da história.</p>
+<p>A diferença fundamental entre esses dois tipos de algoritmos (o que começaremos a ver agora e o que você trabalhou até o capítulo anterior) é que o algoritmo sequencial segue um fluxo linear de instruções, enquanto o algoritmo que emprega estruturas de seleção pode tomar diferentes caminhos dependendo da condição sendo testada para um caso específico.</p>
+<blockquote class="blockquote">
+<p>Resumo: os algoritmos que você viu até agora seguia uma sequência pré-determinada de ações. A partir de agora você também poderá criar algoritmos capazes de tomar decisões de acordo com as condições que são apresentadas.</p>
+</blockquote>
+<p>Agora, como funcionam essas estruturas de seleção? Vamos pensar em alguns exemplos da vida real.</p>
+<section id="bloqueando-um-usuário" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="bloqueando-um-usuário"><span class="header-section-number">5.3.1</span> Bloqueando um usuário</h3>
+<p>Imagine um usuário que está tentando entrar em um sistema. Se a senha digitada for a correta, o acesso será liberado. Caso contrário, nada irá acontecer: o usuário permanecerá na tela de entrada. Simples, não é? Um exemplo de pseudocódigo seria:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">1.</span> Início</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">2.</span>   Texto: nome_usuario, senha_usuario</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">3.</span>   </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">4.</span>   Escreva<span class="er">(</span><span class="st">"Digite o nome do usuário:"</span><span class="kw">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">5.</span>   Leia<span class="er">(</span><span class="ex">nome_usuario</span><span class="kw">)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">6.</span>   Escreva<span class="er">(</span><span class="st">"Digite a senha:"</span><span class="kw">)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">7.</span>   Leia<span class="er">(</span><span class="ex">senha_usuario</span><span class="kw">)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">8.</span>   </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">9.</span>   Se a senha_usuario é válida para o nome_usuario, então</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">10.</span>     Liberar acesso ao sistema</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">11.</span>   Fim Se</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">12.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Veja que nas linhas 9 até a 11 temos uma <strong>estrutura de seleção</strong>. Essa estrutura é composta por três partes: 1. A condição (o <strong>se</strong>, que está no começo da linha 9); 2. A ação (o que acontece logo após a palavra <strong>então</strong> no final da linha 9). 3. A indicação do final da ação (o <strong>fim se</strong>, na linha 11).</p>
+<p>Perceba que a <a href="content:python:identation">indentação</a> na linha 10 ajuda a perceber que esta ação fica <em>dentro</em> da condição estabelecida pela linha 9. Ou seja: 1. Se a <code>senha_usuario</code> estiver correta para o <code>nome_usuario</code>, o algoritmo irá rodar todos os passos, incluindo a linha 10. 2. Se a <code>senha_usuario</code> não estiver correta, o algoritmo <strong>pulará</strong> o passo 10. Ou seja: o acesso não será concedido.</p>
+</section>
+<section id="dirigindo" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="dirigindo"><span class="header-section-number">5.3.2</span> Dirigindo</h3>
+<p>Agora, vamos pensar em um caso em que o “se” possui duas condições sendo testadas. A mesma lógica funcionaria com três ou mais condições, também. Assim, vamos supor que queiramos fazer um algoritmo para dirigir um carro até a Universidade. Por outro lado, não dá para dirigir com o tanque vazio, não é? Para evitar isso, vamos abastecer o carro quando o tanque estiver abaixo de 25% da capacidade (ou seja, 1/4 de tanque). E, se formos abastecer, precisaremos pagar. Por isso, antes de parar para abastecer é importante verificar se temos dinheiro para tal. Um exemplo de pseudocódigo seria:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">1.</span> Início</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">2.</span>   Pegue as chaves do carro.</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">3.</span>   Ande até o carro.</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">4.</span>   Desbloqueie o carro.</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">5.</span>   Entre no carro, se sentando no banco do motorista.</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">6.</span>   Verifique o trânsito antes de sair de casa.</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">7.</span>   Escolha o melhor caminho.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">8.</span>   Verifique se há combustível suficiente no tanque do carro para ir até a Universidade.</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">9.</span>   Ligue o carro.</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">10.</span>   Respeite as leis de trânsito e limite de velocidade durante todo o trajeto.</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">11.</span>   Se o tanque estiver abaixo de 1/4 e se tiver dinheiro o suficiente para pagar pelo combustível então</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ex">12.</span>     Dirija até o posto de combustível.</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ex">13.</span>     Pare em um posto de combustível no meio do caminho e abasteça.</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ex">14.</span>     Pague pelo combustível.</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ex">15.</span>     Saia do posto.</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ex">16.</span>   Fim Se</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ex">17.</span>   Dirija até a Universidade.</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ex">18.</span>   Estacione o carro em um local apropriado e seguro.</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ex">19.</span>   Desligue o motor e retire a chave.</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ex">20.</span>   Saia do carro.</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ex">21.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Perceba que a <a href="content:python:identation">indentação</a> nos passos 12 a 15 nos ajuda a perceber que estes passos ficam <em>dentro</em> da condição estabelecida pela linha 11. Para ficar mais fácil, vamos pensar nos seguintes exemplos: 1. <strong>Temos mais do que 1/4 de tanque</strong>: vamos pular as linhas 12, 13, 14 e 15. Afinal, não precisamos entrar agora no posto. Ou seja: leia o código das linhas 1 até 11, e depois das linhas 17 até 21. 2. <strong>Temos menos do que 1/4 de tanque, mas não temos dinheiro</strong>: vamos pular as linhas 12, 13, 14 e 15. Afinal, não temos dinheiro para pagar pelo combustível. Ou seja: leia o código das linhas 1 até 11, e depois das linhas 17 até 21. 3. <strong>Temos menos do que 1/4 de tanque e temos dinheiro</strong>: vamos ler o código das linhas 1 até 21, sem parar. Isto porque precisamos ir ao posto (porque temos pouco combustível) e poderemos pagar por ele.</p>
+<p>Ainda, perceba que nas linhas 11 até a 16 temos uma <strong>estrutura de seleção</strong>. Essa estrutura é composta por três partes: 1. A condição (o <strong>se</strong>, que está no começo da linha 11); 2. A ação (o que acontece logo após a palavra <strong>então</strong> no final da linha 11). 3. A indicação do final da ação (o <strong>fim se</strong>, na linha 16).</p>
+<p>O algoritmo verifica se a condição (isto é, <em>tudo</em> o que está dentro da linha 11) é verdadeira e, se for, executa a ação que vem logo em seguida (que está nas linhas 12 a 15). Caso contrário, o programa segue para o próximo comando (ou seja: ele pulará as linhas 12, 13, 14, 15 e 16 e irá direto para a 17). O <strong>fim se</strong> é utilizado para indicar o final da estrutura de controle.</p>
+<section id="se-com-duas-condições" class="level4" data-number="5.3.2.1">
+<h4 data-number="5.3.2.1" class="anchored" data-anchor-id="se-com-duas-condições"><span class="header-section-number">5.3.2.1</span> “Se” com duas condições</h4>
+<p>Veja também que temos uma condição na linha 11 de comparação: percebeu a palavra <strong><em>e</em></strong> entre as duas frases naquela linha? Pois bem. Vamos pensar melhor no que isto significa na prática e o que aconteceria se mudássemos esta estrutura: 1. Tanque estiver abaixo de 1/4 <strong><em>e</em></strong> se tiver dinheiro o suficiente para pagar pelo combustível: - O operador <strong><em>e</em></strong> indica que as duas condições (<code>tanque abaixo de 1/4</code>, <code>dinheiro suficiente para pagar</code>) precisam ser verdadeiras <em>ao mesmo tempo</em> para que possamos ir para as linhas 12, 13, 14 e 15. - Isto significa que precisamos ter o tanque abaixo da quantidade esperada e também o dinheiro para pagar para que possamos ir ao posto de combustível. Afinal, não faria sentido ir ao posto sem dinheiro ou se não precisássemos por ainda ter combustível o suficiente. - Se ainda tivermos combustível (ou seja, <code>tanque abaixo de 1/4</code> não for verdade) nem testaríamos se teríamos dinheiro ou não, já que seria desnecessário testar isso. 2. Tanque estiver abaixo de 1/4 <strong><em>ou</em></strong> se tiver dinheiro o suficiente para pagar pelo combustível: - O operador <strong>ou</strong> indica que somente uma das duas condições (<code>tanque abaixo de 1/4</code>, <code>dinheiro suficiente para pagar</code>) precisam ser verdadeiras para que possamos ir para as linhas 12, 13, 14 e 15. - Isto significa que poderíamos entrar no posto de gasolina sem dinheiro (o que não deixaria o frentista feliz com você) ou com o tanque cheio (o que seria desnecessário). 3. Tanque <strong>não</strong> estiver abaixo de 1/4 <strong><em>e</em></strong> se tiver dinheiro o suficiente para pagar pelo combustível: - Temos agora um operador de negação (<strong>não</strong>) na primeira condição. Logo, esta condição pode ser relida como <code>tanque igual ou acima de 1/4</code>. - O operador <strong><em>e</em></strong> indica que as duas condições (<code>tanque igual ou acima de 1/4</code>, <code>dinheiro suficiente para pagar</code>) precisam ser verdadeiras <em>ao mesmo tempo</em> para que possamos ir para as linhas 12, 13, 14 e 15. - Isto significa que só entraríamos no posto se tivermos muito combustível. Ou seja: teve alguma emergência em algum dia e por algum motivo ele está abaixo de 1/4? Boa sorte: seu algoritmo irá garantir que você nunca entrará no posto de gasolina. 4. Tanque estiver abaixo de 1/4 <strong><em>e</em></strong> se <strong>não</strong> tiver dinheiro o suficiente para pagar pelo combustível: - Agora, o operador <strong>não</strong> está na segunda condição. Em outras palavras, você só iria ao posto de gasolina se não tivesse dinheiro para pagar. Provavelmente em pouco tempo você será banido de todos os postos de combustível da região.</p>
+</section>
+</section>
+<section id="aprovação-de-crédito" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="aprovação-de-crédito"><span class="header-section-number">5.3.3</span> Aprovação de crédito</h3>
+<p>Vamos pensar em um caso diferente: agora, você solicitará um financiamento para um banco para comprar alguma coisa: seja uma casa, um carro, ou uma moto. A lógica é simples: o banco lhe dará o dinheiro que precisa se você tiver um salário compatível para pagar o valor que você está pedindo. Simples, certo? Um exemplo de pseudocódigo para isso poderia ser:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">1.</span> Início</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">2.</span>   Real: credito_desejado, renda_mensal</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">3.</span>   </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">4.</span>   Escreva<span class="er">(</span><span class="st">"Digite o valor do crédito desejado: "</span><span class="kw">)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">5.</span>   Leia<span class="er">(</span><span class="ex">credito_desejado</span><span class="kw">)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">6.</span>   </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">7.</span>   Escreva<span class="er">(</span><span class="st">"Digite a renda mensal do cliente: "</span><span class="kw">)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">8.</span>   Leia<span class="er">(</span><span class="ex">renda_mensal</span><span class="kw">)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">9.</span>   </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">10.</span>   Se credito_desejado <span class="op">&lt;</span> renda_mensal então</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ex">11.</span>       Escreva<span class="er">(</span><span class="st">"Crédito aprovado!"</span><span class="kw">)</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">12.</span>   Senão</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">13.</span>       Escreva<span class="er">(</span><span class="st">"Crédito negado."</span><span class="kw">)</span>    </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="ex">14.</span>   Fim Se</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="ex">15.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Observe que temos uma coisa nova na linha 12: o <strong>senão</strong>. Ele é usado em algoritmos para fazer uma ação caso a condição do “se” não seja atendida. Em outras palavras, ele é usado para estabelecer um <em>caminho alternativo</em> quando a condição do “se” não é verdadeira.</p>
+<p>Pensemos aqui o que aconteceria com o nosso código: 1. 👍 Estamos pedindo <strong>menos</strong> do que estaria dentro da nossa renda (podemos pagar o empréstimo): a linha 10 é verdadeira. O algoritmo vai rodar a linha 11 e pulará as linhas 12 e 13. 2. 👎 Estamos pedindo <strong>mais</strong> do que podemos pagar (está acima da nossa renda): a linha 10 é falsa. O algoritmo pulará a linha 11 e irá rodar as linhas 12 e 13.</p>
+<section id="senão-se" class="level4" data-number="5.3.3.1">
+<h4 data-number="5.3.3.1" class="anchored" data-anchor-id="senão-se"><span class="header-section-number">5.3.3.1</span> Senão-se</h4>
+<p>Também é possível combinar testes adicionais dentro de um único teste. Imaginemos agora que queremos mostrar uma mensagem chamada <em>“Crédito aprovado, mas com ressalvas”</em> se o valor que você está pedindo é <strong>exatamente igual</strong> à sua renda mensal.</p>
+<p>É para isso que serve o “senão-se”, bem útil para indicar uma condição alternativa caso a primeira condição não seja satisfeita. Ele funciona da seguinte forma: se a condição do “se” for verdadeira, o algoritmo executa a sequência de instruções dentro daquele bloco. Caso contrário, ele verifica a próxima condição do “senão-se” e executa as instruções dentro do bloco correspondente, caso a condição seja verdadeira. Se nenhuma das condições for verdadeira, o algoritmo executa as instruções dentro do bloco do “senão”, caso ele exista.</p>
+<p>Essa estrutura é útil em situações onde existem múltiplas possibilidades de resultados, permitindo que o algoritmo execute diferentes sequências de instruções dependendo da condição satisfeita. Vamos modificar o pseudocódigo acima para incluir isto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">1.</span> Início</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">2.</span>   Real: credito_desejado, renda_mensal</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">3.</span>   </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">4.</span>   Escreva<span class="er">(</span><span class="st">"Digite o valor do crédito desejado: "</span><span class="kw">)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">5.</span>   Leia<span class="er">(</span><span class="ex">credito_desejado</span><span class="kw">)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">6.</span>   </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">7.</span>   Escreva<span class="er">(</span><span class="st">"Digite a renda mensal do cliente: "</span><span class="kw">)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">8.</span>   Leia<span class="er">(</span><span class="ex">renda_mensal</span><span class="kw">)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">9.</span>   </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ex">10.</span>   Se credito_desejado <span class="op">&lt;</span> renda_mensal então</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">11.</span>       Escreva<span class="er">(</span><span class="st">"Crédito aprovado!"</span><span class="kw">)</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">12.</span>   Senão-se credito_desejado == renda_mensal então</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">13.</span>       Escreva<span class="er">(</span><span class="st">"Crédito aprovado, mas com ressalvas."</span><span class="kw">)</span> </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ex">14.</span>   Senão</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="ex">15.</span>       Escreva<span class="er">(</span><span class="st">"Crédito negado."</span><span class="kw">)</span>    </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ex">16.</span>   Fim Se</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="ex">17.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Vejamos alguns pontos importantes no código acima: 1. Adicionamos as linhas 12 e 13. 2. As linhas 10 até a 16 fazem parte de um único bloco de <em>se/senão-se/senão</em>. Sabemos disso porque o primeiro “Se” começa na linha 10 e o próximo “Fim Se” acontece na linha 16. Além disso, todos eles seguem a mesma indentação. 3. 👍 Estamos pedindo <strong>menos</strong> do que estaria dentro da nossa renda (podemos pagar o empréstimo): a linha 10 é verdadeira. O algoritmo vai rodar a linha 11 e pulará as linhas 12 a 15 já que não faria sentido testar as demais condições. 4. ✋ Estamos pedindo <strong>o mesmo valor</strong> da nossa renda (podemos pagar o empréstimo): a linha 10 é falsa (ou seja: falhou a primeira condição). Como falhou a primeira condição, o algoritmo vai testar a próxima condição (linha 12). Como a condição da linha 12 está correta, o algoritmo vai rodar a linha 13 e ignorar os testes seguintes. Assim, ele pularia as linhas 11 e 15. 5. 👎 Estamos pedindo <strong>mais</strong> do que podemos pagar (está acima da nossa renda): a linha 10 é falsa e a linha 12 é falsa. Como tudo o que veio antes falhou, resta somente o “senão” que serve justamente para os cenários em que todos os testes anteriores falharam. Por isso, o algoritmo pulará a linha 11 e 13, mas rodará a linha 15.</p>
+</section>
+</section>
+<section id="um-resumo-até-aqui" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="um-resumo-até-aqui"><span class="header-section-number">5.3.4</span> Um resumo até aqui</h3>
+<p>Calma! Sei que as coisas podem ficar bem confusas. Vamos para um resumo:</p>
+<ol type="1">
+<li>O “se”, “senão-se” e “senão” são estruturas de seleção utilizadas em algoritmos para realizar testes lógicos e tomar decisões com base em diferentes condições.
+<ul>
+<li>Podemos pensar no uso das estruturas condicionais “se”, “senão-se” e “senão” em um processo de decisão. Imagine que você está em uma loja de doces e tem R<span>$</span> 100,00 para gastar em balas. Se o preço de um pacote de bala for R<span>$</span> 20,00, você pode comprar até 5 pacotes. Nesse caso, o “se” seria a condição de que o preço da bala seja igual ou menor que R<span>$</span> 20,00, e a ação seria comprar o pacote. Já o “senão” seria a condição de que o preço da bala é maior que R<span>$</span> 20,00, e a ação seria não comprar o pacote.</li>
+<li>Agora, imagine que você tem uma preferência por chicletes, mas poderia escolher outro doce se não puder pagar pelos 5 pacotes de chicletes.
+<ul>
+<li>Aqui, o “se” seria a condição de que o preço do chiclete seja menor ou igual a R<span>$</span> 20,00, e a ação seria comprar o chiclete.</li>
+<li>O “senão-se” seria a condição de que o preço do pirulito seja menor ou igual a R<span>$</span> 20,00, e a ação seria comprar o pirulito.</li>
+<li>Poderíamos ter um segundo “senão-se” para os casos em que tanto o preço do pacote de chiclete e de bala estiverem acima de R<span>$</span> 20,00. Este segundo “senão-se” seria a condição de que o preço do pacote de paçocas seja menor ou igual a R<span>$</span> 20,00, e a ação seria comprar a paçoca.</li>
+<li>E o “senão” seria para os casos em que tudo o que veio antes não deu certo (ou seja: tá tudo caro). Aqui, a ação seria não comprar nada e ir embora da loja.</li>
+</ul></li>
+</ul></li>
+<li>O “se” é uma estrutura de seleção em algoritmos que permite verificar se uma condição é verdadeira ou falsa e executar uma ação correspondente.
+<ul>
+<li>Por exemplo, “se” o dia de hoje for sábado, então vá ao cinema.</li>
+</ul></li>
+<li>Já o “senão-se” permite adicionar mais uma condição caso a primeira seja falsa.
+<ul>
+<li>Por exemplo, “se” o dia for sábado, vá ao cinema, “senão-se” o dia for domingo, vá ao parque.</li>
+</ul></li>
+<li>E por fim, o “senão” é usado caso nenhuma das condições anteriores seja verdadeira, executando uma ação padrão.
+<ul>
+<li>Por exemplo, “se” o dia for sábado, vá ao cinema, “senão-se” o dia for domingo, vá ao parque, “senão” fique em casa (o que pode ser segunda, quarta, ou qualquer outro dia que não seja sábado ou domingo).</li>
+</ul></li>
+<li>Nem todo “se” precisa ter “senão-se” e “senão”.
+<ul>
+<li>Por exemplo, quando temos apenas uma condição para verificar, não precisamos utilizar o “senão-se” ou o “senão”.</li>
+</ul></li>
+<li>Podemos ter “se” e “senão-se” sem necessariamente ter um “senão” para finalizar.</li>
+<li>Podemos ter um “se” e vários “senão-se” dentro de um mesmo bloco de seleção. Nesse caso, cada “senão-se” é verificado na ordem em que aparecem, e caso a condição seja verdadeira, o conjunto de instruções correspondente será executado.</li>
+<li>Essas estruturas são importantes para programar um comportamento específico para um algoritmo, permitindo que o mesmo possa lidar com diferentes situações corretamente.</li>
+</ol>
+</section>
+<section id="if-elif-else" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="if-elif-else"><span class="header-section-number">5.3.5</span> <code>if</code>, <code>elif</code>, <code>else</code></h3>
+<p>Começando com uma explicação direta: - O “se” em Python se chama <code>if</code>. - O “senão-se” em Python se chama <code>elif</code> (vem de <code>else-if</code>, que é exatamente “senão-se” em inglês). - O “senão” em Python se chama <code>else</code>.</p>
+<section id="apenas-if" class="level4" data-number="5.3.5.1">
+<h4 data-number="5.3.5.1" class="anchored" data-anchor-id="apenas-if"><span class="header-section-number">5.3.5.1</span> Apenas <code>if</code></h4>
+<p>Dito isso, vamos a alguns exemplos? Vou deixar de falar em “se”/“senão-se”/“senão” para falar <code>if</code>/<code>elif</code>/<code>else</code>. Afinal, estamos estudando Python. Vamos usar um arquivo .py para desenvolver e testar o código. Caso não se lembre como fazer isso, recomendo que relembre dos exemplos que fizemos do <code>input()</code> e <code>print()</code> <a href="content:python:inputprint">no capítulo anterior, aqui</a>.</p>
+<p>Isto posto, você já deve saber como o <code>if</code> funciona, não é? Teste este código, então:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>idade <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite a sua idade: "</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> idade <span class="op">&gt;=</span> <span class="dv">16</span>:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você pode votar nas eleições!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Este código verifica a idade de uma pessoa. Se ela tiver 16 anos de idade ou mais, a mensagem <em>“Você pode votar nas eleições!”</em> aparecerá na tela. Se você for testar algum valor abaixo disso (como 14 anos), nada aparecerá na tela.</p>
+<p>Veja que o <code>if idade &gt;= 16</code> é responsável para verificar se o valor armazenado na variável <code>idade</code> é igual ou maior a 16. Se for, esta condição é verdadeira. E, quando a condição é verdadeira, a próxima linha pode ser executada. Veja que na última linha existem quatro espaços (ou um <code>Tab</code>) à esquerda: ela é a indentação que já comentamos antes, agora em Python.</p>
+<p>Agora, testemos outro código:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o primeiro número: "</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o segundo número: "</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> num1 <span class="op">&gt;</span> num2:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> é maior que </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss">."</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"A diferença entre </span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> e </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss"> é </span><span class="sc">{</span>num1 <span class="op">-</span> num2<span class="sc">}</span><span class="ss">."</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"A soma de </span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> e </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss"> é </span><span class="sc">{</span>num1 <span class="op">+</span> num2<span class="sc">}</span><span class="ss">."</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Obrigado!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Consegue entender o que este código faz só de olhar? Veja: pedimos dois números inteiros ao usuário, e guardamos os resultados em <code>num1</code> e <code>num2</code>. Somente quando <code>num1</code> for maior do que <code>num2</code> é que aqueles três <code>print</code> seguidos aparecerão. Caso contrário (isto é, quando <code>num1</code> for igual ou menor do que <code>num2</code>) pularemos aquelas três linhas e iremos diretamente à mensagem escrita <em>“Obrigado!”</em>.</p>
+<p>O que acha de testar você mesmo? Teste os seguintes cenários: 1. Primeiro número: 0, segundo número: 5. 2. Primeiro número: 9, segundo número: 5. 3. Primeiro número: 5, segundo número: 5.</p>
+<p>Consegue entender o comportamento do código nesses 3 casos diferentes?</p>
+</section>
+<section id="if-e-else" class="level4" data-number="5.3.5.2">
+<h4 data-number="5.3.5.2" class="anchored" data-anchor-id="if-e-else"><span class="header-section-number">5.3.5.2</span> <code>if</code> e <code>else</code></h4>
+<p>Agora, vamos testar um <code>if</code> com <code>else</code>. Vamos lá:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nota1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a nota da primeira prova: "</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>nota2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a nota da segunda prova: "</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>media <span class="op">=</span> (nota1 <span class="op">+</span> nota2) <span class="op">/</span> <span class="fl">2.0</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> media <span class="op">&gt;=</span> <span class="dv">7</span>:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Parabéns, você foi aprovado com média"</span>, media)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Continue estudando e se preparando para os próximos desafios."</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Infelizmente, você foi reprovado com média"</span>, media)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você precisa estudar mais para a próxima oportunidade."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Neste exemplo, o programa solicita duas notas de prova e calcula a média. Se a média for maior ou igual a 7, o programa exibe uma mensagem de parabéns e informa a média do aluno. Caso contrário, o programa exibe uma mensagem de reprovação, informa a média do aluno e exibe uma mensagem indicando que o aluno precisa estudar mais para a próxima prova.</p>
+<p>Teste o funcionamento com os seguintes valores: 1. Primeira nota: 7.0, segunda nota: 7.0. 2. Primeira nota: 9.0, segunda nota: 7.0. 3. Primeira nota: 6.0, segunda nota: 1.0.</p>
+<p>Consegue ver as semelhanças e diferenças no funcionamento? Consegue explicar por que sempre apareceram duas mensagens na tela para o usuário após digitar as duas notas?</p>
+</section>
+<section id="if-elif-e-else" class="level4" data-number="5.3.5.3">
+<h4 data-number="5.3.5.3" class="anchored" data-anchor-id="if-elif-e-else"><span class="header-section-number">5.3.5.3</span> <code>if</code>, <code>elif</code> e <code>else</code></h4>
+<p>Agora, vamos modificar o código acima para incluir o <code>elif</code>. Basicamente, queremos que o algoritmo funcione assim: - Notas iguais ou maiores de 7.0: o estudante estaria aprovado. - Notas iguais ou maiores de 4.0, mas abaixo de 7.0: o estudante estaria em recuperação. - Notas abaixo de 4.0: o estudante estaria reprovado.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nota1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a nota da primeira prova: "</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>nota2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a nota da segunda prova: "</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>media <span class="op">=</span> (nota1 <span class="op">+</span> nota2) <span class="op">/</span> <span class="fl">2.0</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> media <span class="op">&gt;=</span> <span class="dv">7</span>:</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Parabéns, você foi aprovado com média"</span>, media)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Continue estudando e se preparando para os próximos desafios."</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> media <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você está em recuperação com média"</span>, media)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você precisa estudar mais para a próxima prova."</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Infelizmente, você foi reprovado com média"</span>, media)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você precisa estudar mais para a próxima oportunidade."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Teste o funcionamento com os seguintes valores: 1. Primeira nota: 7.0, segunda nota: 7.0. 2. Primeira nota: 10.0, segunda nota: 2.0. 3. Primeira nota: 5.0, segunda nota: 1.0.</p>
+<p>Além disso, note o seguinte: 1. Veja que coloquei <code>elif media &gt;= 5</code> ao invés de <code>elif media &gt;= 5 and media &lt; 7</code>. Por quê? O motivo é simples: como o primeiro teste falhou, já sabemos com 100% de certeza de que <code>media &lt; 7</code>. Por isso, seria bem redundante fazermos 2. Consegue entender (e testar) em quais casos ele cai no <code>else</code>?</p>
+<blockquote class="blockquote">
+<p>🖐 Ah, sugestão: troque aquele <code>elif media &gt;= 5:</code> por <code>if media &gt;= 5:</code>. Teste de novo. O que aconteceu de diferente? Por quê?</p>
+</blockquote>
+<section id="três-elif" class="level5" data-number="5.3.5.3.1">
+<h5 data-number="5.3.5.3.1" class="anchored" data-anchor-id="três-elif"><span class="header-section-number">5.3.5.3.1</span> Três <code>elif</code></h5>
+<p>E se tivéssemos três <code>elif</code>, pode? Pode! Olha só:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nota1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a nota da primeira prova: "</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nota2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a nota da segunda prova: "</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>media <span class="op">=</span> (nota1 <span class="op">+</span> nota2) <span class="op">/</span> <span class="fl">2.0</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> media <span class="op">&gt;=</span> <span class="fl">9.5</span>:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Parabéns, a sua nota foi excelente! Você foi aprovado com média"</span>, media)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> media <span class="op">&gt;=</span> <span class="dv">8</span>:</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Parabéns, a sua nota foi muito boa! Você foi aprovado com média"</span>, media)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> media <span class="op">&gt;=</span> <span class="dv">7</span>:</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Parabéns, você foi aprovado com média"</span>, media)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Continue estudando e se preparando para os próximos desafios."</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> media <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você está em recuperação com média"</span>, media)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você precisa estudar mais para a próxima prova."</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Infelizmente, você foi reprovado com média"</span>, media)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você precisa estudar mais para a próxima oportunidade."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Observe que agora temos três <code>elif</code>. O primeiro será verdadeiro para as notas que são iguais ou acima de 8, mas abaixo de 9.5. Já o segundo será verdadeiro para as notas que são iguais ou acima de 7, mas abaixo de 8. Já o terceiro será verdadeiro para as notas iguais ou acima de 5, mas abaixo de 7.</p>
+<ol type="1">
+<li>O que acha de testar com algumas notas diferentes para ver este funcionamento na prática?</li>
+<li>O que acha de modificar o código para remover completamente aquele <code>else</code>? Teste com uma nota baixa (como dois <code>0</code>). Deveria mesmo aparecer alguma mensagem falando que o estudante foi reprovado?</li>
+</ol>
+</section>
+</section>
+<section id="if-dentro-de-if" class="level4" data-number="5.3.5.4">
+<h4 data-number="5.3.5.4" class="anchored" data-anchor-id="if-dentro-de-if"><span class="header-section-number">5.3.5.4</span> <code>if</code> dentro de <code>if</code></h4>
+<p>Outro uso interessante é o <em>encapsulamento de</em> <code>if</code>. É uma técnica utilizada para colocar um <code>if</code> dentro de outro <code>if</code>, e consiste em colocar as condições mais restritivas em primeiro lugar, criando uma hierarquia lógica na execução do código. Dessa forma, as condições mais simples e de execução mais rápida são verificadas primeiro, evitando a execução desnecessária de outras condições. Veja e teste o código abaixo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>idade <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Qual é a sua idade? "</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> idade <span class="op">&gt;=</span> <span class="dv">18</span>:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você é maior de idade."</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> idade <span class="op">&gt;=</span> <span class="dv">21</span>:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Você pode beber nos Estados Unidos."</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você é menor de idade."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Neste exemplo, o primeiro <code>if</code> verifica se a pessoa possui 18 anos ou mais. Se sim, mostrará uma mensagem dizendo <em>“Você é maior de idade.”</em>. Dentro deste primeiro <code>if</code> perceba que há um segundo <code>if</code> que verifica se a pessoa tem 21 anos ou mais para saber se pode beber nos Estados Unidos. Veja que, de um ponto de vista lógico, quem tem 21 anos automaticamente possui 18 anos: por isso que colocamos dentro daquele primeiro <code>if</code>.</p>
+<p>Agora, se a pessoa possui menos de 18 anos, o <code>else</code> será executado, mostrando na tela uma mensagem correspondente. Veja como o algoritmo funciona se você informa idades como <code>15</code>, <code>19</code> e <code>23</code> anos para ver isto na prática.</p>
+<blockquote class="blockquote">
+<p>🛑 Usar um <code>if</code> dentro de outro <code>if</code> pode tornar o código mais difícil de ler e entender, além de aumentar a complexidade e a possibilidade de erros. Isso ocorre porque a lógica do código pode ficar confusa, com vários níveis de aninhamento e condições que precisam ser avaliadas em diferentes níveis. Além disso, usar muitos <code>if</code> dentro de outros <code>if</code> pode indicar que a estrutura do código pode ser melhorada com, por exemplo, o uso de operadores lógicos como <code>and</code> e <code>or</code> em uma única linha em vez de colocar vários <code>if</code> aninhados. Apesar disso, em alguns casos o uso de <code>if</code> dentro de <code>if</code> pode ser inevitável ou até mesmo a melhor solução para um problema específico.</p>
+</blockquote>
+</section>
+<section id="if-dentro-de-if-dentro-de-if" class="level4" data-number="5.3.5.5">
+<h4 data-number="5.3.5.5" class="anchored" data-anchor-id="if-dentro-de-if-dentro-de-if"><span class="header-section-number">5.3.5.5</span> <code>if</code> dentro de <code>if</code> dentro de <code>if</code></h4>
+<p>E dá para usar um <code>if</code> dentro de <code>if</code> dentro de outro <code>if</code>? Dá sim, mas o aviso anterior permanece: isso não necessariamente é uma boa prática do ponto de vista de legibilidade, complexidade e risco de introduzir erros de lógica no código. Veja o exemplo abaixo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nota1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a primeira nota: "</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>nota2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a segunda nota: "</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>nota3 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a terceira nota: "</span>))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> nota1 <span class="op">&gt;=</span> <span class="dv">7</span>:</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nota2 <span class="op">&gt;=</span> <span class="dv">7</span>:</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> nota3 <span class="op">&gt;=</span> <span class="dv">7</span>:</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Parabéns, você foi aprovado(a)!"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Sua nota na terceira avaliação foi abaixo da média."</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Sua nota na segunda avaliação foi abaixo da média."</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sua nota na primeira avaliação foi abaixo da média."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Percebe que isso ficou um pouco mais <em>feio</em> de se ler? Apesar disso, a lógica funciona: neste exemplo, o programa verifica a nota do aluno em três avaliações. Se o aluno tiver uma nota abaixo da média na primeira avaliação, o programa imprime a mensagem <em>“Sua nota na primeira avaliação foi abaixo da média.”</em> (veja o último <code>else</code>).</p>
+<p>Se o aluno tiver uma nota acima ou igual a 7 na primeira avaliação, o programa verifica a nota na segunda avaliação. Se o aluno tiver uma nota abaixo da média na segunda avaliação, o programa imprime a mensagem <em>“Sua nota na segunda avaliação foi abaixo da média.”</em>.</p>
+<p>Se a nota na segunda avaliação também for maior ou igual a 7, o programa verifica a nota na terceira avaliação. Se todas as notas forem maiores ou iguais a 7, o programa imprime a mensagem <em>“Parabéns, você foi aprovado(a)!”</em>. Caso contrário, mostrará a mensagem <em>“Sua nota na terceira avaliação foi abaixo da média.”</em>.</p>
+<p>Teste as seguintes combinações de notas para entender melhor o funcionamento na prática. Veja qual das mensagens de <code>print()</code> são mostradas e o porquê.</p>
+<ol type="1">
+<li>Primeira nota: 5, segunda nota: 8, terceira nota: 10.</li>
+<li>Primeira nota: 5, segunda nota: 8, terceira nota: 5.</li>
+<li>Primeira nota: 5, segunda nota: 5, terceira nota: 10.</li>
+<li>Primeira nota: 10, segunda nota: 5, terceira nota: 5.</li>
+<li>Primeira nota: 10, segunda nota: 10, terceira nota: 5.</li>
+<li>Primeira nota: 10, segunda nota: 4, terceira nota: 10.</li>
+<li>Primeira nota: 10, segunda nota: 10, terceira nota: 10.</li>
+</ol>
+</section>
+<section id="vários-blocos-de-if" class="level4" data-number="5.3.5.6">
+<h4 data-number="5.3.5.6" class="anchored" data-anchor-id="vários-blocos-de-if"><span class="header-section-number">5.3.5.6</span> Vários blocos de <code>if</code></h4>
+<p>Você pode usar essas estruturas de <code>if/elif/else</code> como quiser no seu código desde que isto faça sentido. Como você viu, você pode fazer <code>if</code> sem <code>else</code>, ou <code>if</code> e <code>else</code> sem <code>elif</code>, <code>if</code> e <code>elif</code> sem <code>else</code> ou até encapsular várias dessas estruturas.</p>
+<p>Você também pode usar diferentes blocos independentes entre si. Na prática, significa que um bloco estaria totalmente separado do outro em sua lógica. Para ficar mais claro, teste o exemplo abaixo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>idade <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Qual é a sua idade? "</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Primeiro bloco de if/else</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> idade <span class="op">&lt;</span> <span class="dv">18</span>:</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você é menor de idade!"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você é maior de idade!"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Segundo bloco de if/elif/else</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>media <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Qual é a sua média na disciplina? "</span>))</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> media <span class="op">&gt;=</span> <span class="dv">7</span>:</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Parabéns, você foi aprovado com média"</span>, media)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Continue estudando e se preparando para os próximos desafios."</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> media <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você está em recuperação com média"</span>, media)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você precisa estudar mais para a próxima prova."</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Infelizmente, você foi reprovado com média"</span>, media)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você precisa estudar mais para a próxima oportunidade."</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Terceiro bloco de if/else</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>saldo <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Qual é o seu saldo na conta-corrente? "</span>))</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> saldo <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"O seu saldo está negativo!"</span>)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> saldo <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"O seu saldo está zerado!"</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"O seu saldo está positivo!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Neste exemplo, cada bloco de if/else trata de uma condição independente: o primeiro bloco verifica se o número é positivo ou negativo, o segundo verifica se a sua média lhe garantiria uma aprovação ou não, e o terceiro verifica se o seu saldo é positivo, negativo, ou zero. Cada bloco é executado independentemente dos outros e apresenta uma mensagem correspondente à condição verificada. Veja que é a indentação (que já vimos anteriormente) que nos ajuda a entender onde começa e onde termina cada um desses blocos.</p>
+</section>
+</section>
+</section>
+<section id="uma-alternativa-o-switchmatch" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="uma-alternativa-o-switchmatch"><span class="header-section-number">5.4</span> Uma alternativa: o <code>switch</code>/<code>match</code></h2>
+<blockquote class="blockquote">
+<p><strong>Importante:</strong> o <code>match</code> começou a existir somente a partir do Python 3.10, em 2021. Logo, versões anteriores não terão suporte a isto.</p>
+</blockquote>
+<p>Outras linguagens de programação possuíam uma outra alternativa ao <code>if</code>/<code>elif</code>/<code>else</code>: o <code>switch</code>. O Python introduziu uma estrutura parecida com o nome de <code>match</code> nas suas versões mais recentes. Se você já entende o <code>if</code>/<code>elif</code>/<code>else</code>, o <code>match</code> pode ser visualizado como um <em>super-if</em>.</p>
+<p>Esse tipo de estrutura só pode ser usado em alguns casos. Para ficar mais fácil, vamos pensar em trens. Você está em uma estação de trem e quer pegar um trem específico. Você precisa ver qual é a plataforma para encontrar o trem certo. Como estamos falando de trens, eles somente param nas plataformas: você não espera que passe um ônibus nos trilhos, e nem um trem pelas ruas junto dos outros carros. Vamos testar um exemplo? Veja só:</p>
+<div id="14d7bcc4" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>destino <span class="op">=</span> <span class="st">"Plataforma 3"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> destino:</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">"Plataforma 1"</span>:</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Expresso para Hogwarts"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">"Plataforma 3"</span>:</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Trem regional para a Terra Média"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">"Plataforma 2"</span>:</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Trem diário para Nárnia"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> _:</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Nenhum trem."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Aqui, a estrutura <code>match</code> verifica qual é a plataforma a partir do valor que está dentro da variável <code>destino</code>. Por exemplo: se você estiver na <code>Plataforma 3</code>, pegará o “Trem regional para a Terra Média”. O símbolo <code>_</code> é usado como um coringa, o que significa “qualquer valor” - parecido com o <code>else</code>, sabe?</p>
+<p>Agora, como seria este mesmo código com <code>if</code>/<code>elif</code>/<code>else</code>? Vejamos:</p>
+<div id="cb8dcf42" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>destino <span class="op">=</span> <span class="st">"Plataforma 3"</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> destino <span class="op">==</span> <span class="st">"Plataforma 1"</span>:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Expresso para Hogwarts"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> destino <span class="op">==</span> <span class="st">"Plataforma 3"</span>:</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Trem regional para a Terra Média"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> destino <span class="op">==</span> <span class="st">"Plataforma 2"</span>:</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Trem diário para Nárnia"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Nenhum trem."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>O código com o <code>match</code> fica mais limpo, né? Por outro lado, nem sempre usamos <code>match</code>: existem situações em que precisamos ter um controle maior no código que só um <code>if</code>/<code>elif</code>/<code>else</code> fornece. Além disso, existem casos mais simples em que um único <code>if</code> resolveria. Portanto, este <code>match</code> é uma <em>alternativa</em> para alguns casos específicos, beleza?</p>
+<section id="comentários" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="comentários"><span class="header-section-number">5.4.1</span> Comentários</h3>
+<p>Você percebeu no código acima algumas linhas em cinza e que iniciavam com <code>#</code>? Aquelas linhas se referem aos <strong>comentários</strong> de código. Comentários de códigos são trechos de texto escritos em linguagem humana (português, inglês, italiano, francês, etc.) que servem para explicar o que está sendo feito em determinado trecho do código para que outros humanos entendam.</p>
+<p>Estas linhas serão ignoradas pelo computador como parte do código, mas são muito importantes para outros programadores que possam estar lendo o código, pois ajudam a entender o que está acontecendo e por que determinadas decisões foram tomadas na escrita do programa. Até ajudam também a explicar o que o desenvolvedor <em>queria</em> fazer no código, e que não necessariamente refletiria a realidade. Isto pode ser útil para ajudar a investigar o código e entender se o seu comportamento seria de fato esperado (ou não).</p>
+<p>Comentários em códigos podem ser utilizados para explicar o propósito de variáveis, funções, condicionais, laços de repetição, entre outros elementos do código. Eles também podem ser usados para documentar mudanças realizadas no código ao longo do tempo, facilitando a manutenção do programa.</p>
+<p>Em Python, existem duas formas principais de se fazer comentários em códigos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># este é um exemplo de comentário em uma linha. Tudo o que vem aqui é ignorado pelo Python.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">Já essas três aspas simples entre uma linha e outra servem para comentários multi-linha.</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">Quer dizer, são para casos em que o meu comentário usa mais de uma linha.</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">Pode ser melhor do que ter que criar várias linhas começando com um símbolo de "#".</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">1.</span> Início</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">2.</span>   Inteiro: num1, num2, soma</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">3.</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">4.</span>   Escreva<span class="er">(</span><span class="st">"Digite o primeiro número: "</span><span class="kw">)</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">5.</span>   Leia<span class="er">(</span><span class="ex">num1</span><span class="kw">)</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">6.</span>   </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">7.</span>   Escreva<span class="er">(</span><span class="st">"Digite o segundo número: "</span><span class="kw">)</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">8.</span>   Leia<span class="er">(</span><span class="ex">num2</span><span class="kw">)</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">9.</span>   </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="ex">10.</span>   soma = num1 + num2</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="ex">11.</span>   Escreva<span class="er">(</span><span class="st">"O resultado da soma é: "</span><span class="ex">,</span> soma<span class="kw">)</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="ex">12.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ora, como transcreveríamos este exemplo? O mesmíssimo algoritmo acima, mas escrito em Python, seria assim:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Digite o primeiro número: "</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Digite o segundo número: "</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>soma <span class="op">=</span> num1 <span class="op">+</span> num2</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A soma dos números é: "</span>, soma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Agora, quais são as semelhanças e diferenças entre os dois algoritmos? Comecemos pelas diferenças: as palavras <code>Início</code> e <code>Fim</code> saíram de cena. Além disso, a linha 2 do pseudocódigo que declarava as três variáveis deixou de existir: em Python, isto não é mais necessário. Finalmente, a função <code>Escreva</code> deu lugar à <code>print</code>, e a <code>Leia</code> deu lugar à <code>int(input())</code>.</p>
+<p>Quanto às semelhanças, temos várias delas. Primeiro, a ordem do algoritmo é mantida. A organização também: veja como as linhas estão organizadas. O mesmo se aplica às mensagens e à operação de soma. Por isso que começar a escrever algoritmos em Python é mais simples do que parece a princípio: se você sabe como os algoritmos funcionam de forma geral e sabe interpretar pseudocódigo, então rapidamente você também conseguirá escrever algoritmos utilizando Python.</p>
+<p>Mas, e aí? Como <em>testamos</em> isso usando o PyCharm? Vamos testar aqui por partes, beleza?</p>
+</section>
+</section>
+<section id="teste-de-mesa-e-debugging" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="teste-de-mesa-e-debugging"><span class="header-section-number">5.5</span> Teste de mesa e debugging</h2>
+<p>Conforme os nossos códigos vão aumentando em complexidade é comum que tenhamos erros e que precisemos investigá-los. É para isso que existem duas técnicas diferentes, mas importantes: o teste de mesa e o debug (ou debugging).</p>
+<section id="teste-de-mesa" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="teste-de-mesa"><span class="header-section-number">5.5.1</span> Teste de mesa</h3>
+<p>Um teste de mesa é uma técnica utilizada para verificar a lógica e o funcionamento de um algoritmo manualmente, ou seja, sem a necessidade de executá-lo em um computador. É uma ferramenta muito importante para os programadores, pois permite identificar possíveis erros e corrigi-los antes mesmo de executar o algoritmo.</p>
+<p>Como ele é um processo manual, ele pode funcionar também em pseudocódigos. Você pode fazê-lo com um papel e caneta na sua mesa (daí o nome). Você irá seguir passo a passo as instruções, acompanhando as alterações de valores das variáveis em cada etapa. Esse processo permite que você identifique possíveis erros no algoritmo e verifique se a lógica está funcionando corretamente.</p>
+<p>Uma analogia para explicar o teste de mesa seria a construção de uma casa. Antes de iniciar a construção, é preciso fazer um planejamento, onde é definido como a casa será dividida, quantos cômodos terá, onde ficarão as janelas, portas, entre outras coisas. Nesse processo, é possível identificar possíveis problemas, como um cômodo muito pequeno ou uma porta que impede o acesso a algum ambiente. O teste de mesa funciona de forma semelhante, onde o programador define a lógica do algoritmo e faz a simulação de sua execução, identificando possíveis erros e ajustando-os antes mesmo de executá-lo no computador.</p>
+<p>Veja no exemplo abaixo um funcionamento do <a href="https://www.101computing.net/using-trace-tables/">101computing.net</a>. Imagine que você imprimiu aquele algoritmo em uma folha de papel e está percorrendo cada uma daquelas linhas com uma caneta. Ao chegar na linha 1, você anotou o valor que estava na variável <code>number</code> naquela tabela ao lado (<code>Trace Table</code>). Ao chegar na linha 2, como o valor da variável não mudou, você não mudou nada no resultado. Ao chegar na linha 3, mudou o valor da variável <code>i</code> e, com isso, você alterou também na tabela. E assim foi sucessivamente até chegar ao final do algoritmo. Um pequeno spoiler: este exemplo usa uma estrutura de repetição nas linhas 3 a 5, e veremos este tipo de extrutura em maior profundidade no próximo capítulo.</p>
+<figure class="figure">
+<img alt="Imagem de um homem olhando para geladeiras cheias de bebidas em um supermercado." src="https://www.101computing.net/wp/wp-content/uploads/trace-table-s.gif" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Créditos: <a href="https://www.101computing.net/using-trace-tables/">Using Trace Tables @ 101computing.net</a>.
+</figcaption>
+</figure>
+</section>
+<section id="debugging" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="debugging"><span class="header-section-number">5.5.2</span> Debugging</h3>
+<p>Já o debugging é o processo de identificação e correção de erros em um código já implementado em Python ou em outra linguagem de programação. Ele utiliza ferramentas específicas (<em>debuggers</em>) que permitem ao desenvolvedor acompanhar o fluxo de execução do código e identificar onde o erro ocorreu.</p>
+<p>Imagine como se fosse um teste de mesa automatizado. E, para ajudar, o PyCharm possui isso também. O que acha de testarmos? Primeiro, vamos colar este código em um arquivo dentro de um projeto no PyCharm:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nota1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a primeira nota: "</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>nota2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a segunda nota: "</span>))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>nota3 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a terceira nota: "</span>))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> nota1 <span class="op">&gt;=</span> <span class="dv">7</span>:</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nota2 <span class="op">&gt;=</span> <span class="dv">7</span>:</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> nota3 <span class="op">&gt;=</span> <span class="dv">7</span>:</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Parabéns, você foi aprovado(a)!"</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Sua nota na terceira avaliação foi abaixo da média."</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Sua nota na segunda avaliação foi abaixo da média."</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sua nota na primeira avaliação foi abaixo da média."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Veja na imagem abaixo como o seu código deve ficar. Também perceba o botão de <em>debug</em> à direita do botão de <em>run</em>. Ele é representado por um inseto na cor verde.</p>
+<figure class="figure">
+<img alt="Código de verificação de notas colado dentro de um arquivo chamado main.py dentro do PyCharm. Realçado, o botão com um desenho de um inseto na cor verde aparece realçado." src="assets/pycharm_debug.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+O seu código deverá aparecer nesta área aqui. Veja também no canto superior esquerdo (realçado em roxo) o botão de debug, representado por um inseto verde.
+</figcaption>
+</figure>
+<p>Agora, ao invés de clicarmos no botão de <code>Run</code>, clicaremos no botão de <code>Debug</code>. Você também pode ativar o debugger ao clicar em <code>Run &gt; Debug '$ARQUIVO'</code> ou apertando <code>Shift</code> + <code>F9</code> em seu teclado. Você verá que não mudará muita coisa em relação ao comportamento padrão do código: você digitará as notas, e ele lhe apresentará um resultado final.</p>
+<p>Dito isso, vamos começar a usar o debugger de fato. Observe a imagem abaixo. Veja que antes (parte de cima da imagem) há um espaço em branco na linha 5 entre o número “5” e o código. Ao clicar neste espaço em branco aparecerá um círculo vermelho (parte de baixo da imagem). Este círculo é um <strong>breakpoint</strong>: é ele que denota que o debugger deve parar nesta linha para que possamos investigar o que está acontecendo. Clique na linha 5 para que apareça um breakpoint lá (conforme a parte de baixo da imagem abaixo) e rode o debugger novamente.</p>
+<figure class="figure">
+<img alt="A linha 5 possui um espaço vazio à sua direita, entre o número 5 e o código. Ao clicar neste espaço vazio um círculo vermelho aparece." src="assets/pycharm_breakpoint.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Veja o antes e o depois de adicionar um breakpoint.
+</figcaption>
+</figure>
+<p>Assim que você digitou as três notas o código parou na linha 5. O que você estará vendo na sua tela deverá ser parecido com a visão da tela abaixo.</p>
+<figure class="figure">
+<img alt="O debugger está visível na parte inferior da tela. Aparecem os valores das variáveis digitadas e um conjunto adicional de botões na parte inferior da tela." src="assets/pycharm_debug_analysis.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Observe as novas funcionalidades do debugger realçadas em roxo, laranja e amarelo.
+</figcaption>
+</figure>
+<ol type="1">
+<li>Parte roxa: são os valores das variáveis neste momento do código. No caso, eu digitei as três notas com os valores 3, 6 e 8. Estes três valores apareceram na parte à direita do debugger.</li>
+<li>Parte laranja: são botões para que você possa avançar (ou voltar) no código para investigar o seu funcionamento. Passe o mouse me cada um deles dentro do seu PyCharm em aberto para ver o que querem dizer. Para testar, clique no <code>Step Over</code> (primeiro botão; símbolo da flecha indo para cima e depois para baixo). O código deve passar para a próxima linha que ele deverá executar. Com o tempo, teste outros destes botões.</li>
+<li>Parte amarela: permite controlar o debugger. Isto inclui interrompê-lo ou, ainda, continuar o algoritmo até que ele chegue ao próximo breakpoint.</li>
+</ol>
+<p>Experimente colocar um segundo breakpoint na linha 8, mas informe as notas 3, 5 e 4 para testar. Você verá que o seu debugger nunca irá chegar na linha 8. Isto acontece porque, com estas notas, o seu código nunca alcançaria as condições impostas pelos <code>if</code> nas linhas 5, 6 e 7 para chegar à linha 8. Hmmm, quer saber? O que acha de você mesmo chegar a estas conclusões no debugger? Lembra que na parte roxa existe um texto escrito <em>“Evaluate expression (Enter) or add a watch […]”</em>? O que acha de você digitar naquele campo o comando <code>nota1 &gt;= 7</code> e apertar <code>Enter</code>? Você verá que aparecerá uma nova variável chamada <code>result</code>. Esta variável possui o resultado desta comparação (que é a mesma da linha 5). Em outras palavras: você pode usar o debugger para também testar se a lógica do seu <code>if</code> está funcionando como esperado ou não. Legal, né?</p>
+</section>
+</section>
+<section id="exercícios" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">5.6</span> Exercícios</h2>
+<p>O que acha de colocar a mão na massa com mais exercícios? Vamos lá?</p>
+<ol type="1">
+<li>Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela se ele é par ou ímpar.
+<ul>
+<li>Exemplo: um usuário digita o número <code>7</code>. O algoritmo deve retornar a mensagem <em>“Ímpar”</em>.</li>
+</ul></li>
+<li>Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela se ele é positivo, negativo ou zero.
+<ul>
+<li>Exemplo: um usuário digita o número <code>-51.05</code>. O algoritmo deve retornar a mensagem <em>“Negativo”</em>.</li>
+</ul></li>
+<li>Crie um algoritmo que peça ao usuário três números e informe qual deles é o maior.
+<ul>
+<li>Exemplo: um usuário digita os números <code>5</code>, <code>7</code> e <code>1</code>. O algoritmo deve retornar a mensagem <em>“O segundo número é o maior.”</em></li>
+</ul></li>
+<li>Escreva um código que solicite o preço de um produto e, caso o valor seja maior que R<span>$</span> 100,00, aplique um desconto de 10%. Caso contrário, não aplique nenhum desconto e informe o preço final ao usuário.
+<ul>
+<li>Exemplo: um usuário digita o valor <code>200</code>. O algoritmo deve retornar a mensagem <em>“O preço com desconto é: R<span>$</span> 180.00”</em>.</li>
+</ul></li>
+<li>Escreva um código que solicite a idade e o gênero de uma pessoa e informe se ela pode se aposentar, levando em consideração as seguintes regras: mulheres podem se aposentar com 63 anos ou mais, enquanto homens podem se aposentar com 68 anos ou mais.
+<ul>
+<li>Exemplo: um usuário digita a idade <code>65</code> e gênero masculino. O algoritmo deve retornar a mensagem <em>“Você ainda não pode se aposentar.”</em>.</li>
+</ul></li>
+</ol>
+<section id="respostas" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="respostas"><span class="header-section-number">5.6.1</span> Respostas</h3>
+<p><strong>1. Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela se ele é par ou ímpar.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Insira um número inteiro: "</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> num <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(num, <span class="st">"é um número par"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(num, <span class="st">"é um número ímpar"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O algoritmo começa solicitando ao usuário que insira um número inteiro através da função <code>input()</code>, que lê a entrada do usuário como uma string. Em seguida, o número é convertido para um inteiro usando a função <code>int()</code>, e armazenado na variável <code>num</code>.</p>
+<p>A partir daí, usamos um condicional if para verificar se o número é par ou ímpar. Se o resto da divisão por <code>2 (num % 2)</code> for igual a 0, significa que o número é par, e a mensagem correspondente é exibida na tela usando a função <code>print()</code>. Caso contrário, o número é ímpar, e a mensagem correspondente é exibida.</p>
+<p><strong>2. Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela se ele é positivo, negativo ou zero.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite um número: "</span>))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> num <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"O número é positivo."</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> num <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"O número é negativo."</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"O número é zero."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O programa começa pedindo para que o usuário digite um número, que é armazenado na variável num. Em seguida, um bloco condicional <code>if-elif-else</code> é utilizado para verificar se o número é positivo, negativo ou zero.</p>
+<p>Se o número for maior que zero, o programa exibe a mensagem <code>O número é positivo</code>. Se o número for menor que zero, o programa exibe a mensagem <code>O número é negativo</code>. Se o número for igual a zero, o programa exibe a mensagem <code>O número é zero</code>.</p>
+<p><strong>3. Crie um algoritmo que peça ao usuário três números e informe qual deles é o maior.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o primeiro número: "</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o segundo número: "</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>num3 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o terceiro número: "</span>))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> num1 <span class="op">&gt;=</span> num2 <span class="kw">and</span> num1 <span class="op">&gt;=</span> num3:</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"O primeiro número é o maior."</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> num2 <span class="op">&gt;=</span> num1 <span class="kw">and</span> num2 <span class="op">&gt;=</span> num3:</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"O segundo número é o maior."</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"O terceiro número é o maior."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O código solicita ao usuário que insira três números inteiros e armazena cada um deles nas variáveis <code>num1</code>, <code>num2</code> e <code>num3</code>. Em seguida, o programa utiliza uma estrutura de seleção <code>if</code>/<code>elif</code>/<code>else</code> para verificar qual é o maior número entre os três.</p>
+<p>No primeiro bloco de condição, a instrução <code>if</code> testa se <code>num1</code> é maior ou igual a <code>num2</code> e <code>num3</code>. Se essa condição for verdadeira, o programa imprime a mensagem <em>“O primeiro número é o maior.”</em> na tela.</p>
+<p>Caso a condição do <code>if</code> não seja satisfeita, a próxima instrução <code>elif</code> é executada, testando se <code>num2</code> é maior ou igual a <code>num1</code> e <code>num3</code>. Se essa condição for verdadeira, o programa imprime a mensagem <em>“O segundo número é o maior.”</em> na tela.</p>
+<p>Por fim, se nenhuma das condições anteriores for satisfeita, o bloco <code>else</code> é executado, indicando que <code>num3</code> é o maior número entre os três e imprimindo a mensagem <em>“O terceiro número é o maior.”</em> na tela.</p>
+<p><strong>4. Escreva um código que solicite o preço de um produto e, caso o valor seja maior que R<span>$</span> 100,00, aplique um desconto de 10%. Caso contrário, não aplique nenhum desconto e informe o preço final ao usuário.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>preco <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o preço do produto: "</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> preco <span class="op">&gt;</span> <span class="dv">100</span>:</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    preco_com_desconto <span class="op">=</span> preco <span class="op">*</span> <span class="fl">0.9</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"O preço com desconto é: R$"</span>, preco_com_desconto)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"O preço sem desconto é: R$"</span>, preco)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Este código inicia solicitando ao usuário que digite o preço de um produto, que é armazenado na variável <code>preco</code>. Em seguida, é criada uma estrutura de seleção utilizando o comando <code>if</code>, que verifica se o valor da variável <code>preco</code> é maior do que <code>100</code>.</p>
+<p>Caso seja, o código calcula o valor do produto com desconto de 10%, multiplicando o valor de <code>preco</code> por 0.9 e armazenando o resultado na variável <code>preco_com_desconto</code>. O código então exibe o valor com desconto para o usuário utilizando a função <code>print()</code>. Caso o valor da variável <code>preco</code> seja menor ou igual a 100, a estrutura de seleção utiliza o comando <code>else</code> para exibir o valor do produto sem desconto utilizando novamente o <code>print()</code> para isto.</p>
+<p><strong>5. Escreva um código que solicite a idade e o gênero de uma pessoa e informe se ela pode se aposentar, levando em consideração as seguintes regras: mulheres podem se aposentar com 63 anos ou mais, enquanto homens podem se aposentar com 68 anos ou mais.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>idade <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite a idade: "</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>genero <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite o gênero (M ou F): "</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> genero <span class="op">==</span> <span class="st">"F"</span> <span class="kw">and</span> idade <span class="op">&gt;=</span> <span class="dv">63</span>:</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você pode se aposentar!"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> genero <span class="op">==</span> <span class="st">"M"</span> <span class="kw">and</span> idade <span class="op">&gt;=</span> <span class="dv">68</span>:</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você pode se aposentar!"</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Você ainda não pode se aposentar."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Este código solicita que o usuário informe a idade e o gênero (representado pela letra <code>M</code> maiúscula para masculino e <code>F</code> maiúscula para feminino). Em seguida, ele verifica se o gênero é feminino e se a idade é maior ou igual a 63 anos, ou se o gênero é masculino e a idade é maior ou igual a 68 anos. Se alguma dessas condições for atendida, o programa exibe a mensagem <em>“Você pode se aposentar!”</em>. Caso contrário, exibe a mensagem “Você ainda não pode se aposentar.”</p>
+<p>O uso de <code>if</code>/<code>elif</code>/<code>else</code> permite que o programa execute diferentes ações com base nas condições estabelecidas. No caso deste exemplo, se o gênero for feminino e a idade for maior ou igual a 63 anos, <strong><em>ou</em></strong> se o gênero for masculino e a idade for maior ou igual a 68 anos, a ação será a mesma: exibir a mensagem <em>“Você pode se aposentar!”</em>. No entanto, se <strong><em>nenhuma</em></strong> dessas condições for atendida, a ação será diferente, e o programa exibirá a mensagem <em>“Você ainda não pode se aposentar.”</em>.</p>
+</section>
+</section>
+<section id="referências-bibliográficas" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="referências-bibliográficas"><span class="header-section-number">5.7</span> Referências bibliográficas</h2>
+<ul>
+<li>DOWNEY, Allen B. Think Python: How to Think Like a Computer Scientist. Green Tea Press, 2nd edition, 2012.</li>
+<li>FORBELLONE, André Luiz Villar; EBERSPACHER, Henri Frederico L. Lógica de Programação: A Construção de Algoritmos e Estruturas de Dados. São Paulo: Pearson, 3ª edição, 2017.</li>
+<li>MENEZES, Nilo Ney Coutinho. Introdução à Programação com Python: Algoritmos e Lógica de Programação para Iniciantes. São Paulo: Novatec, 2018.</li>
+<li>PARRY, Dave. Debugging and Testing Python Code with pdb. Real Python, 2020. Disponível em: https://realpython.com/python-debugging-pdb/. Acesso em: 05 mar. 2023.</li>
+<li>PYTHON. Control Flow Tools: if statements. Disponível em: https://docs.python.org/3/tutorial/controlflow.html#if-statements. Acesso em: 05 mar. 2023.</li>
+<li>PYTHON. Compound Statements. Disponível em: https://docs.python.org/3/reference/compound_stmts.html. Acesso em: 14 out. 2021.</li>
+<li>RAZAVI, Arash. Testing vs.&nbsp;Debugging: What’s the Difference? Medium, 2018. Disponível em: https://medium.com/swlh/testing-vs-debugging-whats-the-difference-114c72a9576f. Acesso em: 05 mar. 2023.</li>
+<li>W3SCHOOLS. Python 3 Reference Manual. Scotts Valley, CA: CreateSpace. Disponível em: https://www.w3schools.com/python/. Acesso em: 05 mar. 2023.</li>
+<li>W3SCHOOLS. Python if…elif…else. Disponível em: https://www.w3schools.com/python/python_conditions.asp. Acesso em: 05 mar. 2023.</li>
+<li>ZIVIANI, Nivio. Projeto de Algoritmos com Implementações em Pascal e C. São Paulo: Cengage Learning, 2007.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-Variaveis-IO.html" class="pagination-link" aria-label="Primeiros (ou segundos) passos em Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeiros (ou segundos) passos em Python</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05-Estruturas-Repeticao.html" class="pagination-link" aria-label="Repetições, repetições, repetições: loops em Python">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Repetições, repetições, repetições: loops em Python</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,73 @@
+/* Custom styles for Python Descomplicado */
+
+/* Improve code block styling */
+pre code {
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+/* Style for callout boxes */
+.callout {
+  border-left: 4px solid #3498db;
+  padding: 1em;
+  margin: 1em 0;
+  background-color: #f8f9fa;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Improve table styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* Style for figure captions */
+.figure-caption {
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Improve notebook output styling */
+.cell-output {
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* Style for warning/info boxes */
+.warning, .info, .tip {
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+  border-left: 4px solid;
+}
+
+.warning {
+  background-color: #fff3cd;
+  border-color: #ffc107;
+}
+
+.info {
+  background-color: #d1ecf1;
+  border-color: #17a2b8;
+}
+
+.tip {
+  background-color: #d4edda;
+  border-color: #28a745;
+}
+

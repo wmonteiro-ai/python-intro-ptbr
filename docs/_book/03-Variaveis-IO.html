@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Primeiros (ou segundos) passos em Python – Python Descomplicado</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04-Estruturas-Selecao.html" rel="next">
+<link href="./02-Introducao-Algoritmos.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f2c6d6e2b784ddc5de38779acc06f37d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-Variaveis-IO.html">Parte 2: Fazendo coisas legais</a></li><li class="breadcrumb-item"><a href="./03-Variaveis-IO.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeiros (ou segundos) passos em Python</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python Descomplicado</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 1: Sabendo onde estamos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introducao-Ambiente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Introducao-Algoritmos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 2: Fazendo coisas legais</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Variaveis-IO.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeiros (ou segundos) passos em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Estruturas-Selecao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Estruturas-Repeticao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Repetições, repetições, repetições: loops em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tudo em blocos: trabalhando com funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Listas-Dicionarios-Tuplas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">De um bolo para uma festa: listas, dicionários e tuplas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Manipulacao-Arquivos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-POO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 3: Resolvendo tretas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Erros-Comuns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erros/exceções em Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#o-que-você-saberá-se-você-ler-todo-este-capítulo" id="toc-o-que-você-saberá-se-você-ler-todo-este-capítulo" class="nav-link active" data-scroll-target="#o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">4.1</span> O que você saberá se você ler todo este capítulo?</a></li>
+  <li><a href="#saindo-do-pseudocódigo-para-o-python" id="toc-saindo-do-pseudocódigo-para-o-python" class="nav-link" data-scroll-target="#saindo-do-pseudocódigo-para-o-python"><span class="header-section-number">4.2</span> Saindo do pseudocódigo para o Python</a></li>
+  <li><a href="#variáveis" id="toc-variáveis" class="nav-link" data-scroll-target="#variáveis"><span class="header-section-number">4.3</span> Variáveis</a>
+  <ul class="collapse">
+  <li><a href="#constantes" id="toc-constantes" class="nav-link" data-scroll-target="#constantes"><span class="header-section-number">4.3.1</span> Constantes</a></li>
+  </ul></li>
+  <li><a href="#operadores" id="toc-operadores" class="nav-link" data-scroll-target="#operadores"><span class="header-section-number">4.4</span> Operadores</a>
+  <ul class="collapse">
+  <li><a href="#operadores-aritméticos" id="toc-operadores-aritméticos" class="nav-link" data-scroll-target="#operadores-aritméticos"><span class="header-section-number">4.4.1</span> Operadores aritméticos</a></li>
+  <li><a href="#operadores-de-comparação" id="toc-operadores-de-comparação" class="nav-link" data-scroll-target="#operadores-de-comparação"><span class="header-section-number">4.4.2</span> Operadores de comparação</a></li>
+  <li><a href="#operadores-lógicos" id="toc-operadores-lógicos" class="nav-link" data-scroll-target="#operadores-lógicos"><span class="header-section-number">4.4.3</span> Operadores lógicos</a></li>
+  </ul></li>
+  <li><a href="#int-float-e-str" id="toc-int-float-e-str" class="nav-link" data-scroll-target="#int-float-e-str"><span class="header-section-number">4.5</span> <code>int</code>, <code>float</code> e <code>str</code></a></li>
+  <li><a href="#formatação-de-strings" id="toc-formatação-de-strings" class="nav-link" data-scroll-target="#formatação-de-strings"><span class="header-section-number">4.6</span> Formatação de strings</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">4.7</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#respostas" id="toc-respostas" class="nav-link" data-scroll-target="#respostas"><span class="header-section-number">4.7.1</span> Respostas</a></li>
+  </ul></li>
+  <li><a href="#referências-bibliográficas" id="toc-referências-bibliográficas" class="nav-link" data-scroll-target="#referências-bibliográficas"><span class="header-section-number">4.8</span> Referências bibliográficas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-Variaveis-IO.html">Parte 2: Fazendo coisas legais</a></li><li class="breadcrumb-item"><a href="./03-Variaveis-IO.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeiros (ou segundos) passos em Python</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeiros (ou segundos) passos em Python</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="o-que-você-saberá-se-você-ler-todo-este-capítulo" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">4.1</span> O que você saberá se você ler todo este capítulo?</h2>
+<ol type="1">
+<li>Você saberá usar as funções de entrada e saída de dados (<code>input</code> e <code>print</code>) em Python.</li>
+<li>Você saberá usar operadores aritméticos, de comparação e lógicos em Python.</li>
+<li>Você saberá formatar textos (strings) em Python.</li>
+<li>Você saberá como funcionam as variáveis em Python.</li>
+<li>Você também saberá como converter um tipo de dado em outro como, por exemplo, um número para texto e vice-versa.</li>
+</ol>
+</section>
+<section id="saindo-do-pseudocódigo-para-o-python" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="saindo-do-pseudocódigo-para-o-python"><span class="header-section-number">4.2</span> Saindo do pseudocódigo para o Python</h2>
+<p>Vamos supor que você quer construir uma casa. O pseudocódigo se aproxima à planta da casa: você não pode entrar nela e não pode fazer muita coisa de verdade com esta planta, mas ela serve como um bom ponto de partida e te dá uma boa ideia de como a casa deve funcionar, não é? Isto é: a planta te ajuda a entender o que falta/o que você precisaria pensar <em>antes</em> de construir a casa.</p>
+<p>Já um algoritmo feito em Python se assemelha à casa construída. Você pode usar a casa (entrar e sair, morar, mobiliar, entre outros) como você quiser. Ela é um objeto real que existe e funciona. E, é claro: se você está aprendendo a montar casas, seria legal já seguir uma planta construída anteriormente, não é?</p>
+<p>É por isso que comentamos antes sobre o pseudocódigo: colocar as suas ideias no papel com um pseudocódigo <em>antes</em> de trabalhar em Python o ajuda muito a pensar em algoritmos e a ganhar velocidade e aprendizagem. Além disso, ao conhecer o pseudocódigo é mais fácil de pensarmos em alguns exemplos <em>antes</em> de colocar a mão na massa no PyCharm. Para isso, vamos usar como base aquele pseudocódigo que soma dois números e mostra para o usuário o resultado dessa soma:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">1.</span> Início</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">2.</span>   Inteiro: num1, num2, soma</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">3.</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">4.</span>   Escreva<span class="er">(</span><span class="st">"Digite o primeiro número: "</span><span class="kw">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">5.</span>   Leia<span class="er">(</span><span class="ex">num1</span><span class="kw">)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">6.</span>   </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">7.</span>   Escreva<span class="er">(</span><span class="st">"Digite o segundo número: "</span><span class="kw">)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">8.</span>   Leia<span class="er">(</span><span class="ex">num2</span><span class="kw">)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">9.</span>   </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">10.</span>   soma = num1 + num2</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">11.</span>   Escreva<span class="er">(</span><span class="st">"O resultado da soma é: "</span><span class="ex">,</span> soma<span class="kw">)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">12.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ora, como transcreveríamos este exemplo? O mesmíssimo algoritmo acima, mas escrito em Python, seria assim:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Digite o primeiro número: "</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Digite o segundo número: "</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>soma <span class="op">=</span> num1 <span class="op">+</span> num2</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A soma dos números é: "</span>, soma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Agora, quais são as semelhanças e diferenças entre os dois algoritmos? Comecemos pelas diferenças: as palavras <code>Início</code> e <code>Fim</code> saíram de cena. Além disso, a linha 2 do pseudocódigo que declarava as três variáveis deixou de existir: em Python, isto não é mais necessário. Finalmente, a função <code>Escreva</code> deu lugar à <code>print</code>, e a <code>Leia</code> deu lugar à <code>int(input())</code>. Existem outras formas de reescrever este código, e veremos mais sobre isto em breve.</p>
+<p>Quanto às semelhanças, temos várias delas. Primeiro, a ordem do algoritmo é mantida. A organização também: veja como as linhas estão organizadas. O mesmo se aplica às mensagens e à operação de soma. Por isso que começar a escrever algoritmos em Python é mais simples do que parece a princípio: se você sabe como os algoritmos funcionam de forma geral e sabe interpretar pseudocódigo, então rapidamente você também conseguirá escrever algoritmos utilizando Python.</p>
+<p>Mas, e aí? Como <em>testamos</em> isso usando o PyCharm? Vamos testar aqui por partes, beleza?</p>
+</section>
+<section id="variáveis" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="variáveis"><span class="header-section-number">4.3</span> Variáveis</h2>
+<p>Variáveis em Python são uma forma de armazenar dados em um programa, como números, textos, listas, entre outros. É como se fossem caixinhas onde podemos guardar valores que podem ser usados em diferentes partes do código. Podemos escolher um nome para cada variável e atribuir um valor a ela. Por exemplo, podemos criar uma variável chamada <code>idade</code> e atribuir o valor 21 a ela. Assim, sempre que quisermos saber a idade, podemos usar o nome da variável em vez de escrever o número 21 de novo.</p>
+<p>Teste o seguinte no Python Console do PyCharm. Ao final de cada linha, aperte <code>Enter</code>.</p>
+<div id="809edb3d-77f3-4dc2-b8a8-6435ae75d6a8" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>idade <span class="op">=</span> <span class="dv">21</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nome <span class="op">=</span> <span class="st">'Beltrano'</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>cidade <span class="op">=</span> <span class="st">'São Paulo'</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>campeonatos <span class="op">=</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Após digitar essas variáveis você irá perceber que elas vão sendo “salvas” na lista à esquerda. Isto quer dizer que estão armazenadas em memória e prontas para consultar e reaproveitar como quiser. Olha só:</p>
+<figure class="figure">
+<img alt="Variáveis 'idade', 'nome', 'cidade' e 'campeonatos' armazenadas com os valores 21, 'Beltrano', 'São Paulo' e 1, respectivamente." src="assets/pycharm_variable_test.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Variáveis armazenadas temporariamente no PyCharm.
+</figcaption>
+</figure>
+<p>Elas permanecerão salvas em memória até que você encerre o programa. Digite somente isso no console e aperte <code>Enter</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>idade</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Você verá que aparecerá o valor guardado para aquela variável (no caso, <code>21</code>). Você pode fazer isso quantas vezes quiser e para as outras variáveis também. O que acha de testar um pouco?</p>
+<p>Ah! Como o nome é <em>variável</em>, você poderia também variar (mudar) o nome delas se quiser. Veja o que acontece naquela lista à esquerda se você fizer isso e logo após apertar <code>Enter</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cidade <span class="op">=</span> <span class="st">'Salvador'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Viu que o nome da cidade mudou?</p>
+<figure class="figure">
+<img alt="Variável `cidade` agora mostra o valor `Salvador` no PyCharm." src="assets/pycharm_city_change.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+O valor da variável “cidade” mudou para “Salvador”.
+</figcaption>
+</figure>
+<p>Quer testar outras variáveis? Teste algumas (ou todas) no PyCharm:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nome <span class="op">=</span> <span class="st">'Maria'</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>idade <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>altura <span class="op">=</span> <span class="fl">1.65</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>peso <span class="op">=</span> <span class="fl">60.5</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>estudante <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>frutas <span class="op">=</span> [<span class="st">"maçã"</span>, <span class="st">"banana"</span>, <span class="st">"laranja"</span>]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>idade_gato <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>cor <span class="op">=</span> <span class="st">"azul"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>preco <span class="op">=</span> <span class="fl">9.99</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>estado_civil <span class="op">=</span> <span class="st">'solteiro'</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>data_nascimento <span class="op">=</span> <span class="st">"12/08/2001"</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>pais <span class="op">=</span> <span class="st">"Brasil"</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>email <span class="op">=</span> <span class="st">"exemplo@gmail.com"</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>endereco <span class="op">=</span> <span class="st">"Rua das Flores, 123"</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>quantidade <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>velocidade <span class="op">=</span> <span class="fl">50.0</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>codigo <span class="op">=</span> <span class="dv">12345</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>possui_cachorro <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>salario <span class="op">=</span> <span class="fl">2500.00</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>usuario <span class="op">=</span> <span class="st">"123"</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>linguagens <span class="op">=</span> [<span class="st">"Python"</span>, <span class="st">"Java"</span>, <span class="st">"C++"</span>, <span class="st">"Scala"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Percebeu algumas semelhanças e diferenças? Olha só: 1. Variáveis que guardam strings (em Python, chamamos elas de tipo <code>str</code>, de <em>string</em>): <code>nome</code>, <code>cor</code>, <code>estado_civil</code>, <code>data_nascimento</code>, <code>pais</code>, <code>email</code>, <code>endereco</code>, <code>usuario</code>. Perceba que os valores são envoltos por aspas simples ou aspas duplas. 2. Variáveis que guardam números inteiros (em Python, chamamos elas de tipo <code>int</code>, de <em>integer</em>): <code>idade</code>, <code>idade_gato</code>, <code>quantidade</code>, <code>codigo</code>. Perceba que são números sem casas decimais e sem aspas simples ou aspas duplas: somente dígitos. 3. Variáveis que guardam números com casas decimais (em Python, chamamos elas de tipo <code>float</code> ou números em que o ponto muda/flutua de posição - <code>floating point</code>): <code>altura</code>, <code>peso</code>, <code>preco</code>, <code>velocidade</code>, <code>salario</code>. Veja que são números sem aspas simples e que possuem o ponto para mostrar onde começam as casas decimais. <strong>Em Python, não usamos a vírgula para separar as casas decimais</strong>. 4. Variáveis que guardam valores binários/booleanos (em Python, chamamos elas de tipo <code>bool</code>): <code>estudante</code>, <code>possui_cachorro</code>. Ela guardaria valores do tipo <code>True</code> (verdadeiro) ou <code>False</code> (falso). 5. Variáveis que guardam mais de um valor ao mesmo tempo: <code>frutas</code> e <code>linguagens</code>. Perceba que elas possuem mais de um valor armazenado e estão envoltas por colchetes. Os colchetes indicam que são <em>listas de valores</em>.</p>
+<p>Finalmente, veja que os nomes das variáveis sempre seguem um padrão: sempre em minúsculas, sem acentos e sem espaços. Quando são palavras compostas, as separamos por underscores (<code>_</code>). Também perceba que armazenamos (atribuímos) o valor dentro de cada variável com o símbolo de <code>=</code>. Por isso, lemos <code>pais = "Brasil"</code> como <em>“a variável chamada <code>pais</code> recebe o valor</em> <code>Brasil</code><em>“</em>.</p>
+<section id="constantes" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="constantes"><span class="header-section-number">4.3.1</span> Constantes</h3>
+<p>Se não quisermos que um valor seja alterado (como o valor de <span class="math inline">\(\pi\)</span>, que nunca mudaria) trabalharíamos com constantes. O uso de constantes é bem comum em outras linguagens de programação, como C e Java, mas o conceito de constantes não existe em Python.</p>
+<p>Dito isso, por convenção e por boa prática é comum nomear variáveis que <strong>não devem ser alteradas</strong> e que deveriam ser entendidas como constantes usando letras maiúsculas e underscores (<code>_</code>). Essa convenção é mais uma forma de deixar o código mais legível para os desenvolvedores, indicando que determinada variável não deve ser alterada durante a execução do programa.</p>
+<p>Veja os exemplos abaixo. Ainda são variáveis, mas devem ser interpretadas como desenvolvedores como sendo constantes.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>PI <span class="op">=</span> <span class="fl">3.14159265359</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>GRAV_ACCEL <span class="op">=</span> <span class="fl">9.81</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>URL_BASE <span class="op">=</span> <span class="st">"https://www.google.com.br"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>TAXA_JUROS <span class="op">=</span> <span class="fl">0.05</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>TAMANHO_MAXIMO <span class="op">=</span> <span class="dv">1024</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Dito isso, vale lembrar que essa convenção não impede que essas variáveis sejam alteradas por engano ou por uma falha no código.</p>
+</section>
+</section>
+<section id="operadores" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="operadores"><span class="header-section-number">4.4</span> Operadores</h2>
+<p>Aquele sinal de <code>=</code> que acabamos de ver é um exemplo de operador: é um símbolo que existe para fazer algum tipo de operação (somar, guardar algum valor, subtrair, dividir, comparar, etc.) com valores e variáveis. Dito isso, existem outros operadores que podem ajudar a manipular diferentes variáveis.</p>
+<section id="operadores-aritméticos" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="operadores-aritméticos"><span class="header-section-number">4.4.1</span> Operadores aritméticos</h3>
+<p>No seu Python Console do PyCharm, crie duas novas variáveis:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>texto1 <span class="op">=</span> <span class="st">'Oi'</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>texto2 <span class="op">=</span> <span class="st">'Tchau'</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>texto3 <span class="op">=</span> <span class="st">"Oi"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Os operadores aritméticos são usados para realizar operações matemáticas básicas, como adição (<code>+</code>), subtração (<code>-</code>), multiplicação (<code>*</code>), divisão (<code>/</code>), módulo (ou resto da divisão, símbolo <code>%</code>) e exponenciação (<code>**</code>).</p>
+<p>Teste os seguintes comandos e veja os resultados. Não preciso dizer que você precisa apertar <code>Enter</code> no final de cada comando, né?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">+</span> num2</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">-</span> num2</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">*</span> num2</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">/</span> num2</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">%</span> num2</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">**</span> num2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Os resultados devem ser, respectivamente: <code>8</code>, <code>-2</code>, <code>15</code>, <code>0.6</code>, <code>3</code> e <code>243</code>. Faz sentido com a matemática básica, não é? Agora teste:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>texto1 <span class="op">+</span> texto2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aparecerá <code>OiTchau</code> na tela. Em Python, é possível usarmos o símbolo de <code>+</code> para concatenar (juntar) textos, também.</p>
+</section>
+<section id="operadores-de-comparação" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="operadores-de-comparação"><span class="header-section-number">4.4.2</span> Operadores de comparação</h3>
+<p>Se os operadores aritméticos fazem operações aritméticas, então os de comparação… Adivinha? Exato: eles comparam. Esses operadores servem para fazer comparações entre valores e variáveis para retornar <code>True</code> se aquela comparação for verdadeira e <code>False</code> se não for. Vamos usar as mesmas variáveis acima para testar lá no Python Console:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">==</span> num2</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">!=</span> num2</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">&gt;</span> num2</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">&gt;=</span> num2</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">&lt;</span> num2</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">&lt;=</span> num2</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">'au'</span> <span class="kw">in</span> texto2</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">'Au'</span> <span class="kw">in</span> texto2</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">'au'</span> <span class="kw">not</span> <span class="kw">in</span> texto2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Você deve ter visto que para cada uma das linhas apareceu <code>True</code> ou <code>False</code> como resultado, não é? Vamos ver caso-a-caso o que cada um desses exemplos querem dizer.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">==</span> num2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Nesse caso, o <code>==</code> é um operador de igualdade. Ele compara se <code>num1</code> é exatamente igual a <code>num2</code>. Se forem números, compara se o valor deles é igual. Se forem strings, compara se o conteúdo do texto é exatamente igual, diferenciando maiúsculas de minúsculas. O resultado aqui foi <code>False</code> porque 3 é diferente de 5. Se eles fossem iguais, o resultado seria <code>True</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">!=</span> num2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Já o <code>!=</code> é um operador de desigualdade. Como você já deve imaginar, ele funciona ao contrário do <code>==</code>. Ou seja: ele retornará <code>True</code> se as duas variáveis ou valores sendo comparados forem <em>diferentes</em> e <code>False</code> se forem iguais. Como 3 é diferente de 5 o resultado foi <code>True</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">&gt;</span> num2</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">&gt;=</span> num2</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">&lt;</span> num2</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">&lt;=</span> num2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Estes quatro operadores permitem comparar dois valores ou variáveis e retornar um resultado verdadeiro ou falso (booleano) dependendo do resultado da comparação.</p>
+<p>O operador <code>&gt;</code> é usado para verificar se o valor ou a variável do lado esquerdo é maior que o valor ou variável do lado direito. O operador <code>&gt;=</code> verifica se o valor ou variável do lado esquerdo é maior ou igual ao valor ou variável do lado direito. O operador <code>&lt;</code> verifica se o valor ou a variável do lado esquerdo é menor que o valor ou a variável do lado direito, enquanto o operador <code>&lt;=</code> verifica se o valor ou a variável do lado esquerdo é menor ou igual ao valor ou variável do lado direito. Esses operadores são amplamente utilizados em estruturas de controle, como declarações condicionais e loops.</p>
+<p>Como 3 é menor (e menor ou igual) a 5, os dois primeiros testes resultam em <code>False</code> e os dois últimos em <code>True</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">'au'</span> <span class="kw">in</span> texto2</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">'Au'</span> <span class="kw">in</span> texto2</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">'au'</span> <span class="kw">not</span> <span class="kw">in</span> texto2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O <code>in</code> e <code>not in</code> são variáveis de pertencimento. O <code>in</code> poderia ser traduzido como “está dentro de”, enquanto que <code>not in</code> poderia ser traduzido como “não está dentro de”.</p>
+<p>Como o texto <code>au</code> está dentro de <code>Tchau</code>, o primeiro comando retornou <code>True</code>. Como as comparações diferenciam letras maiúsculas de minúsculas, o segundo comando retornou <code>False</code> (afinal, a letra <code>A</code> em maiúsculo não está no texto). Finalmente, o último comando retornou <code>False</code> porque não é verdade que o <code>au</code> não esteja dentro de <code>Tchau</code>.</p>
+</section>
+<section id="operadores-lógicos" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="operadores-lógicos"><span class="header-section-number">4.4.3</span> Operadores lógicos</h3>
+<p>São operadores para realizarem comparações lógicas. Antes de pensarmos em alguns exemplos em Python vale pensarmos um pouco em exemplos de lógica booleana (ou lógica binária).</p>
+<section id="negação-not" class="level4" data-number="4.4.3.1">
+<h4 data-number="4.4.3.1" class="anchored" data-anchor-id="negação-not"><span class="header-section-number">4.4.3.1</span> Negação (<code>not</code>)</h4>
+<p>Vamos supor que você está seguindo uma receita de bolo que diz “<em>adicione uma colher de açúcar</em>”. Se você quer fazer uma negação dessa instrução, significa que você quer fazer o oposto do que está sendo dito. Nesse caso, a negação seria “<em>não adicione uma colher de açúcar</em>”. Isso significa que você vai ignorar a instrução original e não vai adicionar açúcar na massa do bolo.</p>
+<p>Outro exemplo seria se a receita dissesse “<em>pré-aqueça o forno a 180 graus Celsius</em>”. A negação seria “<em>não pré-aqueça o forno a 180 graus Celsius</em>”, o que significa que você não deve aquecer o forno antes de colocar o bolo para assar.</p>
+<p>A negação é um dos operadores booleanos em Python e é representada com a palavra-chave <code>not</code>. O <code>not</code> inverte o valor de uma expressão booleana, ou seja, se a expressão for verdadeira, ele a torna falsa e vice-versa.</p>
+</section>
+<section id="ou-lógico-or" class="level4" data-number="4.4.3.2">
+<h4 data-number="4.4.3.2" class="anchored" data-anchor-id="ou-lógico-or"><span class="header-section-number">4.4.3.2</span> Ou lógico (<code>or</code>)</h4>
+<p>Agora, pensemos que você está seguindo uma receita de bolo e a receita diz que você pode usar açúcar cristal <em>ou</em> açúcar refinado para fazer a massa. Nesse caso, o “ou” lógico é utilizado, pois você pode escolher usar um tipo de açúcar <strong>ou</strong> outro para fazer a receita. Você pode fazer a receita sem problemas se tiver só açúcar cristal, se tiver só açúcar refinado, ou se tiver os dois. Agora, você não poderia fazer a receita se não tivesse <em>nenhum</em> desses dois tipos.</p>
+<p>Outro exemplo de “ou” lógico seria em uma receita que diz para usar manteiga <em>ou</em> margarina. Nesse caso, você pode escolher usar uma das opções para fazer a receita. Você pode fazer o bolo com manteiga, o bolo com margarina, ou o bolo misturando os dois (apesar de que isso seria estranho).</p>
+<p>Em Python, este “ou” lógico é representado pela palavra-chave <code>or</code>, que testa se <em>pelo menos uma</em> das expressões booleanas é verdadeira.</p>
+</section>
+<section id="e-lógico-and" class="level4" data-number="4.4.3.3">
+<h4 data-number="4.4.3.3" class="anchored" data-anchor-id="e-lógico-and"><span class="header-section-number">4.4.3.3</span> E lógico (<code>and</code>)</h4>
+<p>Vamos supor que para preparar uma receita de bolo é necessário ter tanto açúcar quanto farinha de trigo. Se eu disser que é preciso ter açúcar <strong>e</strong> farinha de trigo para fazer a receita, isso significa que se faltar qualquer um desses ingredientes, o bolo não poderá ser feito. Ou seja, <em>as duas condições precisam ser verdadeiras para que o resultado final seja verdadeiro</em>.</p>
+<p>Por exemplo, se eu disser que “para fazer a receita de bolo é necessário ter açúcar <strong>e</strong> farinha de trigo”, e se eu tiver apenas açúcar mas não tiver farinha de trigo, a condição não será satisfeita e o resultado será falso (ou seja: sem bolo). Apenas quando eu tiver ambos os ingredientes – açúcar e farinha de trigo – é que a condição será satisfeita e o resultado será verdadeiro, permitindo assim que eu faça o bolo.</p>
+<p>Em Python, o “e” lógico é representado pela palavra-chave <code>and</code>, e precisa que todas as condições sejam verdadeiras para que o resultado seja <code>True</code>. Caso contrário, retornará <code>False</code>.</p>
+</section>
+<section id="resumindo" class="level4" data-number="4.4.3.4">
+<h4 data-number="4.4.3.4" class="anchored" data-anchor-id="resumindo"><span class="header-section-number">4.4.3.4</span> Resumindo</h4>
+<ul>
+<li>E lógico (<code>and</code>): <code>True and False</code> resulta em <code>False</code>.</li>
+<li>Ou lógico (<code>or</code>): <code>True or False</code> resulta em <code>True</code>.</li>
+<li>Não lógico (<code>not</code>): <code>not True</code> resulta em <code>False</code>.</li>
+</ul>
+<p>Vamos voltar no Python Console lá do PyCharm? Teste as seguintes variáveis:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> num1 <span class="op">==</span> num2</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">!=</span> num2 <span class="kw">and</span> num1 <span class="op">&gt;</span> num2</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">!=</span> num2 <span class="kw">or</span> num1 <span class="op">&gt;</span> num2</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">!=</span> num2 <span class="kw">and</span> <span class="kw">not</span> num1 <span class="op">&gt;</span> num2</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">!=</span> num2 <span class="kw">and</span> num1 <span class="op">&lt;</span> num2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A primeira resulta em <code>True</code> porque 3 é diferente de 5. Logo, <code>num1 == num2</code> resultou em <code>False</code>. Como estamos invertendo o resultado com o <code>not</code>, este <code>False</code> vira <code>True</code>.</p>
+<p>A segunda resulta em <code>False</code> porque a primeira comparação resulta em <code>True</code> (3 é diferente de 5), mas a segunda comparação resulta em <code>False</code> (3 não é maior do que 5). Como o <code>and</code> requer que ambos sejam verdadeiros para que o resultado também seja verdade, o resultado desta comparação deu <code>False</code>.</p>
+<p>A terceira resulta em <code>True</code> porque somente uma das comparações precisa ser verdadeira para que o resultado seja <code>True</code>. A segunda comparação possui o resultado <code>False</code>, mas a primeira obedece é verdadeira e, por isso, o resultado da comparação é <code>True</code>.</p>
+<p>A quarta comparação resulta em <code>True</code> porque a primeira parte da expressão é <code>num1 != num2</code>. Como o valor de <code>num1</code> é 3 e o valor de <code>num2</code> é 5, essa comparação resulta em <code>True</code>.</p>
+<p>Em seguida, a expressão utiliza o operador and para combinar essa comparação com a próxima, que é <code>not num1 &gt; num2</code>. Essa segunda parte compara se <code>num1</code> não é maior que <code>num2</code>. Como <code>num1</code> é menor que <code>num2</code>, essa comparação resulta em <code>False</code>. No entanto, a expressão utiliza o operador <code>not</code> para negar esse resultado e obter <code>True</code>.</p>
+<p>Por fim, o operador and combina esses dois resultados. Como a primeira parte resultou em <code>True</code> e a segunda em <code>True</code>, o resultado final da expressão é <code>True</code>.</p>
+<p>Já a quinta e última comparação resulta em <code>True</code> porque o resultado das duas comparações é <code>True</code>: <code>num1 != num2</code> é verdade (3 é diferente de 5) e <code>num1 &lt; num2</code> também é verdade (3 é menor do que 5).</p>
+<p>(content:python:inputprint)= ## <code>input</code> e <code>print</code> Em termos simples, quando estamos escrevendo um código em Python, podemos querer que ele faça algumas coisas como, por exemplo, ler um arquivo, ler coisas que o usuário digitou, ou mostrar alguma informação na tela do computador. A leitura de informações que o usuário forneceu e a exibição de informações na tela são exemplos de entrada e saída (<em>input</em> e <em>output</em>, ou I/O) do nosso algoritmo.</p>
+<p>Quando escrevemos um algoritmo, é importante que ele consiga se comunicar com o mundo exterior para coletar e enviar informações. Por exemplo, se quisermos fazer um programa que calcule a média de notas de um aluno, precisamos permitir que o usuário insira as notas. Isso é entrada (<em>input</em>) do programa. E quando o programa calcular a média, ele precisará exibir o resultado ao usuário, que é a saída (<em>output</em>) do programa.</p>
+<blockquote class="blockquote">
+<p>Mensagem para agora: as funções básicas de I/O em Python são a <code>input()</code> e <code>print()</code>, e é com elas que você irá trabalhar inicialmente.</p>
+</blockquote>
+<p>A função <code>input()</code> é uma função do Python que permite ao usuário inserir informações em um programa. Ela é como uma caixa de texto na qual o usuário pode digitar alguma coisa e, em seguida, o programa usa essa informação para realizar alguma ação. É como quando alguém te pede uma informação e você responde falando com essa pessoa. No caso da função <code>input()</code>, o programa é quem faz a pergunta e espera pela resposta do usuário. Depois que o usuário digita a resposta e pressiona Enter, o programa recebe essa informação e pode utilizá-la da forma que foi programada. É uma maneira muito útil de fazer com que o usuário interaja com o programa.</p>
+<p>Já a função <code>print()</code> em Python é usada para mostrar mensagens na tela do computador. É como se fosse uma impressora que escreve na tela do seu computador em vez de em um pedaço de papel. Com ela, é possível imprimir (na tela ou em um arquivo) textos, números e até mesmo variáveis que foram definidas no seu programa.</p>
+<p>Ela é utilizada para que o código possa exibir informações para o usuário, como resultados de cálculos, mensagens de erro, instruções de uso, entre outros. Essa função permite que o usuário possa visualizar os resultados gerados pelo código, tornando-o mais interativo e amigável. O resultado dessa função é a exibição das informações na tela ou em um arquivo de texto.</p>
+<p>Lembra daquele exemplo da soma de dois números que vimos no início do capítulo? Vamos usar ele como base para estudarmos e testarmos as funções <code>input()</code> e <code>print()</code>, beleza?</p>
+<blockquote class="blockquote">
+<p>👉 A partir de agora nós vamos deixar de usar o Python Console e vamos começar a trabalhar com um arquivo com o código em Python. <a href="content:environment:sourcecodefile">Lembra quando estávamos trabalhando</a> com o <code>main.py</code> nos capítulos anteriores para fazer aquele exemplo do Counter-Strike? Vamos voltar a usar aquele arquivo. Da mesma forma que você tem um arquivo chamado <code>main.py</code> você pode criar outros arquivos como <code>teste.py</code>, <code>projeto.py</code> e outros nomes.</p>
+</blockquote>
+<p>No PyCharm, deixe o seu código somente com isso, e rode ele (lembra do <code>Run</code> que já tínhamos visto anteriormente, né?):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite um número: "</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<figure class="figure">
+<img alt="O algoritmo visto anteriormente deve estar agora dentro da tela 'main.py'." src="assets/pycharm_sample_input_code.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+O seu código deve estar dentro de um arquivo com final (extensão) .py, como você pode ver na área realçada em roxo. Você não precisa ter o código dentro do arquivo “main.py”: você pode usar outros nomes sem problemas. O ponto aqui é que começaremos a trabalhar com esses arquivos “.py” a partir de agora, beleza?
+</figcaption>
+</figure>
+<p>Se você mandou rodar, provavelmente só verá esta mensagem. Ao usar a função <code>input()</code>, o programa pausa sua execução e aguarda a entrada de dados pelo usuário, que deve pressionar a tecla <code>Enter</code> para confirmar sua entrada. Ou seja: ele ficará parado aí até que você digite alguma coisa e aperte <code>Enter</code>.</p>
+<figure class="figure">
+<img alt="PyCharm aberto. Aparece a frase 'Digite um número' na tela, indicando que o Python está esperando o usuário digitar algo." src="assets/pycharm_sample_input_code_2.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Observe que a frase “Digite um número:” aparece na tela na parte inferior, e só. Isto indica que o código está “travado” e esperando você digitar alguma coisa.
+</figcaption>
+</figure>
+<p>Experimente digitar algum valor, como <code>2000</code>. Em seguida, aperte <code>Enter</code>. Veja que apareceu exatamente o que você digitou na linha abaixo (no caso, o valor <code>2000</code>) e, logo após isso, a frase <code>Process finished with exit code 0</code>. Em bom português, essa frase poderia ser interpretada como <code>Seu programa finalizou de boas, sem erro nenhum</code>.</p>
+<figure class="figure">
+<img alt="PyCharm aberto. Aparece a frase 'Digite um número' na tela, indicando que o Python está esperando o usuário digitar algo. O usuário digitou 2000. Abaixo, o número 2000 aparece novamente, seguido pela mensagem 'Process finished with exit code 0'." src="assets/pycharm_sample_input_code_3.png" style="max-width:600px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Observe que o código finalizou com sucesso (aquele “Process finished with exit code 0” comprova isso).
+</figcaption>
+</figure>
+<p>Agora, por que aquele <code>2000</code> apareceu repetido logo depois de você ter digitado ele? Esse algoritmo solicita que o usuário digite um número (com o uso da função <code>input()</code>) e guarda o valor digitado na variável chamada <code>num1</code>. Em seguida, o <code>print()</code> é utilizado para mostrar na tela o valor armazenado em <code>num1</code>.</p>
+<p>Essas funções (a <code>input()</code> e <code>print()</code>) fazem parte ed um conjunto de instruções que o Python já tem prontas para realizar algumas tarefas, como receber uma entrada do usuário ou exibir informações na tela do computador. Dentro delas existem algoritmos especializados e prontos especialmente para estas tarefas.</p>
+<p>Para utilizar essas funções, você pode ter percebido que fomos obrigados a escrever o nome delas seguido de parênteses. Os parênteses servem para indicar que estamos <em>chamando a função</em>, ou seja, pedindo para que ela seja executada. Além disso, dentro dos parênteses podemos passar informações para a função, como textos ou variáveis, para que ela possa realizar a tarefa que queremos.</p>
+<p>Por exemplo, no código <code>num1 = input("Digite um número: ")</code>, a função <code>input()</code> é chamada e o texto <code>Digite um número:</code> é passado como um argumento para ela, indicando que queremos que o usuário digite um número. A função retorna a entrada do usuário, que é armazenada na variável <code>num1</code>. Em seguida, a função <code>print()</code> é chamada, passando a variável <code>num1</code> como argumento dentro dos parênteses para que ela exiba o valor armazenado nessa variável na tela do computador.</p>
+<p>Que tal testarmos uma pequena mudança no <code>print</code>? Mude o código para isso:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite um número: "</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num1 <span class="op">+</span> num1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Agora, teste com o mesmo número 2000. 2000 + 2000 é igual a 4000, certo? Então teste aí. Você pode ter percebido que o resultado foi <code>20002000</code>. Por que isso? Todos os dados que você digita e que o <code>input()</code> captura são tratados como uma string (texto), mesmo que sejam números. E, como vimos anteriormente, o <code>+</code> em textos possui a função de concatená-los. Ou seja: o Python entendeu que você estava querendo juntar um texto chamado “2000” com outro texto chamado “2000”, e ele não tinha nenhuma ideia de que isso, na verdade, era um número.</p>
+<p>Para converter esses dados em outros tipos de dados, como int ou float, é necessário usar as funções de conversão de tipos de dados.</p>
+</section>
+</section>
+</section>
+<section id="int-float-e-str" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="int-float-e-str"><span class="header-section-number">4.5</span> <code>int</code>, <code>float</code> e <code>str</code></h2>
+<p>O resultado da função <code>input()</code> é sempre um texto. Também pode ser que você esteja manipulando dados de outra fonte (como um arquivo) e que também aquilo seja lido como um texto. Por outro lado, você pode precisar converter aquele texto para um número para fazer operações como soma, divisão, comparações, e assim por diante.</p>
+<p>É para isso que servem as funções <code>int()</code> (que converte um valor de outro tipo para um número inteiro), <code>float()</code> (que converte um valor de outro tipo para um número decimal), e <code>str()</code> (que converte um número ou um valor de outro tipo para um texto). Modifique o código que tínhamos para adicionar o <code>int</code>. O seu código deve parecer com o código abaixo. Rode ele e teste novamente com o número <code>2000</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite um número: "</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num1 <span class="op">+</span> num1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Agora apareceu corretamente o <code>4000</code> como resultado da soma, não é? Funciona assim: na primeira linha, a função <code>input()</code> exibe na tela a mensagem <code>Digite um número:</code> para que o usuário possa digitar o valor desejado. Sabemos disso porque o conteúdo dos parênteses mais internos é avaliado primeiro, e depois é avaliado o conteúdo dos parênteses mais externos. Isso ajuda a definir a ordem em que as operações matemáticas devem ser executadas em uma expressão, evitando assim ambiguidades. Assim que o usuário digita <code>2000</code>, esse texto é convertido em um número inteiro pela função <code>int()</code> e armazenado na variável <code>num1</code>.</p>
+<p>Na segunda linha, há uma exibição na tela do resultado da soma da variável <code>num1</code> com ela mesma. Isso é feito com o uso da função <code>print()</code>, que exibe na tela o valor passado entre parênteses (ou seja: o resultado da soma).</p>
+<p>Antes de avançarmos, teste este mesmo algoritmo com outro número. Primeiro, teste o algoritmo com <code>9.78</code> no lugar de <code>2000</code>. Você verá que apareceu um erro assim:</p>
+<p><code>ValueError: invalid literal for int() with base 10: '9.78'</code></p>
+<p>Isto acontece porque ele esperava um número inteiro e você acabou digitando um número com casas decimais. Veja que o próprio erro te diz isso: que o número que você digitou não é um inteiro. Erros assim podem acontecer enquanto desenvolvemos e testamos algoritmos. Para te ajudar, também <a href="content:commonerrors">criei uma seção com os tratamentos mais comuns aos erros de código para você</a>.</p>
+<p>Se quiséssemos que o nosso código funcionasse com números decimais bastaria substituir o <code>int()</code> por <code>float()</code>, ficando assim:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite um número: "</span>))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num1 <span class="op">+</span> num1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Teste de novo, e você verá a mágica acontecer. Da mesma forma, o <code>str()</code> pode ser útil em outros momentos para convertermos números de volta para texto. Agora, vamos continuar testando o uso do <code>print()</code> e do <code>input()</code>. Como seria para fazermos a soma de dois números diferentes digitados pelo usuário? Ora, bastaria criarmos uma segunda variável (<code>num2</code>) e pedirmos para o usuário digitar um segundo número. No final, teríamos a soma de <code>num1</code> e <code>num2</code>. Olha só:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o primeiro número: "</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o segundo número: "</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num1 <span class="op">+</span> num2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Também poderíamos mostrar alguma mensagem <em>antes</em> de chamarmos o <code>input()</code>. O código abaixo faz a mesmíssima coisa do que o código anterior, mas com um uso um pouco diferente. Consegue ver as semelhanças e diferenças?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Digite o primeiro número: "</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Digite o segundo número: "</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num1 <span class="op">+</span> num2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Também poderíamos criar uma variável chamada <code>soma</code> para guardar o resultado da soma. Veja e teste:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o primeiro número: "</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o segundo número: "</span>))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>soma <span class="op">=</span> num1 <span class="op">+</span> num2</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(soma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="formatação-de-strings" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="formatação-de-strings"><span class="header-section-number">4.6</span> Formatação de strings</h2>
+<p>Agora, e se quiséssemos mostrar um texto um pouco mais bonito do que somente aquele valor? E se quiséssemos mostrar uma <em>mensagem personalizada</em> dentro daquele <code>print()</code>? É aí que entra a formatação de texto. A formatação de texto serve mostrar informações de uma maneira organizada e legível, e que permite criar mensagens personalizadas e dinâmicas de acordo com as entradas do usuário ou resultados de cálculos.</p>
+<p>Com a formatação de texto, poderíamos criar um modelo de mensagem com espaços reservados para as informações fornecidas pelo usuário, como <code>Olá, $NOME. Você tem $IDADE anos!</code>, onde <code>$NOME</code> e <code>$IDADE</code> são valores que podem variar de pessoa para pessoa. Durante a execução do seu código, as informações reais serão inseridas nos espaços reservados, criando uma mensagem personalizada para cada usuário.</p>
+<p>Existem alguns jeitos de fazermos isso em Python. A formatação de texto em Python pode ser feita de algumas formas diferentes. Vamos usar o mesmo exemplo acima para continuar, beleza?</p>
+<p>Vamos supor que queiramos mostrar uma mensagem chamada <em>“A soma dos números <span>$</span>PRIMEIRONUMERO e <span>$</span>SEGUNDONUMERO é: <span>$</span>SOMA”</em>. Por exemplo: se o usuário digitar 5 e 3, deve aparecer uma mensagem chamada <em>“A soma dos números 3 e 5 é: 8<em>. Se ele digitar 2000 e -10, deve aparecer </em>”A soma dos números 2000 e -10 é: 1990</em>. Bom, acho que você já pegou a ideia do que queremos, né?</p>
+<section id="jeito-1-concatenando-strings" class="level4" data-number="4.6.0.1">
+<h4 data-number="4.6.0.1" class="anchored" data-anchor-id="jeito-1-concatenando-strings"><span class="header-section-number">4.6.0.1</span> Jeito 1: concatenando strings</h4>
+<p>Lembra de que comentei que o <code>+</code> serve para concatenar strings? Teste o seguinte código:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o primeiro número: "</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o segundo número: "</span>))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>soma <span class="op">=</span> num1 <span class="op">+</span> num2</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A soma dos números "</span> <span class="op">+</span> <span class="bu">str</span>(num1) <span class="op">+</span> <span class="st">" e "</span> <span class="op">+</span> <span class="bu">str</span>(num2) <span class="op">+</span> <span class="st">" é: "</span><span class="op">+</span> <span class="bu">str</span>(soma))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Veja que na última linha usamos o sinal de <code>+</code> para juntar pedaços diferentes do texto. Ou seja: começamos a montar uma frase chamada <code>A soma dos números</code> e, em seguida, juntamos com o valor que está dentro da variável <code>num1</code>. Depois, juntamos com mais um texto (<code>e</code>) e assim sucessivamente até chegar na frase completa.</p>
+<p>Também perceba que usamos o <code>str()</code>. Isto é necessário converter as variáveis num1 e num2 em strings usando a função str() antes de concatená-las com as demais strings na função <code>print()</code>. Isto acontece porque o Python não permite juntar texto com números: ou juntamos número com número, ou texto com texto. Por isso, tivemos que converter os números das três variáveis de volta para um texto com o <code>str()</code>.</p>
+</section>
+<section id="jeito-2-usando-f-strings" class="level4" data-number="4.6.0.2">
+<h4 data-number="4.6.0.2" class="anchored" data-anchor-id="jeito-2-usando-f-strings"><span class="header-section-number">4.6.0.2</span> Jeito 2: usando f-strings</h4>
+<p>As f-strings permitem que você inclua valores de variáveis diretamente dentro de strings sem precisar concatenar (unir) vários elementos. Para criar uma f-string, basta inserir a letra <code>f</code> antes das aspas da string e, em seguida, colocar as chaves (<code>{}</code>) em torno do nome da variável que você deseja incluir.</p>
+<p>Teste o seguinte código:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o primeiro número: "</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o segundo número: "</span>))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>soma <span class="op">=</span> num1 <span class="op">+</span> num2</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"A soma dos números </span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> e </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss"> é: </span><span class="sc">{</span>soma<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Neste exemplo, as variáveis <code>num1</code>, <code>num2</code> e <code>soma</code> são colocadas dentro da string entre chaves <code>{}</code> na última linha, indicando que elas serão substituídas pelos seus respectivos valores assim que o Python executar aquela linha. Veja que só podemos usar variáveis que existem aqui: se tentarmos colocar também uma variável chamada <code>num3</code> na última linha teremos um erro já que ela nunca apareceu em nenhum lugar antes do código.</p>
+</section>
+<section id="jeito-3-usando-placeholders" class="level4" data-number="4.6.0.3">
+<h4 data-number="4.6.0.3" class="anchored" data-anchor-id="jeito-3-usando-placeholders"><span class="header-section-number">4.6.0.3</span> Jeito 3: usando placeholders</h4>
+<p>Agora, vamos usar a função <code>format()</code> para formatar uma string de saída que contém os valores das variáveis <code>num1</code>, <code>num2</code> e <code>soma</code>. Os valores são inseridos na string usando chaves <code>{}</code> como marcadores de posição: é como se falássemos assim: <em>“troque o valor das primeiras chaves com o primeiro valor que está lá no format (<code>num1</code>), as segundas chaves com o segundo valor (<code>num2</code>) e as terceiras chaves com o terceiro valor (<code>soma</code>)”</em>. Por isso, a ordem das chaves determina a ordem dos argumentos passados para a função <code>format()</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o primeiro número: "</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o segundo número: "</span>))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>soma <span class="op">=</span> num1 <span class="op">+</span> num2</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A soma dos números </span><span class="sc">{}</span><span class="st"> e </span><span class="sc">{}</span><span class="st"> é: </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(num1, num2, soma))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Experimente trocar a ordem do que está dentro do <code>format()</code>, colocando o <code>soma</code> em primeiro lugar. Veja que a frase final deixará de fazer sentido por isso.</p>
+</section>
+<section id="jeito-4-usando-format" class="level4" data-number="4.6.0.4">
+<h4 data-number="4.6.0.4" class="anchored" data-anchor-id="jeito-4-usando-format"><span class="header-section-number">4.6.0.4</span> Jeito 4: usando <code>format()</code></h4>
+<p>Também existe uma forma de “demarcar” a posição de cada elemento do format no texto. Teste o código abaixo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o primeiro número: "</span>))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o segundo número: "</span>))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>soma <span class="op">=</span> num1 <span class="op">+</span> num2</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A soma dos números </span><span class="sc">{1}</span><span class="st"> e </span><span class="sc">{2}</span><span class="st"> é: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(soma, num1, num2))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A última linha desse código ainda usa a função <code>format()</code>. Veja que o que mudou foi a ordem do que está dentro do <code>format()</code>. As chaves (<code>{}</code>) ainda servem como marcadores de posição, e agora estão numeradas de 0 a 2. O primeiro argumento passado para a função <code>format()</code> é o valor que deve ser atribuído à posição 0, ou seja, o resultado da soma, representado pela variável <code>soma</code>. Em seguida, os valores das variáveis <code>num1</code> e <code>num2</code> são passados como segundo e terceiro argumentos, respectivamente, para serem atribuídos às posições 1 e 2 da mensagem.</p>
+<p>Assim, o método format() faz a substituição dos marcadores de posição pelos valores passados como argumentos <em>obedecendo a ordem que você determinou</em>.</p>
+</section>
+</section>
+<section id="exercícios" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">4.7</span> Exercícios</h2>
+<p>O que acha de colocar a mão na massa e tentar resolver os problemas abaixo usando Python? Todos eles podem ser resolvidos somente com o que você aprendeu até o momento. Você também pode tentar inserir coisas a mais, como uma mensagem mais bonita usando técnicas de formatação de strings.</p>
+<p>Ah, e reforçando: é provável que você encontre algum erro no caminho. Fique tranquilo! Procurei criar <a href="content:commonerrors">uma seção com os tratamentos mais comuns aos erros de código para você</a>. Logo abaixo destes exercícios existem as respostas com as explicações. Lembrando: não existe uma solução única para estes problemas – o seu algoritmo pode também funcionar perfeitamente ainda que a sua implementação seja diferente da minha, beleza?</p>
+<ol type="1">
+<li>Crie um algoritmo que solicita ao usuário que insira seu nome e exibe na tela uma mensagem de saudação
+<ul>
+<li>Exemplo: um usuário digita o seu nome (como <code>Fulano de Tal</code>). O algoritmo deve retornar uma mensagem chamada <em>“Oi, Fulano de Tal! Espero que você tenha uma boa semana!”</em>.</li>
+</ul></li>
+<li>Crie um algoritmo que solicita ao usuário que insira um número decimal e exibe o dobro desse número na tela.
+<ul>
+<li>Exemplo: um usuário digita o número <code>23.51</code>. O algoritmo deve retornar <code>47.02</code>.</li>
+</ul></li>
+<li>Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela <code>True</code> se ele for par e <code>False</code> se for ímpar.
+<ul>
+<li>Exemplo: um usuário digita o número <code>7</code>. O algoritmo deve retornar a mensagem <em>False</em>.</li>
+</ul></li>
+<li>Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela <code>True</code> se ele for igual ou acima de zero ou <code>False</code> se menor do que zero.
+<ul>
+<li>Exemplo: um usuário digita o número <code>-51.05</code>. O algoritmo deve retornar a mensagem <em>False</em>.</li>
+</ul></li>
+<li>Crie um algoritmo que solicita ao usuário que insira a temperatura em graus Celsius e exibe na tela a temperatura em Fahrenheit.
+<ul>
+<li>Exemplo: um usuário digita o número <code>23</code>. O algoritmo deve retornar <code>73.4</code>.</li>
+</ul></li>
+<li>Crie um algoritmo que solicita ao usuário que insira a sua altura em metros e o seu peso em quilogramas e exibe na tela o seu índice de massa corporal (IMC).
+<ul>
+<li>Exemplo: um usuário digita a altura <code>1.75</code> e o peso <code>80.5</code>. O algoritmo deve retornar <code>26.29</code>.</li>
+</ul></li>
+<li>Crie um algoritmo que solicita ao usuário que insira dois números e exibe na tela o resultado da soma, subtração, multiplicação e divisão desses números.
+<ul>
+<li>Exemplo: um usuário digita o número <code>-10.2</code> e, em seguida, <code>2</code>. O algoritmo deve retornar o resultado da soma (<code>-8.2</code>), subtração (<code>-12.2</code>), multiplicação (<code>-20.4</code>) e divisão (<code>-5.1</code>).</li>
+</ul></li>
+</ol>
+<section id="respostas" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="respostas"><span class="header-section-number">4.7.1</span> Respostas</h3>
+<p><strong>1. Crie um algoritmo que solicita ao usuário que insira seu nome e exibe na tela uma mensagem de saudação</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solicita que o usuário digite seu nome</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite seu nome: "</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibe uma mensagem de saudação na tela</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Oi, "</span>, nome, <span class="st">"! Espero que você tenha uma boa semana!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Explicando o código acima, na primeira linha é solicitado ao usuário que digite o seu nome e essa informação é armazenada na variável <code>nome</code>. Já na segunda linha, uma mensagem de saudação é exibida na tela utilizando a função <code>print</code>, que recebe uma string e a variável <code>nome</code> (que contém o nome do usuário) como argumentos.</p>
+<p>Ao executar o programa, o usuário verá uma mensagem solicitando que ele digite o seu nome. Em seguida, o nome digitado será exibido na mensagem de saudação que aparecerá na tela.</p>
+<p><strong>2. Crie um algoritmo que solicita ao usuário que insira um número decimal e exibe o dobro desse número na tela.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solicita ao usuário que insira um número decimal e armazena na variável "num"</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Insira um número decimal: "</span>))</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcula o dobro do número e armazena na variável "dobro"</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>dobro <span class="op">=</span> num <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibe o resultado na tela</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dobro)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Neste algoritmo, a função <code>input()</code> é utilizada para solicitar ao usuário que insira um número decimal, que é então convertido para um valor do tipo <code>float</code>. Em seguida, o dobro desse número é calculado e armazenado na variável dobro. Por fim, a função <code>print()</code> é utilizada para exibir na tela uma mensagem contendo o resultado do cálculo.</p>
+<p><strong>3. Crie um algoritmo que solicita ao usuário que insira um número inteiro e exibe na tela se ele é par ou ímpar.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Insira um número inteiro: "</span>))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O algoritmo começa solicitando ao usuário que insira um número inteiro através da função <code>input()</code>, que lê a entrada do usuário como uma string. Em seguida, o número é convertido para um inteiro usando a função <code>int()</code>, e armazenado na variável <code>num</code>.</p>
+<p>Depois disso, ele compara se o resto da divisão por 2 <code>(num % 2)</code> é igual a 0 ou não. Se for igual a 0, significa que o número é par e esta comparação é verdadeira (<code>True</code>). Caso contrário, esta comparação não é verdadeira (<code>False</code>).</p>
+<p><strong>4. Crie um algoritmo que solicita ao usuário que insira um número e exibe na tela se ele é positivo, negativo ou zero.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite um número: "</span>))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num <span class="op">&gt;=</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O programa começa pedindo para que o usuário digite um número, que é armazenado na variável <code>num</code>. A segunda linha compara se o que está armazenado em <code>num</code> é maior ou igual (representado por <code>&gt;=</code>) a zero. Se for, o resultado desta comparação é <code>True</code>. Caso contrário, é <code>False</code>.</p>
+<p><strong>5. Crie um algoritmo que solicita ao usuário que insira a temperatura em graus Celsius e exibe na tela a temperatura em Fahrenheit.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solicita a temperatura em Celsius ao usuário</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>temp_celsius <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a temperatura em graus Celsius: "</span>))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Converte a temperatura para Fahrenheit</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>temp_fahrenheit <span class="op">=</span> (temp_celsius <span class="op">*</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span>) <span class="op">+</span> <span class="dv">32</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibe a temperatura em Fahrenheit</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A temperatura em graus Fahrenheit é:"</span>, temp_fahrenheit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A função <code>input()</code> solicita ao usuário que digite a temperatura em graus Celsius e a armazena na variável <code>temp_celsius</code>.</p>
+<p>Em seguida, o algoritmo usa uma fórmula amplamente usada na Física (<span class="math inline">\(°C * {{9} \over {5}} + 32\)</span>) para converter a temperatura de Celsius para Fahrenheit e armazena o resultado na variável <code>temp_fahrenheit</code>.</p>
+<p>Por fim, a função <code>print()</code> exibe a temperatura em Fahrenheit na tela.</p>
+<p><strong>6. Crie um algoritmo que solicita ao usuário que insira a sua altura em metros e o seu peso em quilogramas e exibe na tela o seu índice de massa corporal (IMC).</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>altura <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite sua altura em metros: "</span>))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>peso <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite seu peso em quilogramas: "</span>))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>imc <span class="op">=</span> peso <span class="op">/</span> altura <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Seu IMC é: "</span>, imc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O algoritmo acima solicita que o usuário digite sua altura em metros e seu peso em quilogramas. Em seguida, ele calcula o índice de massa corporal (IMC) usando a fórmula <span class="math inline">\({peso} \over {altura ^ 2}\)</span>, armazenando o resultado na variável de nome <code>imc</code>.</p>
+<p>No caso, <code>altura ** 2</code> tem o mesmo significado de <span class="math inline">\(altura ^2\)</span>. Por fim, exibe na tela o valor do IMC com a mensagem “Seu IMC é:” seguido pelo valor da variável <code>imc</code>.</p>
+<p><strong>7. Crie um algoritmo que solicita ao usuário que insira dois números e exibe na tela o resultado da soma, subtração, multiplicação e divisão desses números.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># solicita ao usuário que insira dois números</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Insira o primeiro número: "</span>))</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Insira o segundo número: "</span>))</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># realiza as operações matemáticas</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>soma <span class="op">=</span> num1 <span class="op">+</span> num2</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>subtracao <span class="op">=</span> num1 <span class="op">-</span> num2</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>multiplicacao <span class="op">=</span> num1 <span class="op">*</span> num2</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>divisao <span class="op">=</span> num1 <span class="op">/</span> num2</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># exibe os resultados na tela</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A soma é:"</span>, soma)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A subtração é:"</span>, subtracao)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A multiplicação é:"</span>, multiplicacao)</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A divisão é:"</span>, divisao)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Nesse algoritmo, o usuário é solicitado a inserir dois números, que são armazenados nas variáveis <code>num1</code> e <code>num2</code>. Em seguida, são realizadas as operações matemáticas de soma, subtração, multiplicação e divisão entre os números, que são armazenadas nas variáveis <code>soma</code>, <code>subtracao</code>, <code>multiplicacao</code> e <code>divisao</code>, respectivamente. Por fim, os resultados são exibidos na tela por meio da função <code>print()</code>.</p>
+</section>
+</section>
+<section id="referências-bibliográficas" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="referências-bibliográficas"><span class="header-section-number">4.8</span> Referências bibliográficas</h2>
+<ul>
+<li>BEAZLEY, D. M.; JONES, B. K. Python Cookbook (3ª ed.). O’Reilly Media, 2013.</li>
+<li>BORGES, L. E. Python para desenvolvedores. 2. ed.&nbsp;São Paulo: Novatec, 2016.</li>
+<li>DOWNEY, A. B. Think Python: How to Think Like a Computer Scientist (2ª ed.). O’Reilly Media, 2015.</li>
+<li>AYDEN, N. Python Programming: The Complete Guide to Learn Python for Data Science, AI, Machine Learning, GUI and More With Practical Exercises and Interview Questions (2ª ed.). Crawford Press, 2021.</li>
+<li>PYTHON. Built-in Constants. Disponível em: https://docs.python.org/3/library/constants.html. Acesso em: 03 mar. 2023.</li>
+<li>PYTHON. Built-in Types. Disponível em: https://docs.python.org/3/library/stdtypes.html. Acesso em: 03 mar. 2023.</li>
+<li>PYTHON. Formatted string literals. Disponível em: https://docs.python.org/3/reference/lexical_analysis.html#f-strings. Acesso em: 03 mar. 2023.</li>
+<li>PYTHON. Objects, values and types. Disponível em: https://docs.python.org/3/reference/datamodel.html#objects-values-and-types. Acesso em: 03 mar. 2023.</li>
+<li>PYTHON. Python 3.10.1 documentation: Input and Output. Disponível em: https://docs.python.org/3/tutorial/inputoutput.html. Acesso em: 03 mar. 2023.</li>
+<li>RAMALHO, L. Fluent Python: Clear, Concise, and Effective Programming. O’Reilly Media, 2015.</li>
+<li>REAL PYTHON. Python Boolean Operators. Disponível em: https://realpython.com/lessons/python-boolean-operators/. Acesso em: 03 mar. 2023.</li>
+<li>SWEIGART, A. Automate the Boring Stuff with Python: Practical Programming for Total Beginners. No Starch Press, 2019.</li>
+<li>THOMAS, D.; HUNT, A. The pragmatic programmer. Addison-Wesley Professional, 2019.</li>
+<li>VANDERPLAS, J. Python Data Science Handbook: Essential Tools for Working with Data. O’Reilly Media, 2016.</li>
+<li>W3SCHOOLS. Python Boolean. Disponível em: https://www.w3schools.com/python/python_booleans.asp. Acesso em: 03 mar. 2023.</li>
+<li>W3SCHOOLS. Python Input and Output (I/O). Disponível em: https://www.w3schools.com/python/python_file_handling.asp. Acesso em: 03 mar. 2023.</li>
+<li>W3SCHOOLS. Python Operators. Disponível em: https://www.w3schools.com/python/python_operators.asp. Acesso em: 03 mar. 2023.</li>
+<li>W3SCHOOLS. Python Variables. Disponível em: https://www.w3schools.com/python/python_variables.asp. Acesso em: 03 mar. 2023.</li>
+<li>ZELLE, J. M. Python Programming: An Introduction to Computer Science (3ª ed.). Franklin, Beedle &amp; Associates, 2017.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02-Introducao-Algoritmos.html" class="pagination-link" aria-label="Arrumando as coisas para começar a falar de algoritmos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04-Estruturas-Selecao.html" class="pagination-link" aria-label="Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

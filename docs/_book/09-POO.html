@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos – Python Descomplicado</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./10-Erros-Comuns.html" rel="next">
+<link href="./08-Manipulacao-Arquivos.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f2c6d6e2b784ddc5de38779acc06f37d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-Variaveis-IO.html">Parte 2: Fazendo coisas legais</a></li><li class="breadcrumb-item"><a href="./09-POO.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python Descomplicado</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 1: Sabendo onde estamos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introducao-Ambiente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Introducao-Algoritmos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 2: Fazendo coisas legais</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Variaveis-IO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Primeiros (ou segundos) passos em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Estruturas-Selecao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decidindo o destino do seu código: a lógica das condições em Python (if/elif/else)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Estruturas-Repeticao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Repetições, repetições, repetições: loops em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tudo em blocos: trabalhando com funções</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Listas-Dicionarios-Tuplas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">De um bolo para uma festa: listas, dicionários e tuplas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Manipulacao-Arquivos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-POO.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 3: Resolvendo tretas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Erros-Comuns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erros/exceções em Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#o-que-você-saberá-se-você-ler-todo-este-capítulo" id="toc-o-que-você-saberá-se-você-ler-todo-este-capítulo" class="nav-link active" data-scroll-target="#o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">10.1</span> O que você saberá se você ler todo este capítulo?</a></li>
+  <li><a href="#o-terror-das-universidades" id="toc-o-terror-das-universidades" class="nav-link" data-scroll-target="#o-terror-das-universidades"><span class="header-section-number">10.2</span> O terror das universidades</a></li>
+  <li><a href="#programação-orientada-a-objetos-poo" id="toc-programação-orientada-a-objetos-poo" class="nav-link" data-scroll-target="#programação-orientada-a-objetos-poo"><span class="header-section-number">10.3</span> Programação Orientada a Objetos (POO)</a>
+  <ul class="collapse">
+  <li><a href="#classe" id="toc-classe" class="nav-link" data-scroll-target="#classe"><span class="header-section-number">10.3.1</span> Classe</a></li>
+  <li><a href="#objeto" id="toc-objeto" class="nav-link" data-scroll-target="#objeto"><span class="header-section-number">10.3.2</span> Objeto</a></li>
+  <li><a href="#atributo" id="toc-atributo" class="nav-link" data-scroll-target="#atributo"><span class="header-section-number">10.3.3</span> Atributo</a></li>
+  <li><a href="#métodos" id="toc-métodos" class="nav-link" data-scroll-target="#métodos"><span class="header-section-number">10.3.4</span> Métodos</a></li>
+  <li><a href="#acesso-público-e-privado" id="toc-acesso-público-e-privado" class="nav-link" data-scroll-target="#acesso-público-e-privado"><span class="header-section-number">10.3.5</span> Acesso público e privado</a></li>
+  <li><a href="#herança" id="toc-herança" class="nav-link" data-scroll-target="#herança"><span class="header-section-number">10.3.6</span> Herança</a></li>
+  <li><a href="#polimorfismo" id="toc-polimorfismo" class="nav-link" data-scroll-target="#polimorfismo"><span class="header-section-number">10.3.7</span> Polimorfismo</a></li>
+  <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="header-section-number">10.3.8</span> 🖐 Resumo</a></li>
+  </ul></li>
+  <li><a href="#poo-em-python" id="toc-poo-em-python" class="nav-link" data-scroll-target="#poo-em-python"><span class="header-section-number">10.4</span> POO em Python</a>
+  <ul class="collapse">
+  <li><a href="#classes-construtores-atributos-e-métodos" id="toc-classes-construtores-atributos-e-métodos" class="nav-link" data-scroll-target="#classes-construtores-atributos-e-métodos"><span class="header-section-number">10.4.1</span> Classes, Construtores, Atributos e Métodos</a></li>
+  <li><a href="#objetos" id="toc-objetos" class="nav-link" data-scroll-target="#objetos"><span class="header-section-number">10.4.2</span> Objetos</a></li>
+  <li><a href="#métodos-1" id="toc-métodos-1" class="nav-link" data-scroll-target="#métodos-1"><span class="header-section-number">10.4.3</span> Métodos</a></li>
+  <li><a href="#acesso-público-e-privado-1" id="toc-acesso-público-e-privado-1" class="nav-link" data-scroll-target="#acesso-público-e-privado-1"><span class="header-section-number">10.4.4</span> Acesso público e privado</a></li>
+  <li><a href="#herança-e-polimorfismo" id="toc-herança-e-polimorfismo" class="nav-link" data-scroll-target="#herança-e-polimorfismo"><span class="header-section-number">10.4.5</span> Herança e Polimorfismo</a></li>
+  </ul></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">10.5</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#respostas" id="toc-respostas" class="nav-link" data-scroll-target="#respostas"><span class="header-section-number">10.5.1</span> Respostas</a></li>
+  </ul></li>
+  <li><a href="#referências-bibliográficas" id="toc-referências-bibliográficas" class="nav-link" data-scroll-target="#referências-bibliográficas"><span class="header-section-number">10.6</span> Referências bibliográficas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-Variaveis-IO.html">Parte 2: Fazendo coisas legais</a></li><li class="breadcrumb-item"><a href="./09-POO.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">O terror de muita gente, menos para você: introduzindo a Programação Orientada a Objetos</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="o-que-você-saberá-se-você-ler-todo-este-capítulo" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="o-que-você-saberá-se-você-ler-todo-este-capítulo"><span class="header-section-number">10.1</span> O que você saberá se você ler todo este capítulo?</h2>
+<ol type="1">
+<li>Saberá que Programação Orientada a Objetos é uma forma de criarmos algoritmos mais complexos ao estruturá-los de forma parecida com o jeito que pensamos e organizamos as coisas no mundo real.</li>
+<li>Que muita gente tem medo desse assunto, mas pode ser mais simples do que parece.</li>
+<li>E que é fácil trabalharmos com classes, objetos, atributos e métodos em Python.</li>
+</ol>
+</section>
+<section id="o-terror-das-universidades" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="o-terror-das-universidades"><span class="header-section-number">10.2</span> O terror das universidades</h2>
+<p>Você sabia que programação orientada a objetos tira o sono de muita gente? Pois é. É um conceito que muita gente tem medo porque parece bem complexo. E, para ser bem sincero, <em>pode</em> ser explicado de um jeito bem difícil. Logo, o meu desafio aqui é que você entenda sem maiores dificuldades o que isso é e como isso funciona. Espero que você realmente entenda, e ficarei bem feliz em saber se cumpri (ou não) esta missão. Bora lá?</p>
+<figure class="figure">
+<img alt="Um professor na Antártida ensinando algoritmos acompanhado de vários pinguins." src="assets/penguins.png" style="max-width:400px; display: block; margin: auto;" class="figure-img">
+<figcaption style="text-align:center;">
+Um professor na Antártida ensinando algoritmos acompanhado de vários pinguins. Imagem gerada com o DALL-E 2.
+</figcaption>
+</figure>
+</section>
+<section id="programação-orientada-a-objetos-poo" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="programação-orientada-a-objetos-poo"><span class="header-section-number">10.3</span> Programação Orientada a Objetos (POO)</h2>
+<p>POO é um jeito de escrevermos e organizarmos algoritmos de um jeito que é mais parecido com o mundo real. E, sabe qual outra coisa é parecida (às vezes) com o mundo real? Um filme. Neste exemplo, imagine que você é um produtor de cinema e precisa criar uma lista de filmes para serem produzidos. Cada filme tem uma história única, com personagens e enredos diferentes, e todos os elementos estão relacionados entre si para contar essa história. Por exemplo, em um filme de super-herói, o personagem principal pode ter habilidades especiais, um vilão pode ter uma fraqueza específica, e o objetivo final do herói pode ser salvar uma cidade inteira. Tudo isso faz parte de um único filme.</p>
+<p>Vamos então usar esses exemplos para demonstrar como funciona POO? Primeiro, precisamos definir alguns termos para falarmos na mesma língua.</p>
+<section id="classe" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="classe"><span class="header-section-number">10.3.1</span> Classe</h3>
+<p>Agora, pensemos que você precisa fazer um <strong>“molde”</strong> contendo tudo o que um filme, um personagem ou qualquer outra coisa precisa ter. Você ainda não pensou em nada em específico, mas só está tentando montar um <em>esqueleto</em> das coisas que são necessárias para você começar a produzir. Vamos pensar em alguns exemplos:</p>
+<ul>
+<li>Classe <code>filme</code>: bom, todo filme deveria ter um nome, o(a) protagonista, o(a) antagonista e o ano em que ele seria lançado, não é? Imagine que estaríamos fazendo um cadastro de todos os filmes - consegue imaginar que outras informações todo filme deveria ter?</li>
+<li>Classe <code>superheroi</code>: agora, o que todo super-herói deveria ter? Talvez um nome, sua fraqueza, a lista do seu principal rival, e o seu superpoder. Também imagine fazendo um cadastro de vários super-heróis: que características todo super-herói deveria ter?</li>
+</ul>
+</section>
+<section id="objeto" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="objeto"><span class="header-section-number">10.3.2</span> Objeto</h3>
+<p>Até agora não pensamos em nenhum filme ou super-herói em específico, né? Até agora, só pensamos nas classes (<em>moldes</em>). Agora que temos um molde em mãos, vamos pensar em alguns exemplos únicos a partir dessas classes. Vamos lá:</p>
+<ul>
+<li>Classe <code>filme</code>:
+<ul>
+<li>Filme 1:
+<ul>
+<li>Nome: <em>O Herói sem Nome</em></li>
+<li>Protagonista: Tom</li>
+<li>Antagonista: John</li>
+<li>Ano: 2015</li>
+</ul></li>
+<li>Filme 2:
+<ul>
+<li>Nome: <em>A Busca pelo Tesouro Perdido</em></li>
+<li>Protagonista: Michael</li>
+<li>Antagonista: Robert</li>
+<li>Ano: 2012</li>
+</ul></li>
+<li>Filme 3:
+<ul>
+<li>Nome: <em>O Mistério da Ilha Deserta</em></li>
+<li>Protagonista: Emily</li>
+<li>Antagonista: Jake</li>
+<li>Ano: 2022</li>
+</ul></li>
+</ul></li>
+<li>Classe <code>superheroi</code>:
+<ul>
+<li>Super-herói 1:
+<ul>
+<li>Nome: Tom</li>
+<li>Fraqueza: Eletricidade</li>
+<li>Principal Rival: John</li>
+<li>Superpoder: Velocidade extrema</li>
+</ul></li>
+<li>Super-herói 2:
+<ul>
+<li>Nome: Emily</li>
+<li>Fraqueza: Intolerância à Lactose</li>
+<li>Principal Rival: Jake</li>
+<li>Superpoder: Força sobre-humana</li>
+</ul></li>
+<li>Super-herói 3:
+<ul>
+<li>Nome: Michael</li>
+<li>Fraqueza: Chuva</li>
+<li>Principal Rival: Robert</li>
+<li>Superpoder: Controle de fogo</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Consegue perceber que cada um desses exemplos são diferentes uns dos outros? São únicos. O nome desses “indivíduos” (cada filme, ou cada super-herói) é um <strong>objeto</strong>. Cada objeto que você cria a partir dessa classe é como um filme ou super-herói único, com as suas próprias características. Podemos até ter dois filmes chamados “O Herói sem Nome”, mas podem ter sido encenados por atores diferentes, em anos diferentes ou diretores diferentes. Ou dois super-heróis chamados Tom, mas cada um deles seria único em suas características e imperfeições.</p>
+<p>Em outras palavras, veja que cada objeto que você cria a partir de uma classe seria como um super-herói (ou filme) diferente, com a sua individualidade.</p>
+</section>
+<section id="atributo" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="atributo"><span class="header-section-number">10.3.3</span> Atributo</h3>
+<p>Atributos em POO são como características dos objetos. Eles permitem que os objetos tenham propriedades específicas que os diferenciem de outros objetos da mesma classe. Nos exemplos acima, os atributos que temos são: - Classe <code>filme</code>: <code>nome</code>, <code>protagonista</code>, <code>antagonista</code>, e <code>ano</code>. - Classe <code>superheroi</code>: <code>nome</code>, <code>fraqueza</code>, <code>principal rival</code>, e <code>superpoder</code>.</p>
+<p>Simples, não é?</p>
+</section>
+<section id="métodos" class="level3" data-number="10.3.4">
+<h3 data-number="10.3.4" class="anchored" data-anchor-id="métodos"><span class="header-section-number">10.3.4</span> Métodos</h3>
+<p>Você pode ter visto nos capítulos anteriores algumas menções de <em>métodos</em> e ficou meio sem saber o que aquilo significava, né? Agora é o momento de explicar. Se os filmes, super-heróis ou qualquer outra classe possui os seus atributos (<em>características</em>) que os definem, os mesmos também <em>fazem</em> algo, não é?</p>
+<p>Quer dizer, vamos pensar um pouco: um filme tem ações que acontecem como, por exemplo, as cenas de ação ou diálogos que ocorrem ao longo da história. Cada cena é uma ação específica que os personagens realizam para avançar a trama. Um super-herói também pode fazer coisas, certo? Ele pode falar, correr, lutar, gritar, entre outras ações. Até outros objetos que a princípio seriam inanimados também possuem as suas ações na vida real: uma bola pode ficar parada ou rolar, não é?</p>
+<p>Todas essas <em>ações</em> são os métodos em POO. Os <strong><em>métodos são funções</em></strong> que executam uma ação ou operação específica dentro de uma classe, alterando seus atributos ou retornando um valor.</p>
+<p>Vamos listar estes exemplos?</p>
+<ul>
+<li>Classe <code>filme</code>:
+<ul>
+<li><code>trocar de cena</code></li>
+<li><code>iniciar diálogo</code></li>
+<li><code>terminar diálogo</code></li>
+<li><code>mudar câmera</code></li>
+</ul></li>
+<li>Classe <code>superheroi</code>:
+<ul>
+<li><code>falar</code></li>
+<li><code>correr</code></li>
+<li><code>lutar</code></li>
+<li><code>gritar</code></li>
+<li><code>rastejar</code></li>
+<li><code>dormir</code></li>
+<li><code>comer</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="acesso-público-e-privado" class="level3" data-number="10.3.5">
+<h3 data-number="10.3.5" class="anchored" data-anchor-id="acesso-público-e-privado"><span class="header-section-number">10.3.5</span> Acesso público e privado</h3>
+<p>Agora, vamos supor que você está assistindo a um filme e pode ver tudo o que acontece na tela. Só que não. Alguns detalhes da história, como as emoções e pensamentos dos personagens, não são mostrados na tela. Esses detalhes são como os atributos <strong>privados</strong> de uma classe na POO. Agora, pense em um filme em que um personagem tem um objeto muito importante que ele não quer que ninguém mais saiba. Por exemplo, uma chave que abre um cofre. Ele não quer que nenhum outro personagem saiba sobre a chave. Isso é como um atributo privado em POO - algo que só pode ser acessado dentro da classe ou objeto.</p>
+<p>Já os atributos <strong>públicos</strong> são como informações mostradas na tela do filme. Por exemplo, a cor do cabelo do personagem principal ou o modelo do carro que ele está dirigindo. Esses são detalhes que todos podem ver e acessar, assim como os atributos públicos em POO.</p>
+<p>O mesmo se aplica aos métodos. Os métodos <strong>privados e públicos</strong> são como ações realizadas pelos personagens. Alguns desses movimentos são importantes apenas para a trama do filme e não precisam ser compartilhados com o público. Esses são como os métodos privados em programação orientada a objetos. Já os métodos públicos são como as ações dos personagens que são mostradas na tela, como lutar contra um vilão ou salvar o mundo. Ou seja: o fato de ser “público” ou “privado” serve para controlar a visibilidade e acesso às informações e ações dentro de uma classe ou objeto, entende?</p>
+</section>
+<section id="herança" class="level3" data-number="10.3.6">
+<h3 data-number="10.3.6" class="anchored" data-anchor-id="herança"><span class="header-section-number">10.3.6</span> Herança</h3>
+<p>Agora, vamos imaginar que existam vários filmes que <strong>compartilham</strong> algumas características em comum. Filmes que se passam no espaço, por exemplo, possuem ações exclusivas desses filmes, como cenas que se passam dentro de uma espaçonave, cenas que se passam ao chegar e sair de um planeta, e cenas de batalhas espaciais. Também podem ter características que sejam só deles, como a época do futuro em que o filme se passa e se existem alienígenas ou não. Ao criar um novo filme assim, em vez de começar do zero e recriar todos esses atributos e métodos do zero, é possível herdar essas características de um “filme pai” e, em seguida, modificar as caraterísticas específicas do novo filme. Além disso, o jeito de se fazer um filme pode ser um pouco diferente de outros filmes. O método <code>"mudar câmera"</code>, por exemplo, pode ser bem diferente porque teríamos que adicionar vários efeitos especiais do espaço na cena.</p>
+<p>Esse exemplo é a descrição de uma <em>herança</em>. Em POO, ela é uma forma de criar novas classes baseadas em classes existentes, <strong>reutilizando assim o código já existente e evitando a redundância</strong>. Uma classe pode ser criada com atributos e métodos específicos, e outra classe pode ser criada para “herdar” esses atributos e métodos e adicionar mais recursos a eles. A classe que é herdada é chamada de classe pai ou <em>superclasse</em>, enquanto a nova classe é chamada de classe filho ou <em>subclasse</em>. A subclasse pode adicionar novos atributos e métodos, ou pode substituir ou modificar os existentes.</p>
+<p>Vamos imaginar como seria no caso dos filmes: - Superclasse <code>filme</code>: - Atributos: - <code>nome</code> - <code>protagonista</code> - <code>antagonista</code> - <code>ano</code> - Métodos: - <code>trocar de cena</code> - <code>iniciar diálogo</code> - <code>terminar diálogo</code> - <code>mudar câmera</code> - Subclasse <code>filme no espaço</code>: - Atributos: - <code>ano em que se passa</code> - <code>tem alienígenas?</code> - <em>E mais todos os outros atributos de <code>filme</code></em> - Métodos - <code>iniciar batalha espacial</code> - <code>terminar batalha espacial</code> - <em>E mais todos os outros métodos de <code>filme</code></em></p>
+<p>Quer outro exemplo? Este é bem usado em livros e tutoriais por aí, e funciona muito bem. Imagine que temos uma classe <code>Animal</code> com atributos como <code>peso</code>, <code>tamanho</code> e <code>cor</code>, bem como métodos como <code>comer</code> e <code>dormir</code>. Uma subclasse, como a classe <code>Cachorro</code>, pode herdar os atributos e métodos da classe <code>Animal</code> (já que um cachorro não deixa de ser um animal) e adicionar atributos e métodos específicos de cachorro, como <code>latir</code> e <code>buscar objetos</code>.</p>
+<p>Também podemos modificar os métodos já existentes para que sejam específicos de um cachorro. Por exemplo: o jeito que um cachorro dorme pode ser diferente do jeito que outro animal (como uma galinha) dorme.</p>
+</section>
+<section id="polimorfismo" class="level3" data-number="10.3.7">
+<h3 data-number="10.3.7" class="anchored" data-anchor-id="polimorfismo"><span class="header-section-number">10.3.7</span> Polimorfismo</h3>
+<p>Agora, vamos imaginar um filme de ação. Em uma determinada cena, dois personagens diferentes precisam atravessar um rio. O primeiro personagem é um nadador profissional e decide nadar pelo rio. O segundo personagem é um especialista em parkour e escolhe pular entre pedras para atravessar o rio. Mesmo que eles tenham habilidades diferentes, ambos conseguem atravessar o rio e cumprir a tarefa.</p>
+<p>Esse exemplo é um caso de <em>polimorfismo</em>. Em POO, polimorfismo trata da capacidade de objetos de diferentes classes serem tratados de forma semelhante. Isso pode tornar o código mais flexível e reutilizável.</p>
+<p>Quer outro exemplo? Por exemplo, imagine que temos uma classe <code>Animal</code> que contém o método <code>fazer som</code>. Um objeto <code>Cachorro</code> pode responder a esse método latindo, enquanto um objeto <code>Gato</code> pode responder com um miado.</p>
+</section>
+<section id="resumo" class="level3" data-number="10.3.8">
+<h3 data-number="10.3.8" class="anchored" data-anchor-id="resumo"><span class="header-section-number">10.3.8</span> 🖐 Resumo</h3>
+<ul>
+<li><strong>Classes</strong>: moldes para criar objetos.</li>
+<li><strong>Objetos</strong>: instâncias de uma classe.</li>
+<li><strong>Atributos</strong>: características de um objeto.</li>
+<li><strong>Métodos</strong>: ações que um objeto pode executar (funções de um objeto).</li>
+<li><strong>Acesso público</strong>: é quando qualquer objeto de fora pode acessar um atributo ou método.</li>
+<li><strong>Acesso privado</strong>: é quando somente o objeto que possui o atributo ou método pode acessá-lo.</li>
+<li><strong>Herança</strong>: é quando uma classe herda atributos e métodos de outra.</li>
+<li><strong>Polimorfismo</strong>: é quando um objeto pode assumir diferentes formas e comportamentos.</li>
+</ul>
+<p>Analogias com personagens de filmes: - <strong>Classes</strong>: um molde de tudo o que um personagem deve ter. - <strong>Objetos</strong>: os personagens. - <strong>Atributos</strong>: características de um personagem como o nome, ator/atriz que o interpreta, e cor do cabelo. - <strong>Métodos</strong>: ações que o personagem pode fazer em um filme, como lutar, falar, correr, nadar e pular. - <strong>Acesso público</strong>: atributos e métodos que podem ser acessados por outros personagens no filme, como conversar com o personagem. - <strong>Acesso privado</strong>: atributos e métodos que só o próprio personagem pode ter acesso, como entrar em uma sala secreta. - <strong>Herança</strong>: a habilidade de um personagem ter características de outro personagem, como se fossem da mesma família em um filme. - <strong>Polimorfismo</strong>: quando um mesmo método pode ser usado por diferentes personagens de forma diferente em um filme, como lutar.</p>
+<p>Analogias, agora (novamente) com bolos: - <strong>Classes</strong>: receitas de bolo - <strong>Objetos</strong>: os bolos que você pode comer - <strong>Atributos</strong>: ingredientes - <strong>Métodos</strong>: as etapas de preparo - <strong>Acesso público</strong>: um ingrediente que qualquer pessoa pode adicionar ao bolo - <strong>Acesso privado</strong>: é um ingrediente secreto que somente o dono da receita pode usar - <strong>Herança</strong>: é quando uma receita é adaptada de outra - <strong>Polimorfismo</strong>: é um bolo que pode ser decorado de diferentes formas.</p>
+<blockquote class="blockquote">
+<p>👩‍💻 <em>Usamos POO para desenvolver games, software de gerenciamento, aplicativos para celulares e tablets ou, ainda, para a criação de interfaces gráficas de usuário. A POO é especialmente útil quando há necessidade de reutilização de código e para construção de programas complexos que precisam ser facilmente modificados e mantidos.</em></p>
+</blockquote>
+</section>
+</section>
+<section id="poo-em-python" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="poo-em-python"><span class="header-section-number">10.4</span> POO em Python</h2>
+<p>Agora você já conhece alguns dos principais termos de POO, certo? É claro que existem mais terminologias como interfaces e classes abstratas, mas como isso aqui é uma introdução eu entendo que é importante deixar de forma clara esses conceitos-base de POO. Dito isso, vamos ao Python!</p>
+<section id="classes-construtores-atributos-e-métodos" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="classes-construtores-atributos-e-métodos"><span class="header-section-number">10.4.1</span> Classes, Construtores, Atributos e Métodos</h3>
+<p>Teste o código abaixo no PyCharm. Você verá que não acontecerá muita coisa. Pode ficar de boa - em breve você já começará a ver os resultados. Olha só:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Pessoa:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nome_informado, idade_informada):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.nome <span class="op">=</span> nome_informado</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.idade <span class="op">=</span> idade_informada</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Esse código define uma <strong>classe</strong> chamada <code>Pessoa</code>. Veja que na primeira linha definimos uma classe com a palavra-chave <code>class</code> e, logo em seguida, o nome daquela classe (que, aqui, é <code>Pessoa</code>). Veja que não usamos aspas nem nada nesta definição da classe.</p>
+<p>Depois disso, veja que temos uma função chamada <code>__init__</code>. Quer dizer: o nome em POO para isso não é mais função, mas sim <strong>método</strong>. Em Python, todo método chamado <code>__init__</code> dentro de uma classe é chamado de <strong>construtor</strong>. É um método especial que é executado toda vez que um novo objeto é criado a partir dessa classe.</p>
+<p>Este método define dois <strong>atributos</strong>, <code>nome</code> e <code>idade</code>, que são especificados durante a criação do objeto. Esses atributos são referenciados através da palavra-chave <code>self</code>, que se refere ao objeto atual sendo criado. Ou seja: <em>essa classe permite criar objetos que representam pessoas com nome e idade</em>.</p>
+<blockquote class="blockquote">
+<p>O <code>self</code> é bastante usado para se referir aos atributos que estão dentro daquela mesma classe.</p>
+</blockquote>
+<p>Está mais ou menos claro, não é? Esse código criou uma classe com dois atributos, e é uma classe que representa algo do mundo real (no caso, pessoas). Ainda não criamos nenhuma pessoa em si, este é apenas um molde com tudo o que qualquer pessoa deve ter.</p>
+</section>
+<section id="objetos" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="objetos"><span class="header-section-number">10.4.2</span> Objetos</h3>
+<p>Agora, e para criar objetos? Vamos supor que precisamos criar 3 pessoas utilizando a classe <code>Pessoa</code>. Como faríamos isto? Teste este código:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pessoa1 <span class="op">=</span> Pessoa(<span class="st">"Maria"</span>, <span class="dv">25</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pessoa2 <span class="op">=</span> Pessoa(<span class="st">"João"</span>, <span class="dv">30</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pessoa3 <span class="op">=</span> Pessoa(<span class="st">"Pedro"</span>, <span class="dv">20</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pessoa1.nome)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pessoa3.idade)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A saída será isto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Maria</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">20</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Lembra que a classe <code>Pessoa</code> tinha um construtor que recebia dois parâmetros: <code>nome</code> e <code>idade</code>, certo? Ao criar os objetos, precisamos passar os valores correspondentes a estes dois parâmetros e seguindo exatamente a mesma ordem. Os objetos são armazenados nas variáveis <code>pessoa1</code>, <code>pessoa2</code> e <code>pessoa3</code>, respectivamente.</p>
+<p>Veja que também conseguimos ler os valores dentro dos atributos de cada pessoa. Conseguimos ler o nome da primeira pessoa ao usar <code>pessoa1.nome</code>, e a idade da terceira pessoa com <code>pessoa3.idade</code>. Perceba que sempre existe um ponto (<code>.</code>) entre o objeto que queremos acessar e o atributo que está dentro deste objeto.</p>
+</section>
+<section id="métodos-1" class="level3" data-number="10.4.3">
+<h3 data-number="10.4.3" class="anchored" data-anchor-id="métodos-1"><span class="header-section-number">10.4.3</span> Métodos</h3>
+<p>Até agora você viu um exemplo de classe, atributo e objetos em Python. O que acha de pensarmos em um caso com métodos? Vamos imaginar a implementação de uma classe chamada <code>Circulo</code> que possui 3 atributos (raio, cor da borda e cor do preenchimento do círculo) e 4 métodos (calcular área, calcular perímetro, mudar as cores e redimensionar o raio):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Circulo:</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, raio_circulo, cor_borda, cor_preenchimento):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.raio <span class="op">=</span> raio_circulo</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cor_borda <span class="op">=</span> cor_borda</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cor_preenchimento <span class="op">=</span> cor_preenchimento</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_area(<span class="va">self</span>):</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> math.pi <span class="op">*</span> <span class="va">self</span>.raio <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_perimetro(<span class="va">self</span>):</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> math.pi <span class="op">*</span> <span class="va">self</span>.raio</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mudar_cor(<span class="va">self</span>, nova_cor_borda, nova_cor_preenchimento):</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cor_borda <span class="op">=</span> nova_cor_borda</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cor_preenchimento <span class="op">=</span> nova_cor_preenchimento</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> redimensionar_raio(<span class="va">self</span>, novo_raio):</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.raio <span class="op">=</span> novo_raio</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Primeiro: aquele <code>import math</code> não tem nenhuma relação com POO. Usamos ele somente para que possamos pegar o valor de <span class="math inline">\(\pi\)</span>, e este valor está dentro do módulo <code>math</code> do Python. Isso é bem mais assertivo do que digitar na mão <span class="math inline">\(3.1415...\)</span>. Aqui, a classe <code>Circulo</code> recebe três atributos em seu construtor: o <code>raio</code>, a <code>cor_borda</code> e a <code>cor_preenchimento</code>.</p>
+<blockquote class="blockquote">
+<p>Veja que o <code>self</code> sempre é o primeiro parâmetro. Isso permite que o método acesse e modifique os atributos do próprio objeto. O <code>self</code> também é usado para diferenciar as variáveis locais da classe e os atributos do objeto.</p>
+</blockquote>
+<p>Os métodos <code>calcular_area()</code> e <code>calcular_perimetro()</code> são responsáveis por calcular a área e o perímetro do círculo, respectivamente. O método <code>mudar_cor()</code> permite que o usuário mude as cores da borda e do preenchimento se quiser. Por fim, o método <code>redimensionar_raio()</code> permite que o usuário altere o raio do círculo para um novo valor (<code>novo_raio</code>).</p>
+<p>Vamos criar 3 objetos de <code>Circulo</code>? Olha só:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>circulo1 <span class="op">=</span> Circulo(<span class="dv">3</span>, <span class="st">"amarelo"</span>, <span class="st">"azul"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>circulo2 <span class="op">=</span> Circulo(<span class="dv">5</span>, <span class="st">"verde"</span>, <span class="st">"verde"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>circulo3 <span class="op">=</span> Circulo(<span class="dv">2</span>, <span class="st">"azul"</span>, <span class="st">"roxo"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Criamos 3 círculos diferentes, e cada um deles com um raio e cores diferentes, certo? Agora podemos chamar os métodos da classe para realizar cálculos ou alterar os atributos dos objetos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'O raio do círculo 3 é </span><span class="sc">{</span>circulo3<span class="sc">.</span>raio<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'A área do círculo 3 é </span><span class="sc">{</span>circulo3<span class="sc">.</span>calcular_area()<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>circulo3.redimensionar_raio(<span class="dv">4</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'O novo raio do círculo 3 é </span><span class="sc">{</span>circulo3<span class="sc">.</span>raio<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'A nova área do círculo 3 é </span><span class="sc">{</span>circulo3<span class="sc">.</span>calcular_area()<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(circulo1.cor_borda, circulo1.cor_preenchimento)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(circulo2.calcular_perimetro())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O resultado deve ser o seguinte:</p>
+<pre><code>O raio do círculo 3 é 2
+A área do círculo 3 é 12.566370614359172
+O novo raio do círculo 3 é 4
+A nova área do círculo 3 é 50.26548245743669
+amarelo azul
+31.41592653589793</code></pre>
+<p>Perceba algumas coisas no exemplo acima: - Acessamos os atributos sempre seguindo o padrão <code>$OBJETO.$ATRIBUTO</code> e os métodos usando <code>$OBJETO.$MÉTODO($PARÂMETROS)</code>. Veja que para acessar o <code>raio</code> do <code>circulo3</code> faríamos <code>circulo3.raio</code>. Se fosse do <code>circulo1</code>, seria <code>circulo1.raio</code>. - Para chamar os atributos <strong>não usamos</strong> parênteses. Para chamar método usamos parênteses. Veja que sempre usamos <code>circulo1.raio</code>, e não <code>circulo1.raio()</code>. Isto acontece porque o <code>raio</code> é um atributo, e não uma função (método). - Métodos podem ou não ter retorno e parâmetros, igual como aprendemos em funções, anteriormente. No exemplo acima, <code>redimensionar_raio()</code> tem um parâmetro de entrada (que é o novo raio) e não tem retorno. Já <code>calcular_area()</code> não tem parâmetro de entrada, mas tem um retorno. - Veja que sempre “salvamos” um ajuste no atributo dentro do objeto antes de usá-lo. Pegue, por exemplo, o <code>calcular_area()</code>. Em nenhum momento informamos o raio para este método porque ele precisa obrigatoriamente calcular isso usando todos os atributos que já estão dentro daquele objeto. Se precisarmos alterar por qualquer motivo que seja o raio ou outros atributos precisaremos, obrigatoriamente, chamar outro método somente para fazer isto.</p>
+</section>
+<section id="acesso-público-e-privado-1" class="level3" data-number="10.4.4">
+<h3 data-number="10.4.4" class="anchored" data-anchor-id="acesso-público-e-privado-1"><span class="header-section-number">10.4.4</span> Acesso público e privado</h3>
+<p>Os exemplos acima só tiveram atributos e métodos públicos. E se quiséssemos também incluir atributos e métodos privados? Veja só:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Circulo:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, raio_circulo, cor_borda, cor_preenchimento):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__raio <span class="op">=</span> raio_circulo</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cor_borda <span class="op">=</span> cor_borda</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cor_preenchimento <span class="op">=</span> cor_preenchimento</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_area(<span class="va">self</span>):</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> math.pi <span class="op">*</span> <span class="va">self</span>.__raio <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_perimetro(<span class="va">self</span>):</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> math.pi <span class="op">*</span> <span class="va">self</span>.__raio</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mudar_cor(<span class="va">self</span>, nova_cor_borda, nova_cor_preenchimento):</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cor_borda <span class="op">=</span> nova_cor_borda</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cor_preenchimento <span class="op">=</span> nova_cor_preenchimento</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> redimensionar_raio(<span class="va">self</span>, novo_raio):</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__raio <span class="op">=</span> novo_raio</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> __metodo_privado(<span class="va">self</span>):</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Este é um método privado."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Veja que o atributo raio foi modificado para <code>__raio</code> e que o método privado foi criado com o prefixo de dois underscores (<code>__metodo_privado</code>). Isso indica que esses elementos são privados e só devem ser acessados internamente na classe. Simples assim. Isto não significa que o acesso externo será <em>proibido</em>: da mesma forma que as pessoas ainda podem pisar na grama mesmo que tenha uma placa escrito <em>“Proibido pisar na grama”</em>, outros métodos poderão acessar estes atributos e métodos privados. Os dois underscores (<code>__</code>) servem para <em>recomendar</em> que não se acesse externamente, somente. Por isso, não entenda que isto funciona como algum tipo de trava de segurança neste sentido.</p>
+</section>
+<section id="herança-e-polimorfismo" class="level3" data-number="10.4.5">
+<h3 data-number="10.4.5" class="anchored" data-anchor-id="herança-e-polimorfismo"><span class="header-section-number">10.4.5</span> Herança e Polimorfismo</h3>
+<p>Beleza, e para testarmos heranças? Bom, o círculo não deixa de ser uma forma, não é? Assim como o retângulo também é. Então, vamos mudar um pouco as coisas. Teste o código abaixo no PyCharm:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Forma:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_area(<span class="va">self</span>):</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Ainda não tenho uma lógica implementada para calcular esta área."</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_perimetro(<span class="va">self</span>):</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Ainda não tenho uma lógica implementada para calcular este perímetro."</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Circulo(Forma):</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, raio):</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.raio <span class="op">=</span> raio</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_perimetro(<span class="va">self</span>):</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> math.pi <span class="op">*</span> <span class="va">self</span>.raio</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> redimensionar_raio(<span class="va">self</span>, novo_raio):</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.raio <span class="op">=</span> novo_raio</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Retangulo(Forma):</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, base, altura):</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.base <span class="op">=</span> base</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.altura <span class="op">=</span> altura</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> redimensionar_base(<span class="va">self</span>, nova_base):</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.base <span class="op">=</span> nova_base</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> redimensionar_altura(<span class="va">self</span>, nova_altura):</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.altura <span class="op">=</span> nova_altura</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>circulo1 <span class="op">=</span> Circulo(<span class="dv">3</span>)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>retangulo1 <span class="op">=</span> Retangulo(<span class="dv">10</span>, <span class="dv">2</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(circulo1.calcular_area())</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(circulo1.calcular_perimetro())</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(retangulo1.calcular_area())</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(retangulo1.calcular_perimetro())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="herança-1" class="level4" data-number="10.4.5.1">
+<h4 data-number="10.4.5.1" class="anchored" data-anchor-id="herança-1"><span class="header-section-number">10.4.5.1</span> Herança</h4>
+<p>A classe <code>Forma</code> é uma classe base que contém os métodos que todas as outras classes irão herdar. A partir dela, foram criadas as subclasses <code>Circulo</code> e <code>Retangulo</code>, cada uma com seus próprios métodos e atributos. Perceba que temos agora <code>class Circulo(Forma)</code> e <code>class Retangulo(Forma)</code>. Este <code>(Forma)</code> presente em ambos os casos é o que diz que estas duas classes são herdadas de <code>Forma</code>.</p>
+<p>Veja também que cada classe herdada possui um construtor diferente: o círculo possui somente um parâmetro no construtor (<code>raio</code>) e o retângulo possui dois (<code>base</code> e <code>altura</code>). Além disso, cada classe herdada pode ter os seus próprios métodos.</p>
+<p>A classe <code>Circulo</code>, por exemplo, possui o método <code>redimensionar_raio()</code>, que permite alterar o valor do raio do círculo. A classe <code>Retangulo</code> possui a <code>redimensionar_base()</code> e <code>redimensionar_altura()</code>.</p>
+<p>Ao rodar o código, o seguinte resultado aparecerá:</p>
+<pre><code>Ainda não tenho uma lógica implementada para calcular esta área.
+18.84955592153876
+Ainda não tenho uma lógica implementada para calcular esta área.
+Ainda não tenho uma lógica implementada para calcular este perímetro.</code></pre>
+<p>Veja que somente a segunda linha retornou um valor numérico. Se olharmos o código, verá que a classe <code>Forma</code> retorna somente uma mensagem para os métodos <code>calcular_area()</code> e <code>calcular_perimetro()</code>, e somente a classe <code>Circulo</code> reimplementou o método <code>calcular_perimetro()</code> para que ela tenha a sua própria lógica.</p>
+<blockquote class="blockquote">
+<p>👉 Ou seja: não precisamos implementar todos os métodos da superclasse para todas as classes herdadas. Se não implementarmos, a classe herdada usará a mesma lógica implementada pela superclasse. Como não implementamos a nossa própria lógica de <code>calcular_area()</code> para <code>Circulo</code> e <code>Retangulo</code> e nem implementamos a nossa lógica de <code>calcular_perimetro()</code> para o <code>Retangulo</code>, o algoritmo usou a lógica que existia lá em <code>Forma</code>.</p>
+</blockquote>
+</section>
+<section id="polimorfismo-1" class="level4" data-number="10.4.5.2">
+<h4 data-number="10.4.5.2" class="anchored" data-anchor-id="polimorfismo-1"><span class="header-section-number">10.4.5.2</span> Polimorfismo</h4>
+<p>Ah, e o polimorfismo! Achou que eu ia me esquecer? Vamos alterar o código acima para implementar a lógica de <code>calcular_perimetro()</code> e <code>calcular_area()</code> para as duas classes herdadas:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Forma:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_area(<span class="va">self</span>):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Ainda não tenho uma lógica implementada para calcular esta área."</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_perimetro(<span class="va">self</span>):</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Ainda não tenho uma lógica implementada para calcular este perímetro."</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Circulo(Forma):</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, raio):</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.raio <span class="op">=</span> raio</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_area(<span class="va">self</span>):</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> math.pi <span class="op">*</span> <span class="va">self</span>.raio <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_perimetro(<span class="va">self</span>):</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> math.pi <span class="op">*</span> <span class="va">self</span>.raio</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> redimensionar_raio(<span class="va">self</span>, novo_raio):</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.raio <span class="op">=</span> novo_raio</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Retangulo(Forma):</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, base, altura):</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.base <span class="op">=</span> base</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.altura <span class="op">=</span> altura</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_area(<span class="va">self</span>):</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.base <span class="op">*</span> <span class="va">self</span>.altura</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_perimetro(<span class="va">self</span>):</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> (<span class="va">self</span>.base <span class="op">+</span> <span class="va">self</span>.altura)</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> redimensionar_base(<span class="va">self</span>, nova_base):</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.base <span class="op">=</span> nova_base</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> redimensionar_altura(<span class="va">self</span>, nova_altura):</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.altura <span class="op">=</span> nova_altura</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>circulo1 <span class="op">=</span> Circulo(<span class="dv">3</span>)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>retangulo1 <span class="op">=</span> Retangulo(<span class="dv">10</span>, <span class="dv">2</span>)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(circulo1.calcular_area())</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(circulo1.calcular_perimetro())</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(retangulo1.calcular_area())</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(retangulo1.calcular_perimetro())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Se você rodar este código verá que teremos o seguinte resultado:</p>
+<pre><code>28.274333882308138
+18.84955592153876
+20
+24</code></pre>
+<p>Consegue ver que tanto para o círculo quanto para o retângulo pedimos pelo mesmo nome do método? Ou seja: para ambos, chamamos o <code>calcular_area()</code> e <code>calcular_retangulo()</code>. Por outro lado, os dois possuem lógicas de implementação totalmente diferentes. Isto é um exemplo prático de polimorfismo.</p>
+<p>Quer outro exemplo de polimorfismo que já existe no Python? O operador <code>+</code>. Veja que ele consegue somar números (<code>2 + 2</code> será igual a <code>4</code>), mas ele também funciona para string (<code>"Teste" + "Chinelo"</code> será igual a <code>TesteChinelo</code>). Perceba que o mesmo operador tem comportamentos diferentes para tipos de dados diferentes: isto também é polimorfismo.</p>
+</section>
+</section>
+</section>
+<section id="exercícios" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">10.5</span> Exercícios</h2>
+<ol type="1">
+<li>Crie uma classe chamada <code>Animal</code> com atributos <code>nome</code> e <code>especie</code>. Crie um método para mostrar na tela o som que o animal faz. Crie um objeto para demonstrar o seu uso.</li>
+<li>Crie uma classe <code>Calculadora</code> com os métodos <code>somar</code>, <code>subtrair</code>, <code>multiplicar</code> e <code>dividir</code>. Crie um objeto dessa classe e utilize os métodos para realizar operações aritméticas simples.</li>
+<li>Crie uma classe <code>Funcionario</code> com os atributos <code>nome</code> e <code>salario</code>. Em seguida, crie um método para calcular o salário anual do funcionário, incluindo o décimo-terceiro salário. Crie um objeto dessa classe com salário definido e exiba na tela o salário anual.</li>
+<li>Crie uma classe <code>Estudante</code> com os atributos <code>nome</code>, <code>idade</code> e <code>nota</code>. Em seguida, crie um método para calcular a média das notas de dois alunos. Crie dois objetos dessa classe com notas definidas e exiba na tela a média calculada.</li>
+<li>Crie uma classe chamada <code>Livro</code> com atributos <code>titulo</code>, <code>autor</code> e <code>ano_publicacao</code>. Crie um método para imprimir as informações do livro. Crie um objeto para demonstrar o seu uso.</li>
+</ol>
+<section id="respostas" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="respostas"><span class="header-section-number">10.5.1</span> Respostas</h3>
+<p><strong>1. Crie uma classe chamada <code>Animal</code> com atributos <code>nome</code> e <code>especie</code>. Crie um método para mostrar na tela o som que o animal faz. Crie um objeto para demonstrar o seu uso.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Animal:</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nome, especie):</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.nome <span class="op">=</span> nome</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.especie <span class="op">=</span> especie</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fazer_som(<span class="va">self</span>):</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="sc">{}</span><span class="st"> está fazendo um som de </span><span class="sc">{}</span><span class="st">."</span>.<span class="bu">format</span>(<span class="va">self</span>.nome, <span class="va">self</span>.especie))</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Cria um objeto da classe Animal</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>meu_animal <span class="op">=</span> Animal(<span class="st">"Kora"</span>, <span class="st">"cachorro"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Chama o método som do objeto criado</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>meu_animal.fazer_som()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Este código define uma classe chamada <code>Animal</code> com dois atributos: <code>nome</code> e <code>especie</code>. Além disso, há um método chamado <code>fazer_som()</code> que imprime na tela o som que o animal está fazendo, utilizando as informações dos atributos <code>nome</code> e <code>especie</code>. O <code>self</code> é uma referência para a instância da classe, permitindo acessar os atributos e métodos da mesma.</p>
+<p>Para exemplificar, criamos objeto chamado <code>meu_animal</code> a partir da classe <code>Animal</code>, passando <code>"Kora"</code> como o nome do animal e <code>"cão"</code> como a espécie. Para testar isso, usamos o método <code>fazer_som()</code> do objeto <code>meu_animal</code>, que imprime na tela o som que o animal está fazendo. Neste caso, a saída será <em><code>"Kora está fazendo um som de cachorro."</code></em>.</p>
+<p><strong>2. Crie uma classe <code>Calculadora</code> com os métodos <code>somar</code>, <code>subtrair</code>, <code>multiplicar</code> e <code>dividir</code>. Crie um objeto dessa classe e utilize os métodos para realizar operações aritméticas simples.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Calculadora:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> somar(<span class="va">self</span>, a, b):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a <span class="op">+</span> b</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> subtrair(<span class="va">self</span>, a, b):</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a <span class="op">-</span> b</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> multiplicar(<span class="va">self</span>, a, b):</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a <span class="op">*</span> b</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> dividir(<span class="va">self</span>, a, b):</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> b <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">"Não é possível dividir por zero"</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> a <span class="op">/</span> b</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Cria um objeto da classe Calculadora</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>minha_calculadora <span class="op">=</span> Calculadora()</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Realiza algumas operações aritméticas simples</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(minha_calculadora.somar(<span class="dv">2</span>, <span class="dv">3</span>))  <span class="co"># Imprime 5</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(minha_calculadora.subtrair(<span class="dv">5</span>, <span class="dv">2</span>))  <span class="co"># Imprime 3</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(minha_calculadora.multiplicar(<span class="dv">4</span>, <span class="dv">6</span>))  <span class="co"># Imprime 24</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(minha_calculadora.dividir(<span class="dv">10</span>, <span class="dv">5</span>))  <span class="co"># Imprime 2.0</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(minha_calculadora.dividir(<span class="dv">10</span>, <span class="dv">0</span>))  <span class="co"># Imprime "Não é possível dividir por zero"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Percebeu que este código não tem o construtor (<code>def __init__</code>)? O código não tem construtor porque ele não precisa de nenhum atributo específico para funcionar corretamente. Todas as operações aritméticas podem ser realizadas apenas com os parâmetros de entrada dos métodos. Por isso, não é necessário criar um construtor que inicialize algum atributo da classe.</p>
+<p>Veja que este é um caso específico em que não precisamos guardar nenhum atributo antes para calcular. Como uma calculadora é usada para testar diferentes combinações de valores, o propósito dela realmente não precisa de nenhum construtor neste cenário.</p>
+<p><strong>3. Crie uma classe <code>Funcionario</code> com os atributos <code>nome</code> e <code>salario</code>. Em seguida, crie um método para calcular o salário anual do funcionário, incluindo o décimo-terceiro salário. Crie um objeto dessa classe com salário definido e exiba na tela o salário anual.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Funcionario:</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nome, salario):</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.nome <span class="op">=</span> nome</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.salario <span class="op">=</span> salario</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_salario_anual(<span class="va">self</span>):</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.salario <span class="op">*</span> <span class="dv">13</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Cria um objeto da classe Funcionario</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>funcionario1 <span class="op">=</span> Funcionario(<span class="st">"João"</span>, <span class="dv">3000</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcula o salário anual do funcionário</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>salario_anual <span class="op">=</span> funcionario1.calcular_salario_anual()</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibe na tela o salário anual do funcionário</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"O salário anual do funcionário </span><span class="sc">{}</span><span class="st"> é R$ </span><span class="sc">{:.2f}</span><span class="st">"</span>.<span class="bu">format</span>(funcionario1.nome, salario_anual))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Veja que este código possui uma classe chamada <code>Funcionario</code>, um método construtor que recebe o <code>nome</code> e o <code>salario</code> de um funcionário e, ainda, um método especializado em calcular o salário anual levando em consideração o décimo-terceiro salário (<code>calcular_salario_anual()</code>). Se testarmos um objeto da classe Funcionario com nome <code>"João"</code> e R<span>$</span> 3000,00 (<code>3000</code>), o método <code>calcular_salario_anual()</code> retornará o valor <code>39000</code>. Este resultado é mostrado no final em uma frase assim: <code>"O salário anual do funcionário João é R$ 39000.00"</code>.</p>
+<p><strong>4. Crie uma classe <code>Estudante</code> com os atributos <code>nome</code>, <code>idade</code> e <code>nota</code>. Em seguida, crie um método para calcular a média das notas de dois alunos. Crie dois objetos dessa classe com notas definidas e exiba na tela a média calculada.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Estudante:</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nome, idade, nota):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.nome <span class="op">=</span> nome</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.idade <span class="op">=</span> idade</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.nota <span class="op">=</span> nota</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> calcular_media(<span class="va">self</span>, outro_estudante):</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        media <span class="op">=</span> (<span class="va">self</span>.nota <span class="op">+</span> outro_estudante.nota) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> media</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Cria os objetos da classe Estudante</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>estudante1 <span class="op">=</span> Estudante(<span class="st">"Ana"</span>, <span class="dv">20</span>, <span class="fl">8.5</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>estudante2 <span class="op">=</span> Estudante(<span class="st">"João"</span>, <span class="dv">19</span>, <span class="fl">7.5</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Chama o método calcular_media para calcular a média das notas dos dois estudantes</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>media_notas <span class="op">=</span> estudante1.calcular_media(estudante2)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibe a média calculada na tela</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A média das notas dos estudantes </span><span class="sc">{}</span><span class="st"> e </span><span class="sc">{}</span><span class="st"> é: </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(estudante1.nome, estudante2.nome, media_notas))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aqui, criamos uma classe <code>Estudante</code> com os atributos <code>nome</code>, <code>idade</code> e <code>nota</code>. Em seguida, criamos o método <code>calcular_media()</code> que recebe como parâmetro outro objeto da classe <code>Estudante</code>, e que calcula a média das notas do objeto atual e do objeto passado como parâmetro (percebe o <code>outro_estudante</code>?).</p>
+<p>São criados dois objetos da classe <code>Estudante</code> com notas definidas e é chamado o método <code>calcular_media()</code> para calcular a média das notas desses dos dois estudantes. Neste caso em específico, a seguinte mensagem seria mostrada na tela: <em><code>"A média das notas dos estudantes Ana e João é: 8.0"</code></em>.</p>
+<p><strong>5. Crie uma classe chamada <code>Livro</code> com atributos <code>titulo</code>, <code>autor</code> e <code>ano_publicacao</code>. Crie um método para imprimir as informações do livro. Crie um objeto para demonstrar o seu uso.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Livro:</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, titulo_informado, autor_informado, ano_publicacao_informado):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.titulo <span class="op">=</span> titulo_informado</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.autor <span class="op">=</span> autor_informado</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ano_publicacao <span class="op">=</span> ano_publicacao_informado</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mostrar_informacoes(<span class="va">self</span>):</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Título: </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(<span class="va">self</span>.titulo))</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Autor: </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(<span class="va">self</span>.autor))</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Ano de publicação: </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(<span class="va">self</span>.ano_publicacao))</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Cria um objeto da classe Livro</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>meu_livro <span class="op">=</span> Livro(<span class="st">"O Senhor dos Anéis: A Sociedade do Anel"</span>, <span class="st">"J. R. R. Tolkien"</span>, <span class="dv">1954</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Chama o método imprimir_info do objeto criado</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>meu_livro.mostrar_informacoes()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Veja que criamos a classe <code>Livro</code> com três atributos no construtor: <code>titulo</code>, <code>autor</code> e <code>ano_publicacao</code>. Temos também um método: <code>mostrar_informacoes()</code>, responsável por mostrar as informações do livro na tela (nome sugestivo, não?). Depois, criamos um objeto da classe <code>Livro</code> com as informações do livro “O Senhor dos Anéis: A Sociedade do Anel”, e testamos com o método <code>mostrar_informacoes()</code>.</p>
+<p>Aqui, usei no construtor uns nomes um pouco modificados (<code>titulo_informado</code>, <code>autor_informado</code>, e <code>ano_publicacao_informado</code>) para que você perceba que essas variáveis são coisas diferentes em relação a <code>self.titulo</code>, <code>self.autor</code> e <code>self.ano_publicacao</code>.</p>
+</section>
+</section>
+<section id="referências-bibliográficas" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="referências-bibliográficas"><span class="header-section-number">10.6</span> Referências bibliográficas</h2>
+<ul>
+<li>DOWNEY, A. B. Think Python: How to Think Like a Computer Scientist (2ª ed.). O’Reilly Media, 2015.</li>
+<li>MICROSOFT. Herança em C#. Disponível em: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/inheritance. Acesso em 14 mar. 2023.</li>
+<li>ORACLE. Site da Oracle sobre herança em Java. Disponível em: https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html. Acesso em: 14 mar. 2023.</li>
+<li>PYTHON. Documentação oficial. Classes. Disponível em: https://docs.python.org/3/tutorial/classes.html. Acesso em 14 mar. 2023.</li>
+<li>PYTHON. Documentação oficial. Polimorfismo. Disponível em: https://docs.python.org/3/library/functions.html#callable. Acesso em 14 mar. 2023.</li>
+<li>PROGRAMIZ. Class and Objects. Disponível em: https://www.programiz.com/python-programming/class. Acesso em 14 mar. 2023.</li>
+<li>PROGRAMIZ. Object-Oriented Programming. Disponível em: https://www.programiz.com/python-programming/object-oriented-programming. Acesso em 14 mar. 2023.</li>
+<li>SCHILD, H. Java: A Beginner’s Guide, Seventh Edition. McGraw Hill Professional, 2018.</li>
+<li>SIERRA, K.; BATES, B. Head First Java: A Brain-Friendly Guide. O’Reilly Media, Inc., 2005.</li>
+<li>VANDERPLAS, J. Python Data Science Handbook. Disponível em: https://jakevdp.github.io/PythonDataScienceHandbook/. Acesso em: 14 mar. 2023</li>
+<li>W3SCHOOLS. Python Classes. Disponível em: https://www.w3schools.com/python/python_classes.asp. Acesso em 14 mar. 2023.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./08-Manipulacao-Arquivos.html" class="pagination-link" aria-label="Saindo da telinha sem cor do terminal: trabalhando com arquivos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Saindo da telinha sem cor do terminal: trabalhando com arquivos</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./10-Erros-Comuns.html" class="pagination-link" aria-label="Erros/exceções em Python">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Erros/exceções em Python</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

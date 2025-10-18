@@ -1,0 +1,57 @@
+project:
+  type: book
+
+book:
+  title: "Python Descomplicado"
+  subtitle: "Aprendendo Algoritmos de Forma Simples"
+  author: "Wellington Rodrigo Monteiro"
+  date: today
+  language: pt-BR
+  
+  chapters:
+    - index.md
+    - part: "Parte 1: Sabendo onde estamos"
+      chapters:
+        - 01-Introducao-Ambiente.ipynb
+        - 02-Introducao-Algoritmos.ipynb
+    - part: "Parte 2: Fazendo coisas legais"
+      chapters:
+        - 03-Variaveis-IO.ipynb
+        - 04-Estruturas-Selecao.ipynb
+        - 05-Estruturas-Repeticao.ipynb
+        - 06-Funcoes.ipynb
+        - 07-Listas-Dicionarios-Tuplas.ipynb
+        - 08-Manipulacao-Arquivos.ipynb
+        - 09-POO.ipynb
+    - part: "Parte 3: Resolvendo tretas"
+      chapters:
+        - 10-Erros-Comuns.ipynb
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    code-copy: true
+    fig-cap-location: bottom
+    google-analytics: G-0LGPFVV5N2
+    
+    # GitHub integration
+    repo-url: https://github.com/wmonteiro-ai/python-intro-ptbr
+    repo-branch: main
+    repo-subdir: docs
+    edit-url: https://github.com/wmonteiro-ai/python-intro-ptbr/edit/main/docs/
+    source-url: https://github.com/wmonteiro-ai/python-intro-ptbr/blob/main/docs/
+
+execute:
+  echo: true
+  freeze: auto
+  cache: true
+  warning: false
+  error: false
+
+
