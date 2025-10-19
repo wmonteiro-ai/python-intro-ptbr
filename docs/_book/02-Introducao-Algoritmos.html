@@ -660,18 +660,18 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 <section id="exemplo-prático" class="level3" data-number="2.4.3">
 <h3 data-number="2.4.3" class="anchored" data-anchor-id="exemplo-prático"><span class="header-section-number">2.4.3</span> Exemplo prático</h3>
 <p>Vamos ver um algoritmo para calcular a soma de dois números. Em pseudocódigo, seria assim:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a> <span class="ex">1.</span> Início</span>
-<span id="cb2-2"><a href="#cb2-2"></a> <span class="ex">2.</span>   Inteiro: num1, num2, soma</span>
-<span id="cb2-3"><a href="#cb2-3"></a> <span class="ex">3.</span> </span>
-<span id="cb2-4"><a href="#cb2-4"></a> <span class="ex">4.</span>   Escreva<span class="er">(</span><span class="st">"Digite o primeiro número: "</span><span class="kw">)</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a> <span class="ex">5.</span>   Leia<span class="er">(</span><span class="ex">num1</span><span class="kw">)</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a> <span class="ex">6.</span>   </span>
-<span id="cb2-7"><a href="#cb2-7"></a> <span class="ex">7.</span>   Escreva<span class="er">(</span><span class="st">"Digite o segundo número: "</span><span class="kw">)</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a> <span class="ex">8.</span>   Leia<span class="er">(</span><span class="ex">num2</span><span class="kw">)</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a> <span class="ex">9.</span>   </span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="ex">10.</span>   soma = num1 + num2</span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="ex">11.</span>   Escreva<span class="er">(</span><span class="st">"O resultado da soma é: "</span><span class="ex">,</span> soma<span class="kw">)</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="ex">12.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">Início</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="ex">Inteiro:</span> num1, num2, soma</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Digite o primeiro número: "</span><span class="kw">)</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="ex">Leia</span><span class="er">(</span><span class="ex">num1</span><span class="kw">)</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  </span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Digite o segundo número: "</span><span class="kw">)</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="ex">Leia</span><span class="er">(</span><span class="ex">num2</span><span class="kw">)</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  </span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="ex">soma</span> = num1 + num2</span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="ex">Escreva</span><span class="er">(</span><span class="st">"O resultado da soma é: "</span><span class="ex">,</span> soma<span class="kw">)</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="ex">Fim</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Todo algoritmo possui um início e fim. Isso era verdade com o exemplo do bolo (começamos tendo nada nas mãos e terminamos com um bolo), com o delivery (começamos com fome e acabamos com a comida entregue) e também é verdade aqui. No exemplo acima, o pseudocódigo começa com o passo <code>Início</code> na linha 1, que é uma convenção para indicar o início do algoritmo. Da mesma forma, o algoritmo termina com o passo <code>Fim</code> na linha 12, que indica o final do código.</p>
 <p>Dentro deste bloco (ou seja: entre o <code>Início</code> e <code>Fim</code>) temos duas variáveis que foram declaradas logo de cara para armazenar os números: <code>num1</code> e <code>num2</code>, ambas na linha 2. Estas variáveis poderiam ter qualquer outro nome como, por exemplo, <code>numero1</code> e <code>numero2</code>; <code>primeiro_numero</code> e <code>segundo_numero</code> ou <code>banana</code> e <code>abacaxi</code>. Dito isso, é recomendável que você use <strong>nomes claros e descritivos</strong> para variáveis e funções, a fim de tornar o código mais fácil de ler e entender. Além disso, é importante usar uma indentação adequada (isto é: o espaçamento antes de iniciar cada uma das linhas) para separar os blocos de instruções e tornar o código mais legível.</p>
 <p>Também definimos na linha 2 uma variável para armazenar o resultado da soma. Convenientemente, o nome desta variável é <code>soma</code>. Todas estas variáveis devem armazenar somente valores inteiros (isto é: sem casas decimais). isto também é definido pela linha 2.</p>
@@ -787,7 +787,16 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 <p>Você viu no exemplo do pseudocódigo alguns espaços à esquerda nas linhas 2 a 11? Aquilo são indentações. A indentação é uma técnica usada para organizar o código em um programa de computador. É como uma espécie de espaçamento (recuo) que ajuda a identificar <strong><em>quais linhas de código estão dentro de outras linhas</em></strong>. É como se fosse um “encaixe” do código, onde cada bloco está dentro do outro.</p>
 <p>Pense que você tem um conjunto de instruções para seguir. Algumas dessas instruções precisam ser executadas dentro de outras instruções. Para que você não se perca na sequência, você pode separar essas instruções com espaços, deixando mais claro quais instruções pertencem a qual conjunto. Na programação, isso é chamado de indentação. Como uma comparação simplista, imagine uma estrutura de tópicos e subtópicos de uma apresentação no PowerPoint ou, ainda, uma biblioteca em que cada livro é classificado e organizado por categorias e subcategorias que estão umas dentro das outras.</p>
 <p>Na prática, a indentação é feita com a adição de espaços ou tabulações (tecla <code>Tab</code> do teclado) no início de cada linha de código, criando um recuo que ajuda a identificar a hierarquia dos blocos de código. É uma prática importante porque torna o código mais legível e fácil de entender, e ajuda a evitar erros de sintaxe. Veremos mais sobre isso adiante.</p>
-<p>:: {.callout-tip icon=false} ## Quer treinar seu raciocínio algorítmico?</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Quer treinar seu raciocínio algorítmico?
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Criei o <a href="https://batel.tech"><strong>batel.tech</strong></a>, um site gratuito com exercícios práticos de Python para complementar seus estudos. Lá você encontra:</p>
 <ul>
 <li>✅ <strong>Exercícios progressivos</strong> sobre algoritmos e lógica de programação</li>
@@ -795,7 +804,9 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 <li>✅ <strong>Acompanhamento por IA</strong> para te ajudar quando travar</li>
 <li>💬 <strong>Comunidade no Discord</strong> para trocar ideias</li>
 </ul>
-<p>É um projeto pessoal meu (Prof.&nbsp;Wellington) para te dar mais insumos e ajudar na jornada Python! 🐍 :::</p>
+<p>É um projeto pessoal meu (Prof.&nbsp;Wellington) para te dar mais insumos e ajudar na jornada Python! 🐍</p>
+</div>
+</div>
 <hr>
 </section>
 <section id="dicas-para-resolver-os-exercícios" class="level3" data-number="2.5.5">
@@ -830,7 +841,7 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 <li><strong>Manual de instruções de um micro-ondas</strong></li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -839,7 +850,7 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>✅ <strong>Sim</strong> - Sequência de passos para chegar a um resultado específico</li>
@@ -866,7 +877,7 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 <li><code>"12345-678"</code> (CEP)</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -875,7 +886,7 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><strong>Numérico inteiro</strong> - Número sem casas decimais</li>
@@ -908,7 +919,7 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 <li>Valor de PI (3.14159…)</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -917,7 +928,7 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><strong>Constante</strong> - Nunca muda, é uma constante física</li>
@@ -948,7 +959,7 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 <li><code>17 % 3</code> (módulo - resto da divisão)</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -957,7 +968,7 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><code>15 + 7 = 22</code></li>
@@ -992,7 +1003,7 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 <li>Exibe o resultado</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1001,7 +1012,7 @@ Créditos: <a href="https://unsplash.com/pt-br/@abillion?utm_source=unsplash&amp
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <pre><code>Início
   Inteiro: num1, num2, resultado
@@ -1041,7 +1052,7 @@ Fim</code></pre>
 <li><code>8 &gt;= 8</code></li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1050,7 +1061,7 @@ Fim</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><code>10 &gt; 5</code> → <strong>True</strong> (10 é maior que 5)</li>
@@ -1084,7 +1095,7 @@ Fim</code></pre>
 <li><code>(10 &gt; 15) or (3 == 3)</code></li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1093,7 +1104,7 @@ Fim</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><code>True and False</code> → <strong>False</strong> (E só é True se ambos forem True)</li>
@@ -1127,7 +1138,7 @@ Fim</code></pre>
 <li>Exibe ambos os resultados</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1136,7 +1147,7 @@ Fim</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <pre><code>Início
   Real: raio, area, perimetro
@@ -1173,7 +1184,7 @@ Fim</code></pre>
 <li>Se a idade for menor que 18, exibe “Menor de idade”</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1182,7 +1193,7 @@ Fim</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <pre><code>Início
   Inteiro: idade
@@ -1218,7 +1229,7 @@ Fim</code></pre>
 <li>Para cada multiplicação, mostra: “número × contador = resultado”</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1227,7 +1238,7 @@ Fim</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <pre><code>Início
   Inteiro: numero, contador, resultado
@@ -1266,7 +1277,7 @@ Fim</code></pre>
 <li>Exibe a média calculada</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1275,7 +1286,7 @@ Fim</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <pre><code>Início
   Real: nota1, nota2, nota3, media
@@ -1324,7 +1335,7 @@ Fim</code></pre>
 </ul></li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1333,7 +1344,7 @@ Fim</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <pre><code>Início
   Real: peso, altura, imc
@@ -1383,7 +1394,7 @@ Fim</code></pre>
 <li>Permite até 3 tentativas</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1392,7 +1403,7 @@ Fim</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <pre><code>Início
   Texto: senha_correta, senha_digitada
@@ -1446,7 +1457,7 @@ Fim</code></pre>
 <li>Calcula estatísticas da turma (média geral, quantos aprovados/reprovados)</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1455,7 +1466,7 @@ Fim</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <pre><code>Início
   Texto: nome, curso
@@ -1564,7 +1575,7 @@ Fim</code></pre>
 <li>Exibe saldo atualizado após cada operação</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Gabarito">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1573,7 +1584,7 @@ Fim</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <pre><code>Início
   Real: saldo, valor

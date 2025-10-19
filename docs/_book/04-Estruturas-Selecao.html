@@ -580,24 +580,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>🎯 <strong>Lógica:</strong> Se a senha estiver correta → libera acesso. Senão → nada acontece.</p>
 </blockquote>
-<section id="pseudocódigo-do-sistema-de-login" class="level4" data-number="4.6.5.1">
-<h4 data-number="4.6.5.1" class="anchored" data-anchor-id="pseudocódigo-do-sistema-de-login"><span class="header-section-number">4.6.5.1</span> Pseudocódigo do Sistema de Login</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2"></a> <span class="ex">1.</span> Início</span>
-<span id="cb3-3"><a href="#cb3-3"></a> <span class="ex">2.</span>   Texto: nome_usuario, senha_usuario</span>
-<span id="cb3-4"><a href="#cb3-4"></a> <span class="ex">3.</span>   </span>
-<span id="cb3-5"><a href="#cb3-5"></a> <span class="ex">4.</span>   Escreva<span class="er">(</span><span class="st">"Digite o nome do usuário:"</span><span class="kw">)</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a> <span class="ex">5.</span>   Leia<span class="er">(</span><span class="ex">nome_usuario</span><span class="kw">)</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a> <span class="ex">6.</span>   Escreva<span class="er">(</span><span class="st">"Digite a senha:"</span><span class="kw">)</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a> <span class="ex">7.</span>   Leia<span class="er">(</span><span class="ex">senha_usuario</span><span class="kw">)</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a> <span class="ex">8.</span>   </span>
-<span id="cb3-10"><a href="#cb3-10"></a> <span class="ex">9.</span>   Se a senha_usuario é válida para o nome_usuario, então</span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="ex">10.</span>     Liberar acesso ao sistema</span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="ex">11.</span>   Fim Se</span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="ex">12.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="anatomia-da-estrutura-de-seleção" class="level4" data-number="4.6.5.2">
-<h4 data-number="4.6.5.2" class="anchored" data-anchor-id="anatomia-da-estrutura-de-seleção"><span class="header-section-number">4.6.5.2</span> Anatomia da Estrutura de Seleção</h4>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">Início</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="ex">Texto:</span> nome_usuario, senha_usuario</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  </span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Digite o nome do usuário:"</span><span class="kw">)</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="ex">Leia</span><span class="er">(</span><span class="ex">nome_usuario</span><span class="kw">)</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Digite a senha:"</span><span class="kw">)</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="ex">Leia</span><span class="er">(</span><span class="ex">senha_usuario</span><span class="kw">)</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  </span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="ex">Se</span> a senha_usuario é válida para o nome_usuario, então</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    <span class="ex">Liberar</span> acesso ao sistema</span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="ex">Fim</span> Se</span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="ex">Fim</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="anatomia-da-estrutura-de-seleção" class="level4" data-number="4.6.5.1">
+<h4 data-number="4.6.5.1" class="anchored" data-anchor-id="anatomia-da-estrutura-de-seleção"><span class="header-section-number">4.6.5.1</span> Anatomia da Estrutura de Seleção</h4>
 <p>A <strong>estrutura de seleção</strong> (linhas 9-11) tem 3 partes essenciais:</p>
 <ol type="1">
 <li><strong>🎯 A condição:</strong> <code>Se a senha_usuario é válida para o nome_usuario, então</code></li>
@@ -608,8 +605,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>💡 <strong>Dica:</strong> A indentação (espaçamento) na linha 10 mostra que essa ação está “dentro” da condição!</p>
 </blockquote>
 </section>
-<section id="como-funciona-na-prática" class="level4" data-number="4.6.5.3">
-<h4 data-number="4.6.5.3" class="anchored" data-anchor-id="como-funciona-na-prática"><span class="header-section-number">4.6.5.3</span> Como funciona na prática</h4>
+<section id="como-funciona-na-prática" class="level4" data-number="4.6.5.2">
+<h4 data-number="4.6.5.2" class="anchored" data-anchor-id="como-funciona-na-prática"><span class="header-section-number">4.6.5.2</span> Como funciona na prática</h4>
 <p><strong>Cenário 1:</strong> Senha correta ✅</p>
 <ul>
 <li>Linha 9: Condição é <strong>verdadeira</strong></li>
@@ -635,28 +632,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <section id="pseudocódigo-da-viagem-inteligente" class="level4" data-number="4.6.6.1">
 <h4 data-number="4.6.6.1" class="anchored" data-anchor-id="pseudocódigo-da-viagem-inteligente"><span class="header-section-number">4.6.6.1</span> Pseudocódigo da Viagem Inteligente</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2"></a> <span class="ex">1.</span> Início</span>
-<span id="cb4-3"><a href="#cb4-3"></a> <span class="ex">2.</span>   Pegue as chaves do carro.</span>
-<span id="cb4-4"><a href="#cb4-4"></a> <span class="ex">3.</span>   Ande até o carro.</span>
-<span id="cb4-5"><a href="#cb4-5"></a> <span class="ex">4.</span>   Desbloqueie o carro.</span>
-<span id="cb4-6"><a href="#cb4-6"></a> <span class="ex">5.</span>   Entre no carro, se sentando no banco do motorista.</span>
-<span id="cb4-7"><a href="#cb4-7"></a> <span class="ex">6.</span>   Verifique o trânsito antes de sair de casa.</span>
-<span id="cb4-8"><a href="#cb4-8"></a> <span class="ex">7.</span>   Escolha o melhor caminho.</span>
-<span id="cb4-9"><a href="#cb4-9"></a> <span class="ex">8.</span>   Verifique se há combustível suficiente no tanque do carro para ir até a Universidade.</span>
-<span id="cb4-10"><a href="#cb4-10"></a> <span class="ex">9.</span>   Ligue o carro.</span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="ex">10.</span>   Respeite as leis de trânsito e limite de velocidade durante todo o trajeto.</span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="ex">11.</span>   Se o tanque estiver abaixo de 1/4 E se tiver dinheiro o suficiente para pagar pelo combustível então</span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="ex">12.</span>     Dirija até o posto de combustível.</span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="ex">13.</span>     Pare em um posto de combustível no meio do caminho e abasteça.</span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="ex">14.</span>     Pague pelo combustível.</span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="ex">15.</span>     Saia do posto.</span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="ex">16.</span>   Fim Se</span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="ex">17.</span>   Dirija até a Universidade.</span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="ex">18.</span>   Estacione o carro em um local apropriado e seguro.</span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="ex">19.</span>   Desligue o motor e retire a chave.</span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="ex">20.</span>   Saia do carro.</span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="ex">21.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">Início</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="ex">Pegue</span> as chaves do carro.</span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="ex">Ande</span> até o carro.</span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="ex">Desbloqueie</span> o carro.</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="ex">Entre</span> no carro, se sentando no banco do motorista.</span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="ex">Verifique</span> o trânsito antes de sair de casa.</span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="ex">Escolha</span> o melhor caminho.</span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="ex">Verifique</span> se há combustível suficiente no tanque do carro para ir até a Universidade.</span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="ex">Ligue</span> o carro.</span>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="ex">Respeite</span> as leis de trânsito e limite de velocidade durante todo o trajeto.</span>
+<span id="cb4-11"><a href="#cb4-11"></a>  <span class="ex">Se</span> o tanque estiver abaixo de 1/4 E se tiver dinheiro o suficiente para pagar pelo combustível então</span>
+<span id="cb4-12"><a href="#cb4-12"></a>    <span class="ex">Dirija</span> até o posto de combustível.</span>
+<span id="cb4-13"><a href="#cb4-13"></a>    <span class="ex">Pare</span> em um posto de combustível no meio do caminho e abasteça.</span>
+<span id="cb4-14"><a href="#cb4-14"></a>    <span class="ex">Pague</span> pelo combustível.</span>
+<span id="cb4-15"><a href="#cb4-15"></a>    <span class="ex">Saia</span> do posto.</span>
+<span id="cb4-16"><a href="#cb4-16"></a>  <span class="ex">Fim</span> Se</span>
+<span id="cb4-17"><a href="#cb4-17"></a>  <span class="ex">Dirija</span> até a Universidade.</span>
+<span id="cb4-18"><a href="#cb4-18"></a>  <span class="ex">Estacione</span> o carro em um local apropriado e seguro.</span>
+<span id="cb4-19"><a href="#cb4-19"></a>  <span class="ex">Desligue</span> o motor e retire a chave.</span>
+<span id="cb4-20"><a href="#cb4-20"></a>  <span class="ex">Saia</span> do carro.</span>
+<span id="cb4-21"><a href="#cb4-21"></a><span class="ex">Fim</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="estrutura-de-seleção-com-múltiplas-condições" class="level4" data-number="4.6.6.2">
 <h4 data-number="4.6.6.2" class="anchored" data-anchor-id="estrutura-de-seleção-com-múltiplas-condições"><span class="header-section-number">4.6.6.2</span> Estrutura de Seleção com Múltiplas Condições</h4>
@@ -733,22 +729,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <section id="versão-simples-apenas-if-e-else" class="level4" data-number="4.6.7.1">
 <h4 data-number="4.6.7.1" class="anchored" data-anchor-id="versão-simples-apenas-if-e-else"><span class="header-section-number">4.6.7.1</span> Versão Simples: Apenas <code>if</code> e <code>else</code></h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2"></a> <span class="ex">1.</span> Início</span>
-<span id="cb5-3"><a href="#cb5-3"></a> <span class="ex">2.</span>   Real: credito_desejado, renda_mensal</span>
-<span id="cb5-4"><a href="#cb5-4"></a> <span class="ex">3.</span>   </span>
-<span id="cb5-5"><a href="#cb5-5"></a> <span class="ex">4.</span>   Escreva<span class="er">(</span><span class="st">"Digite o valor do crédito desejado: "</span><span class="kw">)</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a> <span class="ex">5.</span>   Leia<span class="er">(</span><span class="ex">credito_desejado</span><span class="kw">)</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a> <span class="ex">6.</span>   </span>
-<span id="cb5-8"><a href="#cb5-8"></a> <span class="ex">7.</span>   Escreva<span class="er">(</span><span class="st">"Digite a renda mensal do cliente: "</span><span class="kw">)</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a> <span class="ex">8.</span>   Leia<span class="er">(</span><span class="ex">renda_mensal</span><span class="kw">)</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a> <span class="ex">9.</span>   </span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="ex">10.</span>   Se credito_desejado <span class="op">&lt;</span> renda_mensal então</span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="ex">11.</span>       Escreva<span class="er">(</span><span class="st">"Crédito aprovado!"</span><span class="kw">)</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="ex">12.</span>   Senão</span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="ex">13.</span>       Escreva<span class="er">(</span><span class="st">"Crédito negado."</span><span class="kw">)</span>    </span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="ex">14.</span>   Fim Se</span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="ex">15.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">Início</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="ex">Real:</span> credito_desejado, renda_mensal</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  </span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Digite o valor do crédito desejado: "</span><span class="kw">)</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="ex">Leia</span><span class="er">(</span><span class="ex">credito_desejado</span><span class="kw">)</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  </span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Digite a renda mensal do cliente: "</span><span class="kw">)</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="ex">Leia</span><span class="er">(</span><span class="ex">renda_mensal</span><span class="kw">)</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  </span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="ex">Se</span> credito_desejado <span class="op">&lt;</span> renda_mensal então</span>
+<span id="cb5-11"><a href="#cb5-11"></a>      <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Crédito aprovado!"</span><span class="kw">)</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>  <span class="ex">Senão</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>      <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Crédito negado."</span><span class="kw">)</span>    </span>
+<span id="cb5-14"><a href="#cb5-14"></a>  <span class="ex">Fim</span> Se</span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="ex">Fim</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="introduzindo-o-else-senão" class="level4" data-number="4.6.7.2">
 <h4 data-number="4.6.7.2" class="anchored" data-anchor-id="introduzindo-o-else-senão"><span class="header-section-number">4.6.7.2</span> Introduzindo o <code>else</code> (senão)</h4>
@@ -775,24 +770,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="versão-avançada-if-elif-e-else" class="level4" data-number="4.6.7.4">
 <h4 data-number="4.6.7.4" class="anchored" data-anchor-id="versão-avançada-if-elif-e-else"><span class="header-section-number">4.6.7.4</span> Versão Avançada: <code>if</code>, <code>elif</code> e <code>else</code></h4>
 <p>Agora vamos adicionar uma situação intermediária:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a></span>
-<span id="cb6-2"><a href="#cb6-2"></a> <span class="ex">1.</span> Início</span>
-<span id="cb6-3"><a href="#cb6-3"></a> <span class="ex">2.</span>   Real: credito_desejado, renda_mensal</span>
-<span id="cb6-4"><a href="#cb6-4"></a> <span class="ex">3.</span>   </span>
-<span id="cb6-5"><a href="#cb6-5"></a> <span class="ex">4.</span>   Escreva<span class="er">(</span><span class="st">"Digite o valor do crédito desejado: "</span><span class="kw">)</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a> <span class="ex">5.</span>   Leia<span class="er">(</span><span class="ex">credito_desejado</span><span class="kw">)</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a> <span class="ex">6.</span>   </span>
-<span id="cb6-8"><a href="#cb6-8"></a> <span class="ex">7.</span>   Escreva<span class="er">(</span><span class="st">"Digite a renda mensal do cliente: "</span><span class="kw">)</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a> <span class="ex">8.</span>   Leia<span class="er">(</span><span class="ex">renda_mensal</span><span class="kw">)</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a> <span class="ex">9.</span>   </span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="ex">10.</span>   Se credito_desejado <span class="op">&lt;</span> renda_mensal então</span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="ex">11.</span>       Escreva<span class="er">(</span><span class="st">"Crédito aprovado!"</span><span class="kw">)</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="ex">12.</span>   Senão-se credito_desejado == renda_mensal então</span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="ex">13.</span>       Escreva<span class="er">(</span><span class="st">"Crédito aprovado, mas com ressalvas."</span><span class="kw">)</span> </span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="ex">14.</span>   Senão</span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="ex">15.</span>       Escreva<span class="er">(</span><span class="st">"Crédito negado."</span><span class="kw">)</span>    </span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="ex">16.</span>   Fim Se</span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="ex">17.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">Início</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="ex">Real:</span> credito_desejado, renda_mensal</span>
+<span id="cb6-3"><a href="#cb6-3"></a>  </span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Digite o valor do crédito desejado: "</span><span class="kw">)</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="ex">Leia</span><span class="er">(</span><span class="ex">credito_desejado</span><span class="kw">)</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  </span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Digite a renda mensal do cliente: "</span><span class="kw">)</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="ex">Leia</span><span class="er">(</span><span class="ex">renda_mensal</span><span class="kw">)</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  </span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="ex">Se</span> credito_desejado <span class="op">&lt;</span> renda_mensal então</span>
+<span id="cb6-11"><a href="#cb6-11"></a>      <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Crédito aprovado!"</span><span class="kw">)</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>  <span class="ex">Senão-se</span> credito_desejado == renda_mensal então</span>
+<span id="cb6-13"><a href="#cb6-13"></a>      <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Crédito aprovado, mas com ressalvas."</span><span class="kw">)</span> </span>
+<span id="cb6-14"><a href="#cb6-14"></a>  <span class="ex">Senão</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>      <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Crédito negado."</span><span class="kw">)</span>    </span>
+<span id="cb6-16"><a href="#cb6-16"></a>  <span class="ex">Fim</span> Se</span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="ex">Fim</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="introduzindo-o-elif-senão-se" class="level4" data-number="4.6.7.5">
 <h4 data-number="4.6.7.5" class="anchored" data-anchor-id="introduzindo-o-elif-senão-se"><span class="header-section-number">4.6.7.5</span> Introduzindo o <code>elif</code> (senão-se)</h4>
@@ -1554,18 +1548,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>🎯 <strong>Resumo:</strong> Comentários são sua ferramenta para tornar o código mais legível e profissional!</p>
 </blockquote>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1"></a> <span class="ex">1.</span> Início</span>
-<span id="cb22-2"><a href="#cb22-2"></a> <span class="ex">2.</span>   Inteiro: num1, num2, soma</span>
-<span id="cb22-3"><a href="#cb22-3"></a> <span class="ex">3.</span> </span>
-<span id="cb22-4"><a href="#cb22-4"></a> <span class="ex">4.</span>   Escreva<span class="er">(</span><span class="st">"Digite o primeiro número: "</span><span class="kw">)</span></span>
-<span id="cb22-5"><a href="#cb22-5"></a> <span class="ex">5.</span>   Leia<span class="er">(</span><span class="ex">num1</span><span class="kw">)</span></span>
-<span id="cb22-6"><a href="#cb22-6"></a> <span class="ex">6.</span>   </span>
-<span id="cb22-7"><a href="#cb22-7"></a> <span class="ex">7.</span>   Escreva<span class="er">(</span><span class="st">"Digite o segundo número: "</span><span class="kw">)</span></span>
-<span id="cb22-8"><a href="#cb22-8"></a> <span class="ex">8.</span>   Leia<span class="er">(</span><span class="ex">num2</span><span class="kw">)</span></span>
-<span id="cb22-9"><a href="#cb22-9"></a> <span class="ex">9.</span>   </span>
-<span id="cb22-10"><a href="#cb22-10"></a><span class="ex">10.</span>   soma = num1 + num2</span>
-<span id="cb22-11"><a href="#cb22-11"></a><span class="ex">11.</span>   Escreva<span class="er">(</span><span class="st">"O resultado da soma é: "</span><span class="ex">,</span> soma<span class="kw">)</span></span>
-<span id="cb22-12"><a href="#cb22-12"></a><span class="ex">12.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1"></a><span class="ex">Início</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="ex">Inteiro:</span> num1, num2, soma</span>
+<span id="cb22-3"><a href="#cb22-3"></a></span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Digite o primeiro número: "</span><span class="kw">)</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>  <span class="ex">Leia</span><span class="er">(</span><span class="ex">num1</span><span class="kw">)</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>  </span>
+<span id="cb22-7"><a href="#cb22-7"></a>  <span class="ex">Escreva</span><span class="er">(</span><span class="st">"Digite o segundo número: "</span><span class="kw">)</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="ex">Leia</span><span class="er">(</span><span class="ex">num2</span><span class="kw">)</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a>  </span>
+<span id="cb22-10"><a href="#cb22-10"></a>  <span class="ex">soma</span> = num1 + num2</span>
+<span id="cb22-11"><a href="#cb22-11"></a>  <span class="ex">Escreva</span><span class="er">(</span><span class="st">"O resultado da soma é: "</span><span class="ex">,</span> soma<span class="kw">)</span></span>
+<span id="cb22-12"><a href="#cb22-12"></a><span class="ex">Fim</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Ora, como transcreveríamos este exemplo? O mesmíssimo algoritmo acima, mas escrito em Python, seria assim:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="bu">print</span>(<span class="st">"Digite o primeiro número: "</span>)</span>
 <span id="cb23-2"><a href="#cb23-2"></a>num1 <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>())</span>

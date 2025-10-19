@@ -444,7 +444,7 @@ Brigadeiros. Servido? Créditos: <a href="https://www.flickr.com/photos/mayra/31
 <p>Se fôssemos colocar um exemplo de como alguém percorreria estes passos sairia algo mais ou menos assim:</p>
 <pre><code>1-2-3-4-5-6-7-8-6-7-8-6-7-8-6-7-8-6-7-8-6-7-8-6-7-8-6-7-8-6-7-8-9-10</code></pre>
 <blockquote class="blockquote">
-<p>🎯 <strong>Veja o padrão?</strong> Os passos 6, 7 e 8 se repetem várias vezes! Isso é exatamente o que um <strong>loop</strong> faz na programação!</p>
+<p>🎯 <strong>Veja o padrão?</strong> Os passos 6, 7 e 8 se repetem várias vezes! Isso é exatamente o que um <strong>loop</strong> faz na programação.</p>
 </blockquote>
 </section>
 </section>
@@ -542,26 +542,24 @@ Brigadeiros. Servido? Créditos: <a href="https://www.flickr.com/photos/mayra/31
 <p>🎯 <strong>Em resumo:</strong> <code>for</code> = quantidade conhecida, <code>while</code> = condição de parada conhecida!</p>
 </blockquote>
 <p>Veja como seria o uso do <em>“para”</em> em pseudocódigo para escrever todos os números de 1 a 1000 na tela:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">1.</span> Início</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="ex">2.</span>   Inteiro: i</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="ex">3.</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="ex">4.</span>   Para todo i de 1 até 1000, faça:</span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="ex">5.</span>     Escreva<span class="er">(</span><span class="ex">i</span><span class="kw">)</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="ex">6.</span>   Fim Para</span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="ex">7.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">Início</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="ex">Inteiro:</span> i</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="ex">Para</span> todo i de 1 até 1000, faça:</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="ex">Escreva</span><span class="er">(</span><span class="ex">i</span><span class="kw">)</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="ex">Fim</span> Para</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="ex">Fim</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Aqui, observe que existe uma variável chamada <code>i</code>. Este nome é uma convenção comum usada em loops para representar um índice ou contador. O nome <code>i</code> é uma abreviação de <em>índice</em> e é frequentemente usado em loops para rastrear a posição atual na sequência que está sendo iterada. Por exemplo, no código acima o <code>i</code> começará com o valor de <code>1</code> na linha 4, e escreverá este valor na tela com a linha 5. Depois, <strong>voltamos para a linha 4</strong> e incrementamos em um o valor de <code>i</code>, que agora vale <code>2</code>, e mostraremos este valor na linha 5. Depois, <strong>voltamos novamente para a linha 4</strong> e incrementamos <code>i</code>, que agora vale <code>3</code>, e mostraremos este valor na linha 5. Repetiremos isto até chegar ao valor de <code>1000</code>, mostrando-o na tela. Após alcançar o <code>1000</code> finalmente iremos para a linha 6, saindo do loop e encerrando o código.</p>
 <p>Agora, veja o uso do <em>“enquanto”</em> para resolver o mesmo problema:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="ex">1.</span> Início</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="ex">2.</span>   Inteiro: i</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="ex">3.</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="ex">4.</span>   i = 1</span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="ex">5.</span>   Enquanto i <span class="op">&lt;</span>= 1000, faça:</span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="ex">6.</span>     Escreva<span class="er">(</span><span class="ex">i</span><span class="kw">)</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="ex">7.</span>     i = i + 1</span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="ex">8.</span>   Fim Enquanto</span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="ex">9.</span> Fim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">Início</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="ex">Inteiro:</span> i</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="ex">i</span> = 1</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="ex">Enquanto</span> i <span class="op">&lt;</span>= 1000, faça:</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="ex">Escreva</span><span class="er">(</span><span class="ex">i</span><span class="kw">)</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="ex">i</span> = i + 1</span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="ex">Fim</span> Enquanto</span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="ex">Fim</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Aqui, na linha 4 inicializamos o <code>i</code> para valer 1. Enquanto a condição da linha 5 for verdadeira iremos percorrer as linhas 6 e 7 infinitamente: como <code>i</code> agora vale 1, a condição da linha 5 é verdade. Com isso, vamos para a linha 6 (mostrando <code>1</code> na tela) e incrementamos o valor de <code>i</code>, que agora vale <code>2</code>. Agora, <strong>voltamos para a linha 5</strong>. A condição ainda é verdade, já que 2 é menor do que 1000. Com isso, vamos à linha 6 (mostrando <code>2</code> na tela) e incrementamos novamente o valor de <code>i</code>, que agora vale <code>3</code>. Assim, vamos sucessivamente até chegar ao 1000. Após mostrar <code>1000</code> na tela, incrementamos novamente o valor de <code>i</code>, que agora vale <code>1001</code>. Com isso, <strong>voltamos para a linha 5</strong>. Agora, a condição é falsa, já que 1001 não é maior ou igual a 1000. Como é falsa, finalmente sairemos do loop e pularemos as linhas 6 e 7, indo diretamente para a linha 8 e finalizando o código.</p>
 </section>
 <section id="loop-for---quando-você-sabe-quantas-vezes-repetir" class="level3" data-number="5.5.3">

@@ -307,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#você-vai-aprender" id="toc-você-vai-aprender" class="nav-link" data-scroll-target="#você-vai-aprender"><span class="header-section-number">8.1.1</span> Você vai aprender:</a></li>
   <li><a href="#conceitos-que-você-vai-dominar" id="toc-conceitos-que-você-vai-dominar" class="nav-link" data-scroll-target="#conceitos-que-você-vai-dominar"><span class="header-section-number">8.1.2</span> Conceitos que você vai dominar:</a></li>
   </ul></li>
-  <li><a href="#livro-de-receitas---a-analogia-perfeita" id="toc-livro-de-receitas---a-analogia-perfeita" class="nav-link" data-scroll-target="#livro-de-receitas---a-analogia-perfeita"><span class="header-section-number">8.2</span> Livro de Receitas - A Analogia Perfeita</a>
+  <li><a href="#livro-de-receitas" id="toc-livro-de-receitas" class="nav-link" data-scroll-target="#livro-de-receitas"><span class="header-section-number">8.2</span> Livro de Receitas</a>
   <ul class="collapse">
   <li><a href="#o-processo" id="toc-o-processo" class="nav-link" data-scroll-target="#o-processo"><span class="header-section-number">8.2.1</span> O Processo:</a></li>
   <li><a href="#a-vantagem-dos-arquivos" id="toc-a-vantagem-dos-arquivos" class="nav-link" data-scroll-target="#a-vantagem-dos-arquivos"><span class="header-section-number">8.2.2</span> A Vantagem dos Arquivos:</a></li>
@@ -347,6 +347,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#difícil-nível-4-1" id="toc-difícil-nível-4-1" class="nav-link" data-scroll-target="#difícil-nível-4-1"><span class="header-section-number">8.6.4</span> <strong>DIFÍCIL</strong> (Nível 4)</a></li>
   <li><a href="#muito-difícil-nível-5-1" id="toc-muito-difícil-nível-5-1" class="nav-link" data-scroll-target="#muito-difícil-nível-5-1"><span class="header-section-number">8.6.5</span> <strong>MUITO DIFÍCIL</strong> (Nível 5)</a></li>
   <li><a href="#respostas" id="toc-respostas" class="nav-link" data-scroll-target="#respostas"><span class="header-section-number">8.6.6</span> Respostas</a></li>
+  <li><a href="#encoding-e-caracteres-especiais" id="toc-encoding-e-caracteres-especiais" class="nav-link" data-scroll-target="#encoding-e-caracteres-especiais"><span class="header-section-number">8.6.7</span> Encoding e Caracteres Especiais</a></li>
+  <li><a href="#comparação-de-formatos-csv-vs-json-vs-txt" id="toc-comparação-de-formatos-csv-vs-json-vs-txt" class="nav-link" data-scroll-target="#comparação-de-formatos-csv-vs-json-vs-txt"><span class="header-section-number">8.6.8</span> Comparação de Formatos: CSV vs JSON vs TXT</a></li>
   </ul></li>
   <li><a href="#referências-bibliográficas" id="toc-referências-bibliográficas" class="nav-link" data-scroll-target="#referências-bibliográficas"><span class="header-section-number">8.7</span> Referências bibliográficas</a></li>
   </ul>
@@ -377,7 +379,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>Saindo da telinha sem cor do terminal: trabalhando com arquivos</em></p>
 <section id="o-que-você-saberá-se-ler-todo-este-capítulo" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="o-que-você-saberá-se-ler-todo-este-capítulo"><span class="header-section-number">8.1</span> O que você saberá se ler todo este capítulo?</h2>
-<p>Prepare-se para sair da “telinha sem cor” do terminal e entrar no mundo real da programação! 🚀</p>
+<p>Prepare-se para sair da “telinha sem cor” do terminal e entrar no mundo real da programação!</p>
 <section id="você-vai-aprender" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="você-vai-aprender"><span class="header-section-number">8.1.1</span> Você vai aprender:</h3>
 <ol type="1">
@@ -405,9 +407,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 </section>
 </section>
-<section id="livro-de-receitas---a-analogia-perfeita" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="livro-de-receitas---a-analogia-perfeita"><span class="header-section-number">8.2</span> Livro de Receitas - A Analogia Perfeita</h2>
-<p>Achou que eu esqueci da receita de bolo? Claro que não! Jamais esqueceria de um bolo. Com um café então, nem se fala! ☕</p>
+<section id="livro-de-receitas" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="livro-de-receitas"><span class="header-section-number">8.2</span> Livro de Receitas</h2>
+<p>Achou que eu esqueci da receita de bolo? Claro que não! Jamais esqueceria de um bolo. Com um café então, nem se fala!</p>
 <p>Bom, vamos imaginar que você tem uma receita de bolo e quer dar o seu toque pessoal. Transformar aquela receita da internet em uma <strong>receita de família</strong>, sabe?</p>
 <p>Quem sabe você se animou bastante e agora quer fazer o seu próprio <strong>caderno de receitas</strong> usando como base algumas receitas comuns que já viu por aí. Como você faria isso?</p>
 <section id="o-processo" class="level3" data-number="8.2.1">
@@ -432,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <blockquote class="blockquote">
-<p>🎯 <strong>O que isso tem a ver com programação?</strong> Em Python, os arquivos funcionam exatamente como esse caderno de receitas!</p>
+<p><strong>O que isso tem a ver com programação?</strong> Em Python, os arquivos funcionam exatamente como esse caderno de receitas!</p>
 </blockquote>
 </section>
 <section id="o-problema-do-terminal" class="level3" data-number="8.2.3">
@@ -446,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Você interage com ele</li>
 <li><strong>E acabou!</strong></li>
 </ol>
-<p>Tirou o computador da tomada? Acabou a bateria do notebook? <strong>Todas as variáveis foram apagadas!</strong> 💥</p>
+<p>Tirou o computador da tomada? Acabou a bateria do notebook? <strong>Todas as variáveis foram apagadas!</strong></p>
 </section>
 <section id="a-solução-arquivos" class="level3" data-number="8.2.4">
 <h3 data-number="8.2.4" class="anchored" data-anchor-id="a-solução-arquivos"><span class="header-section-number">8.2.4</span> A Solução: Arquivos!</h3>
@@ -459,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>✅ Excluir informações desnecessárias</li>
 <li>✅ Compartilhar dados entre programas</li>
 </ul>
-<p>É possível? <strong>Claro que é!</strong> 🎉</p>
+<p>É possível? <strong>Claro que é!</strong></p>
 <p>É exatamente isso que veremos a partir de agora. Vamos lá?</p>
 </section>
 </section>
@@ -763,9 +765,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="8.4.3" class="anchored" data-anchor-id="salvando-em-pickle"><span class="header-section-number">8.4.3</span> Salvando em Pickle</h3>
 <p>Mas e se você quiser salvar suas variáveis Python exatamente como elas estão? Sem precisar converter em texto? É aí que entram os arquivos <strong>Pickle</strong>! 🥒</p>
 <p>Imagine o Pickle como um pote de vidro na geladeira: você coloca a comida lá e ela fica preservada exatamente como você guardou. Quando você abre o pote depois, a comida está igualzinha!</p>
-<p>O Pickle funciona assim: você “enfrasca” seus dados Python e depois pode “desenfrascar” eles quando precisar. É como ter uma geladeira mágica para suas variáveis! 🧊</p>
+<p>O Pickle funciona assim: você “enfrasca” seus dados Python e depois pode “desenfrascar” eles quando precisar. É como ter uma geladeira mágica para suas variáveis!</p>
 <p>Em termos técnicos: o Pickle converte seus objetos Python em bytes (código binário) que podem ser salvos em arquivo. Depois, você pode recuperar os objetos exatamente como eram antes!</p>
-<p>Quer ver na prática? Vamos testar! 🚀</p>
+<p>Quer ver na prática? Vamos testar!</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">import</span> pickle</span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="co"># INÍCIO DO BLOCO 1</span></span>
@@ -858,7 +860,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exercícios-práticos-respostas-no-final-da-página" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="exercícios-práticos-respostas-no-final-da-página"><span class="header-section-number">8.5</span> Exercícios Práticos (respostas no final da página)</h2>
 <blockquote class="blockquote">
-<p>🚀 <strong>Hora de praticar!</strong> Aqui estão 25 exercícios organizados por dificuldade. Cada exercício tem solução completa com explicação linha por linha!</p>
+<p><strong>Hora de praticar!</strong> Aqui estão 25 exercícios organizados por dificuldade. Cada exercício tem solução completa com explicação linha por linha!</p>
 </blockquote>
 <section id="muito-fácil-nível-1" class="level3" data-number="8.5.1">
 <h3 data-number="8.5.1" class="anchored" data-anchor-id="muito-fácil-nível-1"><span class="header-section-number">8.5.1</span> <strong>MUITO FÁCIL</strong> (Nível 1)</h3>
@@ -1990,96 +1992,298 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>O que temos de diferente neste código? Veja que, primeiramente, importamos a biblioteca <code>json</code> na primeira linha do Python para salvar o dicionário <code>pessoas</code> em um arquivo JSON. A função <code>json.dump()</code> é usada para escrever o dicionário no arquivo JSON. E, ainda, a opção <code>"w"</code> é passada para o <code>open()</code> para indicar que queremos escrever no arquivo.</p>
 <p>Experimente testar o código e abrir o arquivo <code>pessoas.json</code> logo em seguida para ver o que houve. No meu caso, o meu arquivo ficou assim:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">{</span><span class="dt">"João"</span><span class="fu">:</span> <span class="st">"Engenheiro"</span><span class="fu">,</span> <span class="dt">"Maria"</span><span class="fu">:</span> <span class="st">"Advogada"</span><span class="fu">,</span> <span class="dt">"Pedro"</span><span class="fu">:</span> <span class="st">"Médico"</span><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>2. Crie um código que peça para o usuário digitar uma frase. Salve o resultado em uma arquivo de texto. Depois, abra este arquivo de texto que salvou e mostre o resultado na tela.</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># pede para o usuário digitar uma frase</span></span>
-<span id="cb42-2"><a href="#cb42-2"></a>frase <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma frase: "</span>)</span>
+</section>
+<section id="encoding-e-caracteres-especiais" class="level3" data-number="8.6.7">
+<h3 data-number="8.6.7" class="anchored" data-anchor-id="encoding-e-caracteres-especiais"><span class="header-section-number">8.6.7</span> Encoding e Caracteres Especiais</h3>
+<p>Antes de trabalharmos com diferentes formatos de arquivo, é importante entender o conceito de <strong>encoding</strong> (codificação de caracteres). O encoding define como os caracteres são representados como bytes no arquivo.</p>
+<section id="o-que-é-encoding" class="level4" data-number="8.6.7.1">
+<h4 data-number="8.6.7.1" class="anchored" data-anchor-id="o-que-é-encoding"><span class="header-section-number">8.6.7.1</span> O que é Encoding?</h4>
+<p>Encoding é como o computador converte caracteres (letras, números, símbolos) em bytes que podem ser armazenados em arquivo. O encoding mais comum é o <strong>UTF-8</strong>, que consegue representar praticamente todos os caracteres de todas as línguas do mundo.</p>
+</section>
+<section id="problemas-com-encoding" class="level4" data-number="8.6.7.2">
+<h4 data-number="8.6.7.2" class="anchored" data-anchor-id="problemas-com-encoding"><span class="header-section-number">8.6.7.2</span> Problemas com Encoding</h4>
+<p>Quando você tem problemas com caracteres especiais (acentos, ç, ñ, etc.), geralmente é por causa de encoding:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># Exemplo de problema de encoding</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a>texto <span class="op">=</span> <span class="st">"Olá, mundo! Café, açúcar, coração"</span></span>
 <span id="cb42-3"><a href="#cb42-3"></a></span>
-<span id="cb42-4"><a href="#cb42-4"></a><span class="co"># salva a frase em um arquivo de texto</span></span>
-<span id="cb42-5"><a href="#cb42-5"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frase.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> arquivo:</span>
-<span id="cb42-6"><a href="#cb42-6"></a>    arquivo.write(frase)</span>
+<span id="cb42-4"><a href="#cb42-4"></a><span class="co"># Salvando com encoding UTF-8 (recomendado)</span></span>
+<span id="cb42-5"><a href="#cb42-5"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"texto_utf8.txt"</span>, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb42-6"><a href="#cb42-6"></a>    arquivo.write(texto)</span>
 <span id="cb42-7"><a href="#cb42-7"></a></span>
-<span id="cb42-8"><a href="#cb42-8"></a><span class="co"># abre o arquivo de texto e exibe o conteúdo na tela</span></span>
-<span id="cb42-9"><a href="#cb42-9"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frase.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> arquivo:</span>
-<span id="cb42-10"><a href="#cb42-10"></a>    conteudo <span class="op">=</span> arquivo.read()</span>
-<span id="cb42-11"><a href="#cb42-11"></a>    <span class="bu">print</span>(<span class="st">"Conteúdo do arquivo:"</span>)</span>
-<span id="cb42-12"><a href="#cb42-12"></a>    <span class="bu">print</span>(conteudo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb42-8"><a href="#cb42-8"></a><span class="co"># Salvando com encoding ASCII (pode dar erro com acentos)</span></span>
+<span id="cb42-9"><a href="#cb42-9"></a><span class="cf">try</span>:</span>
+<span id="cb42-10"><a href="#cb42-10"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"texto_ascii.txt"</span>, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"ascii"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb42-11"><a href="#cb42-11"></a>        arquivo.write(texto)</span>
+<span id="cb42-12"><a href="#cb42-12"></a><span class="cf">except</span> <span class="pp">UnicodeEncodeError</span>:</span>
+<span id="cb42-13"><a href="#cb42-13"></a>    <span class="bu">print</span>(<span class="st">"Erro: ASCII não suporta acentos!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="ensure_ascii-no-json" class="level4" data-number="8.6.7.3">
+<h4 data-number="8.6.7.3" class="anchored" data-anchor-id="ensure_ascii-no-json"><span class="header-section-number">8.6.7.3</span> ensure_ascii no JSON</h4>
+<p>No JSON, o parâmetro <code>ensure_ascii</code> controla como caracteres especiais são tratados:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="im">import</span> json</span>
+<span id="cb43-2"><a href="#cb43-2"></a></span>
+<span id="cb43-3"><a href="#cb43-3"></a>dados <span class="op">=</span> {</span>
+<span id="cb43-4"><a href="#cb43-4"></a>    <span class="st">"nome"</span>: <span class="st">"José da Silva"</span>,</span>
+<span id="cb43-5"><a href="#cb43-5"></a>    <span class="st">"cidade"</span>: <span class="st">"São Paulo"</span>,</span>
+<span id="cb43-6"><a href="#cb43-6"></a>    <span class="st">"emoji"</span>: <span class="st">"😊"</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a>}</span>
+<span id="cb43-8"><a href="#cb43-8"></a></span>
+<span id="cb43-9"><a href="#cb43-9"></a><span class="co"># ensure_ascii=True (padrão) - converte caracteres especiais para escape</span></span>
+<span id="cb43-10"><a href="#cb43-10"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"dados_ascii.json"</span>, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb43-11"><a href="#cb43-11"></a>    json.dump(dados, arquivo, ensure_ascii<span class="op">=</span><span class="va">True</span>, indent<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb43-12"><a href="#cb43-12"></a></span>
+<span id="cb43-13"><a href="#cb43-13"></a><span class="co"># ensure_ascii=False - mantém caracteres especiais</span></span>
+<span id="cb43-14"><a href="#cb43-14"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"dados_utf8.json"</span>, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb43-15"><a href="#cb43-15"></a>    json.dump(dados, arquivo, ensure_ascii<span class="op">=</span><span class="va">False</span>, indent<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Diferença nos arquivos gerados:</strong></p>
+<ul>
+<li><code>dados_ascii.json</code>: <code>{"nome": "Jos\\u00e9 da Silva", "cidade": "S\\u00e3o Paulo"}</code></li>
+<li><code>dados_utf8.json</code>: <code>{"nome": "José da Silva", "cidade": "São Paulo"}</code></li>
+</ul>
+</section>
+<section id="boas-práticas-de-encoding" class="level4" data-number="8.6.7.4">
+<h4 data-number="8.6.7.4" class="anchored" data-anchor-id="boas-práticas-de-encoding"><span class="header-section-number">8.6.7.4</span> Boas Práticas de Encoding</h4>
+<ol type="1">
+<li><strong>Sempre especifique encoding</strong>: <code>encoding="utf-8"</code></li>
+<li><strong>Use UTF-8</strong>: Suporta todos os caracteres</li>
+<li><strong>Para JSON</strong>: Use <code>ensure_ascii=False</code> para manter acentos legíveis</li>
+<li><strong>Para compatibilidade</strong>: Use <code>ensure_ascii=True</code> se precisar de compatibilidade com sistemas antigos</li>
+</ol>
+<p><strong>2. Crie um código que peça para o usuário digitar uma frase. Salve o resultado em uma arquivo de texto. Depois, abra este arquivo de texto que salvou e mostre o resultado na tela.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># pede para o usuário digitar uma frase</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>frase <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma frase: "</span>)</span>
+<span id="cb44-3"><a href="#cb44-3"></a></span>
+<span id="cb44-4"><a href="#cb44-4"></a><span class="co"># salva a frase em um arquivo de texto</span></span>
+<span id="cb44-5"><a href="#cb44-5"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frase.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb44-6"><a href="#cb44-6"></a>    arquivo.write(frase)</span>
+<span id="cb44-7"><a href="#cb44-7"></a></span>
+<span id="cb44-8"><a href="#cb44-8"></a><span class="co"># abre o arquivo de texto e exibe o conteúdo na tela</span></span>
+<span id="cb44-9"><a href="#cb44-9"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frase.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb44-10"><a href="#cb44-10"></a>    conteudo <span class="op">=</span> arquivo.read()</span>
+<span id="cb44-11"><a href="#cb44-11"></a>    <span class="bu">print</span>(<span class="st">"Conteúdo do arquivo:"</span>)</span>
+<span id="cb44-12"><a href="#cb44-12"></a>    <span class="bu">print</span>(conteudo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Veja que a função <code>input()</code> para solicitar que o usuário digite uma frase. Em seguida, a salvamos em um arquivo de texto chamado <code>frase.txt</code> usando a abertura do arquivo em modo de escrita (<code>"w"</code>) e a função <code>write()</code>.</p>
 <p>Depois, abrimos o arquivo em modo de leitura (<code>"r"</code>) e o conteúdo é lido usando o método <code>read()</code> e salvo na variável <code>conteudo</code>, que é mostrada na tela com o <code>print(conteudo)</code>.</p>
 <p><strong>3. A partir do exercício 2 e após mostrar o resultado na tela, peça novamente para que o usuário digite uma nova frase. Adicione esta nova frase no mesmo arquivo de texto sem apagar o conteúdo que já estava lá, e mostre o resultado na tela.</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># pede para o usuário digitar uma frase</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a>frase <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma frase: "</span>)</span>
-<span id="cb43-3"><a href="#cb43-3"></a></span>
-<span id="cb43-4"><a href="#cb43-4"></a><span class="co"># salva a frase em um arquivo de texto</span></span>
-<span id="cb43-5"><a href="#cb43-5"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frase.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> arquivo:</span>
-<span id="cb43-6"><a href="#cb43-6"></a>    arquivo.write(frase)</span>
-<span id="cb43-7"><a href="#cb43-7"></a></span>
-<span id="cb43-8"><a href="#cb43-8"></a><span class="co"># abre o arquivo de texto e exibe o conteúdo na tela</span></span>
-<span id="cb43-9"><a href="#cb43-9"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frase.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> arquivo:</span>
-<span id="cb43-10"><a href="#cb43-10"></a>    conteudo <span class="op">=</span> arquivo.read()</span>
-<span id="cb43-11"><a href="#cb43-11"></a>    <span class="bu">print</span>(<span class="st">"Conteúdo do arquivo:"</span>)</span>
-<span id="cb43-12"><a href="#cb43-12"></a>    <span class="bu">print</span>(conteudo)</span>
-<span id="cb43-13"><a href="#cb43-13"></a></span>
-<span id="cb43-14"><a href="#cb43-14"></a><span class="co"># Pede ao usuário para digitar uma outra frase</span></span>
-<span id="cb43-15"><a href="#cb43-15"></a>frase <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma frase: "</span>)</span>
-<span id="cb43-16"><a href="#cb43-16"></a></span>
-<span id="cb43-17"><a href="#cb43-17"></a><span class="co"># Abre o arquivo em modo "a" para adicionar a nova frase</span></span>
-<span id="cb43-18"><a href="#cb43-18"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frases.txt"</span>, <span class="st">"a"</span>) <span class="im">as</span> arquivo:</span>
-<span id="cb43-19"><a href="#cb43-19"></a><span class="co"># Adiciona a nova frase ao arquivo</span></span>
-<span id="cb43-20"><a href="#cb43-20"></a>    arquivo.write(frase <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb43-21"><a href="#cb43-21"></a></span>
-<span id="cb43-22"><a href="#cb43-22"></a><span class="co"># Abre o arquivo novamente em modo "r" (leitura)</span></span>
-<span id="cb43-23"><a href="#cb43-23"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frases.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> arquivo:</span>
-<span id="cb43-24"><a href="#cb43-24"></a><span class="co"># Lê o conteúdo do arquivo e mostra na tela</span></span>
-<span id="cb43-25"><a href="#cb43-25"></a>    conteudo <span class="op">=</span> arquivo.read()</span>
-<span id="cb43-26"><a href="#cb43-26"></a>    <span class="bu">print</span>(conteudo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a><span class="co"># pede para o usuário digitar uma frase</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a>frase <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma frase: "</span>)</span>
+<span id="cb45-3"><a href="#cb45-3"></a></span>
+<span id="cb45-4"><a href="#cb45-4"></a><span class="co"># salva a frase em um arquivo de texto</span></span>
+<span id="cb45-5"><a href="#cb45-5"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frase.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb45-6"><a href="#cb45-6"></a>    arquivo.write(frase)</span>
+<span id="cb45-7"><a href="#cb45-7"></a></span>
+<span id="cb45-8"><a href="#cb45-8"></a><span class="co"># abre o arquivo de texto e exibe o conteúdo na tela</span></span>
+<span id="cb45-9"><a href="#cb45-9"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frase.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb45-10"><a href="#cb45-10"></a>    conteudo <span class="op">=</span> arquivo.read()</span>
+<span id="cb45-11"><a href="#cb45-11"></a>    <span class="bu">print</span>(<span class="st">"Conteúdo do arquivo:"</span>)</span>
+<span id="cb45-12"><a href="#cb45-12"></a>    <span class="bu">print</span>(conteudo)</span>
+<span id="cb45-13"><a href="#cb45-13"></a></span>
+<span id="cb45-14"><a href="#cb45-14"></a><span class="co"># Pede ao usuário para digitar uma outra frase</span></span>
+<span id="cb45-15"><a href="#cb45-15"></a>frase <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma frase: "</span>)</span>
+<span id="cb45-16"><a href="#cb45-16"></a></span>
+<span id="cb45-17"><a href="#cb45-17"></a><span class="co"># Abre o arquivo em modo "a" para adicionar a nova frase</span></span>
+<span id="cb45-18"><a href="#cb45-18"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frases.txt"</span>, <span class="st">"a"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb45-19"><a href="#cb45-19"></a><span class="co"># Adiciona a nova frase ao arquivo</span></span>
+<span id="cb45-20"><a href="#cb45-20"></a>    arquivo.write(frase <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb45-21"><a href="#cb45-21"></a></span>
+<span id="cb45-22"><a href="#cb45-22"></a><span class="co"># Abre o arquivo novamente em modo "r" (leitura)</span></span>
+<span id="cb45-23"><a href="#cb45-23"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"frases.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb45-24"><a href="#cb45-24"></a><span class="co"># Lê o conteúdo do arquivo e mostra na tela</span></span>
+<span id="cb45-25"><a href="#cb45-25"></a>    conteudo <span class="op">=</span> arquivo.read()</span>
+<span id="cb45-26"><a href="#cb45-26"></a>    <span class="bu">print</span>(conteudo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Perceba principalmente o que vem depois do comentário <em>“Pede ao usuário para digitar uma outra frase”</em>. Para adicionar a nova frase ao arquivo de texto sem apagar o conteúdo já existente, usamos o modo <code>"a"</code> (append) na abertura do arquivo. Se usássemos o <code>"w"</code> de volta iríamos sobrescrever o que já havia sido salvo anteriormente.</p>
 <p><strong>4. Crie uma lista com números de 1 a 10 e, em seguida, crie uma segunda lista contendo somente os números pares. Salve somente a lista dos números pares em um arquivo pickle. Depois, abra novamente o arquivo pickle que salvou e mostre na tela o seu conteúdo.</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="im">import</span> pickle</span>
-<span id="cb44-2"><a href="#cb44-2"></a></span>
-<span id="cb44-3"><a href="#cb44-3"></a><span class="co"># cria a lista de números de 1 a 10</span></span>
-<span id="cb44-4"><a href="#cb44-4"></a>numeros <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>))</span>
-<span id="cb44-5"><a href="#cb44-5"></a></span>
-<span id="cb44-6"><a href="#cb44-6"></a><span class="co"># filtra os números pares</span></span>
-<span id="cb44-7"><a href="#cb44-7"></a>numeros_pares <span class="op">=</span> []</span>
-<span id="cb44-8"><a href="#cb44-8"></a><span class="cf">for</span> num <span class="kw">in</span> numeros:</span>
-<span id="cb44-9"><a href="#cb44-9"></a>    <span class="cf">if</span> num <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb44-10"><a href="#cb44-10"></a>        numeros_pares.append(num)</span>
-<span id="cb44-11"><a href="#cb44-11"></a></span>
-<span id="cb44-12"><a href="#cb44-12"></a><span class="co"># salva a lista de números pares em um arquivo pickle</span></span>
-<span id="cb44-13"><a href="#cb44-13"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"numeros_pares.pickle"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
-<span id="cb44-14"><a href="#cb44-14"></a>    pickle.dump(numeros_pares, f)</span>
-<span id="cb44-15"><a href="#cb44-15"></a></span>
-<span id="cb44-16"><a href="#cb44-16"></a><span class="co"># abre o arquivo pickle e mostra o conteúdo na tela</span></span>
-<span id="cb44-17"><a href="#cb44-17"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"numeros_pares.pickle"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
-<span id="cb44-18"><a href="#cb44-18"></a>    numeros_pares_lidos <span class="op">=</span> pickle.load(f)</span>
-<span id="cb44-19"><a href="#cb44-19"></a>    <span class="bu">print</span>(numeros_pares_lidos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a><span class="im">import</span> pickle</span>
+<span id="cb46-2"><a href="#cb46-2"></a></span>
+<span id="cb46-3"><a href="#cb46-3"></a><span class="co"># cria a lista de números de 1 a 10</span></span>
+<span id="cb46-4"><a href="#cb46-4"></a>numeros <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>))</span>
+<span id="cb46-5"><a href="#cb46-5"></a></span>
+<span id="cb46-6"><a href="#cb46-6"></a><span class="co"># filtra os números pares</span></span>
+<span id="cb46-7"><a href="#cb46-7"></a>numeros_pares <span class="op">=</span> []</span>
+<span id="cb46-8"><a href="#cb46-8"></a><span class="cf">for</span> num <span class="kw">in</span> numeros:</span>
+<span id="cb46-9"><a href="#cb46-9"></a>    <span class="cf">if</span> num <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb46-10"><a href="#cb46-10"></a>        numeros_pares.append(num)</span>
+<span id="cb46-11"><a href="#cb46-11"></a></span>
+<span id="cb46-12"><a href="#cb46-12"></a><span class="co"># salva a lista de números pares em um arquivo pickle</span></span>
+<span id="cb46-13"><a href="#cb46-13"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"numeros_pares.pickle"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb46-14"><a href="#cb46-14"></a>    pickle.dump(numeros_pares, f)</span>
+<span id="cb46-15"><a href="#cb46-15"></a></span>
+<span id="cb46-16"><a href="#cb46-16"></a><span class="co"># abre o arquivo pickle e mostra o conteúdo na tela</span></span>
+<span id="cb46-17"><a href="#cb46-17"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"numeros_pares.pickle"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb46-18"><a href="#cb46-18"></a>    numeros_pares_lidos <span class="op">=</span> pickle.load(f)</span>
+<span id="cb46-19"><a href="#cb46-19"></a>    <span class="bu">print</span>(numeros_pares_lidos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Veja que salvamos a lista <code>numeros_pares</code> em um arquivo pickle chamado <code>numeros_pares.pickle</code>. Como é um arquivo binário (isto é: não é legível por humanos ao abrir no bloco de notas), salvamos este arquivo usando <code>"wb"</code> e lemos usando <code>"rb"</code> (perceba a letra <code>b</code> presente em ambos os casos). Por fim, o código abre novamente o arquivo pickle com o uso do <code>pickle.load()</code> e mostra o conteúdo na tela. O resultado esperado é a exibição na tela da lista <code>[2, 4, 6, 8, 10]</code>.</p>
 <p><strong>5. Modifique o código do exercício 4 para que salve, dentro de um único arquivo, as duas listas. Depois, abra novamente o arquivo pickle que salvou e mostre na tela o seu conteúdo.</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a><span class="im">import</span> pickle</span>
-<span id="cb45-2"><a href="#cb45-2"></a></span>
-<span id="cb45-3"><a href="#cb45-3"></a><span class="co"># cria a lista de números de 1 a 10</span></span>
-<span id="cb45-4"><a href="#cb45-4"></a>numeros <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>))</span>
-<span id="cb45-5"><a href="#cb45-5"></a></span>
-<span id="cb45-6"><a href="#cb45-6"></a><span class="co"># filtra os números pares</span></span>
-<span id="cb45-7"><a href="#cb45-7"></a>numeros_pares <span class="op">=</span> []</span>
-<span id="cb45-8"><a href="#cb45-8"></a><span class="cf">for</span> num <span class="kw">in</span> numeros:</span>
-<span id="cb45-9"><a href="#cb45-9"></a>    <span class="cf">if</span> num <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb45-10"><a href="#cb45-10"></a>        numeros_pares.append(num)</span>
-<span id="cb45-11"><a href="#cb45-11"></a></span>
-<span id="cb45-12"><a href="#cb45-12"></a><span class="co"># salva a lista de números pares em um arquivo pickle</span></span>
-<span id="cb45-13"><a href="#cb45-13"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"numeros_pares.pickle"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
-<span id="cb45-14"><a href="#cb45-14"></a>    pickle.dump([numeros, numeros_pares], f)</span>
-<span id="cb45-15"><a href="#cb45-15"></a></span>
-<span id="cb45-16"><a href="#cb45-16"></a><span class="co"># abre o arquivo pickle e mostra o conteúdo na tela</span></span>
-<span id="cb45-17"><a href="#cb45-17"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"numeros_pares.pickle"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
-<span id="cb45-18"><a href="#cb45-18"></a>    numeros_lidos, numeros_pares_lidos <span class="op">=</span> pickle.load(f)</span>
-<span id="cb45-19"><a href="#cb45-19"></a>    <span class="bu">print</span>(numeros_lidos)</span>
-<span id="cb45-20"><a href="#cb45-20"></a>    <span class="bu">print</span>(numeros_pares_lidos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a><span class="im">import</span> pickle</span>
+<span id="cb47-2"><a href="#cb47-2"></a></span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="co"># cria a lista de números de 1 a 10</span></span>
+<span id="cb47-4"><a href="#cb47-4"></a>numeros <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>))</span>
+<span id="cb47-5"><a href="#cb47-5"></a></span>
+<span id="cb47-6"><a href="#cb47-6"></a><span class="co"># filtra os números pares</span></span>
+<span id="cb47-7"><a href="#cb47-7"></a>numeros_pares <span class="op">=</span> []</span>
+<span id="cb47-8"><a href="#cb47-8"></a><span class="cf">for</span> num <span class="kw">in</span> numeros:</span>
+<span id="cb47-9"><a href="#cb47-9"></a>    <span class="cf">if</span> num <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb47-10"><a href="#cb47-10"></a>        numeros_pares.append(num)</span>
+<span id="cb47-11"><a href="#cb47-11"></a></span>
+<span id="cb47-12"><a href="#cb47-12"></a><span class="co"># salva a lista de números pares em um arquivo pickle</span></span>
+<span id="cb47-13"><a href="#cb47-13"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"numeros_pares.pickle"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb47-14"><a href="#cb47-14"></a>    pickle.dump([numeros, numeros_pares], f)</span>
+<span id="cb47-15"><a href="#cb47-15"></a></span>
+<span id="cb47-16"><a href="#cb47-16"></a><span class="co"># abre o arquivo pickle e mostra o conteúdo na tela</span></span>
+<span id="cb47-17"><a href="#cb47-17"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"numeros_pares.pickle"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb47-18"><a href="#cb47-18"></a>    numeros_lidos, numeros_pares_lidos <span class="op">=</span> pickle.load(f)</span>
+<span id="cb47-19"><a href="#cb47-19"></a>    <span class="bu">print</span>(numeros_lidos)</span>
+<span id="cb47-20"><a href="#cb47-20"></a>    <span class="bu">print</span>(numeros_pares_lidos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>É muito provável que você tenha dificuldades para fazer este aqui. Afinal, em nenhum momento lhe disse como salvaríamos mais de uma variável em um arquivo pickle. Sem problemas - a ideia aqui é a de demonstrar, mesmo. Perceba duas grandes modificações em relação ao código anterior:</p>
 <ul>
 <li>O <code>pickle.dump([numeros, numeros_pares], f)</code>: veja o <code>[numeros, numeros_pares]</code>. Para salvar mais de uma variável em um mesmo arquivo pickle basta informar todas as variáveis em uma lista.</li>
 <li>Para ler estas variáveis, basta informar a mesma quantidade na hora de chamar o <code>pickle.load()</code>. Como salvamos duas variáveis, teremos que armazenar o resultado do <code>pickle.load()</code> em duas variáveisl. É por isso que temos o <code>numeros_lidos, numeros_pares_lidos</code> na antepenúltima linha.</li>
 </ul>
+</section>
+</section>
+<section id="comparação-de-formatos-csv-vs-json-vs-txt" class="level3" data-number="8.6.8">
+<h3 data-number="8.6.8" class="anchored" data-anchor-id="comparação-de-formatos-csv-vs-json-vs-txt"><span class="header-section-number">8.6.8</span> Comparação de Formatos: CSV vs JSON vs TXT</h3>
+<p>Agora que você conhece os principais formatos de arquivo, é importante entender quando usar cada um no mercado de trabalho:</p>
+<section id="arquivo-txt-texto-simples" class="level4" data-number="8.6.8.1">
+<h4 data-number="8.6.8.1" class="anchored" data-anchor-id="arquivo-txt-texto-simples"><span class="header-section-number">8.6.8.1</span> Arquivo TXT (Texto Simples)</h4>
+<p><strong>Características:</strong> - Formato mais simples - Apenas texto puro - Sem estrutura específica - Leve e rápido</p>
+<p><strong>Quando usar:</strong> - Logs de sistema - Documentação simples - Dados não estruturados - Arquivos de configuração básicos</p>
+<p><strong>Exemplo de uso profissional:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a><span class="co"># Log de sistema</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sistema.log"</span>, <span class="st">"a"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> log:</span>
+<span id="cb48-3"><a href="#cb48-3"></a>    log.write(<span class="ss">f"[</span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">}</span><span class="ss">] Usuário fez login</span><span class="ch">\n</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="arquivo-csv-comma-separated-values" class="level4" data-number="8.6.8.2">
+<h4 data-number="8.6.8.2" class="anchored" data-anchor-id="arquivo-csv-comma-separated-values"><span class="header-section-number">8.6.8.2</span> Arquivo CSV (Comma-Separated Values)</h4>
+<p><strong>Características:</strong> - Estrutura tabular (linhas e colunas) - Separado por vírgulas (ou outros delimitadores) - Excelente para dados numéricos - Amplamente suportado</p>
+<p><strong>Quando usar:</strong> - Planilhas e dados tabulares - Relatórios financeiros - Dados de sensores - Exportação de bancos de dados - Análise de dados com pandas</p>
+<p><strong>Exemplo de uso profissional:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a><span class="co"># Relatório de vendas</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="im">import</span> csv</span>
+<span id="cb49-3"><a href="#cb49-3"></a>vendas <span class="op">=</span> [</span>
+<span id="cb49-4"><a href="#cb49-4"></a>    [<span class="st">"Produto"</span>, <span class="st">"Quantidade"</span>, <span class="st">"Valor"</span>],</span>
+<span id="cb49-5"><a href="#cb49-5"></a>    [<span class="st">"Notebook"</span>, <span class="st">"5"</span>, <span class="st">"25000.00"</span>],</span>
+<span id="cb49-6"><a href="#cb49-6"></a>    [<span class="st">"Mouse"</span>, <span class="st">"20"</span>, <span class="st">"500.00"</span>]</span>
+<span id="cb49-7"><a href="#cb49-7"></a>]</span>
+<span id="cb49-8"><a href="#cb49-8"></a></span>
+<span id="cb49-9"><a href="#cb49-9"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"vendas.csv"</span>, <span class="st">"w"</span>, newline<span class="op">=</span><span class="st">""</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb49-10"><a href="#cb49-10"></a>    writer <span class="op">=</span> csv.writer(arquivo)</span>
+<span id="cb49-11"><a href="#cb49-11"></a>    writer.writerows(vendas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="arquivo-json-javascript-object-notation" class="level4" data-number="8.6.8.3">
+<h4 data-number="8.6.8.3" class="anchored" data-anchor-id="arquivo-json-javascript-object-notation"><span class="header-section-number">8.6.8.3</span> Arquivo JSON (JavaScript Object Notation)</h4>
+<p><strong>Características:</strong> - Estrutura hierárquica (chave-valor) - Suporta tipos de dados complexos - Fácil de ler e escrever - Padrão da web</p>
+<p><strong>Quando usar:</strong> - APIs web (REST, GraphQL) - Configurações de aplicação - Dados de frontend/backend - Bancos de dados NoSQL - Microserviços</p>
+<p><strong>Exemplo de uso profissional:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="co"># API de e-commerce</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a><span class="im">import</span> json</span>
+<span id="cb50-3"><a href="#cb50-3"></a></span>
+<span id="cb50-4"><a href="#cb50-4"></a>produto <span class="op">=</span> {</span>
+<span id="cb50-5"><a href="#cb50-5"></a>    <span class="st">"id"</span>: <span class="dv">123</span>,</span>
+<span id="cb50-6"><a href="#cb50-6"></a>    <span class="st">"nome"</span>: <span class="st">"Smartphone XYZ"</span>,</span>
+<span id="cb50-7"><a href="#cb50-7"></a>    <span class="st">"preco"</span>: <span class="fl">1299.99</span>,</span>
+<span id="cb50-8"><a href="#cb50-8"></a>    <span class="st">"categoria"</span>: <span class="st">"Eletrônicos"</span>,</span>
+<span id="cb50-9"><a href="#cb50-9"></a>    <span class="st">"especificacoes"</span>: {</span>
+<span id="cb50-10"><a href="#cb50-10"></a>        <span class="st">"tela"</span>: <span class="st">"6.1 polegadas"</span>,</span>
+<span id="cb50-11"><a href="#cb50-11"></a>        <span class="st">"memoria"</span>: <span class="st">"128GB"</span>,</span>
+<span id="cb50-12"><a href="#cb50-12"></a>        <span class="st">"cor"</span>: [<span class="st">"Preto"</span>, <span class="st">"Branco"</span>, <span class="st">"Azul"</span>]</span>
+<span id="cb50-13"><a href="#cb50-13"></a>    },</span>
+<span id="cb50-14"><a href="#cb50-14"></a>    <span class="st">"disponivel"</span>: <span class="va">True</span></span>
+<span id="cb50-15"><a href="#cb50-15"></a>}</span>
+<span id="cb50-16"><a href="#cb50-16"></a></span>
+<span id="cb50-17"><a href="#cb50-17"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"produto.json"</span>, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> arquivo:</span>
+<span id="cb50-18"><a href="#cb50-18"></a>    json.dump(produto, arquivo, ensure_ascii<span class="op">=</span><span class="va">False</span>, indent<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="comparação-prática" class="level4" data-number="8.6.8.4">
+<h4 data-number="8.6.8.4" class="anchored" data-anchor-id="comparação-prática"><span class="header-section-number">8.6.8.4</span> Comparação Prática</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Aspecto</th>
+<th>TXT</th>
+<th>CSV</th>
+<th>JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Estrutura</strong></td>
+<td>Não estruturado</td>
+<td>Tabular</td>
+<td>Hierárquica</td>
+</tr>
+<tr class="even">
+<td><strong>Tamanho</strong></td>
+<td>Menor</td>
+<td>Médio</td>
+<td>Maior</td>
+</tr>
+<tr class="odd">
+<td><strong>Legibilidade</strong></td>
+<td>Simples</td>
+<td>Boa</td>
+<td>Excelente</td>
+</tr>
+<tr class="even">
+<td><strong>Processamento</strong></td>
+<td>Manual</td>
+<td>Fácil</td>
+<td>Muito fácil</td>
+</tr>
+<tr class="odd">
+<td><strong>APIs Web</strong></td>
+<td>Não</td>
+<td>Raramente</td>
+<td>Sim</td>
+</tr>
+<tr class="even">
+<td><strong>Excel</strong></td>
+<td>Não</td>
+<td>Sim</td>
+<td>Não nativo</td>
+</tr>
+<tr class="odd">
+<td><strong>Bancos de Dados</strong></td>
+<td>Não</td>
+<td>Sim</td>
+<td>Sim</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cenários-reais-no-mercado" class="level4" data-number="8.6.8.5">
+<h4 data-number="8.6.8.5" class="anchored" data-anchor-id="cenários-reais-no-mercado"><span class="header-section-number">8.6.8.5</span> Cenários Reais no Mercado</h4>
+<p><strong>1. E-commerce:</strong> - <strong>CSV</strong>: Relatórios de vendas, estoque - <strong>JSON</strong>: APIs, configurações de produtos - <strong>TXT</strong>: Logs de sistema</p>
+<p><strong>2. Análise de Dados:</strong> - <strong>CSV</strong>: Dados para pandas, Excel - <strong>JSON</strong>: Dados de APIs, configurações - <strong>TXT</strong>: Dados brutos de sensores</p>
+<p><strong>3. Desenvolvimento Web:</strong> - <strong>JSON</strong>: Comunicação frontend/backend - <strong>CSV</strong>: Exportação de relatórios - <strong>TXT</strong>: Logs de aplicação</p>
+<p><strong>4. Machine Learning:</strong> - <strong>CSV</strong>: Datasets tabulares - <strong>JSON</strong>: Configurações de modelo - <strong>TXT</strong>: Dados de texto para NLP</p>
+</section>
+<section id="dicas-para-escolher-o-formato" class="level4" data-number="8.6.8.6">
+<h4 data-number="8.6.8.6" class="anchored" data-anchor-id="dicas-para-escolher-o-formato"><span class="header-section-number">8.6.8.6</span> Dicas para Escolher o Formato</h4>
+<ol type="1">
+<li><strong>Use TXT quando:</strong>
+<ul>
+<li>Dados são simples e não estruturados</li>
+<li>Precisa de máximo desempenho</li>
+<li>Arquivo é temporário</li>
+</ul></li>
+<li><strong>Use CSV quando:</strong>
+<ul>
+<li>Dados são tabulares</li>
+<li>Precisa compatibilidade com Excel</li>
+<li>Trabalha com análise de dados</li>
+</ul></li>
+<li><strong>Use JSON quando:</strong>
+<ul>
+<li>Dados têm estrutura complexa</li>
+<li>Trabalha com APIs</li>
+<li>Precisa de flexibilidade</li>
+</ul></li>
+</ol>
+<blockquote class="blockquote">
+<p>💡 <strong>Dica Profissional:</strong> No mercado de trabalho, JSON é o formato mais usado para comunicação entre sistemas, CSV para análise de dados, e TXT para logs e configurações simples.</p>
+</blockquote>
+</section>
 </section>
 </section>
 <section id="referências-bibliográficas" class="level2" data-number="8.7">

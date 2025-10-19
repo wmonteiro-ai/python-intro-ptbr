@@ -6,8 +6,8 @@ root: intro
 parts:
 - caption: "Parte 1: Sabendo onde estamos"
   chapters:
-  - file: 01-Introducao-Ambiente.ipynb
   - file: 02-Introducao-Algoritmos.ipynb
+  - file: 01-Introducao-Ambiente.ipynb
 - caption: "Parte 2: Fazendo coisas legais"
   chapters:
   - file: 03-Variaveis-IO.ipynb

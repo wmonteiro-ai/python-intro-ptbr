@@ -1202,6 +1202,462 @@ window.Quarto = {
 <li><strong>Linha 9:</strong> <code>print(f"A área é {area}")</code> - Mostra o resultado formatado</li>
 </ul>
 </section>
+<section id="médio-nível-3-1" class="level4" data-number="3.9.6.3">
+<h4 data-number="3.9.6.3" class="anchored" data-anchor-id="médio-nível-3-1"><span class="header-section-number">3.9.6.3</span> <strong>MÉDIO</strong> (Nível 3)</h4>
+<p><strong>9. Conversor de Temperatura</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># Solicita temperatura e escala</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>temp <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a temperatura: "</span>))</span>
+<span id="cb35-3"><a href="#cb35-3"></a>escala <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite a escala (C/F): "</span>).upper()</span>
+<span id="cb35-4"><a href="#cb35-4"></a></span>
+<span id="cb35-5"><a href="#cb35-5"></a><span class="co"># Converte baseado na escala</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a><span class="cf">if</span> escala <span class="op">==</span> <span class="st">"C"</span>:</span>
+<span id="cb35-7"><a href="#cb35-7"></a>    fahrenheit <span class="op">=</span> (temp <span class="op">*</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span>) <span class="op">+</span> <span class="dv">32</span></span>
+<span id="cb35-8"><a href="#cb35-8"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>temp<span class="sc">}</span><span class="ss">°C = </span><span class="sc">{</span>fahrenheit<span class="sc">:.1f}</span><span class="ss">°F"</span>)</span>
+<span id="cb35-9"><a href="#cb35-9"></a><span class="cf">elif</span> escala <span class="op">==</span> <span class="st">"F"</span>:</span>
+<span id="cb35-10"><a href="#cb35-10"></a>    celsius <span class="op">=</span> (temp <span class="op">-</span> <span class="dv">32</span>) <span class="op">*</span> <span class="dv">5</span><span class="op">/</span><span class="dv">9</span></span>
+<span id="cb35-11"><a href="#cb35-11"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>temp<span class="sc">}</span><span class="ss">°F = </span><span class="sc">{</span>celsius<span class="sc">:.1f}</span><span class="ss">°C"</span>)</span>
+<span id="cb35-12"><a href="#cb35-12"></a><span class="cf">else</span>:</span>
+<span id="cb35-13"><a href="#cb35-13"></a>    <span class="bu">print</span>(<span class="st">"Escala inválida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>temp = float(input("Digite a temperatura: "))</code> - Pede temperatura e converte para float</li>
+<li><strong>Linha 3:</strong> <code>escala = input("Digite a escala (C/F): ").upper()</code> - Pede escala e converte para maiúscula</li>
+<li><strong>Linha 6:</strong> <code>if escala == "C":</code> - Verifica se é Celsius</li>
+<li><strong>Linha 7:</strong> <code>fahrenheit = (temp * 9/5) + 32</code> - Converte Celsius para Fahrenheit</li>
+<li><strong>Linha 8:</strong> <code>print(f"{temp}°C = {fahrenheit:.1f}°F")</code> - Mostra resultado formatado</li>
+<li><strong>Linha 9:</strong> <code>elif escala == "F":</code> - Senão, se for Fahrenheit</li>
+<li><strong>Linha 10:</strong> <code>celsius = (temp - 32) * 5/9</code> - Converte Fahrenheit para Celsius</li>
+<li><strong>Linha 11:</strong> <code>print(f"{temp}°F = {celsius:.1f}°C")</code> - Mostra resultado formatado</li>
+</ul>
+<p><strong>10. Calculadora de IMC</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># Solicita peso e altura</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a>peso <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite seu peso (kg): "</span>))</span>
+<span id="cb36-3"><a href="#cb36-3"></a>altura <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite sua altura (m): "</span>))</span>
+<span id="cb36-4"><a href="#cb36-4"></a></span>
+<span id="cb36-5"><a href="#cb36-5"></a><span class="co"># Calcula IMC</span></span>
+<span id="cb36-6"><a href="#cb36-6"></a>imc <span class="op">=</span> peso <span class="op">/</span> (altura <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb36-7"><a href="#cb36-7"></a></span>
+<span id="cb36-8"><a href="#cb36-8"></a><span class="co"># Classifica IMC</span></span>
+<span id="cb36-9"><a href="#cb36-9"></a><span class="cf">if</span> imc <span class="op">&lt;</span> <span class="fl">18.5</span>:</span>
+<span id="cb36-10"><a href="#cb36-10"></a>    classificacao <span class="op">=</span> <span class="st">"Abaixo do peso"</span></span>
+<span id="cb36-11"><a href="#cb36-11"></a><span class="cf">elif</span> imc <span class="op">&lt;</span> <span class="dv">25</span>:</span>
+<span id="cb36-12"><a href="#cb36-12"></a>    classificacao <span class="op">=</span> <span class="st">"Peso normal"</span></span>
+<span id="cb36-13"><a href="#cb36-13"></a><span class="cf">elif</span> imc <span class="op">&lt;</span> <span class="dv">30</span>:</span>
+<span id="cb36-14"><a href="#cb36-14"></a>    classificacao <span class="op">=</span> <span class="st">"Sobrepeso"</span></span>
+<span id="cb36-15"><a href="#cb36-15"></a><span class="cf">else</span>:</span>
+<span id="cb36-16"><a href="#cb36-16"></a>    classificacao <span class="op">=</span> <span class="st">"Obesidade"</span></span>
+<span id="cb36-17"><a href="#cb36-17"></a></span>
+<span id="cb36-18"><a href="#cb36-18"></a><span class="bu">print</span>(<span class="ss">f"Seu IMC é </span><span class="sc">{</span>imc<span class="sc">:.1f}</span><span class="ss"> - </span><span class="sc">{</span>classificacao<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>peso = float(input("Digite seu peso (kg): "))</code> - Pede peso e converte para float</li>
+<li><strong>Linha 3:</strong> <code>altura = float(input("Digite sua altura (m): "))</code> - Pede altura e converte para float</li>
+<li><strong>Linha 6:</strong> <code>imc = peso / (altura ** 2)</code> - Calcula IMC (peso dividido pela altura ao quadrado)</li>
+<li><strong>Linha 9:</strong> <code>if imc &lt; 18.5:</code> - Verifica se está abaixo do peso</li>
+<li><strong>Linha 10:</strong> <code>classificacao = "Abaixo do peso"</code> - Define classificação</li>
+<li><strong>Linha 11:</strong> <code>elif imc &lt; 25:</code> - Senão, se está no peso normal</li>
+<li><strong>Linha 12:</strong> <code>classificacao = "Peso normal"</code> - Define classificação</li>
+<li><strong>Linha 13:</strong> <code>elif imc &lt; 30:</code> - Senão, se está com sobrepeso</li>
+<li><strong>Linha 14:</strong> <code>classificacao = "Sobrepeso"</code> - Define classificação</li>
+<li><strong>Linha 15:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 16:</strong> <code>classificacao = "Obesidade"</code> - Define classificação</li>
+<li><strong>Linha 18:</strong> <code>print(f"Seu IMC é {imc:.1f} - {classificacao}")</code> - Mostra resultado formatado</li>
+</ul>
+<p><strong>11. Verificador de Ano Bissexto</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># Solicita ano</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>ano <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite um ano: "</span>))</span>
+<span id="cb37-3"><a href="#cb37-3"></a></span>
+<span id="cb37-4"><a href="#cb37-4"></a><span class="co"># Verifica se é bissexto</span></span>
+<span id="cb37-5"><a href="#cb37-5"></a><span class="cf">if</span> (ano <span class="op">%</span> <span class="dv">4</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> ano <span class="op">%</span> <span class="dv">100</span> <span class="op">!=</span> <span class="dv">0</span>) <span class="kw">or</span> (ano <span class="op">%</span> <span class="dv">400</span> <span class="op">==</span> <span class="dv">0</span>):</span>
+<span id="cb37-6"><a href="#cb37-6"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>ano<span class="sc">}</span><span class="ss"> é bissexto"</span>)</span>
+<span id="cb37-7"><a href="#cb37-7"></a><span class="cf">else</span>:</span>
+<span id="cb37-8"><a href="#cb37-8"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>ano<span class="sc">}</span><span class="ss"> não é bissexto"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>ano = int(input("Digite um ano: "))</code> - Pede ano e converte para inteiro</li>
+<li><strong>Linha 5:</strong> <code>if (ano % 4 == 0 and ano % 100 != 0) or (ano % 400 == 0):</code> - Verifica condições para ano bissexto</li>
+<li><strong>Linha 6:</strong> <code>print(f"{ano} é bissexto")</code> - Se for bissexto, mostra esta mensagem</li>
+<li><strong>Linha 7:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 8:</strong> <code>print(f"{ano} não é bissexto")</code> - Mostra que não é bissexto</li>
+</ul>
+<p><strong>12. Calculadora de Desconto</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># Solicita preço e desconto</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>preco <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o preço: R$ "</span>))</span>
+<span id="cb38-3"><a href="#cb38-3"></a>desconto <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o desconto (%): "</span>))</span>
+<span id="cb38-4"><a href="#cb38-4"></a></span>
+<span id="cb38-5"><a href="#cb38-5"></a><span class="co"># Calcula preço com desconto</span></span>
+<span id="cb38-6"><a href="#cb38-6"></a>valor_desconto <span class="op">=</span> preco <span class="op">*</span> (desconto <span class="op">/</span> <span class="dv">100</span>)</span>
+<span id="cb38-7"><a href="#cb38-7"></a>preco_final <span class="op">=</span> preco <span class="op">-</span> valor_desconto</span>
+<span id="cb38-8"><a href="#cb38-8"></a></span>
+<span id="cb38-9"><a href="#cb38-9"></a><span class="bu">print</span>(<span class="ss">f"Preço original: R$ </span><span class="sc">{</span>preco<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb38-10"><a href="#cb38-10"></a><span class="bu">print</span>(<span class="ss">f"Desconto: R$ </span><span class="sc">{</span>valor_desconto<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb38-11"><a href="#cb38-11"></a><span class="bu">print</span>(<span class="ss">f"Preço final: R$ </span><span class="sc">{</span>preco_final<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>preco = float(input("Digite o preço: R$ "))</code> - Pede preço e converte para float</li>
+<li><strong>Linha 3:</strong> <code>desconto = float(input("Digite o desconto (%): "))</code> - Pede desconto e converte para float</li>
+<li><strong>Linha 6:</strong> <code>valor_desconto = preco * (desconto / 100)</code> - Calcula valor do desconto</li>
+<li><strong>Linha 7:</strong> <code>preco_final = preco - valor_desconto</code> - Calcula preço final</li>
+<li><strong>Linha 9:</strong> <code>print(f"Preço original: R$ {preco:.2f}")</code> - Mostra preço original</li>
+<li><strong>Linha 10:</strong> <code>print(f"Desconto: R$ {valor_desconto:.2f}")</code> - Mostra valor do desconto</li>
+<li><strong>Linha 11:</strong> <code>print(f"Preço final: R$ {preco_final:.2f}")</code> - Mostra preço final</li>
+</ul>
+<p><strong>13. Verificador de Triângulo</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="co"># Solicita três lados</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a>lado1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o primeiro lado: "</span>))</span>
+<span id="cb39-3"><a href="#cb39-3"></a>lado2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o segundo lado: "</span>))</span>
+<span id="cb39-4"><a href="#cb39-4"></a>lado3 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o terceiro lado: "</span>))</span>
+<span id="cb39-5"><a href="#cb39-5"></a></span>
+<span id="cb39-6"><a href="#cb39-6"></a><span class="co"># Verifica se pode formar triângulo</span></span>
+<span id="cb39-7"><a href="#cb39-7"></a><span class="cf">if</span> (lado1 <span class="op">+</span> lado2 <span class="op">&gt;</span> lado3) <span class="kw">and</span> (lado1 <span class="op">+</span> lado3 <span class="op">&gt;</span> lado2) <span class="kw">and</span> (lado2 <span class="op">+</span> lado3 <span class="op">&gt;</span> lado1):</span>
+<span id="cb39-8"><a href="#cb39-8"></a>    <span class="bu">print</span>(<span class="st">"Pode formar um triângulo"</span>)</span>
+<span id="cb39-9"><a href="#cb39-9"></a>    </span>
+<span id="cb39-10"><a href="#cb39-10"></a>    <span class="co"># Verifica tipo de triângulo</span></span>
+<span id="cb39-11"><a href="#cb39-11"></a>    <span class="cf">if</span> lado1 <span class="op">==</span> lado2 <span class="op">==</span> lado3:</span>
+<span id="cb39-12"><a href="#cb39-12"></a>        <span class="bu">print</span>(<span class="st">"Triângulo equilátero"</span>)</span>
+<span id="cb39-13"><a href="#cb39-13"></a>    <span class="cf">elif</span> lado1 <span class="op">==</span> lado2 <span class="kw">or</span> lado1 <span class="op">==</span> lado3 <span class="kw">or</span> lado2 <span class="op">==</span> lado3:</span>
+<span id="cb39-14"><a href="#cb39-14"></a>        <span class="bu">print</span>(<span class="st">"Triângulo isósceles"</span>)</span>
+<span id="cb39-15"><a href="#cb39-15"></a>    <span class="cf">else</span>:</span>
+<span id="cb39-16"><a href="#cb39-16"></a>        <span class="bu">print</span>(<span class="st">"Triângulo escaleno"</span>)</span>
+<span id="cb39-17"><a href="#cb39-17"></a><span class="cf">else</span>:</span>
+<span id="cb39-18"><a href="#cb39-18"></a>    <span class="bu">print</span>(<span class="st">"Não pode formar um triângulo"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>lado1 = float(input("Digite o primeiro lado: "))</code> - Pede primeiro lado</li>
+<li><strong>Linha 3:</strong> <code>lado2 = float(input("Digite o segundo lado: "))</code> - Pede segundo lado</li>
+<li><strong>Linha 4:</strong> <code>lado3 = float(input("Digite o terceiro lado: "))</code> - Pede terceiro lado</li>
+<li><strong>Linha 7:</strong> <code>if (lado1 + lado2 &gt; lado3) and (lado1 + lado3 &gt; lado2) and (lado2 + lado3 &gt; lado1):</code> - Verifica condição de existência do triângulo</li>
+<li><strong>Linha 8:</strong> <code>print("Pode formar um triângulo")</code> - Se pode formar triângulo</li>
+<li><strong>Linha 11:</strong> <code>if lado1 == lado2 == lado3:</code> - Verifica se é equilátero</li>
+<li><strong>Linha 12:</strong> <code>print("Triângulo equilátero")</code> - Mostra tipo</li>
+<li><strong>Linha 13:</strong> <code>elif lado1 == lado2 or lado1 == lado3 or lado2 == lado3:</code> - Verifica se é isósceles</li>
+<li><strong>Linha 14:</strong> <code>print("Triângulo isósceles")</code> - Mostra tipo</li>
+<li><strong>Linha 15:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 16:</strong> <code>print("Triângulo escaleno")</code> - Mostra tipo</li>
+<li><strong>Linha 17:</strong> <code>else:</code> - Se não pode formar triângulo</li>
+<li><strong>Linha 18:</strong> <code>print("Não pode formar um triângulo")</code> - Mostra mensagem</li>
+</ul>
+<p><strong>14. Calculadora de Juros Simples</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># Solicita valores</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a>capital <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o capital: R$ "</span>))</span>
+<span id="cb40-3"><a href="#cb40-3"></a>taxa <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a taxa (%): "</span>))</span>
+<span id="cb40-4"><a href="#cb40-4"></a>tempo <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite o tempo (meses): "</span>))</span>
+<span id="cb40-5"><a href="#cb40-5"></a></span>
+<span id="cb40-6"><a href="#cb40-6"></a><span class="co"># Calcula juros e montante</span></span>
+<span id="cb40-7"><a href="#cb40-7"></a>juros <span class="op">=</span> capital <span class="op">*</span> (taxa <span class="op">/</span> <span class="dv">100</span>) <span class="op">*</span> tempo</span>
+<span id="cb40-8"><a href="#cb40-8"></a>montante <span class="op">=</span> capital <span class="op">+</span> juros</span>
+<span id="cb40-9"><a href="#cb40-9"></a></span>
+<span id="cb40-10"><a href="#cb40-10"></a><span class="bu">print</span>(<span class="ss">f"Capital: R$ </span><span class="sc">{</span>capital<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb40-11"><a href="#cb40-11"></a><span class="bu">print</span>(<span class="ss">f"Taxa: </span><span class="sc">{</span>taxa<span class="sc">}</span><span class="ss">% ao mês"</span>)</span>
+<span id="cb40-12"><a href="#cb40-12"></a><span class="bu">print</span>(<span class="ss">f"Tempo: </span><span class="sc">{</span>tempo<span class="sc">}</span><span class="ss"> meses"</span>)</span>
+<span id="cb40-13"><a href="#cb40-13"></a><span class="bu">print</span>(<span class="ss">f"Juros: R$ </span><span class="sc">{</span>juros<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb40-14"><a href="#cb40-14"></a><span class="bu">print</span>(<span class="ss">f"Montante: R$ </span><span class="sc">{</span>montante<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>capital = float(input("Digite o capital: R$ "))</code> - Pede capital e converte para float</li>
+<li><strong>Linha 3:</strong> <code>taxa = float(input("Digite a taxa (%): "))</code> - Pede taxa e converte para float</li>
+<li><strong>Linha 4:</strong> <code>tempo = int(input("Digite o tempo (meses): "))</code> - Pede tempo e converte para inteiro</li>
+<li><strong>Linha 7:</strong> <code>juros = capital * (taxa / 100) * tempo</code> - Calcula juros simples</li>
+<li><strong>Linha 8:</strong> <code>montante = capital + juros</code> - Calcula montante</li>
+<li><strong>Linha 10:</strong> <code>print(f"Capital: R$ {capital:.2f}")</code> - Mostra capital</li>
+<li><strong>Linha 11:</strong> <code>print(f"Taxa: {taxa}% ao mês")</code> - Mostra taxa</li>
+<li><strong>Linha 12:</strong> <code>print(f"Tempo: {tempo} meses")</code> - Mostra tempo</li>
+<li><strong>Linha 13:</strong> <code>print(f"Juros: R$ {juros:.2f}")</code> - Mostra juros</li>
+<li><strong>Linha 14:</strong> <code>print(f"Montante: R$ {montante:.2f}")</code> - Mostra montante</li>
+</ul>
+<p><strong>15. Verificador de Número Primo</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># Solicita número</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a>numero <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite um número: "</span>))</span>
+<span id="cb41-3"><a href="#cb41-3"></a></span>
+<span id="cb41-4"><a href="#cb41-4"></a><span class="co"># Verifica se é primo</span></span>
+<span id="cb41-5"><a href="#cb41-5"></a><span class="cf">if</span> numero <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb41-6"><a href="#cb41-6"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> não é primo"</span>)</span>
+<span id="cb41-7"><a href="#cb41-7"></a><span class="cf">else</span>:</span>
+<span id="cb41-8"><a href="#cb41-8"></a>    primo <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb41-9"><a href="#cb41-9"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, numero):</span>
+<span id="cb41-10"><a href="#cb41-10"></a>        <span class="cf">if</span> numero <span class="op">%</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb41-11"><a href="#cb41-11"></a>            primo <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb41-12"><a href="#cb41-12"></a>            <span class="cf">break</span></span>
+<span id="cb41-13"><a href="#cb41-13"></a>    </span>
+<span id="cb41-14"><a href="#cb41-14"></a>    <span class="cf">if</span> primo:</span>
+<span id="cb41-15"><a href="#cb41-15"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> é primo"</span>)</span>
+<span id="cb41-16"><a href="#cb41-16"></a>    <span class="cf">else</span>:</span>
+<span id="cb41-17"><a href="#cb41-17"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> não é primo"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>numero = int(input("Digite um número: "))</code> - Pede número e converte para inteiro</li>
+<li><strong>Linha 5:</strong> <code>if numero &lt; 2:</code> - Verifica se número é menor que 2</li>
+<li><strong>Linha 6:</strong> <code>print(f"{numero} não é primo")</code> - Números menores que 2 não são primos</li>
+<li><strong>Linha 7:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 8:</strong> <code>primo = True</code> - Assume que é primo inicialmente</li>
+<li><strong>Linha 9:</strong> <code>for i in range(2, numero):</code> - Loop de 2 até número-1</li>
+<li><strong>Linha 10:</strong> <code>if numero % i == 0:</code> - Verifica se é divisível por i</li>
+<li><strong>Linha 11:</strong> <code>primo = False</code> - Se for divisível, não é primo</li>
+<li><strong>Linha 12:</strong> <code>break</code> - Sai do loop</li>
+<li><strong>Linha 14:</strong> <code>if primo:</code> - Se ainda é primo</li>
+<li><strong>Linha 15:</strong> <code>print(f"{numero} é primo")</code> - Mostra que é primo</li>
+<li><strong>Linha 16:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 17:</strong> <code>print(f"{numero} não é primo")</code> - Mostra que não é primo</li>
+</ul>
+<p><strong>16. Calculadora de Média Ponderada</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># Solicita notas e pesos</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a>nota1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a primeira nota: "</span>))</span>
+<span id="cb42-3"><a href="#cb42-3"></a>peso1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o peso da primeira nota: "</span>))</span>
+<span id="cb42-4"><a href="#cb42-4"></a>nota2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a segunda nota: "</span>))</span>
+<span id="cb42-5"><a href="#cb42-5"></a>peso2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o peso da segunda nota: "</span>))</span>
+<span id="cb42-6"><a href="#cb42-6"></a>nota3 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a terceira nota: "</span>))</span>
+<span id="cb42-7"><a href="#cb42-7"></a>peso3 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o peso da terceira nota: "</span>))</span>
+<span id="cb42-8"><a href="#cb42-8"></a></span>
+<span id="cb42-9"><a href="#cb42-9"></a><span class="co"># Calcula média ponderada</span></span>
+<span id="cb42-10"><a href="#cb42-10"></a>soma_pesos <span class="op">=</span> peso1 <span class="op">+</span> peso2 <span class="op">+</span> peso3</span>
+<span id="cb42-11"><a href="#cb42-11"></a>media_ponderada <span class="op">=</span> (nota1 <span class="op">*</span> peso1 <span class="op">+</span> nota2 <span class="op">*</span> peso2 <span class="op">+</span> nota3 <span class="op">*</span> peso3) <span class="op">/</span> soma_pesos</span>
+<span id="cb42-12"><a href="#cb42-12"></a></span>
+<span id="cb42-13"><a href="#cb42-13"></a><span class="bu">print</span>(<span class="ss">f"Média ponderada: </span><span class="sc">{</span>media_ponderada<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linhas 2-7:</strong> Solicita as notas e seus respectivos pesos</li>
+<li><strong>Linha 10:</strong> <code>soma_pesos = peso1 + peso2 + peso3</code> - Calcula soma dos pesos</li>
+<li><strong>Linha 11:</strong> <code>media_ponderada = (nota1 * peso1 + nota2 * peso2 + nota3 * peso3) / soma_pesos</code> - Calcula média ponderada</li>
+<li><strong>Linha 13:</strong> <code>print(f"Média ponderada: {media_ponderada:.2f}")</code> - Mostra resultado formatado</li>
+</ul>
+<p><strong>17. Verificador de Palíndromo</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># Solicita palavra</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a>palavra <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma palavra: "</span>).lower().replace(<span class="st">" "</span>, <span class="st">""</span>)</span>
+<span id="cb43-3"><a href="#cb43-3"></a></span>
+<span id="cb43-4"><a href="#cb43-4"></a><span class="co"># Verifica se é palíndromo</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a><span class="cf">if</span> palavra <span class="op">==</span> palavra[::<span class="op">-</span><span class="dv">1</span>]:</span>
+<span id="cb43-6"><a href="#cb43-6"></a>    <span class="bu">print</span>(<span class="ss">f"'</span><span class="sc">{</span>palavra<span class="sc">}</span><span class="ss">' é um palíndromo"</span>)</span>
+<span id="cb43-7"><a href="#cb43-7"></a><span class="cf">else</span>:</span>
+<span id="cb43-8"><a href="#cb43-8"></a>    <span class="bu">print</span>(<span class="ss">f"'</span><span class="sc">{</span>palavra<span class="sc">}</span><span class="ss">' não é um palíndromo"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>palavra = input("Digite uma palavra: ").lower().replace(" ", "")</code> - Pede palavra, converte para minúscula e remove espaços</li>
+<li><strong>Linha 5:</strong> <code>if palavra == palavra[::-1]:</code> - Verifica se a palavra é igual ao seu reverso</li>
+<li><strong>Linha 6:</strong> <code>print(f"'{palavra}' é um palíndromo")</code> - Se for palíndromo, mostra esta mensagem</li>
+<li><strong>Linha 7:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 8:</strong> <code>print(f"'{palavra}' não é um palíndromo")</code> - Mostra que não é palíndromo</li>
+</ul>
+<p><strong>18. Calculadora de Fatorial</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># Solicita número</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>numero <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite um número: "</span>))</span>
+<span id="cb44-3"><a href="#cb44-3"></a></span>
+<span id="cb44-4"><a href="#cb44-4"></a><span class="co"># Calcula fatorial</span></span>
+<span id="cb44-5"><a href="#cb44-5"></a><span class="cf">if</span> numero <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb44-6"><a href="#cb44-6"></a>    <span class="bu">print</span>(<span class="st">"Fatorial não definido para números negativos"</span>)</span>
+<span id="cb44-7"><a href="#cb44-7"></a><span class="cf">elif</span> numero <span class="op">==</span> <span class="dv">0</span> <span class="kw">or</span> numero <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb44-8"><a href="#cb44-8"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss">! = 1"</span>)</span>
+<span id="cb44-9"><a href="#cb44-9"></a><span class="cf">else</span>:</span>
+<span id="cb44-10"><a href="#cb44-10"></a>    fatorial <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb44-11"><a href="#cb44-11"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, numero <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb44-12"><a href="#cb44-12"></a>        fatorial <span class="op">*=</span> i</span>
+<span id="cb44-13"><a href="#cb44-13"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss">! = </span><span class="sc">{</span>fatorial<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>numero = int(input("Digite um número: "))</code> - Pede número e converte para inteiro</li>
+<li><strong>Linha 5:</strong> <code>if numero &lt; 0:</code> - Verifica se número é negativo</li>
+<li><strong>Linha 6:</strong> <code>print("Fatorial não definido para números negativos")</code> - Mostra mensagem de erro</li>
+<li><strong>Linha 7:</strong> <code>elif numero == 0 or numero == 1:</code> - Verifica se é 0 ou 1</li>
+<li><strong>Linha 8:</strong> <code>print(f"{numero}! = 1")</code> - Fatorial de 0 e 1 é 1</li>
+<li><strong>Linha 9:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 10:</strong> <code>fatorial = 1</code> - Inicializa fatorial</li>
+<li><strong>Linha 11:</strong> <code>for i in range(1, numero + 1):</code> - Loop de 1 até número</li>
+<li><strong>Linha 12:</strong> <code>fatorial *= i</code> - Multiplica fatorial por i</li>
+<li><strong>Linha 13:</strong> <code>print(f"{numero}! = {fatorial}")</code> - Mostra resultado</li>
+</ul>
+<p><strong>19. Verificador de Número Armstrong</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a><span class="co"># Solicita número</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a>numero <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite um número de 3 dígitos: "</span>))</span>
+<span id="cb45-3"><a href="#cb45-3"></a></span>
+<span id="cb45-4"><a href="#cb45-4"></a><span class="co"># Verifica se é Armstrong</span></span>
+<span id="cb45-5"><a href="#cb45-5"></a><span class="cf">if</span> <span class="dv">100</span> <span class="op">&lt;=</span> numero <span class="op">&lt;=</span> <span class="dv">999</span>:</span>
+<span id="cb45-6"><a href="#cb45-6"></a>    centena <span class="op">=</span> numero <span class="op">//</span> <span class="dv">100</span></span>
+<span id="cb45-7"><a href="#cb45-7"></a>    dezena <span class="op">=</span> (numero <span class="op">//</span> <span class="dv">10</span>) <span class="op">%</span> <span class="dv">10</span></span>
+<span id="cb45-8"><a href="#cb45-8"></a>    unidade <span class="op">=</span> numero <span class="op">%</span> <span class="dv">10</span></span>
+<span id="cb45-9"><a href="#cb45-9"></a>    </span>
+<span id="cb45-10"><a href="#cb45-10"></a>    soma_cubos <span class="op">=</span> centena<span class="op">**</span><span class="dv">3</span> <span class="op">+</span> dezena<span class="op">**</span><span class="dv">3</span> <span class="op">+</span> unidade<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb45-11"><a href="#cb45-11"></a>    </span>
+<span id="cb45-12"><a href="#cb45-12"></a>    <span class="cf">if</span> soma_cubos <span class="op">==</span> numero:</span>
+<span id="cb45-13"><a href="#cb45-13"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> é Armstrong"</span>)</span>
+<span id="cb45-14"><a href="#cb45-14"></a>    <span class="cf">else</span>:</span>
+<span id="cb45-15"><a href="#cb45-15"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> não é Armstrong"</span>)</span>
+<span id="cb45-16"><a href="#cb45-16"></a><span class="cf">else</span>:</span>
+<span id="cb45-17"><a href="#cb45-17"></a>    <span class="bu">print</span>(<span class="st">"Número deve ter 3 dígitos"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>numero = int(input("Digite um número de 3 dígitos: "))</code> - Pede número e converte para inteiro</li>
+<li><strong>Linha 5:</strong> <code>if 100 &lt;= numero &lt;= 999:</code> - Verifica se número tem 3 dígitos</li>
+<li><strong>Linha 6:</strong> <code>centena = numero // 100</code> - Extrai centena</li>
+<li><strong>Linha 7:</strong> <code>dezena = (numero // 10) % 10</code> - Extrai dezena</li>
+<li><strong>Linha 8:</strong> <code>unidade = numero % 10</code> - Extrai unidade</li>
+<li><strong>Linha 10:</strong> <code>soma_cubos = centena**3 + dezena**3 + unidade**3</code> - Calcula soma dos cubos</li>
+<li><strong>Linha 12:</strong> <code>if soma_cubos == numero:</code> - Verifica se é Armstrong</li>
+<li><strong>Linha 13:</strong> <code>print(f"{numero} é Armstrong")</code> - Se for Armstrong, mostra esta mensagem</li>
+<li><strong>Linha 14:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 15:</strong> <code>print(f"{numero} não é Armstrong")</code> - Mostra que não é Armstrong</li>
+<li><strong>Linha 16:</strong> <code>else:</code> - Se não tem 3 dígitos</li>
+<li><strong>Linha 17:</strong> <code>print("Número deve ter 3 dígitos")</code> - Mostra mensagem de erro</li>
+</ul>
+<p><strong>20. Calculadora de Equação do 2º Grau</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># Solicita coeficientes</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a>a <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o coeficiente a: "</span>))</span>
+<span id="cb46-3"><a href="#cb46-3"></a>b <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o coeficiente b: "</span>))</span>
+<span id="cb46-4"><a href="#cb46-4"></a>c <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o coeficiente c: "</span>))</span>
+<span id="cb46-5"><a href="#cb46-5"></a></span>
+<span id="cb46-6"><a href="#cb46-6"></a><span class="co"># Calcula delta</span></span>
+<span id="cb46-7"><a href="#cb46-7"></a>delta <span class="op">=</span> b<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span><span class="op">*</span>a<span class="op">*</span>c</span>
+<span id="cb46-8"><a href="#cb46-8"></a></span>
+<span id="cb46-9"><a href="#cb46-9"></a><span class="cf">if</span> a <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb46-10"><a href="#cb46-10"></a>    <span class="bu">print</span>(<span class="st">"Não é uma equação do 2º grau"</span>)</span>
+<span id="cb46-11"><a href="#cb46-11"></a><span class="cf">elif</span> delta <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb46-12"><a href="#cb46-12"></a>    <span class="bu">print</span>(<span class="st">"Não há raízes reais"</span>)</span>
+<span id="cb46-13"><a href="#cb46-13"></a><span class="cf">elif</span> delta <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb46-14"><a href="#cb46-14"></a>    raiz <span class="op">=</span> <span class="op">-</span>b <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>a)</span>
+<span id="cb46-15"><a href="#cb46-15"></a>    <span class="bu">print</span>(<span class="ss">f"Raiz única: </span><span class="sc">{</span>raiz<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb46-16"><a href="#cb46-16"></a><span class="cf">else</span>:</span>
+<span id="cb46-17"><a href="#cb46-17"></a>    raiz1 <span class="op">=</span> (<span class="op">-</span>b <span class="op">+</span> delta<span class="op">**</span><span class="fl">0.5</span>) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>a)</span>
+<span id="cb46-18"><a href="#cb46-18"></a>    raiz2 <span class="op">=</span> (<span class="op">-</span>b <span class="op">-</span> delta<span class="op">**</span><span class="fl">0.5</span>) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>a)</span>
+<span id="cb46-19"><a href="#cb46-19"></a>    <span class="bu">print</span>(<span class="ss">f"Raízes: </span><span class="sc">{</span>raiz1<span class="sc">:.2f}</span><span class="ss"> e </span><span class="sc">{</span>raiz2<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linhas 2-4:</strong> Solicita os coeficientes a, b e c</li>
+<li><strong>Linha 7:</strong> <code>delta = b**2 - 4*a*c</code> - Calcula delta</li>
+<li><strong>Linha 9:</strong> <code>if a == 0:</code> - Verifica se é equação do 2º grau</li>
+<li><strong>Linha 10:</strong> <code>print("Não é uma equação do 2º grau")</code> - Mostra mensagem de erro</li>
+<li><strong>Linha 11:</strong> <code>elif delta &lt; 0:</code> - Verifica se delta é negativo</li>
+<li><strong>Linha 12:</strong> <code>print("Não há raízes reais")</code> - Não há raízes reais</li>
+<li><strong>Linha 13:</strong> <code>elif delta == 0:</code> - Verifica se delta é zero</li>
+<li><strong>Linha 14:</strong> <code>raiz = -b / (2*a)</code> - Calcula raiz única</li>
+<li><strong>Linha 15:</strong> <code>print(f"Raiz única: {raiz:.2f}")</code> - Mostra raiz única</li>
+<li><strong>Linha 16:</strong> <code>else:</code> - Caso contrário (delta &gt; 0)</li>
+<li><strong>Linha 17:</strong> <code>raiz1 = (-b + delta**0.5) / (2*a)</code> - Calcula primeira raiz</li>
+<li><strong>Linha 18:</strong> <code>raiz2 = (-b - delta**0.5) / (2*a)</code> - Calcula segunda raiz</li>
+<li><strong>Linha 19:</strong> <code>print(f"Raízes: {raiz1:.2f} e {raiz2:.2f}")</code> - Mostra ambas as raízes</li>
+</ul>
+<p><strong>21. Gerador de Sequência de Fibonacci</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a><span class="co"># Solicita quantidade de termos</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a>n <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite quantos termos da sequência Fibonacci: "</span>))</span>
+<span id="cb47-3"><a href="#cb47-3"></a></span>
+<span id="cb47-4"><a href="#cb47-4"></a><span class="co"># Gera sequência</span></span>
+<span id="cb47-5"><a href="#cb47-5"></a><span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb47-6"><a href="#cb47-6"></a>    <span class="bu">print</span>(<span class="st">"Número deve ser positivo"</span>)</span>
+<span id="cb47-7"><a href="#cb47-7"></a><span class="cf">elif</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb47-8"><a href="#cb47-8"></a>    <span class="bu">print</span>(<span class="st">"1"</span>)</span>
+<span id="cb47-9"><a href="#cb47-9"></a><span class="cf">elif</span> n <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb47-10"><a href="#cb47-10"></a>    <span class="bu">print</span>(<span class="st">"1, 1"</span>)</span>
+<span id="cb47-11"><a href="#cb47-11"></a><span class="cf">else</span>:</span>
+<span id="cb47-12"><a href="#cb47-12"></a>    <span class="bu">print</span>(<span class="st">"1, 1"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb47-13"><a href="#cb47-13"></a>    a, b <span class="op">=</span> <span class="dv">1</span>, <span class="dv">1</span></span>
+<span id="cb47-14"><a href="#cb47-14"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, n):</span>
+<span id="cb47-15"><a href="#cb47-15"></a>        proximo <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb47-16"><a href="#cb47-16"></a>        <span class="bu">print</span>(<span class="ss">f", </span><span class="sc">{</span>proximo<span class="sc">}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb47-17"><a href="#cb47-17"></a>        a, b <span class="op">=</span> b, proximo</span>
+<span id="cb47-18"><a href="#cb47-18"></a>    <span class="bu">print</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>n = int(input("Digite quantos termos da sequência Fibonacci: "))</code> - Pede quantidade de termos</li>
+<li><strong>Linha 5:</strong> <code>if n &lt;= 0:</code> - Verifica se número é positivo</li>
+<li><strong>Linha 6:</strong> <code>print("Número deve ser positivo")</code> - Mostra mensagem de erro</li>
+<li><strong>Linha 7:</strong> <code>elif n == 1:</code> - Verifica se é 1 termo</li>
+<li><strong>Linha 8:</strong> <code>print("1")</code> - Mostra apenas 1</li>
+<li><strong>Linha 9:</strong> <code>elif n == 2:</code> - Verifica se são 2 termos</li>
+<li><strong>Linha 10:</strong> <code>print("1, 1")</code> - Mostra 1, 1</li>
+<li><strong>Linha 11:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 12:</strong> <code>print("1, 1", end="")</code> - Mostra primeiros dois termos</li>
+<li><strong>Linha 13:</strong> <code>a, b = 1, 1</code> - Inicializa variáveis</li>
+<li><strong>Linha 14:</strong> <code>for i in range(2, n):</code> - Loop para gerar próximos termos</li>
+<li><strong>Linha 15:</strong> <code>proximo = a + b</code> - Calcula próximo termo</li>
+<li><strong>Linha 16:</strong> <code>print(f", {proximo}", end="")</code> - Mostra próximo termo</li>
+<li><strong>Linha 17:</strong> <code>a, b = b, proximo</code> - Atualiza variáveis</li>
+<li><strong>Linha 18:</strong> <code>print()</code> - Quebra linha</li>
+</ul>
+<p><strong>22. Verificador de Número Perfeito</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a><span class="co"># Solicita número</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a>numero <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite um número: "</span>))</span>
+<span id="cb48-3"><a href="#cb48-3"></a></span>
+<span id="cb48-4"><a href="#cb48-4"></a><span class="co"># Verifica se é perfeito</span></span>
+<span id="cb48-5"><a href="#cb48-5"></a><span class="cf">if</span> numero <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb48-6"><a href="#cb48-6"></a>    <span class="bu">print</span>(<span class="st">"Número deve ser positivo"</span>)</span>
+<span id="cb48-7"><a href="#cb48-7"></a><span class="cf">else</span>:</span>
+<span id="cb48-8"><a href="#cb48-8"></a>    soma_divisores <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb48-9"><a href="#cb48-9"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, numero):</span>
+<span id="cb48-10"><a href="#cb48-10"></a>        <span class="cf">if</span> numero <span class="op">%</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb48-11"><a href="#cb48-11"></a>            soma_divisores <span class="op">+=</span> i</span>
+<span id="cb48-12"><a href="#cb48-12"></a>    </span>
+<span id="cb48-13"><a href="#cb48-13"></a>    <span class="cf">if</span> soma_divisores <span class="op">==</span> numero:</span>
+<span id="cb48-14"><a href="#cb48-14"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> é um número perfeito"</span>)</span>
+<span id="cb48-15"><a href="#cb48-15"></a>    <span class="cf">else</span>:</span>
+<span id="cb48-16"><a href="#cb48-16"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> não é um número perfeito"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>numero = int(input("Digite um número: "))</code> - Pede número e converte para inteiro</li>
+<li><strong>Linha 5:</strong> <code>if numero &lt;= 0:</code> - Verifica se número é positivo</li>
+<li><strong>Linha 6:</strong> <code>print("Número deve ser positivo")</code> - Mostra mensagem de erro</li>
+<li><strong>Linha 7:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 8:</strong> <code>soma_divisores = 0</code> - Inicializa soma dos divisores</li>
+<li><strong>Linha 9:</strong> <code>for i in range(1, numero):</code> - Loop de 1 até número-1</li>
+<li><strong>Linha 10:</strong> <code>if numero % i == 0:</code> - Verifica se i é divisor</li>
+<li><strong>Linha 11:</strong> <code>soma_divisores += i</code> - Adiciona divisor à soma</li>
+<li><strong>Linha 13:</strong> <code>if soma_divisores == numero:</code> - Verifica se é perfeito</li>
+<li><strong>Linha 14:</strong> <code>print(f"{numero} é um número perfeito")</code> - Se for perfeito, mostra esta mensagem</li>
+<li><strong>Linha 15:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 16:</strong> <code>print(f"{numero} não é um número perfeito")</code> - Mostra que não é perfeito</li>
+</ul>
+<p><strong>23. Calculadora de Média Harmônica</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a><span class="co"># Solicita números</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a>n1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o primeiro número: "</span>))</span>
+<span id="cb49-3"><a href="#cb49-3"></a>n2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o segundo número: "</span>))</span>
+<span id="cb49-4"><a href="#cb49-4"></a>n3 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o terceiro número: "</span>))</span>
+<span id="cb49-5"><a href="#cb49-5"></a></span>
+<span id="cb49-6"><a href="#cb49-6"></a><span class="co"># Calcula média harmônica</span></span>
+<span id="cb49-7"><a href="#cb49-7"></a><span class="cf">if</span> n1 <span class="op">==</span> <span class="dv">0</span> <span class="kw">or</span> n2 <span class="op">==</span> <span class="dv">0</span> <span class="kw">or</span> n3 <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb49-8"><a href="#cb49-8"></a>    <span class="bu">print</span>(<span class="st">"Não é possível calcular média harmônica com zero"</span>)</span>
+<span id="cb49-9"><a href="#cb49-9"></a><span class="cf">else</span>:</span>
+<span id="cb49-10"><a href="#cb49-10"></a>    media_harmonica <span class="op">=</span> <span class="dv">3</span> <span class="op">/</span> (<span class="dv">1</span><span class="op">/</span>n1 <span class="op">+</span> <span class="dv">1</span><span class="op">/</span>n2 <span class="op">+</span> <span class="dv">1</span><span class="op">/</span>n3)</span>
+<span id="cb49-11"><a href="#cb49-11"></a>    <span class="bu">print</span>(<span class="ss">f"Média harmônica: </span><span class="sc">{</span>media_harmonica<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linhas 2-4:</strong> Solicita os três números</li>
+<li><strong>Linha 7:</strong> <code>if n1 == 0 or n2 == 0 or n3 == 0:</code> - Verifica se algum número é zero</li>
+<li><strong>Linha 8:</strong> <code>print("Não é possível calcular média harmônica com zero")</code> - Mostra mensagem de erro</li>
+<li><strong>Linha 9:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 10:</strong> <code>media_harmonica = 3 / (1/n1 + 1/n2 + 1/n3)</code> - Calcula média harmônica</li>
+<li><strong>Linha 11:</strong> <code>print(f"Média harmônica: {media_harmonica:.2f}")</code> - Mostra resultado formatado</li>
+</ul>
+<p><strong>24. Verificador de Número Capicua</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="co"># Solicita número</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a>numero <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite um número: "</span>)</span>
+<span id="cb50-3"><a href="#cb50-3"></a></span>
+<span id="cb50-4"><a href="#cb50-4"></a><span class="co"># Verifica se é capicua</span></span>
+<span id="cb50-5"><a href="#cb50-5"></a><span class="cf">if</span> numero <span class="op">==</span> numero[::<span class="op">-</span><span class="dv">1</span>]:</span>
+<span id="cb50-6"><a href="#cb50-6"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> é capicua"</span>)</span>
+<span id="cb50-7"><a href="#cb50-7"></a><span class="cf">else</span>:</span>
+<span id="cb50-8"><a href="#cb50-8"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> não é capicua"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 2:</strong> <code>numero = input("Digite um número: ")</code> - Pede número como string</li>
+<li><strong>Linha 5:</strong> <code>if numero == numero[::-1]:</code> - Verifica se número é igual ao seu reverso</li>
+<li><strong>Linha 6:</strong> <code>print(f"{numero} é capicua")</code> - Se for capicua, mostra esta mensagem</li>
+<li><strong>Linha 7:</strong> <code>else:</code> - Caso contrário</li>
+<li><strong>Linha 8:</strong> <code>print(f"{numero} não é capicua")</code> - Mostra que não é capicua</li>
+</ul>
+<p><strong>25. Calculadora de Distância Entre Pontos</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a><span class="co"># Solicita coordenadas dos pontos</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a>x1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite x1: "</span>))</span>
+<span id="cb51-3"><a href="#cb51-3"></a>y1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite y1: "</span>))</span>
+<span id="cb51-4"><a href="#cb51-4"></a>x2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite x2: "</span>))</span>
+<span id="cb51-5"><a href="#cb51-5"></a>y2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite y2: "</span>))</span>
+<span id="cb51-6"><a href="#cb51-6"></a></span>
+<span id="cb51-7"><a href="#cb51-7"></a><span class="co"># Calcula distância</span></span>
+<span id="cb51-8"><a href="#cb51-8"></a>distancia <span class="op">=</span> ((x2 <span class="op">-</span> x1)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (y2 <span class="op">-</span> y1)<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="fl">0.5</span></span>
+<span id="cb51-9"><a href="#cb51-9"></a></span>
+<span id="cb51-10"><a href="#cb51-10"></a><span class="bu">print</span>(<span class="ss">f"Distância entre os pontos: </span><span class="sc">{</span>distancia<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linhas 2-5:</strong> Solicita as coordenadas dos dois pontos</li>
+<li><strong>Linha 8:</strong> <code>distancia = ((x2 - x1)**2 + (y2 - y1)**2)**0.5</code> - Calcula distância usando fórmula de distância</li>
+<li><strong>Linha 10:</strong> <code>print(f"Distância entre os pontos: {distancia:.2f}")</code> - Mostra resultado formatado</li>
+</ul>
+</section>
 </section>
 </section>
 <section id="resumo-do-capítulo" class="level2" data-number="3.10">
