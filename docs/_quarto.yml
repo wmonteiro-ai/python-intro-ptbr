@@ -9,7 +9,7 @@ book:
   language: pt-BR
   
   chapters:
-    - index.md
+    - index.qmd
     - part: "Parte 1: Sabendo onde estamos"
       chapters:
         - 01-Introducao-Ambiente.ipynb
