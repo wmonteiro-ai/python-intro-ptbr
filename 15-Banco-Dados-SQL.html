@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>15&nbsp; Banco de Dados SQL com Python – Python Descomplicado</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./16-Expressoes-Regulares.html" rel="next">
+<link href="./14-Web-Scraping.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f2c6d6e2b784ddc5de38779acc06f37d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-Modulos-Bibliotecas.html">Parte 4: Tópicos Avançados</a></li><li class="breadcrumb-item"><a href="./15-Banco-Dados-SQL.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Banco de Dados SQL com Python</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python Descomplicado</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 1: Sabendo onde estamos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introducao-Ambiente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Introducao-Algoritmos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 2: Fazendo coisas legais</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Variaveis-IO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Variáveis e Entrada/Saída em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Estruturas-Selecao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Estruturas de Seleção em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Estruturas-Repeticao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Estruturas de Repetição em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Funções em Python - Reutilizando Código</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Listas-Dicionarios-Tuplas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estruturas de Dados em Python - Listas, Dicionários e Tuplas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Manipulacao-Arquivos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Manipulação de Arquivos em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-POO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Programação Orientada a Objetos em Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 3: Resolvendo tretas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Erros-Comuns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Erros e Exceções em Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 4: Tópicos Avançados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Modulos-Bibliotecas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Módulos e Bibliotecas em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-APIs-Parte1-Consumo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">APIs - Parte 1: Consumindo APIs REST</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-APIs-Parte2-Criacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">APIs - Parte 2: Criando suas APIs com Flask</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Web-Scraping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web Scraping com BeautifulSoup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Banco-Dados-SQL.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Banco de Dados SQL com Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Expressoes-Regulares.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Expressões Regulares (Regex) - Capítulo Bônus</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#o-que-você-vai-aprender-neste-capítulo" id="toc-o-que-você-vai-aprender-neste-capítulo" class="nav-link active" data-scroll-target="#o-que-você-vai-aprender-neste-capítulo"><span class="header-section-number">15.1</span> O que você vai aprender neste capítulo?</a></li>
+  <li><a href="#de-pilha-de-papéis-para-biblioteca-organizada" id="toc-de-pilha-de-papéis-para-biblioteca-organizada" class="nav-link" data-scroll-target="#de-pilha-de-papéis-para-biblioteca-organizada"><span class="header-section-number">15.2</span> De Pilha de Papéis para Biblioteca Organizada</a>
+  <ul class="collapse">
+  <li><a href="#analogia-perfeita-biblioteca-vs.-pilha-de-papéis" id="toc-analogia-perfeita-biblioteca-vs.-pilha-de-papéis" class="nav-link" data-scroll-target="#analogia-perfeita-biblioteca-vs.-pilha-de-papéis"><span class="header-section-number">15.2.1</span> Analogia Perfeita: Biblioteca vs.&nbsp;Pilha de Papéis</a></li>
+  <li><a href="#por-que-usar-bancos-de-dados" id="toc-por-que-usar-bancos-de-dados" class="nav-link" data-scroll-target="#por-que-usar-bancos-de-dados"><span class="header-section-number">15.2.2</span> Por que usar Bancos de Dados?</a></li>
+  <li><a href="#o-que-é-sql" id="toc-o-que-é-sql" class="nav-link" data-scroll-target="#o-que-é-sql"><span class="header-section-number">15.2.3</span> O que é SQL?</a></li>
+  <li><a href="#sqlite---banco-de-dados-simples" id="toc-sqlite---banco-de-dados-simples" class="nav-link" data-scroll-target="#sqlite---banco-de-dados-simples"><span class="header-section-number">15.2.4</span> SQLite - Banco de Dados Simples</a></li>
+  </ul></li>
+  <li><a href="#seu-primeiro-banco-de-dados" id="toc-seu-primeiro-banco-de-dados" class="nav-link" data-scroll-target="#seu-primeiro-banco-de-dados"><span class="header-section-number">15.3</span> Seu Primeiro Banco de Dados</a>
+  <ul class="collapse">
+  <li><a href="#criando-e-conectando-ao-banco" id="toc-criando-e-conectando-ao-banco" class="nav-link" data-scroll-target="#criando-e-conectando-ao-banco"><span class="header-section-number">15.3.1</span> Criando e Conectando ao Banco</a></li>
+  <li><a href="#criando-sua-primeira-tabela" id="toc-criando-sua-primeira-tabela" class="nav-link" data-scroll-target="#criando-sua-primeira-tabela"><span class="header-section-number">15.3.2</span> Criando sua Primeira Tabela</a></li>
+  <li><a href="#inserindo-dados-insert" id="toc-inserindo-dados-insert" class="nav-link" data-scroll-target="#inserindo-dados-insert"><span class="header-section-number">15.3.3</span> Inserindo Dados (INSERT)</a></li>
+  <li><a href="#consultando-dados-select" id="toc-consultando-dados-select" class="nav-link" data-scroll-target="#consultando-dados-select"><span class="header-section-number">15.3.4</span> Consultando Dados (SELECT)</a></li>
+  <li><a href="#consultas-com-filtros-where" id="toc-consultas-com-filtros-where" class="nav-link" data-scroll-target="#consultas-com-filtros-where"><span class="header-section-number">15.3.5</span> Consultas com Filtros (WHERE)</a></li>
+  </ul></li>
+  <li><a href="#atualizando-e-deletando-dados" id="toc-atualizando-e-deletando-dados" class="nav-link" data-scroll-target="#atualizando-e-deletando-dados"><span class="header-section-number">15.4</span> Atualizando e Deletando Dados</a>
+  <ul class="collapse">
+  <li><a href="#atualizando-dados-update" id="toc-atualizando-dados-update" class="nav-link" data-scroll-target="#atualizando-dados-update"><span class="header-section-number">15.4.1</span> Atualizando Dados (UPDATE)</a></li>
+  <li><a href="#deletando-dados-delete" id="toc-deletando-dados-delete" class="nav-link" data-scroll-target="#deletando-dados-delete"><span class="header-section-number">15.4.2</span> Deletando Dados (DELETE)</a></li>
+  <li><a href="#sistema-completo-de-gerenciamento" id="toc-sistema-completo-de-gerenciamento" class="nav-link" data-scroll-target="#sistema-completo-de-gerenciamento"><span class="header-section-number">15.4.3</span> Sistema Completo de Gerenciamento</a></li>
+  </ul></li>
+  <li><a href="#exercícios-práticos" id="toc-exercícios-práticos" class="nav-link" data-scroll-target="#exercícios-práticos"><span class="header-section-number">15.5</span> Exercícios Práticos</a>
+  <ul class="collapse">
+  <li><a href="#muito-fácil-nível-1" id="toc-muito-fácil-nível-1" class="nav-link" data-scroll-target="#muito-fácil-nível-1"><span class="header-section-number">15.5.1</span> <strong>MUITO FÁCIL</strong> (Nível 1)</a></li>
+  <li><a href="#fácil-nível-2" id="toc-fácil-nível-2" class="nav-link" data-scroll-target="#fácil-nível-2"><span class="header-section-number">15.5.2</span> <strong>FÁCIL</strong> (Nível 2)</a></li>
+  <li><a href="#médio-nível-3" id="toc-médio-nível-3" class="nav-link" data-scroll-target="#médio-nível-3"><span class="header-section-number">15.5.3</span> <strong>MÉDIO</strong> (Nível 3)</a></li>
+  <li><a href="#difícil-nível-4" id="toc-difícil-nível-4" class="nav-link" data-scroll-target="#difícil-nível-4"><span class="header-section-number">15.5.4</span> <strong>DIFÍCIL</strong> (Nível 4)</a></li>
+  <li><a href="#muito-difícil-nível-5" id="toc-muito-difícil-nível-5" class="nav-link" data-scroll-target="#muito-difícil-nível-5"><span class="header-section-number">15.5.5</span> <strong>MUITO DIFÍCIL</strong> (Nível 5)</a></li>
+  </ul></li>
+  <li><a href="#respostas-dos-exercícios" id="toc-respostas-dos-exercícios" class="nav-link" data-scroll-target="#respostas-dos-exercícios"><span class="header-section-number">15.6</span> Respostas dos Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#muito-fácil-nível-1-1" id="toc-muito-fácil-nível-1-1" class="nav-link" data-scroll-target="#muito-fácil-nível-1-1"><span class="header-section-number">15.6.1</span> <strong>MUITO FÁCIL</strong> (Nível 1)</a></li>
+  <li><a href="#fácil-nível-2-1" id="toc-fácil-nível-2-1" class="nav-link" data-scroll-target="#fácil-nível-2-1"><span class="header-section-number">15.6.2</span> <strong>FÁCIL</strong> (Nível 2)</a></li>
+  </ul></li>
+  <li><a href="#próximos-passos-continue-aprendendo" id="toc-próximos-passos-continue-aprendendo" class="nav-link" data-scroll-target="#próximos-passos-continue-aprendendo"><span class="header-section-number">15.7</span> Próximos Passos: Continue Aprendendo!</a>
+  <ul class="collapse">
+  <li><a href="#o-que-você-aprendeu" id="toc-o-que-você-aprendeu" class="nav-link" data-scroll-target="#o-que-você-aprendeu"><span class="header-section-number">15.7.1</span> O que você aprendeu:</a></li>
+  <li><a href="#desafios-para-continuar" id="toc-desafios-para-continuar" class="nav-link" data-scroll-target="#desafios-para-continuar"><span class="header-section-number">15.7.2</span> Desafios para Continuar:</a></li>
+  <li><a href="#próximo-capítulo" id="toc-próximo-capítulo" class="nav-link" data-scroll-target="#próximo-capítulo"><span class="header-section-number">15.7.3</span> Próximo Capítulo:</a></li>
+  </ul></li>
+  <li><a href="#referências-bibliográficas" id="toc-referências-bibliográficas" class="nav-link" data-scroll-target="#referências-bibliográficas"><span class="header-section-number">15.8</span> Referências Bibliográficas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-Modulos-Bibliotecas.html">Parte 4: Tópicos Avançados</a></li><li class="breadcrumb-item"><a href="./15-Banco-Dados-SQL.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Banco de Dados SQL com Python</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Banco de Dados SQL com Python</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>De pilha de papéis para biblioteca organizada: estruturando seus dados!</em></p>
+<section id="o-que-você-vai-aprender-neste-capítulo" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="o-que-você-vai-aprender-neste-capítulo"><span class="header-section-number">15.1</span> O que você vai aprender neste capítulo?</h2>
+<ol type="1">
+<li><strong>Por que usar bancos de dados</strong> em vez de arquivos simples</li>
+<li><strong>SQL básico:</strong> comandos essenciais (CREATE, INSERT, SELECT, UPDATE, DELETE)</li>
+<li><strong>SQLite com Python:</strong> como usar a biblioteca <code>sqlite3</code> integrada</li>
+<li><strong>Operações CRUD:</strong> criar, ler, atualizar e deletar dados</li>
+<li><strong>Consultas avançadas:</strong> WHERE, ORDER BY, LIMIT e JOINs básicos</li>
+<li><strong>Projeto prático:</strong> sistema completo de cadastro de clientes</li>
+<li><strong>Boas práticas:</strong> prevenção de SQL Injection e gerenciamento de conexões</li>
+<li><strong>Integração:</strong> conectar bancos de dados com APIs e web scraping</li>
+</ol>
+<blockquote class="blockquote">
+<p>🎓 <strong>Vindo do Capítulo 14?</strong> Perfeito! Agora que você sabe coletar dados da web, vamos organizar esses dados!</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>🎯 <strong>Meta:</strong> Ao final deste capítulo, você vai conseguir criar e gerenciar bancos de dados SQL, executar consultas e integrar dados com aplicações Python.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>⚠️ <strong>Por que isso importa:</strong> Bancos de dados são fundamentais para aplicações reais! Sem eles, você perderia dados toda vez que fechasse o programa. Aqui você aprende a criar sistemas persistentes!</p>
+</blockquote>
+</section>
+<section id="de-pilha-de-papéis-para-biblioteca-organizada" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="de-pilha-de-papéis-para-biblioteca-organizada"><span class="header-section-number">15.2</span> De Pilha de Papéis para Biblioteca Organizada</h2>
+<section id="analogia-perfeita-biblioteca-vs.-pilha-de-papéis" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="analogia-perfeita-biblioteca-vs.-pilha-de-papéis"><span class="header-section-number">15.2.1</span> Analogia Perfeita: Biblioteca vs.&nbsp;Pilha de Papéis</h3>
+<p><strong>Problema - Pilha de Papéis:</strong></p>
+<ul>
+<li>📄 Todos os documentos em uma pilha</li>
+<li>🔍 Difícil encontrar algo específico</li>
+<li>📊 Impossível fazer análises</li>
+<li>💥 Fácil perder ou danificar</li>
+<li>👥 Muitas pessoas não conseguem usar</li>
+</ul>
+<p><strong>Solução - Biblioteca Organizada:</strong></p>
+<ul>
+<li>📚 Livros organizados por categoria</li>
+<li>🔍 Sistema de busca eficiente</li>
+<li>📊 Relatórios e estatísticas</li>
+<li>🛡️ Proteção contra perda</li>
+<li>👥 Muitas pessoas podem usar simultaneamente</li>
+</ul>
+</section>
+<section id="por-que-usar-bancos-de-dados" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="por-que-usar-bancos-de-dados"><span class="header-section-number">15.2.2</span> Por que usar Bancos de Dados?</h3>
+<p><strong>Sem banco de dados (problema):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Dados em memória - perdidos quando programa fecha</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>clientes <span class="op">=</span> [</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    {<span class="st">'nome'</span>: <span class="st">'João'</span>, <span class="st">'email'</span>: <span class="st">'joao@email.com'</span>},</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    {<span class="st">'nome'</span>: <span class="st">'Maria'</span>, <span class="st">'email'</span>: <span class="st">'maria@email.com'</span>}</span>
+<span id="cb1-5"><a href="#cb1-5"></a>]</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># Dados em arquivo - difícil de consultar</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'clientes.txt'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    f.write(<span class="st">'João,joao@email.com</span><span class="ch">\n</span><span class="st">Maria,maria@email.com</span><span class="ch">\n</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Com banco de dados (solução):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Dados persistentes e organizados</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># Fácil de consultar, atualizar e analisar</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Múltiplos usuários podem acessar</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># Dados protegidos e consistentes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="o-que-é-sql" class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="o-que-é-sql"><span class="header-section-number">15.2.3</span> O que é SQL?</h3>
+<p><strong>SQL</strong> (Structured Query Language) é a <strong>linguagem</strong> para conversar com bancos de dados.</p>
+<p>É como falar com o <strong>bibliotecário</strong>:</p>
+<ul>
+<li>📖 “Mostre todos os livros de Python”</li>
+<li>➕ “Adicione um novo livro”</li>
+<li>✏️ “Atualize o preço deste livro”</li>
+<li>🗑️ “Remova este livro antigo”</li>
+</ul>
+</section>
+<section id="sqlite---banco-de-dados-simples" class="level3" data-number="15.2.4">
+<h3 data-number="15.2.4" class="anchored" data-anchor-id="sqlite---banco-de-dados-simples"><span class="header-section-number">15.2.4</span> SQLite - Banco de Dados Simples</h3>
+<p><strong>SQLite</strong> é perfeito para aprender:</p>
+<ul>
+<li>✅ <strong>Simples:</strong> Um arquivo = um banco</li>
+<li>✅ <strong>Integrado:</strong> Já vem com Python</li>
+<li>✅ <strong>Rápido:</strong> Ideal para aplicações pequenas/médias</li>
+<li>✅ <strong>Portável:</strong> Funciona em qualquer lugar</li>
+</ul>
+<blockquote class="blockquote">
+<p>💡 <strong>Exemplo:</strong> WhatsApp, Instagram e muitos apps usam SQLite para armazenar dados localmente!</p>
+</blockquote>
+</section>
+</section>
+<section id="seu-primeiro-banco-de-dados" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="seu-primeiro-banco-de-dados"><span class="header-section-number">15.3</span> Seu Primeiro Banco de Dados</h2>
+<section id="criando-e-conectando-ao-banco" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="criando-e-conectando-ao-banco"><span class="header-section-number">15.3.1</span> Criando e Conectando ao Banco</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># Conectar ao banco (cria se não existir)</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'meu_banco.db'</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a>cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="bu">print</span>(<span class="st">"✅ Conectado ao banco de dados!"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co"># Sempre fechar a conexão</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>conn.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="criando-sua-primeira-tabela" class="level3" data-number="15.3.2">
+<h3 data-number="15.3.2" class="anchored" data-anchor-id="criando-sua-primeira-tabela"><span class="header-section-number">15.3.2</span> Criando sua Primeira Tabela</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">def</span> criar_tabela_clientes():</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="co">"""Cria tabela de clientes"""</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'loja.db'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    </span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co"># Criar tabela</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>    cursor.execute(<span class="st">'''</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="st">        CREATE TABLE IF NOT EXISTS clientes (</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="st">            id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="st">            nome TEXT NOT NULL,</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="st">            email TEXT UNIQUE,</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="st">            idade INTEGER,</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="st">            cidade TEXT</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="st">        )</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="st">    '''</span>)</span>
+<span id="cb4-18"><a href="#cb4-18"></a>    </span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="co"># Salvar mudanças</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>    conn.commit()</span>
+<span id="cb4-21"><a href="#cb4-21"></a>    conn.close()</span>
+<span id="cb4-22"><a href="#cb4-22"></a>    <span class="bu">print</span>(<span class="st">"✅ Tabela 'clientes' criada!"</span>)</span>
+<span id="cb4-23"><a href="#cb4-23"></a></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="co"># Executar</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>criar_tabela_clientes()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="inserindo-dados-insert" class="level3" data-number="15.3.3">
+<h3 data-number="15.3.3" class="anchored" data-anchor-id="inserindo-dados-insert"><span class="header-section-number">15.3.3</span> Inserindo Dados (INSERT)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> inserir_cliente(nome, email, idade, cidade):</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="co">"""Insere um novo cliente"""</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'loja.db'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    </span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="cf">try</span>:</span>
+<span id="cb5-7"><a href="#cb5-7"></a>        cursor.execute(<span class="st">'''</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="st">            INSERT INTO clientes (nome, email, idade, cidade)</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="st">            VALUES (?, ?, ?, ?)</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="st">        '''</span>, (nome, email, idade, cidade))</span>
+<span id="cb5-11"><a href="#cb5-11"></a>        </span>
+<span id="cb5-12"><a href="#cb5-12"></a>        conn.commit()</span>
+<span id="cb5-13"><a href="#cb5-13"></a>        <span class="bu">print</span>(<span class="ss">f"✅ Cliente '</span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">' inserido com sucesso!"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14"></a>        </span>
+<span id="cb5-15"><a href="#cb5-15"></a>    <span class="cf">except</span> sqlite3.IntegrityError:</span>
+<span id="cb5-16"><a href="#cb5-16"></a>        <span class="bu">print</span>(<span class="ss">f"❌ Email '</span><span class="sc">{</span>email<span class="sc">}</span><span class="ss">' já existe!"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17"></a>    </span>
+<span id="cb5-18"><a href="#cb5-18"></a>    <span class="cf">finally</span>:</span>
+<span id="cb5-19"><a href="#cb5-19"></a>        conn.close()</span>
+<span id="cb5-20"><a href="#cb5-20"></a></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="co"># Testando</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a>inserir_cliente(<span class="st">'João Silva'</span>, <span class="st">'joao@email.com'</span>, <span class="dv">30</span>, <span class="st">'São Paulo'</span>)</span>
+<span id="cb5-23"><a href="#cb5-23"></a>inserir_cliente(<span class="st">'Maria Santos'</span>, <span class="st">'maria@email.com'</span>, <span class="dv">25</span>, <span class="st">'Rio de Janeiro'</span>)</span>
+<span id="cb5-24"><a href="#cb5-24"></a>inserir_cliente(<span class="st">'Pedro Costa'</span>, <span class="st">'pedro@email.com'</span>, <span class="dv">35</span>, <span class="st">'Belo Horizonte'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="consultando-dados-select" class="level3" data-number="15.3.4">
+<h3 data-number="15.3.4" class="anchored" data-anchor-id="consultando-dados-select"><span class="header-section-number">15.3.4</span> Consultando Dados (SELECT)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> listar_clientes():</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="co">"""Lista todos os clientes"""</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'loja.db'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    </span>
+<span id="cb6-6"><a href="#cb6-6"></a>    cursor.execute(<span class="st">'SELECT * FROM clientes'</span>)</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    clientes <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    </span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="bu">print</span>(<span class="st">"📋 Lista de Clientes:"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb6-11"><a href="#cb6-11"></a>    <span class="cf">for</span> cliente <span class="kw">in</span> clientes:</span>
+<span id="cb6-12"><a href="#cb6-12"></a>        <span class="bu">print</span>(<span class="ss">f"ID: </span><span class="sc">{</span>cliente[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> | Nome: </span><span class="sc">{</span>cliente[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> | Email: </span><span class="sc">{</span>cliente[<span class="dv">2</span>]<span class="sc">}</span><span class="ss"> | Idade: </span><span class="sc">{</span>cliente[<span class="dv">3</span>]<span class="sc">}</span><span class="ss"> | Cidade: </span><span class="sc">{</span>cliente[<span class="dv">4</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13"></a>    </span>
+<span id="cb6-14"><a href="#cb6-14"></a>    conn.close()</span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="cf">return</span> clientes</span>
+<span id="cb6-16"><a href="#cb6-16"></a></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co"># Testando</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>listar_clientes()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="consultas-com-filtros-where" class="level3" data-number="15.3.5">
+<h3 data-number="15.3.5" class="anchored" data-anchor-id="consultas-com-filtros-where"><span class="header-section-number">15.3.5</span> Consultas com Filtros (WHERE)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">def</span> buscar_cliente_por_cidade(cidade):</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="co">"""Busca clientes por cidade"""</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'loja.db'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    </span>
+<span id="cb7-6"><a href="#cb7-6"></a>    cursor.execute(<span class="st">'SELECT * FROM clientes WHERE cidade = ?'</span>, (cidade,))</span>
+<span id="cb7-7"><a href="#cb7-7"></a>    clientes <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb7-8"><a href="#cb7-8"></a>    </span>
+<span id="cb7-9"><a href="#cb7-9"></a>    <span class="bu">print</span>(<span class="ss">f"🏙️ Clientes de </span><span class="sc">{</span>cidade<span class="sc">}</span><span class="ss">:"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="cf">for</span> cliente <span class="kw">in</span> clientes:</span>
+<span id="cb7-11"><a href="#cb7-11"></a>        <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>cliente[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>cliente[<span class="dv">2</span>]<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb7-12"><a href="#cb7-12"></a>    </span>
+<span id="cb7-13"><a href="#cb7-13"></a>    conn.close()</span>
+<span id="cb7-14"><a href="#cb7-14"></a>    <span class="cf">return</span> clientes</span>
+<span id="cb7-15"><a href="#cb7-15"></a></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="kw">def</span> buscar_clientes_maiores_que(idade_minima):</span>
+<span id="cb7-17"><a href="#cb7-17"></a>    <span class="co">"""Busca clientes maiores que uma idade"""</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'loja.db'</span>)</span>
+<span id="cb7-19"><a href="#cb7-19"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb7-20"><a href="#cb7-20"></a>    </span>
+<span id="cb7-21"><a href="#cb7-21"></a>    cursor.execute(<span class="st">'SELECT nome, idade FROM clientes WHERE idade &gt; ?'</span>, (idade_minima,))</span>
+<span id="cb7-22"><a href="#cb7-22"></a>    clientes <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb7-23"><a href="#cb7-23"></a>    </span>
+<span id="cb7-24"><a href="#cb7-24"></a>    <span class="bu">print</span>(<span class="ss">f"👴 Clientes maiores que </span><span class="sc">{</span>idade_minima<span class="sc">}</span><span class="ss"> anos:"</span>)</span>
+<span id="cb7-25"><a href="#cb7-25"></a>    <span class="cf">for</span> cliente <span class="kw">in</span> clientes:</span>
+<span id="cb7-26"><a href="#cb7-26"></a>        <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>cliente[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>cliente[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> anos)"</span>)</span>
+<span id="cb7-27"><a href="#cb7-27"></a>    </span>
+<span id="cb7-28"><a href="#cb7-28"></a>    conn.close()</span>
+<span id="cb7-29"><a href="#cb7-29"></a>    <span class="cf">return</span> clientes</span>
+<span id="cb7-30"><a href="#cb7-30"></a></span>
+<span id="cb7-31"><a href="#cb7-31"></a><span class="co"># Testando</span></span>
+<span id="cb7-32"><a href="#cb7-32"></a>buscar_cliente_por_cidade(<span class="st">'São Paulo'</span>)</span>
+<span id="cb7-33"><a href="#cb7-33"></a>buscar_clientes_maiores_que(<span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p>💡 <strong>Dica:</strong> Use <code>?</code> placeholders para evitar SQL Injection! Nunca concatene strings diretamente no SQL.</p>
+</blockquote>
+</section>
+</section>
+<section id="atualizando-e-deletando-dados" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="atualizando-e-deletando-dados"><span class="header-section-number">15.4</span> Atualizando e Deletando Dados</h2>
+<section id="atualizando-dados-update" class="level3" data-number="15.4.1">
+<h3 data-number="15.4.1" class="anchored" data-anchor-id="atualizando-dados-update"><span class="header-section-number">15.4.1</span> Atualizando Dados (UPDATE)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> atualizar_cliente(cliente_id, novo_nome<span class="op">=</span><span class="va">None</span>, novo_email<span class="op">=</span><span class="va">None</span>, nova_idade<span class="op">=</span><span class="va">None</span>, nova_cidade<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="co">"""Atualiza dados de um cliente"""</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'loja.db'</span>)</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    </span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co"># Construir query dinamicamente</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>    campos <span class="op">=</span> []</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    valores <span class="op">=</span> []</span>
+<span id="cb8-9"><a href="#cb8-9"></a>    </span>
+<span id="cb8-10"><a href="#cb8-10"></a>    <span class="cf">if</span> novo_nome:</span>
+<span id="cb8-11"><a href="#cb8-11"></a>        campos.append(<span class="st">'nome = ?'</span>)</span>
+<span id="cb8-12"><a href="#cb8-12"></a>        valores.append(novo_nome)</span>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="cf">if</span> novo_email:</span>
+<span id="cb8-14"><a href="#cb8-14"></a>        campos.append(<span class="st">'email = ?'</span>)</span>
+<span id="cb8-15"><a href="#cb8-15"></a>        valores.append(novo_email)</span>
+<span id="cb8-16"><a href="#cb8-16"></a>    <span class="cf">if</span> nova_idade:</span>
+<span id="cb8-17"><a href="#cb8-17"></a>        campos.append(<span class="st">'idade = ?'</span>)</span>
+<span id="cb8-18"><a href="#cb8-18"></a>        valores.append(nova_idade)</span>
+<span id="cb8-19"><a href="#cb8-19"></a>    <span class="cf">if</span> nova_cidade:</span>
+<span id="cb8-20"><a href="#cb8-20"></a>        campos.append(<span class="st">'cidade = ?'</span>)</span>
+<span id="cb8-21"><a href="#cb8-21"></a>        valores.append(nova_cidade)</span>
+<span id="cb8-22"><a href="#cb8-22"></a>    </span>
+<span id="cb8-23"><a href="#cb8-23"></a>    <span class="cf">if</span> campos:</span>
+<span id="cb8-24"><a href="#cb8-24"></a>        valores.append(cliente_id)</span>
+<span id="cb8-25"><a href="#cb8-25"></a>        query <span class="op">=</span> <span class="ss">f"UPDATE clientes SET </span><span class="sc">{</span><span class="st">', '</span><span class="sc">.</span>join(campos)<span class="sc">}</span><span class="ss"> WHERE id = ?"</span></span>
+<span id="cb8-26"><a href="#cb8-26"></a>        </span>
+<span id="cb8-27"><a href="#cb8-27"></a>        cursor.execute(query, valores)</span>
+<span id="cb8-28"><a href="#cb8-28"></a>        conn.commit()</span>
+<span id="cb8-29"><a href="#cb8-29"></a>        <span class="bu">print</span>(<span class="ss">f"✅ Cliente ID </span><span class="sc">{</span>cliente_id<span class="sc">}</span><span class="ss"> atualizado!"</span>)</span>
+<span id="cb8-30"><a href="#cb8-30"></a>    <span class="cf">else</span>:</span>
+<span id="cb8-31"><a href="#cb8-31"></a>        <span class="bu">print</span>(<span class="st">"❌ Nenhum campo para atualizar!"</span>)</span>
+<span id="cb8-32"><a href="#cb8-32"></a>    </span>
+<span id="cb8-33"><a href="#cb8-33"></a>    conn.close()</span>
+<span id="cb8-34"><a href="#cb8-34"></a></span>
+<span id="cb8-35"><a href="#cb8-35"></a><span class="co"># Testando</span></span>
+<span id="cb8-36"><a href="#cb8-36"></a>atualizar_cliente(<span class="dv">1</span>, novo_nome<span class="op">=</span><span class="st">'João Silva Santos'</span>, nova_idade<span class="op">=</span><span class="dv">31</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="deletando-dados-delete" class="level3" data-number="15.4.2">
+<h3 data-number="15.4.2" class="anchored" data-anchor-id="deletando-dados-delete"><span class="header-section-number">15.4.2</span> Deletando Dados (DELETE)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> deletar_cliente(cliente_id):</span>
+<span id="cb9-2"><a href="#cb9-2"></a>    <span class="co">"""Deleta um cliente pelo ID"""</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'loja.db'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    </span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co"># Verificar se cliente existe</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>    cursor.execute(<span class="st">'SELECT nome FROM clientes WHERE id = ?'</span>, (cliente_id,))</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    cliente <span class="op">=</span> cursor.fetchone()</span>
+<span id="cb9-9"><a href="#cb9-9"></a>    </span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="cf">if</span> cliente:</span>
+<span id="cb9-11"><a href="#cb9-11"></a>        cursor.execute(<span class="st">'DELETE FROM clientes WHERE id = ?'</span>, (cliente_id,))</span>
+<span id="cb9-12"><a href="#cb9-12"></a>        conn.commit()</span>
+<span id="cb9-13"><a href="#cb9-13"></a>        <span class="bu">print</span>(<span class="ss">f"✅ Cliente '</span><span class="sc">{</span>cliente[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">' deletado!"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14"></a>    <span class="cf">else</span>:</span>
+<span id="cb9-15"><a href="#cb9-15"></a>        <span class="bu">print</span>(<span class="ss">f"❌ Cliente ID </span><span class="sc">{</span>cliente_id<span class="sc">}</span><span class="ss"> não encontrado!"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16"></a>    </span>
+<span id="cb9-17"><a href="#cb9-17"></a>    conn.close()</span>
+<span id="cb9-18"><a href="#cb9-18"></a></span>
+<span id="cb9-19"><a href="#cb9-19"></a><span class="co"># Testando</span></span>
+<span id="cb9-20"><a href="#cb9-20"></a>deletar_cliente(<span class="dv">3</span>)  <span class="co"># Deletar Pedro Costa</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="sistema-completo-de-gerenciamento" class="level3" data-number="15.4.3">
+<h3 data-number="15.4.3" class="anchored" data-anchor-id="sistema-completo-de-gerenciamento"><span class="header-section-number">15.4.3</span> Sistema Completo de Gerenciamento</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">class</span> GerenciadorClientes:</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    <span class="co">"""Classe para gerenciar clientes no banco de dados"""</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>    </span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nome_banco<span class="op">=</span><span class="st">'loja.db'</span>):</span>
+<span id="cb10-5"><a href="#cb10-5"></a>        <span class="va">self</span>.nome_banco <span class="op">=</span> nome_banco</span>
+<span id="cb10-6"><a href="#cb10-6"></a>        <span class="va">self</span>.criar_tabela()</span>
+<span id="cb10-7"><a href="#cb10-7"></a>    </span>
+<span id="cb10-8"><a href="#cb10-8"></a>    <span class="kw">def</span> conectar(<span class="va">self</span>):</span>
+<span id="cb10-9"><a href="#cb10-9"></a>        <span class="co">"""Conecta ao banco de dados"""</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>        <span class="cf">return</span> sqlite3.<span class="ex">connect</span>(<span class="va">self</span>.nome_banco)</span>
+<span id="cb10-11"><a href="#cb10-11"></a>    </span>
+<span id="cb10-12"><a href="#cb10-12"></a>    <span class="kw">def</span> criar_tabela(<span class="va">self</span>):</span>
+<span id="cb10-13"><a href="#cb10-13"></a>        <span class="co">"""Cria tabela se não existir"""</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>        conn <span class="op">=</span> <span class="va">self</span>.conectar()</span>
+<span id="cb10-15"><a href="#cb10-15"></a>        cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb10-16"><a href="#cb10-16"></a>        </span>
+<span id="cb10-17"><a href="#cb10-17"></a>        cursor.execute(<span class="st">'''</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="st">            CREATE TABLE IF NOT EXISTS clientes (</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a><span class="st">                id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a><span class="st">                nome TEXT NOT NULL,</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a><span class="st">                email TEXT UNIQUE,</span></span>
+<span id="cb10-22"><a href="#cb10-22"></a><span class="st">                idade INTEGER,</span></span>
+<span id="cb10-23"><a href="#cb10-23"></a><span class="st">                cidade TEXT,</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a><span class="st">                data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a><span class="st">            )</span></span>
+<span id="cb10-26"><a href="#cb10-26"></a><span class="st">        '''</span>)</span>
+<span id="cb10-27"><a href="#cb10-27"></a>        </span>
+<span id="cb10-28"><a href="#cb10-28"></a>        conn.commit()</span>
+<span id="cb10-29"><a href="#cb10-29"></a>        conn.close()</span>
+<span id="cb10-30"><a href="#cb10-30"></a>    </span>
+<span id="cb10-31"><a href="#cb10-31"></a>    <span class="kw">def</span> adicionar_cliente(<span class="va">self</span>, nome, email, idade, cidade):</span>
+<span id="cb10-32"><a href="#cb10-32"></a>        <span class="co">"""Adiciona novo cliente"""</span></span>
+<span id="cb10-33"><a href="#cb10-33"></a>        conn <span class="op">=</span> <span class="va">self</span>.conectar()</span>
+<span id="cb10-34"><a href="#cb10-34"></a>        cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb10-35"><a href="#cb10-35"></a>        </span>
+<span id="cb10-36"><a href="#cb10-36"></a>        <span class="cf">try</span>:</span>
+<span id="cb10-37"><a href="#cb10-37"></a>            cursor.execute(<span class="st">'''</span></span>
+<span id="cb10-38"><a href="#cb10-38"></a><span class="st">                INSERT INTO clientes (nome, email, idade, cidade)</span></span>
+<span id="cb10-39"><a href="#cb10-39"></a><span class="st">                VALUES (?, ?, ?, ?)</span></span>
+<span id="cb10-40"><a href="#cb10-40"></a><span class="st">            '''</span>, (nome, email, idade, cidade))</span>
+<span id="cb10-41"><a href="#cb10-41"></a>            </span>
+<span id="cb10-42"><a href="#cb10-42"></a>            conn.commit()</span>
+<span id="cb10-43"><a href="#cb10-43"></a>            <span class="bu">print</span>(<span class="ss">f"✅ Cliente '</span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">' adicionado!"</span>)</span>
+<span id="cb10-44"><a href="#cb10-44"></a>            <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb10-45"><a href="#cb10-45"></a>            </span>
+<span id="cb10-46"><a href="#cb10-46"></a>        <span class="cf">except</span> sqlite3.IntegrityError:</span>
+<span id="cb10-47"><a href="#cb10-47"></a>            <span class="bu">print</span>(<span class="ss">f"❌ Email '</span><span class="sc">{</span>email<span class="sc">}</span><span class="ss">' já existe!"</span>)</span>
+<span id="cb10-48"><a href="#cb10-48"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb10-49"><a href="#cb10-49"></a>        <span class="cf">finally</span>:</span>
+<span id="cb10-50"><a href="#cb10-50"></a>            conn.close()</span>
+<span id="cb10-51"><a href="#cb10-51"></a>    </span>
+<span id="cb10-52"><a href="#cb10-52"></a>    <span class="kw">def</span> listar_clientes(<span class="va">self</span>):</span>
+<span id="cb10-53"><a href="#cb10-53"></a>        <span class="co">"""Lista todos os clientes"""</span></span>
+<span id="cb10-54"><a href="#cb10-54"></a>        conn <span class="op">=</span> <span class="va">self</span>.conectar()</span>
+<span id="cb10-55"><a href="#cb10-55"></a>        cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb10-56"><a href="#cb10-56"></a>        </span>
+<span id="cb10-57"><a href="#cb10-57"></a>        cursor.execute(<span class="st">'SELECT * FROM clientes ORDER BY nome'</span>)</span>
+<span id="cb10-58"><a href="#cb10-58"></a>        clientes <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb10-59"><a href="#cb10-59"></a>        </span>
+<span id="cb10-60"><a href="#cb10-60"></a>        <span class="bu">print</span>(<span class="st">"📋 Lista de Clientes:"</span>)</span>
+<span id="cb10-61"><a href="#cb10-61"></a>        <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb10-62"><a href="#cb10-62"></a>        <span class="cf">for</span> cliente <span class="kw">in</span> clientes:</span>
+<span id="cb10-63"><a href="#cb10-63"></a>            <span class="bu">print</span>(<span class="ss">f"ID: </span><span class="sc">{</span>cliente[<span class="dv">0</span>]<span class="sc">:2}</span><span class="ss"> | Nome: </span><span class="sc">{</span>cliente[<span class="dv">1</span>]<span class="sc">:20}</span><span class="ss"> | Email: </span><span class="sc">{</span>cliente[<span class="dv">2</span>]<span class="sc">:25}</span><span class="ss"> | Idade: </span><span class="sc">{</span>cliente[<span class="dv">3</span>]<span class="sc">:2}</span><span class="ss"> | Cidade: </span><span class="sc">{</span>cliente[<span class="dv">4</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-64"><a href="#cb10-64"></a>        </span>
+<span id="cb10-65"><a href="#cb10-65"></a>        conn.close()</span>
+<span id="cb10-66"><a href="#cb10-66"></a>        <span class="cf">return</span> clientes</span>
+<span id="cb10-67"><a href="#cb10-67"></a>    </span>
+<span id="cb10-68"><a href="#cb10-68"></a>    <span class="kw">def</span> buscar_cliente(<span class="va">self</span>, termo):</span>
+<span id="cb10-69"><a href="#cb10-69"></a>        <span class="co">"""Busca cliente por nome ou email"""</span></span>
+<span id="cb10-70"><a href="#cb10-70"></a>        conn <span class="op">=</span> <span class="va">self</span>.conectar()</span>
+<span id="cb10-71"><a href="#cb10-71"></a>        cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb10-72"><a href="#cb10-72"></a>        </span>
+<span id="cb10-73"><a href="#cb10-73"></a>        cursor.execute(<span class="st">'''</span></span>
+<span id="cb10-74"><a href="#cb10-74"></a><span class="st">            SELECT * FROM clientes </span></span>
+<span id="cb10-75"><a href="#cb10-75"></a><span class="st">            WHERE nome LIKE ? OR email LIKE ?</span></span>
+<span id="cb10-76"><a href="#cb10-76"></a><span class="st">        '''</span>, (<span class="ss">f'%</span><span class="sc">{</span>termo<span class="sc">}</span><span class="ss">%'</span>, <span class="ss">f'%</span><span class="sc">{</span>termo<span class="sc">}</span><span class="ss">%'</span>))</span>
+<span id="cb10-77"><a href="#cb10-77"></a>        </span>
+<span id="cb10-78"><a href="#cb10-78"></a>        clientes <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb10-79"><a href="#cb10-79"></a>        </span>
+<span id="cb10-80"><a href="#cb10-80"></a>        <span class="cf">if</span> clientes:</span>
+<span id="cb10-81"><a href="#cb10-81"></a>            <span class="bu">print</span>(<span class="ss">f"🔍 Resultados para '</span><span class="sc">{</span>termo<span class="sc">}</span><span class="ss">':"</span>)</span>
+<span id="cb10-82"><a href="#cb10-82"></a>            <span class="cf">for</span> cliente <span class="kw">in</span> clientes:</span>
+<span id="cb10-83"><a href="#cb10-83"></a>                <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>cliente[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>cliente[<span class="dv">2</span>]<span class="sc">}</span><span class="ss">) - </span><span class="sc">{</span>cliente[<span class="dv">4</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-84"><a href="#cb10-84"></a>        <span class="cf">else</span>:</span>
+<span id="cb10-85"><a href="#cb10-85"></a>            <span class="bu">print</span>(<span class="ss">f"❌ Nenhum cliente encontrado para '</span><span class="sc">{</span>termo<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb10-86"><a href="#cb10-86"></a>        </span>
+<span id="cb10-87"><a href="#cb10-87"></a>        conn.close()</span>
+<span id="cb10-88"><a href="#cb10-88"></a>        <span class="cf">return</span> clientes</span>
+<span id="cb10-89"><a href="#cb10-89"></a>    </span>
+<span id="cb10-90"><a href="#cb10-90"></a>    <span class="kw">def</span> estatisticas(<span class="va">self</span>):</span>
+<span id="cb10-91"><a href="#cb10-91"></a>        <span class="co">"""Mostra estatísticas dos clientes"""</span></span>
+<span id="cb10-92"><a href="#cb10-92"></a>        conn <span class="op">=</span> <span class="va">self</span>.conectar()</span>
+<span id="cb10-93"><a href="#cb10-93"></a>        cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb10-94"><a href="#cb10-94"></a>        </span>
+<span id="cb10-95"><a href="#cb10-95"></a><span class="co"># Total de clientes</span></span>
+<span id="cb10-96"><a href="#cb10-96"></a>        cursor.execute(<span class="st">'SELECT COUNT(*) FROM clientes'</span>)</span>
+<span id="cb10-97"><a href="#cb10-97"></a>        total <span class="op">=</span> cursor.fetchone()[<span class="dv">0</span>]</span>
+<span id="cb10-98"><a href="#cb10-98"></a>        </span>
+<span id="cb10-99"><a href="#cb10-99"></a><span class="co"># Média de idade</span></span>
+<span id="cb10-100"><a href="#cb10-100"></a>        cursor.execute(<span class="st">'SELECT AVG(idade) FROM clientes WHERE idade IS NOT NULL'</span>)</span>
+<span id="cb10-101"><a href="#cb10-101"></a>        media_idade <span class="op">=</span> cursor.fetchone()[<span class="dv">0</span>]</span>
+<span id="cb10-102"><a href="#cb10-102"></a>        </span>
+<span id="cb10-103"><a href="#cb10-103"></a><span class="co"># Clientes por cidade</span></span>
+<span id="cb10-104"><a href="#cb10-104"></a>        cursor.execute(<span class="st">'SELECT cidade, COUNT(*) FROM clientes GROUP BY cidade ORDER BY COUNT(*) DESC'</span>)</span>
+<span id="cb10-105"><a href="#cb10-105"></a>        cidades <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb10-106"><a href="#cb10-106"></a>        </span>
+<span id="cb10-107"><a href="#cb10-107"></a>        <span class="bu">print</span>(<span class="st">"📊 Estatísticas dos Clientes:"</span>)</span>
+<span id="cb10-108"><a href="#cb10-108"></a>        <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">40</span>)</span>
+<span id="cb10-109"><a href="#cb10-109"></a>        <span class="bu">print</span>(<span class="ss">f"Total de clientes: </span><span class="sc">{</span>total<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-110"><a href="#cb10-110"></a>        <span class="cf">if</span> media_idade:</span>
+<span id="cb10-111"><a href="#cb10-111"></a>            <span class="bu">print</span>(<span class="ss">f"Média de idade: </span><span class="sc">{</span>media_idade<span class="sc">:.1f}</span><span class="ss"> anos"</span>)</span>
+<span id="cb10-112"><a href="#cb10-112"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Clientes por cidade:"</span>)</span>
+<span id="cb10-113"><a href="#cb10-113"></a>        <span class="cf">for</span> cidade, count <span class="kw">in</span> cidades:</span>
+<span id="cb10-114"><a href="#cb10-114"></a>            <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>cidade<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>count<span class="sc">}</span><span class="ss"> clientes"</span>)</span>
+<span id="cb10-115"><a href="#cb10-115"></a>        </span>
+<span id="cb10-116"><a href="#cb10-116"></a>        conn.close()</span>
+<span id="cb10-117"><a href="#cb10-117"></a></span>
+<span id="cb10-118"><a href="#cb10-118"></a><span class="co"># Testando o sistema completo</span></span>
+<span id="cb10-119"><a href="#cb10-119"></a>gerenciador <span class="op">=</span> GerenciadorClientes()</span>
+<span id="cb10-120"><a href="#cb10-120"></a></span>
+<span id="cb10-121"><a href="#cb10-121"></a><span class="co"># Adicionar alguns clientes</span></span>
+<span id="cb10-122"><a href="#cb10-122"></a>gerenciador.adicionar_cliente(<span class="st">'Ana Costa'</span>, <span class="st">'ana@email.com'</span>, <span class="dv">28</span>, <span class="st">'São Paulo'</span>)</span>
+<span id="cb10-123"><a href="#cb10-123"></a>gerenciador.adicionar_cliente(<span class="st">'Carlos Lima'</span>, <span class="st">'carlos@email.com'</span>, <span class="dv">42</span>, <span class="st">'Rio de Janeiro'</span>)</span>
+<span id="cb10-124"><a href="#cb10-124"></a>gerenciador.adicionar_cliente(<span class="st">'Fernanda Silva'</span>, <span class="st">'fernanda@email.com'</span>, <span class="dv">33</span>, <span class="st">'São Paulo'</span>)</span>
+<span id="cb10-125"><a href="#cb10-125"></a></span>
+<span id="cb10-126"><a href="#cb10-126"></a><span class="co"># Listar clientes</span></span>
+<span id="cb10-127"><a href="#cb10-127"></a>gerenciador.listar_clientes()</span>
+<span id="cb10-128"><a href="#cb10-128"></a></span>
+<span id="cb10-129"><a href="#cb10-129"></a><span class="co"># Buscar cliente</span></span>
+<span id="cb10-130"><a href="#cb10-130"></a>gerenciador.buscar_cliente(<span class="st">'Ana'</span>)</span>
+<span id="cb10-131"><a href="#cb10-131"></a></span>
+<span id="cb10-132"><a href="#cb10-132"></a><span class="co"># Mostrar estatísticas</span></span>
+<span id="cb10-133"><a href="#cb10-133"></a>gerenciador.estatisticas()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p>💡 <strong>Parabéns!</strong> Você criou um sistema completo de gerenciamento de dados com banco de dados SQL!</p>
+</blockquote>
+</section>
+</section>
+<section id="exercícios-práticos" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="exercícios-práticos"><span class="header-section-number">15.5</span> Exercícios Práticos</h2>
+<section id="muito-fácil-nível-1" class="level3" data-number="15.5.1">
+<h3 data-number="15.5.1" class="anchored" data-anchor-id="muito-fácil-nível-1"><span class="header-section-number">15.5.1</span> <strong>MUITO FÁCIL</strong> (Nível 1)</h3>
+<p><strong>1.</strong> Crie uma tabela <code>livros</code> com campos: id, titulo, autor, ano, preco.</p>
+<p><strong>2.</strong> Insira 3 livros na tabela criada no exercício anterior.</p>
+<p><strong>3.</strong> Liste todos os livros da tabela.</p>
+<p><strong>4.</strong> Busque livros de um autor específico.</p>
+<p><strong>5.</strong> Conte quantos livros existem na tabela.</p>
+</section>
+<section id="fácil-nível-2" class="level3" data-number="15.5.2">
+<h3 data-number="15.5.2" class="anchored" data-anchor-id="fácil-nível-2"><span class="header-section-number">15.5.2</span> <strong>FÁCIL</strong> (Nível 2)</h3>
+<p><strong>6.</strong> Crie um sistema de cadastro de alunos com nome, matrícula, curso e nota.</p>
+<p><strong>7.</strong> Implemente funções para adicionar, listar e buscar alunos.</p>
+<p><strong>8.</strong> Crie uma tabela de produtos com nome, categoria, preço e estoque.</p>
+<p><strong>9.</strong> Implemente um sistema de vendas que registra produtos vendidos.</p>
+<p><strong>10.</strong> Crie consultas para encontrar produtos com estoque baixo (&lt; 10).</p>
+</section>
+<section id="médio-nível-3" class="level3" data-number="15.5.3">
+<h3 data-number="15.5.3" class="anchored" data-anchor-id="médio-nível-3"><span class="header-section-number">15.5.3</span> <strong>MÉDIO</strong> (Nível 3)</h3>
+<p><strong>11.</strong> Crie um sistema de biblioteca com livros, usuários e empréstimos.</p>
+<p><strong>12.</strong> Implemente um sistema de notas escolares com alunos, disciplinas e notas.</p>
+<p><strong>13.</strong> Crie um sistema de e-commerce com produtos, clientes e pedidos.</p>
+<p><strong>14.</strong> Implemente um sistema de agenda com contatos e categorias.</p>
+<p><strong>15.</strong> Crie um sistema de controle de estoque com produtos e movimentações.</p>
+</section>
+<section id="difícil-nível-4" class="level3" data-number="15.5.4">
+<h3 data-number="15.5.4" class="anchored" data-anchor-id="difícil-nível-4"><span class="header-section-number">15.5.4</span> <strong>DIFÍCIL</strong> (Nível 4)</h3>
+<p><strong>16.</strong> Crie um sistema de rede social com usuários, posts e comentários.</p>
+<p><strong>17.</strong> Implemente um sistema bancário com contas, transações e extratos.</p>
+<p><strong>18.</strong> Crie um sistema de hotel com quartos, hóspedes e reservas.</p>
+<p><strong>19.</strong> Implemente um sistema de escola com alunos, professores e disciplinas.</p>
+<p><strong>20.</strong> Crie um sistema de delivery com restaurantes, pedidos e entregadores.</p>
+</section>
+<section id="muito-difícil-nível-5" class="level3" data-number="15.5.5">
+<h3 data-number="15.5.5" class="anchored" data-anchor-id="muito-difícil-nível-5"><span class="header-section-number">15.5.5</span> <strong>MUITO DIFÍCIL</strong> (Nível 5)</h3>
+<p><strong>21.</strong> Crie um sistema completo de marketplace com vendedores e compradores.</p>
+<p><strong>22.</strong> Implemente um sistema de streaming com usuários, conteúdo e assinaturas.</p>
+<p><strong>23.</strong> Crie um sistema de saúde com pacientes, médicos e consultas.</p>
+<p><strong>24.</strong> Implemente um sistema de transporte com rotas, passageiros e viagens.</p>
+<p><strong>25.</strong> Crie um sistema de IoT que armazena dados de sensores em tempo real.</p>
+<blockquote class="blockquote">
+<p>🎯 <strong>Dica:</strong> Comece com tabelas simples e vá adicionando complexidade gradualmente. Sempre teste suas consultas SQL!</p>
+</blockquote>
+</section>
+</section>
+<section id="respostas-dos-exercícios" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="respostas-dos-exercícios"><span class="header-section-number">15.6</span> Respostas dos Exercícios</h2>
+<section id="muito-fácil-nível-1-1" class="level3" data-number="15.6.1">
+<h3 data-number="15.6.1" class="anchored" data-anchor-id="muito-fácil-nível-1-1"><span class="header-section-number">15.6.1</span> <strong>MUITO FÁCIL</strong> (Nível 1)</h3>
+<p><strong>1. Criar tabela <code>livros</code></strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">def</span> criar_tabela_livros():</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="co">"""Cria tabela de livros"""</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'biblioteca.db'</span>)</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    </span>
+<span id="cb11-8"><a href="#cb11-8"></a>    cursor.execute(<span class="st">'''</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="st">        CREATE TABLE IF NOT EXISTS livros (</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="st">            id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="st">            titulo TEXT NOT NULL,</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a><span class="st">            autor TEXT NOT NULL,</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="st">            ano INTEGER,</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a><span class="st">            preco REAL</span></span>
+<span id="cb11-15"><a href="#cb11-15"></a><span class="st">        )</span></span>
+<span id="cb11-16"><a href="#cb11-16"></a><span class="st">    '''</span>)</span>
+<span id="cb11-17"><a href="#cb11-17"></a>    </span>
+<span id="cb11-18"><a href="#cb11-18"></a>    conn.commit()</span>
+<span id="cb11-19"><a href="#cb11-19"></a>    conn.close()</span>
+<span id="cb11-20"><a href="#cb11-20"></a>    <span class="bu">print</span>(<span class="st">"✅ Tabela 'livros' criada com sucesso!"</span>)</span>
+<span id="cb11-21"><a href="#cb11-21"></a></span>
+<span id="cb11-22"><a href="#cb11-22"></a>criar_tabela_livros()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>import sqlite3</code> - Importa módulo SQLite3</li>
+<li><strong>Linha 3:</strong> <code>def criar_tabela_livros():</code> - Define função para criar tabela</li>
+<li><strong>Linha 4:</strong> <code>"""Cria tabela de livros"""</code> - Docstring explicando função</li>
+<li><strong>Linha 5:</strong> <code>conn = sqlite3.connect('biblioteca.db')</code> - Conecta ao banco de dados</li>
+<li><strong>Linha 6:</strong> <code>cursor = conn.cursor()</code> - Cria cursor para executar comandos SQL</li>
+<li><strong>Linha 8:</strong> <code>cursor.execute('''</code> - Inicia execução de comando SQL</li>
+<li><strong>Linha 9:</strong> <code>CREATE TABLE IF NOT EXISTS livros (</code> - Cria tabela se não existir</li>
+<li><strong>Linha 10:</strong> <code>id INTEGER PRIMARY KEY AUTOINCREMENT,</code> - Campo ID como chave primária</li>
+<li><strong>Linha 11:</strong> <code>titulo TEXT NOT NULL,</code> - Campo título obrigatório</li>
+<li><strong>Linha 12:</strong> <code>autor TEXT NOT NULL,</code> - Campo autor obrigatório</li>
+<li><strong>Linha 13:</strong> <code>ano INTEGER,</code> - Campo ano como número inteiro</li>
+<li><strong>Linha 14:</strong> <code>preco REAL</code> - Campo preço como número decimal</li>
+<li><strong>Linha 15:</strong> <code>)</code> - Fecha definição da tabela</li>
+<li><strong>Linha 16:</strong> <code>''')</code> - Fecha string SQL</li>
+<li><strong>Linha 18:</strong> <code>conn.commit()</code> - Confirma mudanças no banco</li>
+<li><strong>Linha 19:</strong> <code>conn.close()</code> - Fecha conexão com banco</li>
+<li><strong>Linha 20:</strong> <code>print("✅ Tabela 'livros' criada com sucesso!")</code> - Mostra mensagem de sucesso</li>
+</ul>
+<p><strong>2. Inserir 3 livros</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">def</span> inserir_livros():</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    <span class="co">"""Insere 3 livros na tabela"""</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'biblioteca.db'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb12-5"><a href="#cb12-5"></a>    </span>
+<span id="cb12-6"><a href="#cb12-6"></a>    livros <span class="op">=</span> [</span>
+<span id="cb12-7"><a href="#cb12-7"></a>        (<span class="st">'Python para Iniciantes'</span>, <span class="st">'João Silva'</span>, <span class="dv">2023</span>, <span class="fl">45.90</span>),</span>
+<span id="cb12-8"><a href="#cb12-8"></a>        (<span class="st">'SQL Avançado'</span>, <span class="st">'Maria Santos'</span>, <span class="dv">2022</span>, <span class="fl">67.50</span>),</span>
+<span id="cb12-9"><a href="#cb12-9"></a>        (<span class="st">'Banco de Dados'</span>, <span class="st">'Pedro Costa'</span>, <span class="dv">2024</span>, <span class="fl">52.30</span>)</span>
+<span id="cb12-10"><a href="#cb12-10"></a>    ]</span>
+<span id="cb12-11"><a href="#cb12-11"></a>    </span>
+<span id="cb12-12"><a href="#cb12-12"></a>    <span class="cf">for</span> livro <span class="kw">in</span> livros:</span>
+<span id="cb12-13"><a href="#cb12-13"></a>        cursor.execute(<span class="st">'''</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="st">            INSERT INTO livros (titulo, autor, ano, preco)</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="st">            VALUES (?, ?, ?, ?)</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a><span class="st">        '''</span>, livro)</span>
+<span id="cb12-17"><a href="#cb12-17"></a>    </span>
+<span id="cb12-18"><a href="#cb12-18"></a>    conn.commit()</span>
+<span id="cb12-19"><a href="#cb12-19"></a>    conn.close()</span>
+<span id="cb12-20"><a href="#cb12-20"></a>    <span class="bu">print</span>(<span class="st">"✅ 3 livros inseridos com sucesso!"</span>)</span>
+<span id="cb12-21"><a href="#cb12-21"></a></span>
+<span id="cb12-22"><a href="#cb12-22"></a>inserir_livros()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def inserir_livros():</code> - Define função para inserir livros</li>
+<li><strong>Linha 2:</strong> <code>"""Insere 3 livros na tabela"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code>conn = sqlite3.connect('biblioteca.db')</code> - Conecta ao banco</li>
+<li><strong>Linha 4:</strong> <code>cursor = conn.cursor()</code> - Cria cursor para comandos SQL</li>
+<li><strong>Linha 6:</strong> <code>livros = [</code> - Inicia lista com dados dos livros</li>
+<li><strong>Linha 7:</strong> <code>('Python para Iniciantes', 'João Silva', 2023, 45.90),</code> - Dados do primeiro livro</li>
+<li><strong>Linha 8:</strong> <code>('SQL Avançado', 'Maria Santos', 2022, 67.50),</code> - Dados do segundo livro</li>
+<li><strong>Linha 9:</strong> <code>('Banco de Dados', 'Pedro Costa', 2024, 52.30)</code> - Dados do terceiro livro</li>
+<li><strong>Linha 10:</strong> <code>]</code> - Fecha lista de livros</li>
+<li><strong>Linha 12:</strong> <code>for livro in livros:</code> - Percorre cada livro na lista</li>
+<li><strong>Linha 13:</strong> <code>cursor.execute('''</code> - Inicia comando SQL</li>
+<li><strong>Linha 14:</strong> <code>INSERT INTO livros (titulo, autor, ano, preco)</code> - Comando INSERT</li>
+<li><strong>Linha 15:</strong> <code>VALUES (?, ?, ?, ?)</code> - Placeholders para valores</li>
+<li><strong>Linha 16:</strong> <code>''', livro)</code> - Fecha comando e passa dados do livro</li>
+<li><strong>Linha 18:</strong> <code>conn.commit()</code> - Confirma inserções no banco</li>
+<li><strong>Linha 19:</strong> <code>conn.close()</code> - Fecha conexão</li>
+<li><strong>Linha 20:</strong> <code>print("✅ 3 livros inseridos com sucesso!")</code> - Mostra mensagem</li>
+</ul>
+<p><strong>3. Listar todos os livros</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> listar_livros():</span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="co">"""Lista todos os livros"""</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'biblioteca.db'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    </span>
+<span id="cb13-6"><a href="#cb13-6"></a>    cursor.execute(<span class="st">'SELECT * FROM livros'</span>)</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    livros <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb13-8"><a href="#cb13-8"></a>    </span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="bu">print</span>(<span class="st">"📚 Lista de Livros:"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="cf">for</span> livro <span class="kw">in</span> livros:</span>
+<span id="cb13-12"><a href="#cb13-12"></a>        <span class="bu">print</span>(<span class="ss">f"ID: </span><span class="sc">{</span>livro[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> | Título: </span><span class="sc">{</span>livro[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> | Autor: </span><span class="sc">{</span>livro[<span class="dv">2</span>]<span class="sc">}</span><span class="ss"> | Ano: </span><span class="sc">{</span>livro[<span class="dv">3</span>]<span class="sc">}</span><span class="ss"> | Preço: R$ </span><span class="sc">{</span>livro[<span class="dv">4</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13"></a>    </span>
+<span id="cb13-14"><a href="#cb13-14"></a>    conn.close()</span>
+<span id="cb13-15"><a href="#cb13-15"></a>    <span class="cf">return</span> livros</span>
+<span id="cb13-16"><a href="#cb13-16"></a></span>
+<span id="cb13-17"><a href="#cb13-17"></a>listar_livros()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def listar_livros():</code> - Define função para listar livros</li>
+<li><strong>Linha 2:</strong> <code>"""Lista todos os livros"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code>conn = sqlite3.connect('biblioteca.db')</code> - Conecta ao banco</li>
+<li><strong>Linha 4:</strong> <code>cursor = conn.cursor()</code> - Cria cursor para comandos SQL</li>
+<li><strong>Linha 6:</strong> <code>cursor.execute('SELECT * FROM livros')</code> - Executa consulta SELECT</li>
+<li><strong>Linha 7:</strong> <code>livros = cursor.fetchall()</code> - Recupera todos os resultados</li>
+<li><strong>Linha 9:</strong> <code>print("📚 Lista de Livros:")</code> - Imprime cabeçalho</li>
+<li><strong>Linha 10:</strong> <code>print("-" * 60)</code> - Imprime linha separadora</li>
+<li><strong>Linha 11:</strong> <code>for livro in livros:</code> - Percorre cada livro retornado</li>
+<li><strong>Linha 12:</strong> <code>print(f"ID: {livro[0]} | Título: {livro[1]} | Autor: {livro[2]} | Ano: {livro[3]} | Preço: R$ {livro[4]}")</code> - Formata e imprime dados do livro</li>
+<li><strong>Linha 14:</strong> <code>conn.close()</code> - Fecha conexão</li>
+<li><strong>Linha 15:</strong> <code>return livros</code> - Retorna lista de livros</li>
+</ul>
+<p><strong>4. Buscar livros por autor</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">def</span> buscar_livros_por_autor(autor):</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    <span class="co">"""Busca livros por autor específico"""</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'biblioteca.db'</span>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb14-5"><a href="#cb14-5"></a>    </span>
+<span id="cb14-6"><a href="#cb14-6"></a>    cursor.execute(<span class="st">'SELECT * FROM livros WHERE autor = ?'</span>, (autor,))</span>
+<span id="cb14-7"><a href="#cb14-7"></a>    livros <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb14-8"><a href="#cb14-8"></a>    </span>
+<span id="cb14-9"><a href="#cb14-9"></a>    <span class="bu">print</span>(<span class="ss">f"🔍 Livros do autor '</span><span class="sc">{</span>autor<span class="sc">}</span><span class="ss">':"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10"></a>    <span class="cf">for</span> livro <span class="kw">in</span> livros:</span>
+<span id="cb14-11"><a href="#cb14-11"></a>        <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>livro[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>livro[<span class="dv">3</span>]<span class="sc">}</span><span class="ss">) - R$ </span><span class="sc">{</span>livro[<span class="dv">4</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12"></a>    </span>
+<span id="cb14-13"><a href="#cb14-13"></a>    conn.close()</span>
+<span id="cb14-14"><a href="#cb14-14"></a>    <span class="cf">return</span> livros</span>
+<span id="cb14-15"><a href="#cb14-15"></a></span>
+<span id="cb14-16"><a href="#cb14-16"></a>buscar_livros_por_autor(<span class="st">'João Silva'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def buscar_livros_por_autor(autor):</code> - Define função com parâmetro autor</li>
+<li><strong>Linha 2:</strong> <code>"""Busca livros por autor específico"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code>conn = sqlite3.connect('biblioteca.db')</code> - Conecta ao banco</li>
+<li><strong>Linha 4:</strong> <code>cursor = conn.cursor()</code> - Cria cursor para comandos SQL</li>
+<li><strong>Linha 6:</strong> <code>cursor.execute('SELECT * FROM livros WHERE autor = ?', (autor,))</code> - Executa consulta com filtro WHERE</li>
+<li><strong>Linha 7:</strong> <code>livros = cursor.fetchall()</code> - Recupera resultados da consulta</li>
+<li><strong>Linha 9:</strong> <code>print(f"🔍 Livros do autor '{autor}':")</code> - Imprime cabeçalho com nome do autor</li>
+<li><strong>Linha 10:</strong> <code>for livro in livros:</code> - Percorre livros encontrados</li>
+<li><strong>Linha 11:</strong> <code>print(f"- {livro[1]} ({livro[3]}) - R$ {livro[4]}")</code> - Imprime título, ano e preço</li>
+<li><strong>Linha 13:</strong> <code>conn.close()</code> - Fecha conexão</li>
+<li><strong>Linha 14:</strong> <code>return livros</code> - Retorna livros encontrados</li>
+</ul>
+<p><strong>5. Contar livros</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">def</span> contar_livros():</span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="co">"""Conta total de livros na tabela"""</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'biblioteca.db'</span>)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb15-5"><a href="#cb15-5"></a>    </span>
+<span id="cb15-6"><a href="#cb15-6"></a>    cursor.execute(<span class="st">'SELECT COUNT(*) FROM livros'</span>)</span>
+<span id="cb15-7"><a href="#cb15-7"></a>    total <span class="op">=</span> cursor.fetchone()[<span class="dv">0</span>]</span>
+<span id="cb15-8"><a href="#cb15-8"></a>    </span>
+<span id="cb15-9"><a href="#cb15-9"></a>    <span class="bu">print</span>(<span class="ss">f"📊 Total de livros: </span><span class="sc">{</span>total<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10"></a>    </span>
+<span id="cb15-11"><a href="#cb15-11"></a>    conn.close()</span>
+<span id="cb15-12"><a href="#cb15-12"></a>    <span class="cf">return</span> total</span>
+<span id="cb15-13"><a href="#cb15-13"></a></span>
+<span id="cb15-14"><a href="#cb15-14"></a>contar_livros()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def contar_livros():</code> - Define função para contar livros</li>
+<li><strong>Linha 2:</strong> <code>"""Conta total de livros na tabela"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code>conn = sqlite3.connect('biblioteca.db')</code> - Conecta ao banco</li>
+<li><strong>Linha 4:</strong> <code>cursor = conn.cursor()</code> - Cria cursor para comandos SQL</li>
+<li><strong>Linha 6:</strong> <code>cursor.execute('SELECT COUNT(*) FROM livros')</code> - Executa função de agregação COUNT</li>
+<li><strong>Linha 7:</strong> <code>total = cursor.fetchone()[0]</code> - Recupera resultado único</li>
+<li><strong>Linha 9:</strong> <code>print(f"📊 Total de livros: {total}")</code> - Imprime total encontrado</li>
+<li><strong>Linha 11:</strong> <code>conn.close()</code> - Fecha conexão</li>
+<li><strong>Linha 12:</strong> <code>return total</code> - Retorna total de livros</li>
+</ul>
+</section>
+<section id="fácil-nível-2-1" class="level3" data-number="15.6.2">
+<h3 data-number="15.6.2" class="anchored" data-anchor-id="fácil-nível-2-1"><span class="header-section-number">15.6.2</span> <strong>FÁCIL</strong> (Nível 2)</h3>
+<p><strong>6. Sistema de cadastro de alunos</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="kw">def</span> criar_sistema_alunos():</span>
+<span id="cb16-4"><a href="#cb16-4"></a>    <span class="co">"""Cria sistema completo de cadastro de alunos"""</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'escola.db'</span>)</span>
+<span id="cb16-6"><a href="#cb16-6"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb16-7"><a href="#cb16-7"></a>    </span>
+<span id="cb16-8"><a href="#cb16-8"></a>    <span class="co"># Criar tabela de alunos</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>    cursor.execute(<span class="st">'''</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="st">        CREATE TABLE IF NOT EXISTS alunos (</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="st">            id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="st">            nome TEXT NOT NULL,</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="st">            matricula TEXT UNIQUE NOT NULL,</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="st">            curso TEXT NOT NULL,</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="st">            nota REAL,</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a><span class="st">            data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a><span class="st">        )</span></span>
+<span id="cb16-18"><a href="#cb16-18"></a><span class="st">    '''</span>)</span>
+<span id="cb16-19"><a href="#cb16-19"></a>    </span>
+<span id="cb16-20"><a href="#cb16-20"></a>    conn.commit()</span>
+<span id="cb16-21"><a href="#cb16-21"></a>    conn.close()</span>
+<span id="cb16-22"><a href="#cb16-22"></a>    <span class="bu">print</span>(<span class="st">"✅ Sistema de alunos criado!"</span>)</span>
+<span id="cb16-23"><a href="#cb16-23"></a></span>
+<span id="cb16-24"><a href="#cb16-24"></a><span class="kw">def</span> adicionar_aluno(nome, matricula, curso, nota<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb16-25"><a href="#cb16-25"></a>    <span class="co">"""Adiciona novo aluno"""</span></span>
+<span id="cb16-26"><a href="#cb16-26"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'escola.db'</span>)</span>
+<span id="cb16-27"><a href="#cb16-27"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb16-28"><a href="#cb16-28"></a>    </span>
+<span id="cb16-29"><a href="#cb16-29"></a>    <span class="cf">try</span>:</span>
+<span id="cb16-30"><a href="#cb16-30"></a>        cursor.execute(<span class="st">'''</span></span>
+<span id="cb16-31"><a href="#cb16-31"></a><span class="st">            INSERT INTO alunos (nome, matricula, curso, nota)</span></span>
+<span id="cb16-32"><a href="#cb16-32"></a><span class="st">            VALUES (?, ?, ?, ?)</span></span>
+<span id="cb16-33"><a href="#cb16-33"></a><span class="st">        '''</span>, (nome, matricula, curso, nota))</span>
+<span id="cb16-34"><a href="#cb16-34"></a>        </span>
+<span id="cb16-35"><a href="#cb16-35"></a>        conn.commit()</span>
+<span id="cb16-36"><a href="#cb16-36"></a>        <span class="bu">print</span>(<span class="ss">f"✅ Aluno '</span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">' adicionado!"</span>)</span>
+<span id="cb16-37"><a href="#cb16-37"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb16-38"><a href="#cb16-38"></a>        </span>
+<span id="cb16-39"><a href="#cb16-39"></a>    <span class="cf">except</span> sqlite3.IntegrityError:</span>
+<span id="cb16-40"><a href="#cb16-40"></a>        <span class="bu">print</span>(<span class="ss">f"❌ Matrícula '</span><span class="sc">{</span>matricula<span class="sc">}</span><span class="ss">' já existe!"</span>)</span>
+<span id="cb16-41"><a href="#cb16-41"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb16-42"><a href="#cb16-42"></a>    <span class="cf">finally</span>:</span>
+<span id="cb16-43"><a href="#cb16-43"></a>        conn.close()</span>
+<span id="cb16-44"><a href="#cb16-44"></a></span>
+<span id="cb16-45"><a href="#cb16-45"></a><span class="kw">def</span> listar_alunos():</span>
+<span id="cb16-46"><a href="#cb16-46"></a>    <span class="co">"""Lista todos os alunos"""</span></span>
+<span id="cb16-47"><a href="#cb16-47"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'escola.db'</span>)</span>
+<span id="cb16-48"><a href="#cb16-48"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb16-49"><a href="#cb16-49"></a>    </span>
+<span id="cb16-50"><a href="#cb16-50"></a>    cursor.execute(<span class="st">'SELECT * FROM alunos ORDER BY nome'</span>)</span>
+<span id="cb16-51"><a href="#cb16-51"></a>    alunos <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb16-52"><a href="#cb16-52"></a>    </span>
+<span id="cb16-53"><a href="#cb16-53"></a>    <span class="bu">print</span>(<span class="st">"📚 Lista de Alunos:"</span>)</span>
+<span id="cb16-54"><a href="#cb16-54"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb16-55"><a href="#cb16-55"></a>    <span class="cf">for</span> aluno <span class="kw">in</span> alunos:</span>
+<span id="cb16-56"><a href="#cb16-56"></a>        nota_texto <span class="op">=</span> <span class="ss">f"R$ </span><span class="sc">{</span>aluno[<span class="dv">4</span>]<span class="sc">:.1f}</span><span class="ss">"</span> <span class="cf">if</span> aluno[<span class="dv">4</span>] <span class="cf">else</span> <span class="st">"Sem nota"</span></span>
+<span id="cb16-57"><a href="#cb16-57"></a>        <span class="bu">print</span>(<span class="ss">f"ID: </span><span class="sc">{</span>aluno[<span class="dv">0</span>]<span class="sc">:2}</span><span class="ss"> | Nome: </span><span class="sc">{</span>aluno[<span class="dv">1</span>]<span class="sc">:20}</span><span class="ss"> | Matrícula: </span><span class="sc">{</span>aluno[<span class="dv">2</span>]<span class="sc">:10}</span><span class="ss"> | Curso: </span><span class="sc">{</span>aluno[<span class="dv">3</span>]<span class="sc">:15}</span><span class="ss"> | Nota: </span><span class="sc">{</span>nota_texto<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-58"><a href="#cb16-58"></a>    </span>
+<span id="cb16-59"><a href="#cb16-59"></a>    conn.close()</span>
+<span id="cb16-60"><a href="#cb16-60"></a>    <span class="cf">return</span> alunos</span>
+<span id="cb16-61"><a href="#cb16-61"></a></span>
+<span id="cb16-62"><a href="#cb16-62"></a><span class="kw">def</span> buscar_aluno(termo):</span>
+<span id="cb16-63"><a href="#cb16-63"></a>    <span class="co">"""Busca aluno por nome ou matrícula"""</span></span>
+<span id="cb16-64"><a href="#cb16-64"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'escola.db'</span>)</span>
+<span id="cb16-65"><a href="#cb16-65"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb16-66"><a href="#cb16-66"></a>    </span>
+<span id="cb16-67"><a href="#cb16-67"></a>    cursor.execute(<span class="st">'''</span></span>
+<span id="cb16-68"><a href="#cb16-68"></a><span class="st">        SELECT * FROM alunos </span></span>
+<span id="cb16-69"><a href="#cb16-69"></a><span class="st">        WHERE nome LIKE ? OR matricula LIKE ?</span></span>
+<span id="cb16-70"><a href="#cb16-70"></a><span class="st">    '''</span>, (<span class="ss">f'%</span><span class="sc">{</span>termo<span class="sc">}</span><span class="ss">%'</span>, <span class="ss">f'%</span><span class="sc">{</span>termo<span class="sc">}</span><span class="ss">%'</span>))</span>
+<span id="cb16-71"><a href="#cb16-71"></a>    </span>
+<span id="cb16-72"><a href="#cb16-72"></a>    alunos <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb16-73"><a href="#cb16-73"></a>    </span>
+<span id="cb16-74"><a href="#cb16-74"></a>    <span class="cf">if</span> alunos:</span>
+<span id="cb16-75"><a href="#cb16-75"></a>        <span class="bu">print</span>(<span class="ss">f"🔍 Resultados para '</span><span class="sc">{</span>termo<span class="sc">}</span><span class="ss">':"</span>)</span>
+<span id="cb16-76"><a href="#cb16-76"></a>        <span class="cf">for</span> aluno <span class="kw">in</span> alunos:</span>
+<span id="cb16-77"><a href="#cb16-77"></a>            <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>aluno[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> (Matrícula: </span><span class="sc">{</span>aluno[<span class="dv">2</span>]<span class="sc">}</span><span class="ss">) - </span><span class="sc">{</span>aluno[<span class="dv">3</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-78"><a href="#cb16-78"></a>    <span class="cf">else</span>:</span>
+<span id="cb16-79"><a href="#cb16-79"></a>        <span class="bu">print</span>(<span class="ss">f"❌ Nenhum aluno encontrado para '</span><span class="sc">{</span>termo<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb16-80"><a href="#cb16-80"></a>    </span>
+<span id="cb16-81"><a href="#cb16-81"></a>    conn.close()</span>
+<span id="cb16-82"><a href="#cb16-82"></a>    <span class="cf">return</span> alunos</span>
+<span id="cb16-83"><a href="#cb16-83"></a></span>
+<span id="cb16-84"><a href="#cb16-84"></a><span class="co"># Testando o sistema</span></span>
+<span id="cb16-85"><a href="#cb16-85"></a>criar_sistema_alunos()</span>
+<span id="cb16-86"><a href="#cb16-86"></a>adicionar_aluno(<span class="st">'Ana Silva'</span>, <span class="st">'2024001'</span>, <span class="st">'Ciência da Computação'</span>, <span class="fl">8.5</span>)</span>
+<span id="cb16-87"><a href="#cb16-87"></a>adicionar_aluno(<span class="st">'Carlos Santos'</span>, <span class="st">'2024002'</span>, <span class="st">'Engenharia'</span>, <span class="fl">7.8</span>)</span>
+<span id="cb16-88"><a href="#cb16-88"></a>adicionar_aluno(<span class="st">'Maria Costa'</span>, <span class="st">'2024003'</span>, <span class="st">'Medicina'</span>, <span class="fl">9.2</span>)</span>
+<span id="cb16-89"><a href="#cb16-89"></a>listar_alunos()</span>
+<span id="cb16-90"><a href="#cb16-90"></a>buscar_aluno(<span class="st">'Ana'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>import sqlite3</code> - Importa módulo SQLite3</li>
+<li><strong>Linha 3:</strong> <code>def criar_sistema_alunos():</code> - Define função para criar sistema</li>
+<li><strong>Linha 4:</strong> <code>"""Cria sistema completo de cadastro de alunos"""</code> - Docstring explicando função</li>
+<li><strong>Linha 5:</strong> <code>conn = sqlite3.connect('escola.db')</code> - Conecta ao banco de dados</li>
+<li><strong>Linha 6:</strong> <code>cursor = conn.cursor()</code> - Cria cursor para comandos SQL</li>
+<li><strong>Linha 8:</strong> <code># Criar tabela de alunos</code> - Comentário explicativo</li>
+<li><strong>Linha 9:</strong> <code>cursor.execute('''</code> - Inicia comando SQL</li>
+<li><strong>Linha 10:</strong> <code>CREATE TABLE IF NOT EXISTS alunos (</code> - Cria tabela se não existir</li>
+<li><strong>Linha 11:</strong> <code>id INTEGER PRIMARY KEY AUTOINCREMENT,</code> - Campo ID como chave primária</li>
+<li><strong>Linha 12:</strong> <code>nome TEXT NOT NULL,</code> - Campo nome obrigatório</li>
+<li><strong>Linha 13:</strong> <code>matricula TEXT UNIQUE NOT NULL,</code> - Campo matrícula único e obrigatório</li>
+<li><strong>Linha 14:</strong> <code>curso TEXT NOT NULL,</code> - Campo curso obrigatório</li>
+<li><strong>Linha 15:</strong> <code>nota REAL,</code> - Campo nota como número decimal (opcional)</li>
+<li><strong>Linha 16:</strong> <code>data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP</code> - Campo de data automático</li>
+<li><strong>Linha 17:</strong> <code>)</code> - Fecha definição da tabela</li>
+<li><strong>Linha 18:</strong> <code>''')</code> - Fecha string SQL</li>
+<li><strong>Linha 20:</strong> <code>conn.commit()</code> - Confirma criação da tabela</li>
+<li><strong>Linha 21:</strong> <code>conn.close()</code> - Fecha conexão</li>
+<li><strong>Linha 22:</strong> <code>print("✅ Sistema de alunos criado!")</code> - Mostra mensagem de sucesso</li>
+</ul>
+<p><strong>7. Sistema de produtos com estoque</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">def</span> criar_sistema_produtos():</span>
+<span id="cb17-2"><a href="#cb17-2"></a>    <span class="co">"""Cria sistema de produtos com controle de estoque"""</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'loja.db'</span>)</span>
+<span id="cb17-4"><a href="#cb17-4"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb17-5"><a href="#cb17-5"></a>    </span>
+<span id="cb17-6"><a href="#cb17-6"></a>    <span class="co"># Criar tabela de produtos</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>    cursor.execute(<span class="st">'''</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="st">        CREATE TABLE IF NOT EXISTS produtos (</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="st">            id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="st">            nome TEXT NOT NULL,</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="st">            categoria TEXT NOT NULL,</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="st">            preco REAL NOT NULL,</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a><span class="st">            estoque INTEGER DEFAULT 0,</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a><span class="st">            data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a><span class="st">        )</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a><span class="st">    '''</span>)</span>
+<span id="cb17-17"><a href="#cb17-17"></a>    </span>
+<span id="cb17-18"><a href="#cb17-18"></a>    <span class="co"># Criar tabela de vendas</span></span>
+<span id="cb17-19"><a href="#cb17-19"></a>    cursor.execute(<span class="st">'''</span></span>
+<span id="cb17-20"><a href="#cb17-20"></a><span class="st">        CREATE TABLE IF NOT EXISTS vendas (</span></span>
+<span id="cb17-21"><a href="#cb17-21"></a><span class="st">            id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb17-22"><a href="#cb17-22"></a><span class="st">            produto_id INTEGER,</span></span>
+<span id="cb17-23"><a href="#cb17-23"></a><span class="st">            quantidade INTEGER NOT NULL,</span></span>
+<span id="cb17-24"><a href="#cb17-24"></a><span class="st">            preco_unitario REAL NOT NULL,</span></span>
+<span id="cb17-25"><a href="#cb17-25"></a><span class="st">            data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,</span></span>
+<span id="cb17-26"><a href="#cb17-26"></a><span class="st">            FOREIGN KEY (produto_id) REFERENCES produtos (id)</span></span>
+<span id="cb17-27"><a href="#cb17-27"></a><span class="st">        )</span></span>
+<span id="cb17-28"><a href="#cb17-28"></a><span class="st">    '''</span>)</span>
+<span id="cb17-29"><a href="#cb17-29"></a>    </span>
+<span id="cb17-30"><a href="#cb17-30"></a>    conn.commit()</span>
+<span id="cb17-31"><a href="#cb17-31"></a>    conn.close()</span>
+<span id="cb17-32"><a href="#cb17-32"></a>    <span class="bu">print</span>(<span class="st">"✅ Sistema de produtos criado!"</span>)</span>
+<span id="cb17-33"><a href="#cb17-33"></a></span>
+<span id="cb17-34"><a href="#cb17-34"></a><span class="kw">def</span> adicionar_produto(nome, categoria, preco, estoque<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb17-35"><a href="#cb17-35"></a>    <span class="co">"""Adiciona novo produto"""</span></span>
+<span id="cb17-36"><a href="#cb17-36"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'loja.db'</span>)</span>
+<span id="cb17-37"><a href="#cb17-37"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb17-38"><a href="#cb17-38"></a>    </span>
+<span id="cb17-39"><a href="#cb17-39"></a>    cursor.execute(<span class="st">'''</span></span>
+<span id="cb17-40"><a href="#cb17-40"></a><span class="st">        INSERT INTO produtos (nome, categoria, preco, estoque)</span></span>
+<span id="cb17-41"><a href="#cb17-41"></a><span class="st">        VALUES (?, ?, ?, ?)</span></span>
+<span id="cb17-42"><a href="#cb17-42"></a><span class="st">    '''</span>, (nome, categoria, preco, estoque))</span>
+<span id="cb17-43"><a href="#cb17-43"></a>    </span>
+<span id="cb17-44"><a href="#cb17-44"></a>    conn.commit()</span>
+<span id="cb17-45"><a href="#cb17-45"></a>    conn.close()</span>
+<span id="cb17-46"><a href="#cb17-46"></a>    <span class="bu">print</span>(<span class="ss">f"✅ Produto '</span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">' adicionado!"</span>)</span>
+<span id="cb17-47"><a href="#cb17-47"></a></span>
+<span id="cb17-48"><a href="#cb17-48"></a><span class="kw">def</span> registrar_venda(produto_id, quantidade):</span>
+<span id="cb17-49"><a href="#cb17-49"></a>    <span class="co">"""Registra uma venda e atualiza estoque"""</span></span>
+<span id="cb17-50"><a href="#cb17-50"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'loja.db'</span>)</span>
+<span id="cb17-51"><a href="#cb17-51"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb17-52"><a href="#cb17-52"></a>    </span>
+<span id="cb17-53"><a href="#cb17-53"></a>    <span class="cf">try</span>:</span>
+<span id="cb17-54"><a href="#cb17-54"></a>        <span class="co"># Verificar estoque disponível</span></span>
+<span id="cb17-55"><a href="#cb17-55"></a>        cursor.execute(<span class="st">'SELECT estoque, preco FROM produtos WHERE id = ?'</span>, (produto_id,))</span>
+<span id="cb17-56"><a href="#cb17-56"></a>        produto <span class="op">=</span> cursor.fetchone()</span>
+<span id="cb17-57"><a href="#cb17-57"></a>        </span>
+<span id="cb17-58"><a href="#cb17-58"></a>        <span class="cf">if</span> <span class="kw">not</span> produto:</span>
+<span id="cb17-59"><a href="#cb17-59"></a>            <span class="bu">print</span>(<span class="st">"❌ Produto não encontrado!"</span>)</span>
+<span id="cb17-60"><a href="#cb17-60"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb17-61"><a href="#cb17-61"></a>        </span>
+<span id="cb17-62"><a href="#cb17-62"></a>        <span class="cf">if</span> produto[<span class="dv">0</span>] <span class="op">&lt;</span> quantidade:</span>
+<span id="cb17-63"><a href="#cb17-63"></a>            <span class="bu">print</span>(<span class="ss">f"❌ Estoque insuficiente! Disponível: </span><span class="sc">{</span>produto[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-64"><a href="#cb17-64"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb17-65"><a href="#cb17-65"></a>        </span>
+<span id="cb17-66"><a href="#cb17-66"></a>        <span class="co"># Registrar venda</span></span>
+<span id="cb17-67"><a href="#cb17-67"></a>        cursor.execute(<span class="st">'''</span></span>
+<span id="cb17-68"><a href="#cb17-68"></a><span class="st">            INSERT INTO vendas (produto_id, quantidade, preco_unitario)</span></span>
+<span id="cb17-69"><a href="#cb17-69"></a><span class="st">            VALUES (?, ?, ?)</span></span>
+<span id="cb17-70"><a href="#cb17-70"></a><span class="st">        '''</span>, (produto_id, quantidade, produto[<span class="dv">1</span>]))</span>
+<span id="cb17-71"><a href="#cb17-71"></a>        </span>
+<span id="cb17-72"><a href="#cb17-72"></a>        <span class="co"># Atualizar estoque</span></span>
+<span id="cb17-73"><a href="#cb17-73"></a>        cursor.execute(<span class="st">'''</span></span>
+<span id="cb17-74"><a href="#cb17-74"></a><span class="st">            UPDATE produtos </span></span>
+<span id="cb17-75"><a href="#cb17-75"></a><span class="st">            SET estoque = estoque - ?</span></span>
+<span id="cb17-76"><a href="#cb17-76"></a><span class="st">            WHERE id = ?</span></span>
+<span id="cb17-77"><a href="#cb17-77"></a><span class="st">        '''</span>, (quantidade, produto_id))</span>
+<span id="cb17-78"><a href="#cb17-78"></a>        </span>
+<span id="cb17-79"><a href="#cb17-79"></a>        conn.commit()</span>
+<span id="cb17-80"><a href="#cb17-80"></a>        <span class="bu">print</span>(<span class="ss">f"✅ Venda registrada! Estoque atualizado."</span>)</span>
+<span id="cb17-81"><a href="#cb17-81"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb17-82"><a href="#cb17-82"></a>        </span>
+<span id="cb17-83"><a href="#cb17-83"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb17-84"><a href="#cb17-84"></a>        <span class="bu">print</span>(<span class="ss">f"❌ Erro na venda: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-85"><a href="#cb17-85"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb17-86"><a href="#cb17-86"></a>    <span class="cf">finally</span>:</span>
+<span id="cb17-87"><a href="#cb17-87"></a>        conn.close()</span>
+<span id="cb17-88"><a href="#cb17-88"></a></span>
+<span id="cb17-89"><a href="#cb17-89"></a><span class="kw">def</span> produtos_estoque_baixo(limite<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb17-90"><a href="#cb17-90"></a>    <span class="co">"""Encontra produtos com estoque baixo"""</span></span>
+<span id="cb17-91"><a href="#cb17-91"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'loja.db'</span>)</span>
+<span id="cb17-92"><a href="#cb17-92"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb17-93"><a href="#cb17-93"></a>    </span>
+<span id="cb17-94"><a href="#cb17-94"></a>    cursor.execute(<span class="st">'''</span></span>
+<span id="cb17-95"><a href="#cb17-95"></a><span class="st">        SELECT * FROM produtos </span></span>
+<span id="cb17-96"><a href="#cb17-96"></a><span class="st">        WHERE estoque &lt; ?</span></span>
+<span id="cb17-97"><a href="#cb17-97"></a><span class="st">        ORDER BY estoque ASC</span></span>
+<span id="cb17-98"><a href="#cb17-98"></a><span class="st">    '''</span>, (limite,))</span>
+<span id="cb17-99"><a href="#cb17-99"></a>    </span>
+<span id="cb17-100"><a href="#cb17-100"></a>    produtos <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb17-101"><a href="#cb17-101"></a>    </span>
+<span id="cb17-102"><a href="#cb17-102"></a>    <span class="bu">print</span>(<span class="ss">f"⚠️ Produtos com estoque baixo (&lt; </span><span class="sc">{</span>limite<span class="sc">}</span><span class="ss">):"</span>)</span>
+<span id="cb17-103"><a href="#cb17-103"></a>    <span class="cf">for</span> produto <span class="kw">in</span> produtos:</span>
+<span id="cb17-104"><a href="#cb17-104"></a>        <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>produto[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> (Estoque: </span><span class="sc">{</span>produto[<span class="dv">4</span>]<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb17-105"><a href="#cb17-105"></a>    </span>
+<span id="cb17-106"><a href="#cb17-106"></a>    conn.close()</span>
+<span id="cb17-107"><a href="#cb17-107"></a>    <span class="cf">return</span> produtos</span>
+<span id="cb17-108"><a href="#cb17-108"></a></span>
+<span id="cb17-109"><a href="#cb17-109"></a><span class="co"># Testando o sistema</span></span>
+<span id="cb17-110"><a href="#cb17-110"></a>criar_sistema_produtos()</span>
+<span id="cb17-111"><a href="#cb17-111"></a>adicionar_produto(<span class="st">'Notebook'</span>, <span class="st">'Informática'</span>, <span class="fl">2500.00</span>, <span class="dv">15</span>)</span>
+<span id="cb17-112"><a href="#cb17-112"></a>adicionar_produto(<span class="st">'Mouse'</span>, <span class="st">'Informática'</span>, <span class="fl">45.90</span>, <span class="dv">5</span>)</span>
+<span id="cb17-113"><a href="#cb17-113"></a>adicionar_produto(<span class="st">'Teclado'</span>, <span class="st">'Informática'</span>, <span class="fl">120.00</span>, <span class="dv">8</span>)</span>
+<span id="cb17-114"><a href="#cb17-114"></a>registrar_venda(<span class="dv">1</span>, <span class="dv">2</span>)  <span class="co"># Vender 2 notebooks</span></span>
+<span id="cb17-115"><a href="#cb17-115"></a>produtos_estoque_baixo()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def criar_sistema_produtos():</code> - Define função para criar sistema de produtos</li>
+<li><strong>Linha 2:</strong> <code>"""Cria sistema de produtos com controle de estoque"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code>conn = sqlite3.connect('loja.db')</code> - Conecta ao banco de dados</li>
+<li><strong>Linha 4:</strong> <code>cursor = conn.cursor()</code> - Cria cursor para comandos SQL</li>
+<li><strong>Linha 6:</strong> <code># Criar tabela de produtos</code> - Comentário explicativo</li>
+<li><strong>Linha 7:</strong> <code>cursor.execute('''</code> - Inicia comando SQL</li>
+<li><strong>Linha 8:</strong> <code>CREATE TABLE IF NOT EXISTS produtos (</code> - Cria tabela de produtos</li>
+<li><strong>Linha 9:</strong> <code>id INTEGER PRIMARY KEY AUTOINCREMENT,</code> - Campo ID como chave primária</li>
+<li><strong>Linha 10:</strong> <code>nome TEXT NOT NULL,</code> - Campo nome obrigatório</li>
+<li><strong>Linha 11:</strong> <code>categoria TEXT NOT NULL,</code> - Campo categoria obrigatório</li>
+<li><strong>Linha 12:</strong> <code>preco REAL NOT NULL,</code> - Campo preço obrigatório</li>
+<li><strong>Linha 13:</strong> <code>estoque INTEGER DEFAULT 0,</code> - Campo estoque com valor padrão</li>
+<li><strong>Linha 14:</strong> <code>data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP</code> - Campo de data automático</li>
+<li><strong>Linha 15:</strong> <code>)</code> - Fecha definição da tabela</li>
+<li><strong>Linha 16:</strong> <code>''')</code> - Fecha string SQL</li>
+<li><strong>Linha 18:</strong> <code># Criar tabela de vendas</code> - Comentário explicativo</li>
+<li><strong>Linha 19:</strong> <code>cursor.execute('''</code> - Inicia comando SQL</li>
+<li><strong>Linha 20:</strong> <code>CREATE TABLE IF NOT EXISTS vendas (</code> - Cria tabela de vendas</li>
+<li><strong>Linha 21:</strong> <code>id INTEGER PRIMARY KEY AUTOINCREMENT,</code> - Campo ID como chave primária</li>
+<li><strong>Linha 22:</strong> <code>produto_id INTEGER,</code> - Campo referenciando produto</li>
+<li><strong>Linha 23:</strong> <code>quantidade INTEGER NOT NULL,</code> - Campo quantidade obrigatório</li>
+<li><strong>Linha 24:</strong> <code>preco_unitario REAL NOT NULL,</code> - Campo preço unitário obrigatório</li>
+<li><strong>Linha 25:</strong> <code>data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,</code> - Campo de data automático</li>
+<li><strong>Linha 26:</strong> <code>FOREIGN KEY (produto_id) REFERENCES produtos (id)</code> - Chave estrangeira</li>
+<li><strong>Linha 27:</strong> <code>)</code> - Fecha definição da tabela</li>
+<li><strong>Linha 28:</strong> <code>''')</code> - Fecha string SQL</li>
+</ul>
+<p><strong>8. Sistema de biblioteca</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">def</span> criar_sistema_biblioteca():</span>
+<span id="cb18-2"><a href="#cb18-2"></a>    <span class="co">"""Cria sistema completo de biblioteca"""</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'biblioteca.db'</span>)</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    </span>
+<span id="cb18-6"><a href="#cb18-6"></a>    <span class="co"># Tabela de livros</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>    cursor.execute(<span class="st">'''</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="st">        CREATE TABLE IF NOT EXISTS livros (</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a><span class="st">            id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a><span class="st">            titulo TEXT NOT NULL,</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a><span class="st">            autor TEXT NOT NULL,</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a><span class="st">            isbn TEXT UNIQUE,</span></span>
+<span id="cb18-13"><a href="#cb18-13"></a><span class="st">            disponivel BOOLEAN DEFAULT 1</span></span>
+<span id="cb18-14"><a href="#cb18-14"></a><span class="st">        )</span></span>
+<span id="cb18-15"><a href="#cb18-15"></a><span class="st">    '''</span>)</span>
+<span id="cb18-16"><a href="#cb18-16"></a>    </span>
+<span id="cb18-17"><a href="#cb18-17"></a>    <span class="co"># Tabela de usuários</span></span>
+<span id="cb18-18"><a href="#cb18-18"></a>    cursor.execute(<span class="st">'''</span></span>
+<span id="cb18-19"><a href="#cb18-19"></a><span class="st">        CREATE TABLE IF NOT EXISTS usuarios (</span></span>
+<span id="cb18-20"><a href="#cb18-20"></a><span class="st">            id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb18-21"><a href="#cb18-21"></a><span class="st">            nome TEXT NOT NULL,</span></span>
+<span id="cb18-22"><a href="#cb18-22"></a><span class="st">            email TEXT UNIQUE NOT NULL,</span></span>
+<span id="cb18-23"><a href="#cb18-23"></a><span class="st">            telefone TEXT</span></span>
+<span id="cb18-24"><a href="#cb18-24"></a><span class="st">        )</span></span>
+<span id="cb18-25"><a href="#cb18-25"></a><span class="st">    '''</span>)</span>
+<span id="cb18-26"><a href="#cb18-26"></a>    </span>
+<span id="cb18-27"><a href="#cb18-27"></a>    <span class="co"># Tabela de empréstimos</span></span>
+<span id="cb18-28"><a href="#cb18-28"></a>    cursor.execute(<span class="st">'''</span></span>
+<span id="cb18-29"><a href="#cb18-29"></a><span class="st">        CREATE TABLE IF NOT EXISTS emprestimos (</span></span>
+<span id="cb18-30"><a href="#cb18-30"></a><span class="st">            id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb18-31"><a href="#cb18-31"></a><span class="st">            livro_id INTEGER,</span></span>
+<span id="cb18-32"><a href="#cb18-32"></a><span class="st">            usuario_id INTEGER,</span></span>
+<span id="cb18-33"><a href="#cb18-33"></a><span class="st">            data_emprestimo TIMESTAMP DEFAULT CURRENT_TIMESTAMP,</span></span>
+<span id="cb18-34"><a href="#cb18-34"></a><span class="st">            data_devolucao TIMESTAMP,</span></span>
+<span id="cb18-35"><a href="#cb18-35"></a><span class="st">            FOREIGN KEY (livro_id) REFERENCES livros (id),</span></span>
+<span id="cb18-36"><a href="#cb18-36"></a><span class="st">            FOREIGN KEY (usuario_id) REFERENCES usuarios (id)</span></span>
+<span id="cb18-37"><a href="#cb18-37"></a><span class="st">        )</span></span>
+<span id="cb18-38"><a href="#cb18-38"></a><span class="st">    '''</span>)</span>
+<span id="cb18-39"><a href="#cb18-39"></a>    </span>
+<span id="cb18-40"><a href="#cb18-40"></a>    conn.commit()</span>
+<span id="cb18-41"><a href="#cb18-41"></a>    conn.close()</span>
+<span id="cb18-42"><a href="#cb18-42"></a>    <span class="bu">print</span>(<span class="st">"✅ Sistema de biblioteca criado!"</span>)</span>
+<span id="cb18-43"><a href="#cb18-43"></a></span>
+<span id="cb18-44"><a href="#cb18-44"></a><span class="kw">def</span> emprestar_livro(livro_id, usuario_id):</span>
+<span id="cb18-45"><a href="#cb18-45"></a>    <span class="co">"""Realiza empréstimo de livro"""</span></span>
+<span id="cb18-46"><a href="#cb18-46"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'biblioteca.db'</span>)</span>
+<span id="cb18-47"><a href="#cb18-47"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb18-48"><a href="#cb18-48"></a>    </span>
+<span id="cb18-49"><a href="#cb18-49"></a>    <span class="cf">try</span>:</span>
+<span id="cb18-50"><a href="#cb18-50"></a>        <span class="co"># Verificar se livro está disponível</span></span>
+<span id="cb18-51"><a href="#cb18-51"></a>        cursor.execute(<span class="st">'SELECT disponivel FROM livros WHERE id = ?'</span>, (livro_id,))</span>
+<span id="cb18-52"><a href="#cb18-52"></a>        livro <span class="op">=</span> cursor.fetchone()</span>
+<span id="cb18-53"><a href="#cb18-53"></a>        </span>
+<span id="cb18-54"><a href="#cb18-54"></a>        <span class="cf">if</span> <span class="kw">not</span> livro <span class="kw">or</span> <span class="kw">not</span> livro[<span class="dv">0</span>]:</span>
+<span id="cb18-55"><a href="#cb18-55"></a>            <span class="bu">print</span>(<span class="st">"❌ Livro não disponível!"</span>)</span>
+<span id="cb18-56"><a href="#cb18-56"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb18-57"><a href="#cb18-57"></a>        </span>
+<span id="cb18-58"><a href="#cb18-58"></a>        <span class="co"># Realizar empréstimo</span></span>
+<span id="cb18-59"><a href="#cb18-59"></a>        cursor.execute(<span class="st">'''</span></span>
+<span id="cb18-60"><a href="#cb18-60"></a><span class="st">            INSERT INTO emprestimos (livro_id, usuario_id)</span></span>
+<span id="cb18-61"><a href="#cb18-61"></a><span class="st">            VALUES (?, ?)</span></span>
+<span id="cb18-62"><a href="#cb18-62"></a><span class="st">        '''</span>, (livro_id, usuario_id))</span>
+<span id="cb18-63"><a href="#cb18-63"></a>        </span>
+<span id="cb18-64"><a href="#cb18-64"></a>        <span class="co"># Marcar livro como indisponível</span></span>
+<span id="cb18-65"><a href="#cb18-65"></a>        cursor.execute(<span class="st">'''</span></span>
+<span id="cb18-66"><a href="#cb18-66"></a><span class="st">            UPDATE livros </span></span>
+<span id="cb18-67"><a href="#cb18-67"></a><span class="st">            SET disponivel = 0</span></span>
+<span id="cb18-68"><a href="#cb18-68"></a><span class="st">            WHERE id = ?</span></span>
+<span id="cb18-69"><a href="#cb18-69"></a><span class="st">        '''</span>, (livro_id,))</span>
+<span id="cb18-70"><a href="#cb18-70"></a>        </span>
+<span id="cb18-71"><a href="#cb18-71"></a>        conn.commit()</span>
+<span id="cb18-72"><a href="#cb18-72"></a>        <span class="bu">print</span>(<span class="st">"✅ Empréstimo realizado com sucesso!"</span>)</span>
+<span id="cb18-73"><a href="#cb18-73"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb18-74"><a href="#cb18-74"></a>        </span>
+<span id="cb18-75"><a href="#cb18-75"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb18-76"><a href="#cb18-76"></a>        <span class="bu">print</span>(<span class="ss">f"❌ Erro no empréstimo: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-77"><a href="#cb18-77"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb18-78"><a href="#cb18-78"></a>    <span class="cf">finally</span>:</span>
+<span id="cb18-79"><a href="#cb18-79"></a>        conn.close()</span>
+<span id="cb18-80"><a href="#cb18-80"></a></span>
+<span id="cb18-81"><a href="#cb18-81"></a><span class="kw">def</span> devolver_livro(emprestimo_id):</span>
+<span id="cb18-82"><a href="#cb18-82"></a>    <span class="co">"""Devolve um livro"""</span></span>
+<span id="cb18-83"><a href="#cb18-83"></a>    conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'biblioteca.db'</span>)</span>
+<span id="cb18-84"><a href="#cb18-84"></a>    cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb18-85"><a href="#cb18-85"></a>    </span>
+<span id="cb18-86"><a href="#cb18-86"></a>    <span class="cf">try</span>:</span>
+<span id="cb18-87"><a href="#cb18-87"></a>        <span class="co"># Buscar empréstimo</span></span>
+<span id="cb18-88"><a href="#cb18-88"></a>        cursor.execute(<span class="st">'SELECT livro_id FROM emprestimos WHERE id = ? AND data_devolucao IS NULL'</span>, (emprestimo_id,))</span>
+<span id="cb18-89"><a href="#cb18-89"></a>        emprestimo <span class="op">=</span> cursor.fetchone()</span>
+<span id="cb18-90"><a href="#cb18-90"></a>        </span>
+<span id="cb18-91"><a href="#cb18-91"></a>        <span class="cf">if</span> <span class="kw">not</span> emprestimo:</span>
+<span id="cb18-92"><a href="#cb18-92"></a>            <span class="bu">print</span>(<span class="st">"❌ Empréstimo não encontrado!"</span>)</span>
+<span id="cb18-93"><a href="#cb18-93"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb18-94"><a href="#cb18-94"></a>        </span>
+<span id="cb18-95"><a href="#cb18-95"></a>        <span class="co"># Registrar devolução</span></span>
+<span id="cb18-96"><a href="#cb18-96"></a>        cursor.execute(<span class="st">'''</span></span>
+<span id="cb18-97"><a href="#cb18-97"></a><span class="st">            UPDATE emprestimos </span></span>
+<span id="cb18-98"><a href="#cb18-98"></a><span class="st">            SET data_devolucao = CURRENT_TIMESTAMP</span></span>
+<span id="cb18-99"><a href="#cb18-99"></a><span class="st">            WHERE id = ?</span></span>
+<span id="cb18-100"><a href="#cb18-100"></a><span class="st">        '''</span>, (emprestimo_id,))</span>
+<span id="cb18-101"><a href="#cb18-101"></a>        </span>
+<span id="cb18-102"><a href="#cb18-102"></a>        <span class="co"># Marcar livro como disponível</span></span>
+<span id="cb18-103"><a href="#cb18-103"></a>        cursor.execute(<span class="st">'''</span></span>
+<span id="cb18-104"><a href="#cb18-104"></a><span class="st">            UPDATE livros </span></span>
+<span id="cb18-105"><a href="#cb18-105"></a><span class="st">            SET disponivel = 1</span></span>
+<span id="cb18-106"><a href="#cb18-106"></a><span class="st">            WHERE id = ?</span></span>
+<span id="cb18-107"><a href="#cb18-107"></a><span class="st">        '''</span>, (emprestimo[<span class="dv">0</span>],))</span>
+<span id="cb18-108"><a href="#cb18-108"></a>        </span>
+<span id="cb18-109"><a href="#cb18-109"></a>        conn.commit()</span>
+<span id="cb18-110"><a href="#cb18-110"></a>        <span class="bu">print</span>(<span class="st">"✅ Livro devolvido com sucesso!"</span>)</span>
+<span id="cb18-111"><a href="#cb18-111"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb18-112"><a href="#cb18-112"></a>        </span>
+<span id="cb18-113"><a href="#cb18-113"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb18-114"><a href="#cb18-114"></a>        <span class="bu">print</span>(<span class="ss">f"❌ Erro na devolução: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-115"><a href="#cb18-115"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb18-116"><a href="#cb18-116"></a>    <span class="cf">finally</span>:</span>
+<span id="cb18-117"><a href="#cb18-117"></a>        conn.close()</span>
+<span id="cb18-118"><a href="#cb18-118"></a></span>
+<span id="cb18-119"><a href="#cb18-119"></a><span class="co"># Testando o sistema</span></span>
+<span id="cb18-120"><a href="#cb18-120"></a>criar_sistema_biblioteca()</span>
+<span id="cb18-121"><a href="#cb18-121"></a><span class="bu">print</span>(<span class="st">"📚 Sistema de biblioteca pronto para uso!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def criar_sistema_biblioteca():</code> - Define função para criar sistema de biblioteca</li>
+<li><strong>Linha 2:</strong> <code>"""Cria sistema completo de biblioteca"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code>conn = sqlite3.connect('biblioteca.db')</code> - Conecta ao banco de dados</li>
+<li><strong>Linha 4:</strong> <code>cursor = conn.cursor()</code> - Cria cursor para comandos SQL</li>
+<li><strong>Linha 6:</strong> <code># Tabela de livros</code> - Comentário explicativo</li>
+<li><strong>Linha 7:</strong> <code>cursor.execute('''</code> - Inicia comando SQL</li>
+<li><strong>Linha 8:</strong> <code>CREATE TABLE IF NOT EXISTS livros (</code> - Cria tabela de livros</li>
+<li><strong>Linha 9:</strong> <code>id INTEGER PRIMARY KEY AUTOINCREMENT,</code> - Campo ID como chave primária</li>
+<li><strong>Linha 10:</strong> <code>titulo TEXT NOT NULL,</code> - Campo título obrigatório</li>
+<li><strong>Linha 11:</strong> <code>autor TEXT NOT NULL,</code> - Campo autor obrigatório</li>
+<li><strong>Linha 12:</strong> <code>isbn TEXT UNIQUE,</code> - Campo ISBN único</li>
+<li><strong>Linha 13:</strong> <code>disponivel BOOLEAN DEFAULT 1</code> - Campo disponibilidade com padrão</li>
+<li><strong>Linha 14:</strong> <code>)</code> - Fecha definição da tabela</li>
+<li><strong>Linha 15:</strong> <code>''')</code> - Fecha string SQL</li>
+<li><strong>Linha 17:</strong> <code># Tabela de usuários</code> - Comentário explicativo</li>
+<li><strong>Linha 18:</strong> <code>cursor.execute('''</code> - Inicia comando SQL</li>
+<li><strong>Linha 19:</strong> <code>CREATE TABLE IF NOT EXISTS usuarios (</code> - Cria tabela de usuários</li>
+<li><strong>Linha 20:</strong> <code>id INTEGER PRIMARY KEY AUTOINCREMENT,</code> - Campo ID como chave primária</li>
+<li><strong>Linha 21:</strong> <code>nome TEXT NOT NULL,</code> - Campo nome obrigatório</li>
+<li><strong>Linha 22:</strong> <code>email TEXT UNIQUE NOT NULL,</code> - Campo email único e obrigatório</li>
+<li><strong>Linha 23:</strong> <code>telefone TEXT</code> - Campo telefone opcional</li>
+<li><strong>Linha 24:</strong> <code>)</code> - Fecha definição da tabela</li>
+<li><strong>Linha 25:</strong> <code>''')</code> - Fecha string SQL</li>
+<li><strong>Linha 27:</strong> <code># Tabela de empréstimos</code> - Comentário explicativo</li>
+<li><strong>Linha 28:</strong> <code>cursor.execute('''</code> - Inicia comando SQL</li>
+<li><strong>Linha 29:</strong> <code>CREATE TABLE IF NOT EXISTS emprestimos (</code> - Cria tabela de empréstimos</li>
+<li><strong>Linha 30:</strong> <code>id INTEGER PRIMARY KEY AUTOINCREMENT,</code> - Campo ID como chave primária</li>
+<li><strong>Linha 31:</strong> <code>livro_id INTEGER,</code> - Campo referenciando livro</li>
+<li><strong>Linha 32:</strong> <code>usuario_id INTEGER,</code> - Campo referenciando usuário</li>
+<li><strong>Linha 33:</strong> <code>data_emprestimo TIMESTAMP DEFAULT CURRENT_TIMESTAMP,</code> - Data de empréstimo automática</li>
+<li><strong>Linha 34:</strong> <code>data_devolucao TIMESTAMP,</code> - Data de devolução (opcional)</li>
+<li><strong>Linha 35:</strong> <code>FOREIGN KEY (livro_id) REFERENCES livros (id),</code> - Chave estrangeira para livros</li>
+<li><strong>Linha 36:</strong> <code>FOREIGN KEY (usuario_id) REFERENCES usuarios (id)</code> - Chave estrangeira para usuários</li>
+<li><strong>Linha 37:</strong> <code>)</code> - Fecha definição da tabela</li>
+<li><strong>Linha 38:</strong> <code>''')</code> - Fecha string SQL</li>
+</ul>
+</section>
+</section>
+<section id="próximos-passos-continue-aprendendo" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="próximos-passos-continue-aprendendo"><span class="header-section-number">15.7</span> Próximos Passos: Continue Aprendendo!</h2>
+<p>Parabéns! Você agora domina bancos de dados SQL com Python! 🎉</p>
+<section id="o-que-você-aprendeu" class="level3" data-number="15.7.1">
+<h3 data-number="15.7.1" class="anchored" data-anchor-id="o-que-você-aprendeu"><span class="header-section-number">15.7.1</span> O que você aprendeu:</h3>
+<ul>
+<li>✅ <strong>Conceito de Bancos de Dados:</strong> Por que usar bancos em vez de arquivos</li>
+<li>✅ <strong>SQL básico:</strong> Comandos CREATE, INSERT, SELECT, UPDATE, DELETE</li>
+<li>✅ <strong>SQLite com Python:</strong> Como usar a biblioteca <code>sqlite3</code> integrada</li>
+<li>✅ <strong>Operações CRUD:</strong> Criar, ler, atualizar e deletar dados</li>
+<li>✅ <strong>Consultas com filtros:</strong> WHERE, ORDER BY, GROUP BY</li>
+<li>✅ <strong>Sistema completo:</strong> Classe para gerenciar dados de forma organizada</li>
+<li>✅ <strong>Boas práticas:</strong> Prevenção de SQL Injection e gerenciamento de conexões</li>
+<li>✅ <strong>Projetos práticos:</strong> Sistemas de gerenciamento de dados reais</li>
+</ul>
+</section>
+<section id="desafios-para-continuar" class="level3" data-number="15.7.2">
+<h3 data-number="15.7.2" class="anchored" data-anchor-id="desafios-para-continuar"><span class="header-section-number">15.7.2</span> Desafios para Continuar:</h3>
+<ol type="1">
+<li><strong>Explore bancos maiores:</strong> Teste PostgreSQL ou MySQL para projetos maiores</li>
+<li><strong>Crie APIs com banco:</strong> Integre Flask com bancos de dados</li>
+<li><strong>Automatize tarefas:</strong> Use bancos para armazenar dados de scraping</li>
+<li><strong>Contribua com projetos:</strong> Encontre projetos que precisam de persistência de dados</li>
+</ol>
+</section>
+<section id="próximo-capítulo" class="level3" data-number="15.7.3">
+<h3 data-number="15.7.3" class="anchored" data-anchor-id="próximo-capítulo"><span class="header-section-number">15.7.3</span> Próximo Capítulo:</h3>
+<p>No <strong>Capítulo 16</strong>, vamos aprender sobre <strong>Expressões Regulares (Regex)</strong>! Você vai descobrir como:</p>
+<ul>
+<li>Usar padrões para encontrar texto específico</li>
+<li>Validar emails, CPFs e telefones</li>
+<li>Extrair informações de textos</li>
+<li>Limpar e formatar dados</li>
+<li>Aplicar regex em projetos de scraping e APIs</li>
+</ul>
+<blockquote class="blockquote">
+<p>🎯 <strong>batel.tech:</strong> Quer praticar mais? Acesse <a href="https://batel.tech">batel.tech</a> e encontre projetos práticos para aplicar seus conhecimentos de bancos de dados! Lá você pode colaborar com outros desenvolvedores e construir sistemas incríveis com persistência de dados!</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="referências-bibliográficas" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="referências-bibliográficas"><span class="header-section-number">15.8</span> Referências Bibliográficas</h2>
+<ul>
+<li><strong>SQLite Documentation:</strong> <a href="https://www.sqlite.org/docs.html">SQLite Documentation</a></li>
+<li><strong>Python sqlite3:</strong> <a href="https://docs.python.org/3/library/sqlite3.html">Python SQLite3 Documentation</a></li>
+<li><strong>SQL Tutorial:</strong> <a href="https://www.w3schools.com/sql/">W3Schools SQL Tutorial</a></li>
+<li><strong>Database Design:</strong> <a href="https://www.lucidchart.com/pages/database-diagram/database-design">Database Design Best Practices</a></li>
+<li><strong>SQL Injection Prevention:</strong> <a href="https://owasp.org/www-community/attacks/SQL_Injection">OWASP SQL Injection Prevention</a></li>
+</ul>
+<hr>
+<p><em>Capítulo 15 concluído! 🎉 Agora você está pronto para criar sistemas com persistência de dados e bancos de dados profissionais. No próximo capítulo, vamos aprender sobre expressões regulares!</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./14-Web-Scraping.html" class="pagination-link" aria-label="Web Scraping com BeautifulSoup">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web Scraping com BeautifulSoup</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./16-Expressoes-Regulares.html" class="pagination-link" aria-label="Expressões Regulares (Regex) - Capítulo Bônus">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Expressões Regulares (Regex) - Capítulo Bônus</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
