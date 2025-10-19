@@ -20,3 +20,11 @@ parts:
 - caption: "Parte 3: Resolvendo tretas"
   chapters:
   - file: 10-Erros-Comuns.ipynb
+- caption: "Parte 4: Tópicos Avançados"
+  chapters:
+  - file: 11-Modulos-Bibliotecas.ipynb
+  - file: 12-APIs-Parte1-Consumo.ipynb
+  - file: 13-APIs-Parte2-Criacao.ipynb
+  - file: 14-Web-Scraping.ipynb
+  - file: 15-Banco-Dados-SQL.ipynb
+  - file: 16-Expressoes-Regulares.ipynb

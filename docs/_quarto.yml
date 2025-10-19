@@ -26,6 +26,14 @@ book:
     - part: "Parte 3: Resolvendo tretas"
       chapters:
         - 10-Erros-Comuns.ipynb
+    - part: "Parte 4: Tópicos Avançados"
+      chapters:
+        - 11-Modulos-Bibliotecas.ipynb
+        - 12-APIs-Parte1-Consumo.ipynb
+        - 13-APIs-Parte2-Criacao.ipynb
+        - 14-Web-Scraping.ipynb
+        - 15-Banco-Dados-SQL.ipynb
+        - 16-Expressoes-Regulares.ipynb
 
 format:
   html:
@@ -34,9 +42,10 @@ format:
     toc: true
     toc-depth: 3
     number-sections: true
-    code-fold: true
+    code-fold: show
     code-tools: true
     code-copy: true
+    code-line-numbers: true
     fig-cap-location: bottom
     google-analytics: G-0LGPFVV5N2
     

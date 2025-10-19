@@ -1,4 +1,4 @@
-# Python Descomplicado: Aprendendo Algoritmos de Forma Simples
+# Python Descomplicado: Aprendendo Algoritmos de Forma Simples {.unnumbered}
 
 Olá! Sabe como é a vida quando se aprende algo novo, né? Muito conteúdo pela internet, muito curso, muita coisa sendo apresentada de jeitos diferentes e você não sabendo exatamente onde olhar ou como interpretar as coisas. A ideia deste livro não é a de vender sonhos ou coisas do tipo. Não é falar para você algo como *"estude isso, e torne-se alguém que ganha 50k por mês com apenas algumas semanas de estudo!"*. Até porque, afinal de contas, as empresas possuem interesse por profissionais que saibam resolver problemas com uma ampla bagagem técnica, e para ter esta bagagem é importante explicar como as coisas funcionam.
 
@@ -10,7 +10,7 @@ Porém, nem tudo são rosas. Aprender Python (ou qualquer outra linguagem) pode 
 
 Por isso, é importante ressaltar que este livro não é um tutorial ou um guia passo-a-passo. O seu foco é desenvolver um pensamento crítico para a resolução de problemas em vez de somente seguir instruções clicando em telas e apertando botões. Isso porque, como profissional e como disse antes, é fundamental saber como resolver problemas complexos dentro das empresas, e seguir tutoriais pode limitar a autonomia nesse sentido.
 
-Ah, vale lembrar que este livro foi produzido por mim, um humano com experiência acadêmica e profissional na minha área de atuação. Isto posto, também é preciso informar que eu, na posição de cientista de dados que sou, utilizei técnicas de IA Generativa com muita cautela para complementar o meu próprio conteúdo. Mais especificamente, usei o ChatGPT como ferramenta para algumas complementações de conteúdo pontuais. Dito isso, embora tenha sido uma ferramenta interessante para a produção deste livro, é importante lembrar que este é um livro que é criado e editado por um professor/profissional com conhecimento e experiência na área abordada.
+Ah, vale lembrar que este livro foi produzido por mim, um humano com experiência acadêmica e profissional na minha área de atuação. Isto posto, também é preciso informar que eu, na posição de cientista de dados que sou, utilizei técnicas de IA Generativa com muita cautela para complementar o meu próprio conteúdo. Mais especificamente, usei LLMs como ferramentas para algumas complementações de conteúdo pontuais. Dito isso, embora tenham sido ferramentas interessante para a produção deste livro, é importante lembrar que este é um livro que é criado e editado por um professor/profissional com conhecimento e experiência na área abordada.
 
 ::: {#quarto-toc}
 :::

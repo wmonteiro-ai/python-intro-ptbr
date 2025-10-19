@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>16&nbsp; Expressões Regulares (Regex) - Capítulo Bônus – Python Descomplicado</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./15-Banco-Dados-SQL.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f2c6d6e2b784ddc5de38779acc06f37d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-Modulos-Bibliotecas.html">Parte 4: Tópicos Avançados</a></li><li class="breadcrumb-item"><a href="./16-Expressoes-Regulares.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Expressões Regulares (Regex) - Capítulo Bônus</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python Descomplicado</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Descomplicado: Aprendendo Algoritmos de Forma Simples</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 1: Sabendo onde estamos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introducao-Ambiente.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a trabalhar com Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Introducao-Algoritmos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arrumando as coisas para começar a falar de algoritmos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 2: Fazendo coisas legais</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Variaveis-IO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Variáveis e Entrada/Saída em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Estruturas-Selecao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Estruturas de Seleção em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Estruturas-Repeticao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Estruturas de Repetição em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Funções em Python - Reutilizando Código</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Listas-Dicionarios-Tuplas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estruturas de Dados em Python - Listas, Dicionários e Tuplas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Manipulacao-Arquivos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Manipulação de Arquivos em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-POO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Programação Orientada a Objetos em Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 3: Resolvendo tretas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Erros-Comuns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Erros e Exceções em Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte 4: Tópicos Avançados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Modulos-Bibliotecas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Módulos e Bibliotecas em Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-APIs-Parte1-Consumo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">APIs - Parte 1: Consumindo APIs REST</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-APIs-Parte2-Criacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">APIs - Parte 2: Criando suas APIs com Flask</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Web-Scraping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Web Scraping com BeautifulSoup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Banco-Dados-SQL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Banco de Dados SQL com Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Expressoes-Regulares.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Expressões Regulares (Regex) - Capítulo Bônus</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#o-que-você-vai-aprender-neste-capítulo" id="toc-o-que-você-vai-aprender-neste-capítulo" class="nav-link active" data-scroll-target="#o-que-você-vai-aprender-neste-capítulo"><span class="header-section-number">16.1</span> O que você vai aprender neste capítulo?</a></li>
+  <li><a href="#de-detetive-com-lupa-para-caçador-de-padrões" id="toc-de-detetive-com-lupa-para-caçador-de-padrões" class="nav-link" data-scroll-target="#de-detetive-com-lupa-para-caçador-de-padrões"><span class="header-section-number">16.2</span> De Detetive com Lupa para Caçador de Padrões</a>
+  <ul class="collapse">
+  <li><a href="#o-que-são-expressões-regulares" id="toc-o-que-são-expressões-regulares" class="nav-link" data-scroll-target="#o-que-são-expressões-regulares"><span class="header-section-number">16.2.1</span> O que são Expressões Regulares?</a></li>
+  <li><a href="#quando-usar-regex" id="toc-quando-usar-regex" class="nav-link" data-scroll-target="#quando-usar-regex"><span class="header-section-number">16.2.2</span> Quando usar Regex?</a></li>
+  <li><a href="#exemplo-prático" id="toc-exemplo-prático" class="nav-link" data-scroll-target="#exemplo-prático"><span class="header-section-number">16.2.3</span> Exemplo prático</a></li>
+  </ul></li>
+  <li><a href="#padrões-básicos-e-módulo-re" id="toc-padrões-básicos-e-módulo-re" class="nav-link" data-scroll-target="#padrões-básicos-e-módulo-re"><span class="header-section-number">16.3</span> Padrões Básicos e Módulo <code>re</code></a>
+  <ul class="collapse">
+  <li><a href="#metacaracteres-essenciais" id="toc-metacaracteres-essenciais" class="nav-link" data-scroll-target="#metacaracteres-essenciais"><span class="header-section-number">16.3.1</span> Metacaracteres Essenciais</a></li>
+  <li><a href="#classes-de-caracteres" id="toc-classes-de-caracteres" class="nav-link" data-scroll-target="#classes-de-caracteres"><span class="header-section-number">16.3.2</span> Classes de Caracteres</a></li>
+  <li><a href="#usando-o-módulo-re" id="toc-usando-o-módulo-re" class="nav-link" data-scroll-target="#usando-o-módulo-re"><span class="header-section-number">16.3.3</span> Usando o Módulo <code>re</code></a></li>
+  <li><a href="#validação-prática" id="toc-validação-prática" class="nav-link" data-scroll-target="#validação-prática"><span class="header-section-number">16.3.4</span> Validação Prática</a></li>
+  <li><a href="#extração-de-dados" id="toc-extração-de-dados" class="nav-link" data-scroll-target="#extração-de-dados"><span class="header-section-number">16.3.5</span> Extração de Dados</a></li>
+  </ul></li>
+  <li><a href="#exercícios-práticos" id="toc-exercícios-práticos" class="nav-link" data-scroll-target="#exercícios-práticos"><span class="header-section-number">16.4</span> Exercícios Práticos</a>
+  <ul class="collapse">
+  <li><a href="#muito-fácil-nível-1" id="toc-muito-fácil-nível-1" class="nav-link" data-scroll-target="#muito-fácil-nível-1"><span class="header-section-number">16.4.1</span> <strong>MUITO FÁCIL</strong> (Nível 1)</a></li>
+  <li><a href="#fácil-nível-2" id="toc-fácil-nível-2" class="nav-link" data-scroll-target="#fácil-nível-2"><span class="header-section-number">16.4.2</span> <strong>FÁCIL</strong> (Nível 2)</a></li>
+  <li><a href="#médio-nível-3" id="toc-médio-nível-3" class="nav-link" data-scroll-target="#médio-nível-3"><span class="header-section-number">16.4.3</span> <strong>MÉDIO</strong> (Nível 3)</a></li>
+  <li><a href="#difícil-nível-4" id="toc-difícil-nível-4" class="nav-link" data-scroll-target="#difícil-nível-4"><span class="header-section-number">16.4.4</span> <strong>DIFÍCIL</strong> (Nível 4)</a></li>
+  <li><a href="#muito-difícil-nível-5" id="toc-muito-difícil-nível-5" class="nav-link" data-scroll-target="#muito-difícil-nível-5"><span class="header-section-number">16.4.5</span> <strong>MUITO DIFÍCIL</strong> (Nível 5)</a></li>
+  </ul></li>
+  <li><a href="#respostas-dos-exercícios" id="toc-respostas-dos-exercícios" class="nav-link" data-scroll-target="#respostas-dos-exercícios"><span class="header-section-number">16.5</span> Respostas dos Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#muito-fácil-nível-1-1" id="toc-muito-fácil-nível-1-1" class="nav-link" data-scroll-target="#muito-fácil-nível-1-1"><span class="header-section-number">16.5.1</span> <strong>MUITO FÁCIL</strong> (Nível 1)</a></li>
+  <li><a href="#fácil-nível-2-1" id="toc-fácil-nível-2-1" class="nav-link" data-scroll-target="#fácil-nível-2-1"><span class="header-section-number">16.5.2</span> <strong>FÁCIL</strong> (Nível 2)</a></li>
+  </ul></li>
+  <li><a href="#próximos-passos-continue-aprendendo" id="toc-próximos-passos-continue-aprendendo" class="nav-link" data-scroll-target="#próximos-passos-continue-aprendendo"><span class="header-section-number">16.6</span> Próximos Passos: Continue Aprendendo!</a>
+  <ul class="collapse">
+  <li><a href="#o-que-você-aprendeu" id="toc-o-que-você-aprendeu" class="nav-link" data-scroll-target="#o-que-você-aprendeu"><span class="header-section-number">16.6.1</span> O que você aprendeu:</a></li>
+  <li><a href="#desafios-para-continuar" id="toc-desafios-para-continuar" class="nav-link" data-scroll-target="#desafios-para-continuar"><span class="header-section-number">16.6.2</span> Desafios para Continuar:</a></li>
+  <li><a href="#parabéns-você-completou-o-livro" id="toc-parabéns-você-completou-o-livro" class="nav-link" data-scroll-target="#parabéns-você-completou-o-livro"><span class="header-section-number">16.6.3</span> Parabéns! Você Completou o Livro!</a></li>
+  <li><a href="#próximos-passos-na-jornada" id="toc-próximos-passos-na-jornada" class="nav-link" data-scroll-target="#próximos-passos-na-jornada"><span class="header-section-number">16.6.4</span> Próximos Passos na Jornada:</a></li>
+  </ul></li>
+  <li><a href="#referências-bibliográficas" id="toc-referências-bibliográficas" class="nav-link" data-scroll-target="#referências-bibliográficas"><span class="header-section-number">16.7</span> Referências Bibliográficas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-Modulos-Bibliotecas.html">Parte 4: Tópicos Avançados</a></li><li class="breadcrumb-item"><a href="./16-Expressoes-Regulares.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Expressões Regulares (Regex) - Capítulo Bônus</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Expressões Regulares (Regex) - Capítulo Bônus</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>De detetive com lupa para caçador de padrões: encontrando o que você precisa no texto!</em></p>
+<section id="o-que-você-vai-aprender-neste-capítulo" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="o-que-você-vai-aprender-neste-capítulo"><span class="header-section-number">16.1</span> O que você vai aprender neste capítulo?</h2>
+<ol type="1">
+<li><strong>O que são Expressões Regulares</strong> e quando usar essa ferramenta</li>
+<li><strong>Padrões básicos:</strong> metacaracteres essenciais (., *, +, ?, [], ^, $)</li>
+<li><strong>Classes de caracteres:</strong> , e suas variações</li>
+<li><strong>Quantificadores:</strong> como especificar quantas vezes um padrão deve aparecer</li>
+<li><strong>Módulo <code>re</code>:</strong> como usar regex em Python</li>
+<li><strong>Validação prática:</strong> emails, CPFs, telefones e outros formatos</li>
+<li><strong>Extração de dados:</strong> como extrair informações específicas de textos</li>
+<li><strong>Aplicações reais:</strong> regex em web scraping, APIs e processamento de dados</li>
+</ol>
+<blockquote class="blockquote">
+<p>🎓 <strong>Vindo do Capítulo 15?</strong> Perfeito! Agora que você domina bancos de dados, vamos aprender a encontrar padrões em textos!</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>🎯 <strong>Meta:</strong> Ao final deste capítulo, você vai conseguir usar regex para validar dados, extrair informações e processar textos de forma eficiente.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>⚠️ <strong>Por que isso importa:</strong> Regex é uma ferramenta poderosa mas pode ser complexa! Comece com padrões simples e vá progredindo gradualmente.</p>
+</blockquote>
+</section>
+<section id="de-detetive-com-lupa-para-caçador-de-padrões" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="de-detetive-com-lupa-para-caçador-de-padrões"><span class="header-section-number">16.2</span> De Detetive com Lupa para Caçador de Padrões</h2>
+<p>Imagine que você é um <strong>detetive</strong> investigando um caso:</p>
+<ol type="1">
+<li><strong>Evidências (Texto):</strong> Documentos, mensagens, relatórios</li>
+<li><strong>Padrões suspeitos:</strong> Sequências que se repetem</li>
+<li><strong>Lupa (Regex):</strong> Ferramenta para encontrar padrões específicos</li>
+<li><strong>Descobertas:</strong> Informações importantes encontradas</li>
+</ol>
+<p><strong>Em programação, funciona assim:</strong></p>
+<ol type="1">
+<li><strong>Texto:</strong> Dados que você quer analisar</li>
+<li><strong>Padrões:</strong> Sequências que você quer encontrar</li>
+<li><strong>Regex:</strong> Ferramenta para buscar padrões</li>
+<li><strong>Resultados:</strong> Informações extraídas ou validadas</li>
+</ol>
+<section id="o-que-são-expressões-regulares" class="level3" data-number="16.2.1">
+<h3 data-number="16.2.1" class="anchored" data-anchor-id="o-que-são-expressões-regulares"><span class="header-section-number">16.2.1</span> O que são Expressões Regulares?</h3>
+<p><strong>Regex</strong> é uma <strong>linguagem</strong> para descrever padrões em texto.</p>
+<p>É como dar instruções para um <strong>assistente</strong>:</p>
+<ul>
+<li>🔍 “Encontre todos os números de telefone”</li>
+<li>📧 “Valide se este email está correto”</li>
+<li>📅 “Extraia todas as datas do texto”</li>
+<li>🔗 “Encontre todos os links”</li>
+</ul>
+</section>
+<section id="quando-usar-regex" class="level3" data-number="16.2.2">
+<h3 data-number="16.2.2" class="anchored" data-anchor-id="quando-usar-regex"><span class="header-section-number">16.2.2</span> Quando usar Regex?</h3>
+<ul>
+<li>✅ <strong>Validação:</strong> Verificar se dados estão no formato correto</li>
+<li>✅ <strong>Extração:</strong> Encontrar informações específicas em textos</li>
+<li>✅ <strong>Substituição:</strong> Trocar partes do texto por outras</li>
+<li>✅ <strong>Limpeza:</strong> Remover caracteres indesejados</li>
+<li>✅ <strong>Análise:</strong> Contar ocorrências de padrões</li>
+</ul>
+</section>
+<section id="exemplo-prático" class="level3" data-number="16.2.3">
+<h3 data-number="16.2.3" class="anchored" data-anchor-id="exemplo-prático"><span class="header-section-number">16.2.3</span> Exemplo prático</h3>
+<p><strong>Sem regex (problema):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Validar email manualmente (difícil!)</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>email <span class="op">=</span> <span class="st">"usuario@email.com"</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="cf">if</span> <span class="st">"@"</span> <span class="kw">in</span> email <span class="kw">and</span> <span class="st">"."</span> <span class="kw">in</span> email.split(<span class="st">"@"</span>)[<span class="dv">1</span>]:</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="bu">print</span>(<span class="st">"Email válido"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Com regex (solução):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> re</span>
+<span id="cb2-2"><a href="#cb2-2"></a>email <span class="op">=</span> <span class="st">"usuario@email.com"</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="cf">if</span> re.match(<span class="vs">r'</span><span class="dv">^</span><span class="pp">[a-zA-Z0-9._%+-]</span><span class="op">+</span><span class="vs">@</span><span class="pp">[a-zA-Z0-9.-]</span><span class="op">+</span><span class="ch">\.</span><span class="pp">[a-zA-Z]</span><span class="op">{2,}</span><span class="dv">$</span><span class="vs">'</span>, email):</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="bu">print</span>(<span class="st">"Email válido"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p>💡 <strong>Exemplo:</strong> Google, Facebook e muitos sites usam regex para validar formulários e processar dados!</p>
+</blockquote>
+</section>
+</section>
+<section id="padrões-básicos-e-módulo-re" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="padrões-básicos-e-módulo-re"><span class="header-section-number">16.3</span> Padrões Básicos e Módulo <code>re</code></h2>
+<section id="metacaracteres-essenciais" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="metacaracteres-essenciais"><span class="header-section-number">16.3.1</span> Metacaracteres Essenciais</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Símbolo</th>
+<th>Significado</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.</code></td>
+<td>Qualquer caractere</td>
+<td><code>c.t</code> → cat, cut, cot</td>
+</tr>
+<tr class="even">
+<td><code>*</code></td>
+<td>Zero ou mais</td>
+<td><code>ab*</code> → a, ab, abb, abbb</td>
+</tr>
+<tr class="odd">
+<td><code>+</code></td>
+<td>Um ou mais</td>
+<td><code>ab+</code> → ab, abb, abbb</td>
+</tr>
+<tr class="even">
+<td><code>?</code></td>
+<td>Zero ou um</td>
+<td><code>ab?</code> → a, ab</td>
+</tr>
+<tr class="odd">
+<td><code>[]</code></td>
+<td>Conjunto de caracteres</td>
+<td><code>[abc]</code> → a, b ou c</td>
+</tr>
+<tr class="even">
+<td><code>^</code></td>
+<td>Início da string</td>
+<td><code>^abc</code> → strings que começam com abc</td>
+</tr>
+<tr class="odd">
+<td><code>$</code></td>
+<td>Fim da string</td>
+<td><code>abc$</code> → strings que terminam com abc</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes-de-caracteres" class="level3" data-number="16.3.2">
+<h3 data-number="16.3.2" class="anchored" data-anchor-id="classes-de-caracteres"><span class="header-section-number">16.3.2</span> Classes de Caracteres</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Classe</th>
+<th>Significado</th>
+<th>Equivale a</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>\d</code></td>
+<td>Dígito</td>
+<td><code>[0-9]</code></td>
+</tr>
+<tr class="even">
+<td><code>\w</code></td>
+<td>Letra, dígito ou _</td>
+<td><code>[a-zA-Z0-9_]</code></td>
+</tr>
+<tr class="odd">
+<td><code>\s</code></td>
+<td>Espaço em branco</td>
+<td><code>[ \t\n\r]</code></td>
+</tr>
+<tr class="even">
+<td><code>\D</code></td>
+<td>Não dígito</td>
+<td><code>[^0-9]</code></td>
+</tr>
+<tr class="odd">
+<td><code>\W</code></td>
+<td>Não alfanumérico</td>
+<td><code>[^a-zA-Z0-9_]</code></td>
+</tr>
+<tr class="even">
+<td><code>\S</code></td>
+<td>Não espaço</td>
+<td><code>[^ \t\n\r]</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="usando-o-módulo-re" class="level3" data-number="16.3.3">
+<h3 data-number="16.3.3" class="anchored" data-anchor-id="usando-o-módulo-re"><span class="header-section-number">16.3.3</span> Usando o Módulo <code>re</code></h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> re</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># Buscar primeira ocorrência</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>texto <span class="op">=</span> <span class="st">"Meu telefone é (11) 99999-9999"</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>telefone <span class="op">=</span> re.search(<span class="vs">r'</span><span class="ch">\(</span><span class="dv">\d</span><span class="op">{2}</span><span class="ch">\)</span><span class="vs"> </span><span class="dv">\d</span><span class="op">{5}</span><span class="vs">-</span><span class="dv">\d</span><span class="op">{4}</span><span class="vs">'</span>, texto)</span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="cf">if</span> telefone:</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="bu">print</span>(<span class="ss">f"Telefone encontrado: </span><span class="sc">{</span>telefone<span class="sc">.</span>group()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co"># Buscar todas as ocorrências</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>texto <span class="op">=</span> <span class="st">"Emails: joao@email.com, maria@teste.com, pedro@site.org"</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>emails <span class="op">=</span> re.findall(<span class="vs">r'</span><span class="pp">[a-zA-Z0-9._%+-]</span><span class="op">+</span><span class="vs">@</span><span class="pp">[a-zA-Z0-9.-]</span><span class="op">+</span><span class="ch">\.</span><span class="pp">[a-zA-Z]</span><span class="op">{2,}</span><span class="vs">'</span>, texto)</span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="bu">print</span>(<span class="ss">f"Emails encontrados: </span><span class="sc">{</span>emails<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13"></a></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co"># Substituir texto</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>texto <span class="op">=</span> <span class="st">"Preço: R$ 100,00 e R$ 200,00"</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>novo_texto <span class="op">=</span> re.sub(<span class="vs">r'R</span><span class="ch">\$</span><span class="vs"> </span><span class="dv">\d</span><span class="op">+</span><span class="vs">,</span><span class="dv">\d</span><span class="op">{2}</span><span class="vs">'</span>, <span class="st">'R$ XXX,XX'</span>, texto)</span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="bu">print</span>(<span class="ss">f"Texto modificado: </span><span class="sc">{</span>novo_texto<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="validação-prática" class="level3" data-number="16.3.4">
+<h3 data-number="16.3.4" class="anchored" data-anchor-id="validação-prática"><span class="header-section-number">16.3.4</span> Validação Prática</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> validar_email(email):</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="co">"""Valida formato de email"""</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    padrao <span class="op">=</span> <span class="vs">r'</span><span class="dv">^</span><span class="pp">[a-zA-Z0-9._%+-]</span><span class="op">+</span><span class="vs">@</span><span class="pp">[a-zA-Z0-9.-]</span><span class="op">+</span><span class="ch">\.</span><span class="pp">[a-zA-Z]</span><span class="op">{2,}</span><span class="dv">$</span><span class="vs">'</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="cf">return</span> <span class="bu">bool</span>(re.match(padrao, email))</span>
+<span id="cb4-5"><a href="#cb4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="kw">def</span> validar_telefone(telefone):</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="co">"""Valida formato de telefone brasileiro"""</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>    padrao <span class="op">=</span> <span class="vs">r'</span><span class="dv">^</span><span class="ch">\(</span><span class="dv">\d</span><span class="op">{2}</span><span class="ch">\)</span><span class="vs"> </span><span class="dv">\d</span><span class="op">{4,5}</span><span class="vs">-</span><span class="dv">\d</span><span class="op">{4}</span><span class="dv">$</span><span class="vs">'</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="cf">return</span> <span class="bu">bool</span>(re.match(padrao, telefone))</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="kw">def</span> validar_cpf(cpf):</span>
+<span id="cb4-12"><a href="#cb4-12"></a>    <span class="co">"""Valida formato de CPF"""</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>    padrao <span class="op">=</span> <span class="vs">r'</span><span class="dv">^\d</span><span class="op">{3}</span><span class="ch">\.</span><span class="dv">\d</span><span class="op">{3}</span><span class="ch">\.</span><span class="dv">\d</span><span class="op">{3}</span><span class="vs">-</span><span class="dv">\d</span><span class="op">{2}</span><span class="dv">$</span><span class="vs">'</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>    <span class="cf">return</span> <span class="bu">bool</span>(re.match(padrao, cpf))</span>
+<span id="cb4-15"><a href="#cb4-15"></a></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="co"># Testando</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="bu">print</span>(validar_email(<span class="st">"usuario@email.com"</span>))  <span class="co"># True</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="bu">print</span>(validar_telefone(<span class="st">"(11) 99999-9999"</span>))  <span class="co"># True</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="bu">print</span>(validar_cpf(<span class="st">"123.456.789-00"</span>))  <span class="co"># True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="extração-de-dados" class="level3" data-number="16.3.5">
+<h3 data-number="16.3.5" class="anchored" data-anchor-id="extração-de-dados"><span class="header-section-number">16.3.5</span> Extração de Dados</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> extrair_dados(texto):</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="co">"""Extrai diferentes tipos de dados de um texto"""</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>    dados <span class="op">=</span> {}</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    </span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># Extrair emails</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    emails <span class="op">=</span> re.findall(<span class="vs">r'</span><span class="pp">[a-zA-Z0-9._%+-]</span><span class="op">+</span><span class="vs">@</span><span class="pp">[a-zA-Z0-9.-]</span><span class="op">+</span><span class="ch">\.</span><span class="pp">[a-zA-Z]</span><span class="op">{2,}</span><span class="vs">'</span>, texto)</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    dados[<span class="st">'emails'</span>] <span class="op">=</span> emails</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    </span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co"># Extrair telefones</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>    telefones <span class="op">=</span> re.findall(<span class="vs">r'</span><span class="ch">\(</span><span class="dv">\d</span><span class="op">{2}</span><span class="ch">\)</span><span class="vs"> </span><span class="dv">\d</span><span class="op">{4,5}</span><span class="vs">-</span><span class="dv">\d</span><span class="op">{4}</span><span class="vs">'</span>, texto)</span>
+<span id="cb5-11"><a href="#cb5-11"></a>    dados[<span class="st">'telefones'</span>] <span class="op">=</span> telefones</span>
+<span id="cb5-12"><a href="#cb5-12"></a>    </span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co"># Extrair datas (formato dd/mm/aaaa)</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>    datas <span class="op">=</span> re.findall(<span class="vs">r'</span><span class="dv">\d</span><span class="op">{2}</span><span class="vs">/</span><span class="dv">\d</span><span class="op">{2}</span><span class="vs">/</span><span class="dv">\d</span><span class="op">{4}</span><span class="vs">'</span>, texto)</span>
+<span id="cb5-15"><a href="#cb5-15"></a>    dados[<span class="st">'datas'</span>] <span class="op">=</span> datas</span>
+<span id="cb5-16"><a href="#cb5-16"></a>    </span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co"># Extrair URLs</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>    urls <span class="op">=</span> re.findall(<span class="vs">r'https</span><span class="op">?</span><span class="vs">://</span><span class="pp">[^</span><span class="dv">\s</span><span class="pp">]</span><span class="op">+</span><span class="vs">'</span>, texto)</span>
+<span id="cb5-19"><a href="#cb5-19"></a>    dados[<span class="st">'urls'</span>] <span class="op">=</span> urls</span>
+<span id="cb5-20"><a href="#cb5-20"></a>    </span>
+<span id="cb5-21"><a href="#cb5-21"></a>    <span class="cf">return</span> dados</span>
+<span id="cb5-22"><a href="#cb5-22"></a></span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="co"># Exemplo de uso</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a>texto <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a><span class="st">Contato: joao@email.com, telefone (11) 99999-9999</span></span>
+<span id="cb5-26"><a href="#cb5-26"></a><span class="st">Site: https://www.exemplo.com</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a><span class="st">Data: 15/12/2024</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a><span class="st">"""</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a></span>
+<span id="cb5-30"><a href="#cb5-30"></a>dados <span class="op">=</span> extrair_dados(texto)</span>
+<span id="cb5-31"><a href="#cb5-31"></a><span class="cf">for</span> tipo, valores <span class="kw">in</span> dados.items():</span>
+<span id="cb5-32"><a href="#cb5-32"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>tipo<span class="sc">.</span>title()<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>valores<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p>💡 <strong>Dica:</strong> Comece com padrões simples e vá testando! Use ferramentas online como regex101.com para testar seus padrões.</p>
+</blockquote>
+</section>
+</section>
+<section id="exercícios-práticos" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="exercícios-práticos"><span class="header-section-number">16.4</span> Exercícios Práticos</h2>
+<section id="muito-fácil-nível-1" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="muito-fácil-nível-1"><span class="header-section-number">16.4.1</span> <strong>MUITO FÁCIL</strong> (Nível 1)</h3>
+<p><strong>1.</strong> Crie uma função que encontra todos os números em um texto.</p>
+<p><strong>2.</strong> Valide se uma string contém apenas letras e espaços.</p>
+<p><strong>3.</strong> Encontre todas as palavras que começam com “Python” em um texto.</p>
+<p><strong>4.</strong> Substitua todas as ocorrências de “erro” por “problema” em um texto.</p>
+<p><strong>5.</strong> Conte quantas vezes a palavra “Python” aparece em um texto.</p>
+</section>
+<section id="fácil-nível-2" class="level3" data-number="16.4.2">
+<h3 data-number="16.4.2" class="anchored" data-anchor-id="fácil-nível-2"><span class="header-section-number">16.4.2</span> <strong>FÁCIL</strong> (Nível 2)</h3>
+<p><strong>6.</strong> Crie uma função que valida formato de data (dd/mm/aaaa).</p>
+<p><strong>7.</strong> Extraia todos os números de telefone de um texto.</p>
+<p><strong>8.</strong> Valide se uma senha tem pelo menos 8 caracteres e contém números.</p>
+<p><strong>9.</strong> Encontre todas as URLs em um texto.</p>
+<p><strong>10.</strong> Limpe um texto removendo caracteres especiais, mantendo apenas letras e números.</p>
+</section>
+<section id="médio-nível-3" class="level3" data-number="16.4.3">
+<h3 data-number="16.4.3" class="anchored" data-anchor-id="médio-nível-3"><span class="header-section-number">16.4.3</span> <strong>MÉDIO</strong> (Nível 3)</h3>
+<p><strong>11.</strong> Crie um validador de CPF que verifica formato e dígitos verificadores.</p>
+<p><strong>12.</strong> Extraia informações de contato (nome, email, telefone) de um texto.</p>
+<p><strong>13.</strong> Valide formato de CEP brasileiro (00000-000).</p>
+<p><strong>14.</strong> Encontre todas as datas em diferentes formatos (dd/mm/aaaa, dd-mm-aaaa).</p>
+<p><strong>15.</strong> Crie uma função que formata números de telefone para o padrão brasileiro.</p>
+</section>
+<section id="difícil-nível-4" class="level3" data-number="16.4.4">
+<h3 data-number="16.4.4" class="anchored" data-anchor-id="difícil-nível-4"><span class="header-section-number">16.4.4</span> <strong>DIFÍCIL</strong> (Nível 4)</h3>
+<p><strong>16.</strong> Implemente um parser de logs que extrai informações específicas.</p>
+<p><strong>17.</strong> Crie um sistema de validação de formulários com múltiplos campos.</p>
+<p><strong>18.</strong> Extraia dados estruturados de páginas HTML usando regex.</p>
+<p><strong>19.</strong> Implemente um sistema de busca avançada em textos.</p>
+<p><strong>20.</strong> Crie um validador de CNPJ com verificação de dígitos.</p>
+</section>
+<section id="muito-difícil-nível-5" class="level3" data-number="16.4.5">
+<h3 data-number="16.4.5" class="anchored" data-anchor-id="muito-difícil-nível-5"><span class="header-section-number">16.4.5</span> <strong>MUITO DIFÍCIL</strong> (Nível 5)</h3>
+<p><strong>21.</strong> Implemente um sistema de análise de sentimentos usando regex.</p>
+<p><strong>22.</strong> Crie um parser de configurações que converte texto em estruturas de dados.</p>
+<p><strong>23.</strong> Implemente um sistema de tradução automática de padrões.</p>
+<p><strong>24.</strong> Crie um validador de documentos brasileiros (CPF, CNPJ, RG, etc.).</p>
+<p><strong>25.</strong> Implemente um sistema de extração de dados de contratos legais.</p>
+<blockquote class="blockquote">
+<p>🎯 <strong>Dica:</strong> Regex pode ser complexa! Use ferramentas online para testar seus padrões e comece sempre com casos simples!</p>
+</blockquote>
+</section>
+</section>
+<section id="respostas-dos-exercícios" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="respostas-dos-exercícios"><span class="header-section-number">16.5</span> Respostas dos Exercícios</h2>
+<section id="muito-fácil-nível-1-1" class="level3" data-number="16.5.1">
+<h3 data-number="16.5.1" class="anchored" data-anchor-id="muito-fácil-nível-1-1"><span class="header-section-number">16.5.1</span> <strong>MUITO FÁCIL</strong> (Nível 1)</h3>
+<p><strong>1. Encontrar todos os números em um texto</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> re</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">def</span> encontrar_numeros(texto):</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="co">"""Encontra todos os números em um texto"""</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>    numeros <span class="op">=</span> re.findall(<span class="vs">r'</span><span class="dv">\d</span><span class="op">+</span><span class="vs">'</span>, texto)</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="cf">return</span> numeros</span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co"># Exemplo de uso</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>texto <span class="op">=</span> <span class="st">"Eu tenho 25 anos e 3 irmãos, moro no número 123 da rua ABC."</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>numeros <span class="op">=</span> encontrar_numeros(texto)</span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="bu">print</span>(<span class="ss">f"Números encontrados: </span><span class="sc">{</span>numeros<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>import re</code> - Importa módulo de expressões regulares</li>
+<li><strong>Linha 3:</strong> <code>def encontrar_numeros(texto):</code> - Define função para encontrar números</li>
+<li><strong>Linha 4:</strong> <code>"""Encontra todos os números em um texto"""</code> - Docstring explicando função</li>
+<li><strong>Linha 5:</strong> <code>numeros = re.findall(r'\d+', texto)</code> - Usa regex para encontrar todos os números</li>
+<li><strong>Linha 6:</strong> <code>return numeros</code> - Retorna lista de números encontrados</li>
+<li><strong>Linha 8:</strong> <code># Exemplo de uso</code> - Comentário explicativo</li>
+<li><strong>Linha 9:</strong> <code>texto = "Eu tenho 25 anos e 3 irmãos, moro no número 123 da rua ABC."</code> - Texto de exemplo</li>
+<li><strong>Linha 10:</strong> <code>numeros = encontrar_numeros(texto)</code> - Chama função para encontrar números</li>
+<li><strong>Linha 11:</strong> <code>print(f"Números encontrados: {numeros}")</code> - Imprime resultado</li>
+</ul>
+<p><strong>2. Validar string com apenas letras e espaços</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">def</span> validar_apenas_letras_espacos(texto):</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="co">"""Valida se string contém apenas letras e espaços"""</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    padrao <span class="op">=</span> <span class="vs">r'</span><span class="dv">^</span><span class="pp">[a-zA-Z</span><span class="dv">\s</span><span class="pp">]</span><span class="op">+</span><span class="dv">$</span><span class="vs">'</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="cf">return</span> <span class="bu">bool</span>(re.match(padrao, texto))</span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co"># Testando</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>testes <span class="op">=</span> [<span class="st">"João Silva"</span>, <span class="st">"Maria 123"</span>, <span class="st">"Ana-Costa"</span>, <span class="st">"Pedro Santos"</span>]</span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="cf">for</span> teste <span class="kw">in</span> testes:</span>
+<span id="cb7-9"><a href="#cb7-9"></a>    resultado <span class="op">=</span> <span class="st">"Válido"</span> <span class="cf">if</span> validar_apenas_letras_espacos(teste) <span class="cf">else</span> <span class="st">"Inválido"</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="bu">print</span>(<span class="ss">f"'</span><span class="sc">{</span>teste<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def validar_apenas_letras_espacos(texto):</code> - Define função para validar texto</li>
+<li><strong>Linha 2:</strong> <code>"""Valida se string contém apenas letras e espaços"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code>padrao = r'^[a-zA-Z\s]+$'</code> - Define padrão regex para letras e espaços</li>
+<li><strong>Linha 4:</strong> <code>return bool(re.match(padrao, texto))</code> - Retorna True se texto corresponde ao padrão</li>
+<li><strong>Linha 6:</strong> <code># Testando</code> - Comentário explicativo</li>
+<li><strong>Linha 7:</strong> <code>testes = ["João Silva", "Maria 123", "Ana-Costa", "Pedro Santos"]</code> - Lista de textos para testar</li>
+<li><strong>Linha 8:</strong> <code>for teste in testes:</code> - Percorre cada texto de teste</li>
+<li><strong>Linha 9:</strong> <code>resultado = "Válido" if validar_apenas_letras_espacos(teste) else "Inválido"</code> - Determina resultado</li>
+<li><strong>Linha 10:</strong> <code>print(f"'{teste}': {resultado}")</code> - Imprime resultado do teste</li>
+</ul>
+<p><strong>3. Encontrar palavras que começam com “Python”</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> encontrar_palavras_python(texto):</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="co">"""Encontra todas as palavras que começam com Python"""</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>    padrao <span class="op">=</span> <span class="vs">r'</span><span class="dv">\b</span><span class="vs">Python</span><span class="dv">\w</span><span class="op">*</span><span class="dv">\b</span><span class="vs">'</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>    palavras <span class="op">=</span> re.findall(padrao, texto)</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="cf">return</span> palavras</span>
+<span id="cb8-6"><a href="#cb8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co"># Exemplo de uso</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>texto <span class="op">=</span> <span class="st">"Python é uma linguagem Pythonica. Pythonista usa Python para programar."</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>palavras <span class="op">=</span> encontrar_palavras_python(texto)</span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="bu">print</span>(<span class="ss">f"Palavras encontradas: </span><span class="sc">{</span>palavras<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def encontrar_palavras_python(texto):</code> - Define função para encontrar palavras Python</li>
+<li><strong>Linha 2:</strong> <code>"""Encontra todas as palavras que começam com Python"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code>padrao = r'\bPython\w*\b'</code> - Define padrão regex para palavras começando com Python</li>
+<li><strong>Linha 4:</strong> <code>palavras = re.findall(padrao, texto)</code> - Encontra todas as ocorrências do padrão</li>
+<li><strong>Linha 5:</strong> <code>return palavras</code> - Retorna lista de palavras encontradas</li>
+<li><strong>Linha 7:</strong> <code># Exemplo de uso</code> - Comentário explicativo</li>
+<li><strong>Linha 8:</strong> <code>texto = "Python é uma linguagem Pythonica. Pythonista usa Python para programar."</code> - Texto de exemplo</li>
+<li><strong>Linha 9:</strong> <code>palavras = encontrar_palavras_python(texto)</code> - Chama função para encontrar palavras</li>
+<li><strong>Linha 10:</strong> <code>print(f"Palavras encontradas: {palavras}")</code> - Imprime resultado</li>
+</ul>
+<p><strong>4. Substituir “erro” por “problema”</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> substituir_erro_por_problema(texto):</span>
+<span id="cb9-2"><a href="#cb9-2"></a>    <span class="co">"""Substitui todas as ocorrências de 'erro' por 'problema'"""</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>    novo_texto <span class="op">=</span> re.sub(<span class="vs">r'</span><span class="dv">\b</span><span class="vs">erro</span><span class="dv">\b</span><span class="vs">'</span>, <span class="st">'problema'</span>, texto, flags<span class="op">=</span>re.IGNORECASE)</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="cf">return</span> novo_texto</span>
+<span id="cb9-5"><a href="#cb9-5"></a></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co"># Exemplo de uso</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>texto <span class="op">=</span> <span class="st">"Encontrei um erro no código. Este erro precisa ser corrigido."</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>novo_texto <span class="op">=</span> substituir_erro_por_problema(texto)</span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="bu">print</span>(<span class="ss">f"Texto original: </span><span class="sc">{</span>texto<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="bu">print</span>(<span class="ss">f"Texto modificado: </span><span class="sc">{</span>novo_texto<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def substituir_erro_por_problema(texto):</code> - Define função para substituir texto</li>
+<li><strong>Linha 2:</strong> <code>"""Substitui todas as ocorrências de 'erro' por 'problema'"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code>novo_texto = re.sub(r'\berro\b', 'problema', texto, flags=re.IGNORECASE)</code> - Substitui texto usando regex</li>
+<li><strong>Linha 4:</strong> <code>return novo_texto</code> - Retorna texto modificado</li>
+<li><strong>Linha 6:</strong> <code># Exemplo de uso</code> - Comentário explicativo</li>
+<li><strong>Linha 7:</strong> <code>texto = "Encontrei um erro no código. Este erro precisa ser corrigido."</code> - Texto de exemplo</li>
+<li><strong>Linha 8:</strong> <code>novo_texto = substituir_erro_por_problema(texto)</code> - Chama função para substituir texto</li>
+<li><strong>Linha 9:</strong> <code>print(f"Texto original: {texto}")</code> - Imprime texto original</li>
+<li><strong>Linha 10:</strong> <code>print(f"Texto modificado: {novo_texto}")</code> - Imprime texto modificado</li>
+</ul>
+<p><strong>5. Contar ocorrências da palavra “Python”</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">def</span> contar_python(texto):</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    <span class="co">"""Conta quantas vezes a palavra Python aparece no texto"""</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>    padrao <span class="op">=</span> <span class="vs">r'</span><span class="dv">\b</span><span class="vs">Python</span><span class="dv">\b</span><span class="vs">'</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>    matches <span class="op">=</span> re.findall(padrao, texto)</span>
+<span id="cb10-5"><a href="#cb10-5"></a>    <span class="cf">return</span> <span class="bu">len</span>(matches)</span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="co"># Exemplo de uso</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>texto <span class="op">=</span> <span class="st">"Python é uma linguagem. Python é poderosa. Pythonista usa Python."</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>contagem <span class="op">=</span> contar_python(texto)</span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="bu">print</span>(<span class="ss">f"A palavra 'Python' aparece </span><span class="sc">{</span>contagem<span class="sc">}</span><span class="ss"> vezes no texto."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def contar_python(texto):</code> - Define função para contar palavra Python</li>
+<li><strong>Linha 2:</strong> <code>"""Conta quantas vezes a palavra Python aparece no texto"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code>padrao = r'\bPython\b'</code> - Define padrão regex para palavra exata Python</li>
+<li><strong>Linha 4:</strong> <code>matches = re.findall(padrao, texto)</code> - Encontra todas as ocorrências do padrão</li>
+<li><strong>Linha 5:</strong> <code>return len(matches)</code> - Retorna quantidade de ocorrências encontradas</li>
+<li><strong>Linha 7:</strong> <code># Exemplo de uso</code> - Comentário explicativo</li>
+<li><strong>Linha 8:</strong> <code>texto = "Python é uma linguagem. Python é poderosa. Pythonista usa Python."</code> - Texto de exemplo</li>
+<li><strong>Linha 9:</strong> <code>contagem = contar_python(texto)</code> - Chama função para contar ocorrências</li>
+<li><strong>Linha 10:</strong> <code>print(f"A palavra 'Python' aparece {contagem} vezes no texto.")</code> - Imprime resultado</li>
+</ul>
+</section>
+<section id="fácil-nível-2-1" class="level3" data-number="16.5.2">
+<h3 data-number="16.5.2" class="anchored" data-anchor-id="fácil-nível-2-1"><span class="header-section-number">16.5.2</span> <strong>FÁCIL</strong> (Nível 2)</h3>
+<p><strong>6. Validar formato de data (dd/mm/aaaa)</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> validar_data(data):</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="co">"""Valida formato de data dd/mm/aaaa"""</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>    padrao <span class="op">=</span> <span class="vs">r'</span><span class="dv">^\d</span><span class="op">{2}</span><span class="vs">/</span><span class="dv">\d</span><span class="op">{2}</span><span class="vs">/</span><span class="dv">\d</span><span class="op">{4}</span><span class="dv">$</span><span class="vs">'</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="cf">if</span> <span class="kw">not</span> re.match(padrao, data):</span>
+<span id="cb11-5"><a href="#cb11-5"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>    </span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="co"># Verificar se é uma data válida</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>    <span class="cf">try</span>:</span>
+<span id="cb11-9"><a href="#cb11-9"></a>        dia, mes, ano <span class="op">=</span> data.split(<span class="st">'/'</span>)</span>
+<span id="cb11-10"><a href="#cb11-10"></a>        dia, mes, ano <span class="op">=</span> <span class="bu">int</span>(dia), <span class="bu">int</span>(mes), <span class="bu">int</span>(ano)</span>
+<span id="cb11-11"><a href="#cb11-11"></a>        </span>
+<span id="cb11-12"><a href="#cb11-12"></a>        <span class="cf">if</span> mes <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> mes <span class="op">&gt;</span> <span class="dv">12</span>:</span>
+<span id="cb11-13"><a href="#cb11-13"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a>        <span class="cf">if</span> dia <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> dia <span class="op">&gt;</span> <span class="dv">31</span>:</span>
+<span id="cb11-15"><a href="#cb11-15"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb11-16"><a href="#cb11-16"></a>        <span class="cf">if</span> ano <span class="op">&lt;</span> <span class="dv">1900</span> <span class="kw">or</span> ano <span class="op">&gt;</span> <span class="dv">2100</span>:</span>
+<span id="cb11-17"><a href="#cb11-17"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb11-18"><a href="#cb11-18"></a>            </span>
+<span id="cb11-19"><a href="#cb11-19"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb11-20"><a href="#cb11-20"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb11-21"><a href="#cb11-21"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb11-22"><a href="#cb11-22"></a></span>
+<span id="cb11-23"><a href="#cb11-23"></a><span class="co"># Testando</span></span>
+<span id="cb11-24"><a href="#cb11-24"></a>datas <span class="op">=</span> [<span class="st">"15/12/2024"</span>, <span class="st">"32/01/2024"</span>, <span class="st">"15/13/2024"</span>, <span class="st">"29/02/2024"</span>, <span class="st">"01/01/2023"</span>]</span>
+<span id="cb11-25"><a href="#cb11-25"></a><span class="cf">for</span> data <span class="kw">in</span> datas:</span>
+<span id="cb11-26"><a href="#cb11-26"></a>    resultado <span class="op">=</span> <span class="st">"Válida"</span> <span class="cf">if</span> validar_data(data) <span class="cf">else</span> <span class="st">"Inválida"</span></span>
+<span id="cb11-27"><a href="#cb11-27"></a>    <span class="bu">print</span>(<span class="ss">f"Data '</span><span class="sc">{</span>data<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def validar_data(data):</code> - Define função para validar data</li>
+<li><strong>Linha 2:</strong> <code>"""Valida formato de data dd/mm/aaaa"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code>padrao = r'^\d{2}/\d{2}/\d{4}$'</code> - Define padrão regex para formato de data</li>
+<li><strong>Linha 4:</strong> <code>if not re.match(padrao, data):</code> - Verifica se data corresponde ao formato</li>
+<li><strong>Linha 5:</strong> <code>return False</code> - Retorna False se formato está incorreto</li>
+<li><strong>Linha 7:</strong> <code># Verificar se é uma data válida</code> - Comentário explicativo</li>
+<li><strong>Linha 8:</strong> <code>try:</code> - Inicia bloco try para tratamento de erros</li>
+<li><strong>Linha 9:</strong> <code>dia, mes, ano = data.split('/')</code> - Divide data em partes</li>
+<li><strong>Linha 10:</strong> <code>dia, mes, ano = int(dia), int(mes), int(ano)</code> - Converte para números inteiros</li>
+<li><strong>Linha 12:</strong> <code>if mes &lt; 1 or mes &gt; 12:</code> - Verifica se mês está no intervalo válido</li>
+<li><strong>Linha 13:</strong> <code>return False</code> - Retorna False se mês é inválido</li>
+<li><strong>Linha 14:</strong> <code>if dia &lt; 1 or dia &gt; 31:</code> - Verifica se dia está no intervalo válido</li>
+<li><strong>Linha 15:</strong> <code>return False</code> - Retorna False se dia é inválido</li>
+<li><strong>Linha 16:</strong> <code>if ano &lt; 1900 or ano &gt; 2100:</code> - Verifica se ano está no intervalo válido</li>
+<li><strong>Linha 17:</strong> <code>return False</code> - Retorna False se ano é inválido</li>
+<li><strong>Linha 19:</strong> <code>return True</code> - Retorna True se data é válida</li>
+<li><strong>Linha 20:</strong> <code>except ValueError:</code> - Captura erro de conversão</li>
+<li><strong>Linha 21:</strong> <code>return False</code> - Retorna False em caso de erro</li>
+</ul>
+<p><strong>7. Extrair números de telefone</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">def</span> extrair_telefones(texto):</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    <span class="co">"""Extrai todos os números de telefone de um texto"""</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>    <span class="co"># Padrão para telefones brasileiros</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>    padrao <span class="op">=</span> <span class="vs">r'</span><span class="ch">\(</span><span class="op">?</span><span class="dv">\d</span><span class="op">{2}</span><span class="ch">\)</span><span class="op">?</span><span class="pp">[-.</span><span class="dv">\s</span><span class="pp">]</span><span class="op">?</span><span class="dv">\d</span><span class="op">{4,5}</span><span class="pp">[-.</span><span class="dv">\s</span><span class="pp">]</span><span class="op">?</span><span class="dv">\d</span><span class="op">{4}</span><span class="vs">'</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>    telefones <span class="op">=</span> re.findall(padrao, texto)</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    <span class="cf">return</span> telefones</span>
+<span id="cb12-7"><a href="#cb12-7"></a></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co"># Exemplo de uso</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>texto <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="st">Contatos: (11) 99999-9999, 21 98765-4321, (85) 9123-4567</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="st">Telefones: 11 9999-9999, 21.98765.4321, (85)-9123-4567</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="st">"""</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>telefones <span class="op">=</span> extrair_telefones(texto)</span>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="bu">print</span>(<span class="ss">f"Telefones encontrados: </span><span class="sc">{</span>telefones<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def extrair_telefones(texto):</code> - Define função para extrair telefones</li>
+<li><strong>Linha 2:</strong> <code>"""Extrai todos os números de telefone de um texto"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code># Padrão para telefones brasileiros</code> - Comentário explicativo</li>
+<li><strong>Linha 4:</strong> <code>padrao = r'\(?\d{2}\)?[-.\s]?\d{4,5}[-.\s]?\d{4}'</code> - Define padrão regex para telefones</li>
+<li><strong>Linha 5:</strong> <code>telefones = re.findall(padrao, texto)</code> - Encontra todos os telefones no texto</li>
+<li><strong>Linha 6:</strong> <code>return telefones</code> - Retorna lista de telefones encontrados</li>
+<li><strong>Linha 8:</strong> <code># Exemplo de uso</code> - Comentário explicativo</li>
+<li><strong>Linha 9:</strong> <code>texto = """</code> - Inicia string multilinha com texto de exemplo</li>
+<li><strong>Linha 10:</strong> <code>Contatos: (11) 99999-9999, 21 98765-4321, (85) 9123-4567</code> - Exemplo de telefones</li>
+<li><strong>Linha 11:</strong> <code>Telefones: 11 9999-9999, 21.98765.4321, (85)-9123-4567</code> - Mais exemplos</li>
+<li><strong>Linha 12:</strong> <code>"""</code> - Fecha string multilinha</li>
+<li><strong>Linha 13:</strong> <code>telefones = extrair_telefones(texto)</code> - Chama função para extrair telefones</li>
+<li><strong>Linha 14:</strong> <code>print(f"Telefones encontrados: {telefones}")</code> - Imprime resultado</li>
+</ul>
+<p><strong>8. Validar senha forte</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> validar_senha(senha):</span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="co">"""Valida se senha tem pelo menos 8 caracteres e contém números"""</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="co"># Verificar comprimento mínimo</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="cf">if</span> <span class="bu">len</span>(senha) <span class="op">&lt;</span> <span class="dv">8</span>:</span>
+<span id="cb13-5"><a href="#cb13-5"></a>        <span class="cf">return</span> <span class="va">False</span>, <span class="st">"Senha deve ter pelo menos 8 caracteres"</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>    </span>
+<span id="cb13-7"><a href="#cb13-7"></a>    <span class="co"># Verificar se contém números</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>    <span class="cf">if</span> <span class="kw">not</span> re.search(<span class="vs">r'</span><span class="dv">\d</span><span class="vs">'</span>, senha):</span>
+<span id="cb13-9"><a href="#cb13-9"></a>        <span class="cf">return</span> <span class="va">False</span>, <span class="st">"Senha deve conter pelo menos um número"</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>    </span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="co"># Verificar se contém letras</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>    <span class="cf">if</span> <span class="kw">not</span> re.search(<span class="vs">r'</span><span class="pp">[a-zA-Z]</span><span class="vs">'</span>, senha):</span>
+<span id="cb13-13"><a href="#cb13-13"></a>        <span class="cf">return</span> <span class="va">False</span>, <span class="st">"Senha deve conter pelo menos uma letra"</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a>    </span>
+<span id="cb13-15"><a href="#cb13-15"></a>    <span class="cf">return</span> <span class="va">True</span>, <span class="st">"Senha válida"</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a></span>
+<span id="cb13-17"><a href="#cb13-17"></a><span class="co"># Testando</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a>senhas <span class="op">=</span> [<span class="st">"12345678"</span>, <span class="st">"abcdefgh"</span>, <span class="st">"senha123"</span>, <span class="st">"1234567"</span>, <span class="st">"Senha@123"</span>]</span>
+<span id="cb13-19"><a href="#cb13-19"></a><span class="cf">for</span> senha <span class="kw">in</span> senhas:</span>
+<span id="cb13-20"><a href="#cb13-20"></a>    valida, mensagem <span class="op">=</span> validar_senha(senha)</span>
+<span id="cb13-21"><a href="#cb13-21"></a>    <span class="bu">print</span>(<span class="ss">f"Senha '</span><span class="sc">{</span>senha<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>mensagem<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def validar_senha(senha):</code> - Define função para validar senha</li>
+<li><strong>Linha 2:</strong> <code>"""Valida se senha tem pelo menos 8 caracteres e contém números"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code># Verificar comprimento mínimo</code> - Comentário explicativo</li>
+<li><strong>Linha 4:</strong> <code>if len(senha) &lt; 8:</code> - Verifica se senha tem pelo menos 8 caracteres</li>
+<li><strong>Linha 5:</strong> <code>return False, "Senha deve ter pelo menos 8 caracteres"</code> - Retorna erro se muito curta</li>
+<li><strong>Linha 7:</strong> <code># Verificar se contém números</code> - Comentário explicativo</li>
+<li><strong>Linha 8:</strong> <code>if not re.search(r'\d', senha):</code> - Verifica se senha contém números</li>
+<li><strong>Linha 9:</strong> <code>return False, "Senha deve conter pelo menos um número"</code> - Retorna erro se não tem números</li>
+<li><strong>Linha 11:</strong> <code># Verificar se contém letras</code> - Comentário explicativo</li>
+<li><strong>Linha 12:</strong> <code>if not re.search(r'[a-zA-Z]', senha):</code> - Verifica se senha contém letras</li>
+<li><strong>Linha 13:</strong> <code>return False, "Senha deve conter pelo menos uma letra"</code> - Retorna erro se não tem letras</li>
+<li><strong>Linha 15:</strong> <code>return True, "Senha válida"</code> - Retorna sucesso se senha é válida</li>
+<li><strong>Linha 17:</strong> <code># Testando</code> - Comentário explicativo</li>
+<li><strong>Linha 18:</strong> <code>senhas = ["12345678", "abcdefgh", "senha123", "1234567", "Senha@123"]</code> - Lista de senhas para testar</li>
+<li><strong>Linha 19:</strong> <code>for senha in senhas:</code> - Percorre cada senha</li>
+<li><strong>Linha 20:</strong> <code>valida, mensagem = validar_senha(senha)</code> - Chama função de validação</li>
+<li><strong>Linha 21:</strong> <code>print(f"Senha '{senha}': {mensagem}")</code> - Imprime resultado da validação</li>
+</ul>
+<p><strong>9. Encontrar URLs</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">def</span> encontrar_urls(texto):</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    <span class="co">"""Encontra todas as URLs em um texto"""</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>    padrao <span class="op">=</span> <span class="vs">r'https</span><span class="op">?</span><span class="vs">://</span><span class="pp">[^</span><span class="dv">\s</span><span class="pp">&lt;&gt;"{}|</span><span class="ch">\\</span><span class="pp">^`</span><span class="ch">\[\]</span><span class="pp">]</span><span class="op">+</span><span class="vs">'</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>    urls <span class="op">=</span> re.findall(padrao, texto)</span>
+<span id="cb14-5"><a href="#cb14-5"></a>    <span class="cf">return</span> urls</span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co"># Exemplo de uso</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>texto <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="st">Visite nosso site: https://www.exemplo.com</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="st">Também temos: http://blog.exemplo.com</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="st">E nossa API: https://api.exemplo.com/v1</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="st">"""</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a>urls <span class="op">=</span> encontrar_urls(texto)</span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="bu">print</span>(<span class="ss">f"URLs encontradas: </span><span class="sc">{</span>urls<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def encontrar_urls(texto):</code> - Define função para encontrar URLs</li>
+<li><strong>Linha 2:</strong> <code>"""Encontra todas as URLs em um texto"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code>padrao = r'https?://[^\s&lt;&gt;"{}|\\^</code>[]]+’` - Define padrão regex para URLs</li>
+<li><strong>Linha 4:</strong> <code>urls = re.findall(padrao, texto)</code> - Encontra todas as URLs no texto</li>
+<li><strong>Linha 5:</strong> <code>return urls</code> - Retorna lista de URLs encontradas</li>
+<li><strong>Linha 7:</strong> <code># Exemplo de uso</code> - Comentário explicativo</li>
+<li><strong>Linha 8:</strong> <code>texto = """</code> - Inicia string multilinha com texto de exemplo</li>
+<li><strong>Linha 9:</strong> <code>Visite nosso site: https://www.exemplo.com</code> - Exemplo de URL</li>
+<li><strong>Linha 10:</strong> <code>Também temos: http://blog.exemplo.com</code> - Outro exemplo</li>
+<li><strong>Linha 11:</strong> <code>E nossa API: https://api.exemplo.com/v1</code> - Mais um exemplo</li>
+<li><strong>Linha 12:</strong> <code>"""</code> - Fecha string multilinha</li>
+<li><strong>Linha 13:</strong> <code>urls = encontrar_urls(texto)</code> - Chama função para encontrar URLs</li>
+<li><strong>Linha 14:</strong> <code>print(f"URLs encontradas: {urls}")</code> - Imprime resultado</li>
+</ul>
+<p><strong>10. Limpar texto removendo caracteres especiais</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">def</span> limpar_texto(texto):</span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="co">"""Remove caracteres especiais, mantendo apenas letras e números"""</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="co"># Substituir caracteres especiais por espaço</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>    texto_limpo <span class="op">=</span> re.sub(<span class="vs">r'</span><span class="pp">[^a-zA-Z0-9</span><span class="dv">\s</span><span class="pp">]</span><span class="vs">'</span>, <span class="st">' '</span>, texto)</span>
+<span id="cb15-5"><a href="#cb15-5"></a>    </span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="co"># Remover espaços extras</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>    texto_limpo <span class="op">=</span> re.sub(<span class="vs">r'</span><span class="dv">\s</span><span class="op">+</span><span class="vs">'</span>, <span class="st">' '</span>, texto_limpo)</span>
+<span id="cb15-8"><a href="#cb15-8"></a>    </span>
+<span id="cb15-9"><a href="#cb15-9"></a>    <span class="co"># Remover espaços no início e fim</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a>    texto_limpo <span class="op">=</span> texto_limpo.strip()</span>
+<span id="cb15-11"><a href="#cb15-11"></a>    </span>
+<span id="cb15-12"><a href="#cb15-12"></a>    <span class="cf">return</span> texto_limpo</span>
+<span id="cb15-13"><a href="#cb15-13"></a></span>
+<span id="cb15-14"><a href="#cb15-14"></a><span class="co"># Exemplo de uso</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a>texto <span class="op">=</span> <span class="st">"Olá! Como você está? #Python é @incrível! 100</span><span class="sc">% f</span><span class="st">uncional."</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a>texto_limpo <span class="op">=</span> limpar_texto(texto)</span>
+<span id="cb15-17"><a href="#cb15-17"></a><span class="bu">print</span>(<span class="ss">f"Texto original: </span><span class="sc">{</span>texto<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-18"><a href="#cb15-18"></a><span class="bu">print</span>(<span class="ss">f"Texto limpo: </span><span class="sc">{</span>texto_limpo<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Explicação linha por linha:</strong></p>
+<ul>
+<li><strong>Linha 1:</strong> <code>def limpar_texto(texto):</code> - Define função para limpar texto</li>
+<li><strong>Linha 2:</strong> <code>"""Remove caracteres especiais, mantendo apenas letras e números"""</code> - Docstring explicando função</li>
+<li><strong>Linha 3:</strong> <code># Substituir caracteres especiais por espaço</code> - Comentário explicativo</li>
+<li><strong>Linha 4:</strong> <code>texto_limpo = re.sub(r'[^a-zA-Z0-9\s]', ' ', texto)</code> - Remove caracteres especiais</li>
+<li><strong>Linha 5:</strong> <code># Remover espaços extras</code> - Comentário explicativo</li>
+<li><strong>Linha 6:</strong> <code>texto_limpo = re.sub(r'\s+', ' ', texto_limpo)</code> - Remove espaços múltiplos</li>
+<li><strong>Linha 7:</strong> <code># Remover espaços no início e fim</code> - Comentário explicativo</li>
+<li><strong>Linha 8:</strong> <code>texto_limpo = texto_limpo.strip()</code> - Remove espaços nas bordas</li>
+<li><strong>Linha 10:</strong> <code>return texto_limpo</code> - Retorna texto limpo</li>
+<li><strong>Linha 12:</strong> <code># Exemplo de uso</code> - Comentário explicativo</li>
+<li><strong>Linha 13:</strong> <code>texto = "Olá! Como você está? #Python é @incrível! 100% funcional."</code> - Texto de exemplo</li>
+<li><strong>Linha 14:</strong> <code>texto_limpo = limpar_texto(texto)</code> - Chama função para limpar texto</li>
+<li><strong>Linha 15:</strong> <code>print(f"Texto original: {texto}")</code> - Imprime texto original</li>
+<li><strong>Linha 16:</strong> <code>print(f"Texto limpo: {texto_limpo}")</code> - Imprime texto limpo</li>
+</ul>
+</section>
+</section>
+<section id="próximos-passos-continue-aprendendo" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="próximos-passos-continue-aprendendo"><span class="header-section-number">16.6</span> Próximos Passos: Continue Aprendendo!</h2>
+<p>Parabéns! Você agora domina expressões regulares com Python! 🎉</p>
+<section id="o-que-você-aprendeu" class="level3" data-number="16.6.1">
+<h3 data-number="16.6.1" class="anchored" data-anchor-id="o-que-você-aprendeu"><span class="header-section-number">16.6.1</span> O que você aprendeu:</h3>
+<ul>
+<li>✅ <strong>Conceito de Regex:</strong> Como usar padrões para encontrar texto</li>
+<li>✅ <strong>Metacaracteres básicos:</strong> ., *, +, ?, [], ^, $ e suas funções</li>
+<li>✅ <strong>Classes de caracteres:</strong> , e suas variações</li>
+<li>✅ <strong>Módulo <code>re</code>:</strong> Como usar regex em Python</li>
+<li>✅ <strong>Validação prática:</strong> Emails, telefones, CPFs e outros formatos</li>
+<li>✅ <strong>Extração de dados:</strong> Como encontrar informações específicas</li>
+<li>✅ <strong>Substituição:</strong> Como modificar textos usando padrões</li>
+<li>✅ <strong>Aplicações reais:</strong> Regex em validação e processamento de dados</li>
+</ul>
+</section>
+<section id="desafios-para-continuar" class="level3" data-number="16.6.2">
+<h3 data-number="16.6.2" class="anchored" data-anchor-id="desafios-para-continuar"><span class="header-section-number">16.6.2</span> Desafios para Continuar:</h3>
+<ol type="1">
+<li><strong>Pratique com dados reais:</strong> Use regex em projetos de web scraping</li>
+<li><strong>Crie validadores:</strong> Implemente sistemas de validação robustos</li>
+<li><strong>Automatize tarefas:</strong> Use regex para processar grandes volumes de texto</li>
+<li><strong>Contribua com projetos:</strong> Encontre projetos que precisam de processamento de texto</li>
+</ol>
+</section>
+<section id="parabéns-você-completou-o-livro" class="level3" data-number="16.6.3">
+<h3 data-number="16.6.3" class="anchored" data-anchor-id="parabéns-você-completou-o-livro"><span class="header-section-number">16.6.3</span> Parabéns! Você Completou o Livro!</h3>
+<p>Você agora domina <strong>16 capítulos</strong> de Python, desde o básico até tópicos avançados:</p>
+<p><strong>Capítulos Fundamentais (1-10):</strong></p>
+<ul>
+<li>Introdução ao ambiente e algoritmos</li>
+<li>Variáveis, I/O e estruturas de controle</li>
+<li>Funções, listas, dicionários e tuplas</li>
+<li>Manipulação de arquivos, POO e tratamento de erros</li>
+</ul>
+<p><strong>Capítulos Avançados (11-16):</strong></p>
+<ul>
+<li>Módulos e bibliotecas</li>
+<li>APIs (consumo e criação)</li>
+<li>Web scraping</li>
+<li>Bancos de dados SQL</li>
+<li>Expressões regulares (bônus)</li>
+</ul>
+</section>
+<section id="próximos-passos-na-jornada" class="level3" data-number="16.6.4">
+<h3 data-number="16.6.4" class="anchored" data-anchor-id="próximos-passos-na-jornada"><span class="header-section-number">16.6.4</span> Próximos Passos na Jornada:</h3>
+<ol type="1">
+<li><strong>Projetos práticos:</strong> Aplique tudo que aprendeu em projetos reais</li>
+<li><strong>Frameworks:</strong> Explore Django, FastAPI, Pandas, NumPy</li>
+<li><strong>Especialização:</strong> Machine Learning, Data Science, Web Development</li>
+<li><strong>Contribuição:</strong> Participe de projetos open source</li>
+<li><strong>Comunidade:</strong> Compartilhe conhecimento e aprenda com outros</li>
+</ol>
+<blockquote class="blockquote">
+<p>🎯 <strong>batel.tech:</strong> Continue sua jornada! Acesse <a href="https://batel.tech">batel.tech</a> e encontre projetos práticos para aplicar todo seu conhecimento em Python! Lá você pode colaborar com outros desenvolvedores e construir aplicações incríveis!</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="referências-bibliográficas" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="referências-bibliográficas"><span class="header-section-number">16.7</span> Referências Bibliográficas</h2>
+<ul>
+<li><strong>Python re Module:</strong> <a href="https://docs.python.org/3/library/re.html">Python Regular Expressions</a></li>
+<li><strong>Regex Tutorial:</strong> <a href="https://www.regular-expressions.info/">Regular-Expressions.info</a></li>
+<li><strong>Regex Testing:</strong> <a href="https://regex101.com/">Regex101.com</a></li>
+<li><strong>Python Regex Guide:</strong> <a href="https://realpython.com/regex-python/">Real Python Regex Guide</a></li>
+<li><strong>Regex Patterns:</strong> <a href="https://www.regexlib.com/">RegexLib.com</a></li>
+</ul>
+<hr>
+<p><em>Capítulo 16 (Bônus) concluído! 🎉 Parabéns por completar toda a jornada de aprendizado em Python! Agora você está pronto para criar aplicações profissionais e contribuir com a comunidade de desenvolvedores!</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./15-Banco-Dados-SQL.html" class="pagination-link" aria-label="Banco de Dados SQL com Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Banco de Dados SQL com Python</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
