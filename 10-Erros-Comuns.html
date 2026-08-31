@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>10&nbsp; Erros e Exceções em Python – Python Descomplicado</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -69,15 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./09-POO.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb0c5cf05bdf90cece8b0edf1cffcb8d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -132,9 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Python Descomplicado</a> 
     </div>
@@ -453,8 +456,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exemplo-do-erro" class="level4" data-number="10.2.3.2">
 <h4 data-number="10.2.3.2" class="anchored" data-anchor-id="exemplo-do-erro"><span class="header-section-number">10.2.3.2</span> Exemplo do Erro:</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>lista <span class="op">=</span> [<span class="st">"maçã"</span>, <span class="st">"banana"</span>, <span class="st">"laranja"</span>]  <span class="co"># Lista com 3 itens (índices 0, 1, 2)</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="bu">print</span>(lista[<span class="dv">3</span>])  <span class="co"># ❌ ERRO! Tentando acessar índice 3, mas só existem 0, 1, 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>lista <span class="op">=</span> [<span class="st">"maçã"</span>, <span class="st">"banana"</span>, <span class="st">"laranja"</span>]  <span class="co"># Lista com 3 itens (índices 0, 1, 2)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="bu">print</span>(lista[<span class="dv">3</span>])  <span class="co"># ❌ ERRO! Tentando acessar índice 3, mas só existem 0, 1, 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="como-resolver" class="level4" data-number="10.2.3.3">
 <h4 data-number="10.2.3.3" class="anchored" data-anchor-id="como-resolver"><span class="header-section-number">10.2.3.3</span> Como Resolver:</h4>
@@ -466,11 +469,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="solução-prática" class="level4" data-number="10.2.3.4">
 <h4 data-number="10.2.3.4" class="anchored" data-anchor-id="solução-prática"><span class="header-section-number">10.2.3.4</span> Solução Prática:</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>lista <span class="op">=</span> [<span class="st">"maçã"</span>, <span class="st">"banana"</span>, <span class="st">"laranja"</span>]</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="cf">if</span> <span class="bu">len</span>(lista) <span class="op">&gt;</span> <span class="dv">3</span>:  <span class="co"># Verifica se tem pelo menos 4 itens</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="bu">print</span>(lista[<span class="dv">3</span>])</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="cf">else</span>:</span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="bu">print</span>(<span class="st">"Índice não existe!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>lista <span class="op">=</span> [<span class="st">"maçã"</span>, <span class="st">"banana"</span>, <span class="st">"laranja"</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a><span class="cf">if</span> <span class="bu">len</span>(lista) <span class="op">&gt;</span> <span class="dv">3</span>:  <span class="co"># Verifica se tem pelo menos 4 itens</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>    <span class="bu">print</span>(lista[<span class="dv">3</span>])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a><span class="cf">else</span>:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>    <span class="bu">print</span>(<span class="st">"Índice não existe!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>💡 <strong>Dica:</strong> Lembre-se que os índices começam em 0! Uma lista com 3 itens tem índices 0, 1 e 2! 🎯</p>
 </blockquote>
@@ -485,7 +488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exemplo-do-erro-1" class="level4" data-number="10.2.4.2">
 <h4 data-number="10.2.4.2" class="anchored" data-anchor-id="exemplo-do-erro-1"><span class="header-section-number">10.2.4.2</span> Exemplo do Erro:</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>arquivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"receita.txt"</span>, <span class="st">"r"</span>)  <span class="co"># ❌ ERRO! Arquivo não existe</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>arquivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"receita.txt"</span>, <span class="st">"r"</span>)  <span class="co"># ❌ ERRO! Arquivo não existe</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="como-resolver-1" class="level4" data-number="10.2.4.3">
 <h4 data-number="10.2.4.3" class="anchored" data-anchor-id="como-resolver-1"><span class="header-section-number">10.2.4.3</span> Como Resolver:</h4>
@@ -498,12 +501,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="solução-prática-1" class="level4" data-number="10.2.4.4">
 <h4 data-number="10.2.4.4" class="anchored" data-anchor-id="solução-prática-1"><span class="header-section-number">10.2.4.4</span> Solução Prática:</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="cf">try</span>:</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    arquivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"receita.txt"</span>, <span class="st">"r"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3"></a>    conteudo <span class="op">=</span> arquivo.read()</span>
-<span id="cb4-4"><a href="#cb4-4"></a>    arquivo.close()</span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
-<span id="cb4-6"><a href="#cb4-6"></a>    <span class="bu">print</span>(<span class="st">"Arquivo não encontrado! Verifique o nome e localização."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="cf">try</span>:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>    arquivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"receita.txt"</span>, <span class="st">"r"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>    conteudo <span class="op">=</span> arquivo.read()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>    arquivo.close()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>    <span class="bu">print</span>(<span class="st">"Arquivo não encontrado! Verifique o nome e localização."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>💡 <strong>Dica:</strong> Sempre verifique se o arquivo existe antes de tentar abri-lo! É como verificar se tem ovos na geladeira antes de começar a receita! 🥚</p>
 </blockquote>
@@ -518,8 +521,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exemplo-do-erro-2" class="level4" data-number="10.2.5.2">
 <h4 data-number="10.2.5.2" class="anchored" data-anchor-id="exemplo-do-erro-2"><span class="header-section-number">10.2.5.2</span> Exemplo do Erro:</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>pessoa <span class="op">=</span> {<span class="st">"nome"</span>: <span class="st">"João"</span>, <span class="st">"idade"</span>: <span class="dv">25</span>, <span class="st">"sexo"</span>: <span class="st">"masculino"</span>}</span>
-<span id="cb5-2"><a href="#cb5-2"></a>endereco <span class="op">=</span> pessoa[<span class="st">"endereco"</span>]  <span class="co"># ❌ ERRO! Chave "endereco" não existe</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>pessoa <span class="op">=</span> {<span class="st">"nome"</span>: <span class="st">"João"</span>, <span class="st">"idade"</span>: <span class="dv">25</span>, <span class="st">"sexo"</span>: <span class="st">"masculino"</span>}</span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>endereco <span class="op">=</span> pessoa[<span class="st">"endereco"</span>]  <span class="co"># ❌ ERRO! Chave "endereco" não existe</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="como-resolver-2" class="level4" data-number="10.2.5.3">
 <h4 data-number="10.2.5.3" class="anchored" data-anchor-id="como-resolver-2"><span class="header-section-number">10.2.5.3</span> Como Resolver:</h4>
@@ -531,17 +534,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="solução-prática-2" class="level4" data-number="10.2.5.4">
 <h4 data-number="10.2.5.4" class="anchored" data-anchor-id="solução-prática-2"><span class="header-section-number">10.2.5.4</span> Solução Prática:</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>pessoa <span class="op">=</span> {<span class="st">"nome"</span>: <span class="st">"João"</span>, <span class="st">"idade"</span>: <span class="dv">25</span>, <span class="st">"sexo"</span>: <span class="st">"masculino"</span>}</span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co"># Opção 1: Verificar se a chave existe</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="cf">if</span> <span class="st">"endereco"</span> <span class="kw">in</span> pessoa:</span>
-<span id="cb6-5"><a href="#cb6-5"></a>    <span class="bu">print</span>(pessoa[<span class="st">"endereco"</span>])</span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="cf">else</span>:</span>
-<span id="cb6-7"><a href="#cb6-7"></a>    <span class="bu">print</span>(<span class="st">"Chave não encontrada!"</span>)</span>
-<span id="cb6-8"><a href="#cb6-8"></a></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co"># Opção 2: Usar get() com valor padrão</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>endereco <span class="op">=</span> pessoa.get(<span class="st">"endereco"</span>, <span class="st">"Não informado"</span>)</span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="bu">print</span>(endereco)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>pessoa <span class="op">=</span> {<span class="st">"nome"</span>: <span class="st">"João"</span>, <span class="st">"idade"</span>: <span class="dv">25</span>, <span class="st">"sexo"</span>: <span class="st">"masculino"</span>}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a><span class="co"># Opção 1: Verificar se a chave existe</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a><span class="cf">if</span> <span class="st">"endereco"</span> <span class="kw">in</span> pessoa:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>    <span class="bu">print</span>(pessoa[<span class="st">"endereco"</span>])</span>
+<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a><span class="cf">else</span>:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a>    <span class="bu">print</span>(<span class="st">"Chave não encontrada!"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-label="9"></a><span class="co"># Opção 2: Usar get() com valor padrão</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-label="10"></a>endereco <span class="op">=</span> pessoa.get(<span class="st">"endereco"</span>, <span class="st">"Não informado"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-label="11"></a><span class="bu">print</span>(endereco)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>💡 <strong>Dica:</strong> Use <code>get()</code> quando não tem certeza se a chave existe! É mais seguro que acessar diretamente! 🛡️</p>
 </blockquote>
@@ -556,8 +559,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exemplos-do-erro" class="level4" data-number="10.2.6.2">
 <h4 data-number="10.2.6.2" class="anchored" data-anchor-id="exemplos-do-erro"><span class="header-section-number">10.2.6.2</span> Exemplos do Erro:</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="bu">print</span>(nome)  <span class="co"># ❌ ERRO! Variável "nome" não foi definida</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="bu">print</span>(idade)  <span class="co"># ❌ ERRO! Variável "idade" não foi definida</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="bu">print</span>(nome)  <span class="co"># ❌ ERRO! Variável "nome" não foi definida</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a><span class="bu">print</span>(idade)  <span class="co"># ❌ ERRO! Variável "idade" não foi definida</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="como-resolver-3" class="level4" data-number="10.2.6.3">
 <h4 data-number="10.2.6.3" class="anchored" data-anchor-id="como-resolver-3"><span class="header-section-number">10.2.6.3</span> Como Resolver:</h4>
@@ -570,18 +573,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="solução-prática-3" class="level4" data-number="10.2.6.4">
 <h4 data-number="10.2.6.4" class="anchored" data-anchor-id="solução-prática-3"><span class="header-section-number">10.2.6.4</span> Solução Prática:</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># ERRO: Usar antes de definir</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="bu">print</span>(nome)</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># CORRETO: Definir antes de usar</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>nome <span class="op">=</span> <span class="st">"João"</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="bu">print</span>(nome)</span>
-<span id="cb8-7"><a href="#cb8-7"></a></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="co"># CORRETO: Verificar se existe antes de usar</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="cf">if</span> <span class="st">'nome'</span> <span class="kw">in</span> <span class="bu">locals</span>():</span>
-<span id="cb8-10"><a href="#cb8-10"></a>    <span class="bu">print</span>(nome)</span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="cf">else</span>:</span>
-<span id="cb8-12"><a href="#cb8-12"></a>    <span class="bu">print</span>(<span class="st">"Variável não definida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a><span class="co"># ERRO: Usar antes de definir</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a><span class="bu">print</span>(nome)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a><span class="co"># CORRETO: Definir antes de usar</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a>nome <span class="op">=</span> <span class="st">"João"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-label="6"></a><span class="bu">print</span>(nome)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-label="7"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-label="8"></a><span class="co"># CORRETO: Verificar se existe antes de usar</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-label="9"></a><span class="cf">if</span> <span class="st">'nome'</span> <span class="kw">in</span> <span class="bu">locals</span>():</span>
+<span id="cb8-10"><a href="#cb8-10" aria-label="10"></a>    <span class="bu">print</span>(nome)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-label="11"></a><span class="cf">else</span>:</span>
+<span id="cb8-12"><a href="#cb8-12" aria-label="12"></a>    <span class="bu">print</span>(<span class="st">"Variável não definida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>💡 <strong>Dica:</strong> Sempre defina suas variáveis antes de usar! É como ter todos os ingredientes prontos antes de começar a receita! 🥘</p>
 </blockquote>
@@ -597,37 +600,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exemplos-do-erro-1" class="level4" data-number="10.2.7.2">
 <h4 data-number="10.2.7.2" class="anchored" data-anchor-id="exemplos-do-erro-1"><span class="header-section-number">10.2.7.2</span> Exemplos do Erro:</h4>
 <p><strong>1. Somando número com texto:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>x <span class="op">=</span> <span class="dv">42</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>s <span class="op">=</span> <span class="st">"olá"</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>result <span class="op">=</span> s <span class="op">+</span> x  <span class="co"># ❌ ERRO! Não pode somar texto com número</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>x <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>s <span class="op">=</span> <span class="st">"olá"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a>result <span class="op">=</span> s <span class="op">+</span> x  <span class="co"># ❌ ERRO! Não pode somar texto com número</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>2. Tentando iterar sobre None:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>lista <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="cf">for</span> item <span class="kw">in</span> lista:  <span class="co"># ❌ ERRO! None não pode ser iterado</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>    <span class="bu">print</span>(item)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>lista <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a><span class="cf">for</span> item <span class="kw">in</span> lista:  <span class="co"># ❌ ERRO! None não pode ser iterado</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a>    <span class="bu">print</span>(item)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>3. Chamando número como função:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>x <span class="op">=</span> <span class="dv">42</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>x()  <span class="co"># ❌ ERRO! Número não é uma função</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a>x <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a>x()  <span class="co"># ❌ ERRO! Número não é uma função</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="como-resolver-4" class="level4" data-number="10.2.7.3">
 <h4 data-number="10.2.7.3" class="anchored" data-anchor-id="como-resolver-4"><span class="header-section-number">10.2.7.3</span> Como Resolver:</h4>
 <p><strong>1. Converter tipos antes de operar:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>x <span class="op">=</span> <span class="dv">42</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>s <span class="op">=</span> <span class="st">"olá"</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>result <span class="op">=</span> s <span class="op">+</span> <span class="bu">str</span>(x)  <span class="co"># ✅ CORRETO! Converte número para texto</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="bu">print</span>(result)  <span class="co"># Saída: "olá42"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-label="1"></a>x <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-label="2"></a>s <span class="op">=</span> <span class="st">"olá"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-label="3"></a>result <span class="op">=</span> s <span class="op">+</span> <span class="bu">str</span>(x)  <span class="co"># ✅ CORRETO! Converte número para texto</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-label="4"></a><span class="bu">print</span>(result)  <span class="co"># Saída: "olá42"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>2. Verificar se não é None antes de iterar:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>lista <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="cf">if</span> lista <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb13-3"><a href="#cb13-3"></a>    <span class="cf">for</span> item <span class="kw">in</span> lista:</span>
-<span id="cb13-4"><a href="#cb13-4"></a>        <span class="bu">print</span>(item)</span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="cf">else</span>:</span>
-<span id="cb13-6"><a href="#cb13-6"></a>    <span class="bu">print</span>(<span class="st">"Lista está vazia!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a>lista <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-label="2"></a><span class="cf">if</span> lista <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-label="3"></a>    <span class="cf">for</span> item <span class="kw">in</span> lista:</span>
+<span id="cb13-4"><a href="#cb13-4" aria-label="4"></a>        <span class="bu">print</span>(item)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-label="5"></a><span class="cf">else</span>:</span>
+<span id="cb13-6"><a href="#cb13-6" aria-label="6"></a>    <span class="bu">print</span>(<span class="st">"Lista está vazia!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>3. Verificar se é função antes de chamar:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>x <span class="op">=</span> <span class="dv">42</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="cf">if</span> <span class="bu">callable</span>(x):</span>
-<span id="cb14-3"><a href="#cb14-3"></a>    x()</span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="cf">else</span>:</span>
-<span id="cb14-5"><a href="#cb14-5"></a>    <span class="bu">print</span>(<span class="st">"x não é uma função!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-label="1"></a>x <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-label="2"></a><span class="cf">if</span> <span class="bu">callable</span>(x):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-label="3"></a>    x()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-label="4"></a><span class="cf">else</span>:</span>
+<span id="cb14-5"><a href="#cb14-5" aria-label="5"></a>    <span class="bu">print</span>(<span class="st">"x não é uma função!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>💡 <strong>Dica:</strong> Sempre verifique os tipos antes de fazer operações! É como verificar se os ingredientes são compatíveis antes de misturar! 🥄</p>
 </blockquote>
@@ -635,31 +638,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="mais-exemplos-de-typeerror" class="level4" data-number="10.2.7.4">
 <h4 data-number="10.2.7.4" class="anchored" data-anchor-id="mais-exemplos-de-typeerror"><span class="header-section-number">10.2.7.4</span> Mais Exemplos de TypeError:</h4>
 <p><strong>4. Tentando modificar string (imutável):</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>texto <span class="op">=</span> <span class="st">"olá"</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>texto[<span class="dv">0</span>] <span class="op">=</span> <span class="st">"O"</span>  <span class="co"># ❌ ERRO! Strings são imutáveis</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-label="1"></a>texto <span class="op">=</span> <span class="st">"olá"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-label="2"></a>texto[<span class="dv">0</span>] <span class="op">=</span> <span class="st">"O"</span>  <span class="co"># ❌ ERRO! Strings são imutáveis</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>5. Tentando modificar tupla (imutável):</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>coordenadas <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb16-2"><a href="#cb16-2"></a>coordenadas[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">3</span>  <span class="co"># ❌ ERRO! Tuplas são imutáveis</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-label="1"></a>coordenadas <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-label="2"></a>coordenadas[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">3</span>  <span class="co"># ❌ ERRO! Tuplas são imutáveis</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>6. Tentando somar string com lista:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>texto <span class="op">=</span> <span class="st">"olá"</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>lista <span class="op">=</span> [<span class="st">"mundo"</span>]</span>
-<span id="cb17-3"><a href="#cb17-3"></a>resultado <span class="op">=</span> texto <span class="op">+</span> lista  <span class="co"># ❌ ERRO! Tipos incompatíveis</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-label="1"></a>texto <span class="op">=</span> <span class="st">"olá"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-label="2"></a>lista <span class="op">=</span> [<span class="st">"mundo"</span>]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-label="3"></a>resultado <span class="op">=</span> texto <span class="op">+</span> lista  <span class="co"># ❌ ERRO! Tipos incompatíveis</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="como-resolver-5" class="level4" data-number="10.2.7.5">
 <h4 data-number="10.2.7.5" class="anchored" data-anchor-id="como-resolver-5"><span class="header-section-number">10.2.7.5</span> Como Resolver:</h4>
 <p><strong>4. Para strings imutáveis:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>texto <span class="op">=</span> <span class="st">"olá"</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>novo_texto <span class="op">=</span> <span class="st">"O"</span> <span class="op">+</span> texto[<span class="dv">1</span>:]  <span class="co"># ✅ CORRETO! Cria nova string</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="bu">print</span>(novo_texto)  <span class="co"># Saída: "Olá"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-label="1"></a>texto <span class="op">=</span> <span class="st">"olá"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-label="2"></a>novo_texto <span class="op">=</span> <span class="st">"O"</span> <span class="op">+</span> texto[<span class="dv">1</span>:]  <span class="co"># ✅ CORRETO! Cria nova string</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-label="3"></a><span class="bu">print</span>(novo_texto)  <span class="co"># Saída: "Olá"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>5. Para tuplas imutáveis:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>coordenadas <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb19-2"><a href="#cb19-2"></a>novas_coordenadas <span class="op">=</span> (<span class="dv">3</span>, coordenadas[<span class="dv">1</span>])  <span class="co"># ✅ CORRETO! Cria nova tupla</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="bu">print</span>(novas_coordenadas)  <span class="co"># Saída: (3, 2)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-label="1"></a>coordenadas <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-label="2"></a>novas_coordenadas <span class="op">=</span> (<span class="dv">3</span>, coordenadas[<span class="dv">1</span>])  <span class="co"># ✅ CORRETO! Cria nova tupla</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-label="3"></a><span class="bu">print</span>(novas_coordenadas)  <span class="co"># Saída: (3, 2)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>6. Para tipos incompatíveis:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>texto <span class="op">=</span> <span class="st">"olá"</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>lista <span class="op">=</span> [<span class="st">"mundo"</span>]</span>
-<span id="cb20-3"><a href="#cb20-3"></a>resultado <span class="op">=</span> texto <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> <span class="st">" "</span>.join(lista)  <span class="co"># ✅ CORRETO! Converte para string</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="bu">print</span>(resultado)  <span class="co"># Saída: "olá mundo"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-label="1"></a>texto <span class="op">=</span> <span class="st">"olá"</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-label="2"></a>lista <span class="op">=</span> [<span class="st">"mundo"</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-label="3"></a>resultado <span class="op">=</span> texto <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> <span class="st">" "</span>.join(lista)  <span class="co"># ✅ CORRETO! Converte para string</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-label="4"></a><span class="bu">print</span>(resultado)  <span class="co"># Saída: "olá mundo"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>💡 <strong>Dica:</strong> Lembre-se que strings e tuplas são imutáveis! Se precisar modificar, crie uma nova versão! 🔄</p>
 </blockquote>
@@ -675,41 +678,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exemplos-do-erro-2" class="level4" data-number="10.2.8.2">
 <h4 data-number="10.2.8.2" class="anchored" data-anchor-id="exemplos-do-erro-2"><span class="header-section-number">10.2.8.2</span> Exemplos do Erro:</h4>
 <p><strong>1. Tentando converter texto para número:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>numero <span class="op">=</span> <span class="bu">int</span>(<span class="st">"banana"</span>)  <span class="co"># ❌ ERRO! "banana" não é um número</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-label="1"></a>numero <span class="op">=</span> <span class="bu">int</span>(<span class="st">"banana"</span>)  <span class="co"># ❌ ERRO! "banana" não é um número</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>2. Tentando calcular raiz quadrada de número negativo:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="im">import</span> math</span>
-<span id="cb22-2"><a href="#cb22-2"></a>resultado <span class="op">=</span> math.sqrt(<span class="op">-</span><span class="dv">4</span>)  <span class="co"># ❌ ERRO! Raiz quadrada de negativo não existe</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-label="1"></a><span class="im">import</span> math</span>
+<span id="cb22-2"><a href="#cb22-2" aria-label="2"></a>resultado <span class="op">=</span> math.sqrt(<span class="op">-</span><span class="dv">4</span>)  <span class="co"># ❌ ERRO! Raiz quadrada de negativo não existe</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>3. Tentando converter string com vírgula para float:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>numero <span class="op">=</span> <span class="bu">float</span>(<span class="st">"15,5"</span>)  <span class="co"># ❌ ERRO! Python usa ponto, não vírgula</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-label="1"></a>numero <span class="op">=</span> <span class="bu">float</span>(<span class="st">"15,5"</span>)  <span class="co"># ❌ ERRO! Python usa ponto, não vírgula</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>4. Tentando extrair mais valores do que existem:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>a, b, c <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)  <span class="co"># ❌ ERRO! Só tem 2 valores, mas queremos 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-label="1"></a>a, b, c <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)  <span class="co"># ❌ ERRO! Só tem 2 valores, mas queremos 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="como-resolver-6" class="level4" data-number="10.2.8.3">
 <h4 data-number="10.2.8.3" class="anchored" data-anchor-id="como-resolver-6"><span class="header-section-number">10.2.8.3</span> Como Resolver:</h4>
 <p><strong>1. Para conversão de texto para número:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>texto <span class="op">=</span> <span class="st">"banana"</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="cf">if</span> texto.isdigit():</span>
-<span id="cb25-3"><a href="#cb25-3"></a>    numero <span class="op">=</span> <span class="bu">int</span>(texto)</span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="cf">else</span>:</span>
-<span id="cb25-5"><a href="#cb25-5"></a>    <span class="bu">print</span>(<span class="st">"Não é um número válido!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-label="1"></a>texto <span class="op">=</span> <span class="st">"banana"</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-label="2"></a><span class="cf">if</span> texto.isdigit():</span>
+<span id="cb25-3"><a href="#cb25-3" aria-label="3"></a>    numero <span class="op">=</span> <span class="bu">int</span>(texto)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-label="4"></a><span class="cf">else</span>:</span>
+<span id="cb25-5"><a href="#cb25-5" aria-label="5"></a>    <span class="bu">print</span>(<span class="st">"Não é um número válido!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>2. Para raiz quadrada de negativo:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="im">import</span> math</span>
-<span id="cb26-2"><a href="#cb26-2"></a>numero <span class="op">=</span> <span class="op">-</span><span class="dv">4</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a><span class="cf">if</span> numero <span class="op">&gt;=</span> <span class="dv">0</span>:</span>
-<span id="cb26-4"><a href="#cb26-4"></a>    resultado <span class="op">=</span> math.sqrt(numero)</span>
-<span id="cb26-5"><a href="#cb26-5"></a><span class="cf">else</span>:</span>
-<span id="cb26-6"><a href="#cb26-6"></a>    <span class="bu">print</span>(<span class="st">"Não é possível calcular raiz quadrada de número negativo!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-label="1"></a><span class="im">import</span> math</span>
+<span id="cb26-2"><a href="#cb26-2" aria-label="2"></a>numero <span class="op">=</span> <span class="op">-</span><span class="dv">4</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-label="3"></a><span class="cf">if</span> numero <span class="op">&gt;=</span> <span class="dv">0</span>:</span>
+<span id="cb26-4"><a href="#cb26-4" aria-label="4"></a>    resultado <span class="op">=</span> math.sqrt(numero)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-label="5"></a><span class="cf">else</span>:</span>
+<span id="cb26-6"><a href="#cb26-6" aria-label="6"></a>    <span class="bu">print</span>(<span class="st">"Não é possível calcular raiz quadrada de número negativo!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>3. Para vírgula em float:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>texto <span class="op">=</span> <span class="st">"15,5"</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>texto_corrigido <span class="op">=</span> texto.replace(<span class="st">","</span>, <span class="st">"."</span>)  <span class="co"># ✅ CORRETO! Substitui vírgula por ponto</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a>numero <span class="op">=</span> <span class="bu">float</span>(texto_corrigido)</span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="bu">print</span>(numero)  <span class="co"># Saída: 15.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-label="1"></a>texto <span class="op">=</span> <span class="st">"15,5"</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-label="2"></a>texto_corrigido <span class="op">=</span> texto.replace(<span class="st">","</span>, <span class="st">"."</span>)  <span class="co"># ✅ CORRETO! Substitui vírgula por ponto</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-label="3"></a>numero <span class="op">=</span> <span class="bu">float</span>(texto_corrigido)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-label="4"></a><span class="bu">print</span>(numero)  <span class="co"># Saída: 15.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>4. Para extração de valores:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>valores <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="cf">if</span> <span class="bu">len</span>(valores) <span class="op">==</span> <span class="dv">3</span>:</span>
-<span id="cb28-3"><a href="#cb28-3"></a>    a, b, c <span class="op">=</span> valores</span>
-<span id="cb28-4"><a href="#cb28-4"></a><span class="cf">else</span>:</span>
-<span id="cb28-5"><a href="#cb28-5"></a>    <span class="bu">print</span>(<span class="ss">f"Só temos </span><span class="sc">{</span><span class="bu">len</span>(valores)<span class="sc">}</span><span class="ss"> valores, mas precisamos de 3!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-label="1"></a>valores <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-label="2"></a><span class="cf">if</span> <span class="bu">len</span>(valores) <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb28-3"><a href="#cb28-3" aria-label="3"></a>    a, b, c <span class="op">=</span> valores</span>
+<span id="cb28-4"><a href="#cb28-4" aria-label="4"></a><span class="cf">else</span>:</span>
+<span id="cb28-5"><a href="#cb28-5" aria-label="5"></a>    <span class="bu">print</span>(<span class="ss">f"Só temos </span><span class="sc">{</span><span class="bu">len</span>(valores)<span class="sc">}</span><span class="ss"> valores, mas precisamos de 3!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>💡 <strong>Dica:</strong> Sempre verifique se o valor faz sentido antes de usar! É como verificar se o ingrediente é o correto antes de adicionar à receita! 🥄</p>
 </blockquote>
@@ -725,38 +728,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exemplos-do-erro-3" class="level4" data-number="10.2.9.2">
 <h4 data-number="10.2.9.2" class="anchored" data-anchor-id="exemplos-do-erro-3"><span class="header-section-number">10.2.9.2</span> Exemplos do Erro:</h4>
 <p><strong>1. Divisão direta por zero:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>resultado <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">0</span>  <span class="co"># ❌ ERRO! Não é possível dividir por zero</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-label="1"></a>resultado <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">0</span>  <span class="co"># ❌ ERRO! Não é possível dividir por zero</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>2. Divisão com variável que pode ser zero:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>denominador <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>resultado <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> denominador  <span class="co"># ❌ ERRO! Denominador é zero</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-label="1"></a>denominador <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-label="2"></a>resultado <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> denominador  <span class="co"># ❌ ERRO! Denominador é zero</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>3. Calculando média de lista vazia:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>lista <span class="op">=</span> []</span>
-<span id="cb31-2"><a href="#cb31-2"></a>media <span class="op">=</span> <span class="bu">sum</span>(lista) <span class="op">/</span> <span class="bu">len</span>(lista)  <span class="co"># ❌ ERRO! len(lista) é 0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-label="1"></a>lista <span class="op">=</span> []</span>
+<span id="cb31-2"><a href="#cb31-2" aria-label="2"></a>media <span class="op">=</span> <span class="bu">sum</span>(lista) <span class="op">/</span> <span class="bu">len</span>(lista)  <span class="co"># ❌ ERRO! len(lista) é 0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="como-resolver-7" class="level4" data-number="10.2.9.3">
 <h4 data-number="10.2.9.3" class="anchored" data-anchor-id="como-resolver-7"><span class="header-section-number">10.2.9.3</span> Como Resolver:</h4>
 <p><strong>1. Verificar se o denominador não é zero:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>numerador <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>denominador <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a></span>
-<span id="cb32-4"><a href="#cb32-4"></a><span class="cf">if</span> denominador <span class="op">!=</span> <span class="dv">0</span>:</span>
-<span id="cb32-5"><a href="#cb32-5"></a>    resultado <span class="op">=</span> numerador <span class="op">/</span> denominador</span>
-<span id="cb32-6"><a href="#cb32-6"></a>    <span class="bu">print</span>(resultado)</span>
-<span id="cb32-7"><a href="#cb32-7"></a><span class="cf">else</span>:</span>
-<span id="cb32-8"><a href="#cb32-8"></a>    <span class="bu">print</span>(<span class="st">"Não é possível dividir por zero!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-label="1"></a>numerador <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-label="2"></a>denominador <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-label="3"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-label="4"></a><span class="cf">if</span> denominador <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb32-5"><a href="#cb32-5" aria-label="5"></a>    resultado <span class="op">=</span> numerador <span class="op">/</span> denominador</span>
+<span id="cb32-6"><a href="#cb32-6" aria-label="6"></a>    <span class="bu">print</span>(resultado)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-label="7"></a><span class="cf">else</span>:</span>
+<span id="cb32-8"><a href="#cb32-8" aria-label="8"></a>    <span class="bu">print</span>(<span class="st">"Não é possível dividir por zero!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>2. Para cálculo de média:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>lista <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb33-2"><a href="#cb33-2"></a></span>
-<span id="cb33-3"><a href="#cb33-3"></a><span class="cf">if</span> <span class="bu">len</span>(lista) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb33-4"><a href="#cb33-4"></a>    media <span class="op">=</span> <span class="bu">sum</span>(lista) <span class="op">/</span> <span class="bu">len</span>(lista)</span>
-<span id="cb33-5"><a href="#cb33-5"></a>    <span class="bu">print</span>(<span class="ss">f"Média: </span><span class="sc">{</span>media<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb33-6"><a href="#cb33-6"></a><span class="cf">else</span>:</span>
-<span id="cb33-7"><a href="#cb33-7"></a>    <span class="bu">print</span>(<span class="st">"Lista está vazia! Não é possível calcular a média."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-label="1"></a>lista <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb33-2"><a href="#cb33-2" aria-label="2"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-label="3"></a><span class="cf">if</span> <span class="bu">len</span>(lista) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb33-4"><a href="#cb33-4" aria-label="4"></a>    media <span class="op">=</span> <span class="bu">sum</span>(lista) <span class="op">/</span> <span class="bu">len</span>(lista)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-label="5"></a>    <span class="bu">print</span>(<span class="ss">f"Média: </span><span class="sc">{</span>media<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-label="6"></a><span class="cf">else</span>:</span>
+<span id="cb33-7"><a href="#cb33-7" aria-label="7"></a>    <span class="bu">print</span>(<span class="st">"Lista está vazia! Não é possível calcular a média."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>3. Usando try/except para capturar o erro:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="cf">try</span>:</span>
-<span id="cb34-2"><a href="#cb34-2"></a>    resultado <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">0</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="cf">except</span> <span class="pp">ZeroDivisionError</span>:</span>
-<span id="cb34-4"><a href="#cb34-4"></a>    <span class="bu">print</span>(<span class="st">"Erro: Divisão por zero não é permitida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-label="1"></a><span class="cf">try</span>:</span>
+<span id="cb34-2"><a href="#cb34-2" aria-label="2"></a>    resultado <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">0</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-label="3"></a><span class="cf">except</span> <span class="pp">ZeroDivisionError</span>:</span>
+<span id="cb34-4"><a href="#cb34-4" aria-label="4"></a>    <span class="bu">print</span>(<span class="st">"Erro: Divisão por zero não é permitida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>💡 <strong>Dica:</strong> Sempre verifique se o denominador não é zero antes de dividir! É como verificar se tem ingredientes suficientes antes de começar a receita! 🍕</p>
 </blockquote>
@@ -942,16 +945,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {

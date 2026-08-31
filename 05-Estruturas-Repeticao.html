@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>5&nbsp; Estruturas de Repetição em Python – Python Descomplicado</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -69,15 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./04-Estruturas-Selecao.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb0c5cf05bdf90cece8b0edf1cffcb8d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -132,9 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Python Descomplicado</a> 
     </div>
@@ -455,16 +458,16 @@ Brigadeiros. Servido? Créditos: <a href="https://www.flickr.com/photos/mayra/31
 <p>🎯 <strong>E como este tipo de operação seria no Python?</strong> Melhor: como as coisas <strong>não</strong> seriam com o uso de loops?</p>
 </blockquote>
 <p>Imagine criar um algoritmo que mostre na tela todos os números de 1 a 10. Fácil, né? Olha só:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="bu">print</span>(<span class="dv">1</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="bu">print</span>(<span class="dv">2</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="bu">print</span>(<span class="dv">3</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="bu">print</span>(<span class="dv">4</span>)</span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="bu">print</span>(<span class="dv">5</span>)</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="bu">print</span>(<span class="dv">6</span>)</span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="bu">print</span>(<span class="dv">7</span>)</span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="bu">print</span>(<span class="dv">8</span>)</span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="bu">print</span>(<span class="dv">9</span>)</span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="bu">print</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="bu">print</span>(<span class="dv">1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a><span class="bu">print</span>(<span class="dv">2</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a><span class="bu">print</span>(<span class="dv">3</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a><span class="bu">print</span>(<span class="dv">4</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a><span class="bu">print</span>(<span class="dv">5</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a><span class="bu">print</span>(<span class="dv">6</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a><span class="bu">print</span>(<span class="dv">7</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a><span class="bu">print</span>(<span class="dv">8</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a><span class="bu">print</span>(<span class="dv">9</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a><span class="bu">print</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="o-problema-da-repetição-manual" class="level3" data-number="5.4.1">
 <h3 data-number="5.4.1" class="anchored" data-anchor-id="o-problema-da-repetição-manual"><span class="header-section-number">5.4.1</span> O Problema da Repetição Manual</h3>
 <p>E se eu pedisse a você para mudar este código para mostrar todos os números de 1 a 1000? Aí complica, né?</p>
@@ -542,24 +545,24 @@ Brigadeiros. Servido? Créditos: <a href="https://www.flickr.com/photos/mayra/31
 <p>🎯 <strong>Em resumo:</strong> <code>for</code> = quantidade conhecida, <code>while</code> = condição de parada conhecida!</p>
 </blockquote>
 <p>Veja como seria o uso do <em>“para”</em> em pseudocódigo para escrever todos os números de 1 a 1000 na tela:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">Início</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="ex">Inteiro:</span> i</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="ex">Para</span> todo i de 1 até 1000, faça:</span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="ex">Escreva</span><span class="er">(</span><span class="ex">i</span><span class="kw">)</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="ex">Fim</span> Para</span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="ex">Fim</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="ex">Início</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>  <span class="ex">Inteiro:</span> i</span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>  <span class="ex">Para</span> todo i de 1 até 1000, faça:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>    <span class="ex">Escreva</span><span class="er">(</span><span class="ex">i</span><span class="kw">)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a>  <span class="ex">Fim</span> Para</span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a><span class="ex">Fim</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Aqui, observe que existe uma variável chamada <code>i</code>. Este nome é uma convenção comum usada em loops para representar um índice ou contador. O nome <code>i</code> é uma abreviação de <em>índice</em> e é frequentemente usado em loops para rastrear a posição atual na sequência que está sendo iterada. Por exemplo, no código acima o <code>i</code> começará com o valor de <code>1</code> na linha 4, e escreverá este valor na tela com a linha 5. Depois, <strong>voltamos para a linha 4</strong> e incrementamos em um o valor de <code>i</code>, que agora vale <code>2</code>, e mostraremos este valor na linha 5. Depois, <strong>voltamos novamente para a linha 4</strong> e incrementamos <code>i</code>, que agora vale <code>3</code>, e mostraremos este valor na linha 5. Repetiremos isto até chegar ao valor de <code>1000</code>, mostrando-o na tela. Após alcançar o <code>1000</code> finalmente iremos para a linha 6, saindo do loop e encerrando o código.</p>
 <p>Agora, veja o uso do <em>“enquanto”</em> para resolver o mesmo problema:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">Início</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="ex">Inteiro:</span> i</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="ex">i</span> = 1</span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="ex">Enquanto</span> i <span class="op">&lt;</span>= 1000, faça:</span>
-<span id="cb4-6"><a href="#cb4-6"></a>    <span class="ex">Escreva</span><span class="er">(</span><span class="ex">i</span><span class="kw">)</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>    <span class="ex">i</span> = i + 1</span>
-<span id="cb4-8"><a href="#cb4-8"></a>  <span class="ex">Fim</span> Enquanto</span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="ex">Fim</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="ex">Início</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>  <span class="ex">Inteiro:</span> i</span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>  <span class="ex">i</span> = 1</span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>  <span class="ex">Enquanto</span> i <span class="op">&lt;</span>= 1000, faça:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>    <span class="ex">Escreva</span><span class="er">(</span><span class="ex">i</span><span class="kw">)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>    <span class="ex">i</span> = i + 1</span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a>  <span class="ex">Fim</span> Enquanto</span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a><span class="ex">Fim</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Aqui, na linha 4 inicializamos o <code>i</code> para valer 1. Enquanto a condição da linha 5 for verdadeira iremos percorrer as linhas 6 e 7 infinitamente: como <code>i</code> agora vale 1, a condição da linha 5 é verdade. Com isso, vamos para a linha 6 (mostrando <code>1</code> na tela) e incrementamos o valor de <code>i</code>, que agora vale <code>2</code>. Agora, <strong>voltamos para a linha 5</strong>. A condição ainda é verdade, já que 2 é menor do que 1000. Com isso, vamos à linha 6 (mostrando <code>2</code> na tela) e incrementamos novamente o valor de <code>i</code>, que agora vale <code>3</code>. Assim, vamos sucessivamente até chegar ao 1000. Após mostrar <code>1000</code> na tela, incrementamos novamente o valor de <code>i</code>, que agora vale <code>1001</code>. Com isso, <strong>voltamos para a linha 5</strong>. Agora, a condição é falsa, já que 1001 não é maior ou igual a 1000. Como é falsa, finalmente sairemos do loop e pularemos as linhas 6 e 7, indo diretamente para a linha 8 e finalizando o código.</p>
 </section>
 <section id="loop-for---quando-você-sabe-quantas-vezes-repetir" class="level3" data-number="5.5.3">
@@ -572,8 +575,8 @@ Brigadeiros. Servido? Créditos: <a href="https://www.flickr.com/photos/mayra/31
 Fim</code></pre>
 <section id="e-como-seria-em-python-ainda-mais-fácil" class="level4" data-number="5.5.3.1">
 <h4 data-number="5.5.3.1" class="anchored" data-anchor-id="e-como-seria-em-python-ainda-mais-fácil"><span class="header-section-number">5.5.3.1</span> E Como Seria em Python? Ainda Mais Fácil!</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">1001</span>):</span>
-<span id="cb6-2"><a href="#cb6-2"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">1001</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>🎯 <strong>Veja que a linha <code>for i in range(1, 1001):</code> está fazendo a mesma coisa que a linha <code>Para i de 1 até 1000 faça</code> do pseudocódigo!</strong></p>
 </blockquote>
@@ -610,8 +613,8 @@ Fim</code></pre>
 <p>💡 <strong>Resultado:</strong> 1000 linhas na tela, cada uma com um número diferente!</p>
 </blockquote>
 <p>Em Python, o <em>“para”</em> se chama <code>for</code>. Lembra daquele problema de mostrar na tela todos os números de 1 a 1000? Olha como isso ficaria usando <code>for</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">1001</span>):</span>
-<span id="cb7-2"><a href="#cb7-2"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">1001</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A estrutura <code>for</code> é usada em Python quando temos que executar um bloco de código um número específico de vezes, baseado em uma sequência de valores. No exemplo acima, o loop vai executar mil vezes, uma vez para cada número na sequência. Lemos aquele <code>for i in range(1, 1001)</code> como <em>“Para todo <code>i</code> que está no intervalo de 1 a 1000, faça:”</em>.</p>
 <blockquote class="blockquote">
 <p>🔄 <strong><em>Função</em></strong> <code>range()</code>: Nesse caso, a função <code>range()</code>, que gera automaticamente uma sequência de números inteiros de acordo com os parâmetros fornecidos. No exemplo acima, a sequência começa em 1 e termina em 1000 (o número final não é incluso: um jeito de ler aquele <code>range(1, 1001)</code> seria <em>“gere uma sequência de valores de 1 até 1001, mas sem contar o 1001.”</em>). Experimente como funcionaria aquele código com <code>range(1, 1001, 2)</code> e <code>range(-1000, 1)</code>.</p>
@@ -624,21 +627,21 @@ Fim</code></pre>
 <section id="soma-de-1-a-10" class="level4" data-number="5.5.3.6">
 <h4 data-number="5.5.3.6" class="anchored" data-anchor-id="soma-de-1-a-10"><span class="header-section-number">5.5.3.6</span> Soma de 1 a 10</h4>
 <p>Este é um código que tem como objetivo calcular a soma dos números inteiros de 1 a 10 e mostrar o resultado na tela:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>soma <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="cf">for</span> num <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
-<span id="cb8-3"><a href="#cb8-3"></a>    soma <span class="op">+=</span> num</span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="bu">print</span>(<span class="st">"A soma dos números é:"</span>, soma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>soma <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a><span class="cf">for</span> num <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>    soma <span class="op">+=</span> num</span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a><span class="bu">print</span>(<span class="st">"A soma dos números é:"</span>, soma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Primeiramente, é criada uma variável chamada <code>soma</code> e atribuído o valor zero a ela. Em seguida, é utilizado o loop <code>for</code> para percorrer todos os números de 1 a 10, representados pela função <code>range(1, 11)</code> (lembra que eu falei que o último número desse <code>range</code> não é considerado, né? Seria um <em>“de 1 até 11, mas sem contar o 11”</em>. A cada iteração do loop, o número é adicionado à variável <code>soma</code> por meio do operador <code>+=</code>. <code>soma += num</code> é outra forma de escrever <code>soma = soma + num</code>, mas de um jeito mais curto.</p>
 <p>Ao final do loop, a variável <code>soma</code> terá armazenado a soma de todos os números de 1 a 10. Então, a função <code>print()</code> é usada para mostrar a mensagem <em>“A soma dos números é:”</em> seguida do valor da variável <code>soma</code>.</p>
 </section>
 <section id="soma-de-10-a-50" class="level4" data-number="5.5.3.7">
 <h4 data-number="5.5.3.7" class="anchored" data-anchor-id="soma-de-10-a-50"><span class="header-section-number">5.5.3.7</span> Soma de 10 a 50</h4>
 <p>E se não quiséssemos usar <code>range()</code>, ou se tivéssemos um conjunto de números que não fossem necessariamente uma sequência? Também podemos usar o <code>for</code> para isso. Veja e rode o código abaixo em seu computador:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>numeros <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">1</span>, <span class="dv">40</span>, <span class="op">-</span><span class="dv">4</span>]</span>
-<span id="cb9-2"><a href="#cb9-2"></a>soma <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="cf">for</span> num <span class="kw">in</span> numeros:</span>
-<span id="cb9-4"><a href="#cb9-4"></a>    soma <span class="op">+=</span> num</span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="bu">print</span>(<span class="st">"A soma dos números é:"</span>, soma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>numeros <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">1</span>, <span class="dv">40</span>, <span class="op">-</span><span class="dv">4</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>soma <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a><span class="cf">for</span> num <span class="kw">in</span> numeros:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-label="4"></a>    soma <span class="op">+=</span> num</span>
+<span id="cb9-5"><a href="#cb9-5" aria-label="5"></a><span class="bu">print</span>(<span class="st">"A soma dos números é:"</span>, soma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>O código acima começa criando uma lista de números, chamada <code>numeros</code>, contendo 5 elementos. Sabemos que é uma lista porque é um conjunto de valores delimitados por colchetes (<code>[]</code>) e separados por vírgulas.</p>
 <blockquote class="blockquote">
 <p>🐱‍🏍 <em>Fique tranquilo! Um pouco depois deste capítulo iremos nos aprofundar em listas.</em></p>
@@ -650,10 +653,10 @@ Fim</code></pre>
 <section id="quadrado" class="level4" data-number="5.5.3.8">
 <h4 data-number="5.5.3.8" class="anchored" data-anchor-id="quadrado"><span class="header-section-number">5.5.3.8</span> Quadrado</h4>
 <p>Agora, e se fôssemos calcular o quadrado de cada número de uma sequência? Veja só:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>numeros <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="cf">for</span> num <span class="kw">in</span> numeros:</span>
-<span id="cb10-3"><a href="#cb10-3"></a>    quadrado <span class="op">=</span> num <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>    <span class="bu">print</span>(quadrado)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>numeros <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a><span class="cf">for</span> num <span class="kw">in</span> numeros:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a>    quadrado <span class="op">=</span> num <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-label="4"></a>    <span class="bu">print</span>(quadrado)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>O código acima começa criando uma lista de números chamada <code>numeros</code>, contendo os valores de 1 a 5. Em seguida, é utilizado um loop <code>for</code> para percorrer cada um dos números da lista.</p>
 <p>Para cada número, o loop realiza o cálculo do quadrado do número através da operação de exponenciação com o operador <code>**</code>, atribuindo o resultado à variável <code>quadrado</code>. Depois, o loop imprime na tela o valor de “quadrado” correspondente a cada número da lista. A cada loop este valor de <code>quadrado</code> é sobrescrito (substituído) com um novo valor.</p>
 <p>Dessa forma, o código irá imprimir os valores dos quadrados dos números de 1 a 5, ou seja: <code>1</code>, <code>4</code>, <code>9</code>, <code>16</code> e <code>25</code>.</p>
@@ -661,25 +664,25 @@ Fim</code></pre>
 <section id="percorrendo-strings" class="level4" data-number="5.5.3.9">
 <h4 data-number="5.5.3.9" class="anchored" data-anchor-id="percorrendo-strings"><span class="header-section-number">5.5.3.9</span> Percorrendo strings</h4>
 <p>Sabia que também podemos usar o <code>for</code> em strings? E se quiséssemos mostrar todas as letras do seu nome com uma letra a cada linha? Então teste este código:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite o seu nome: "</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="cf">for</span> letra <span class="kw">in</span> nome:</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="bu">print</span>(letra)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a>nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite o seu nome: "</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-label="3"></a><span class="cf">for</span> letra <span class="kw">in</span> nome:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-label="4"></a>    <span class="bu">print</span>(letra)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>O código acima começa solicitando ao usuário que digite seu nome e armazena esse nome na variável <code>nome</code>. Em seguida, é iniciado um loop for que vai percorrer cada letra contida na variável <code>nome</code>.</p>
 <p>A cada iteração do loop, a variável <code>letra</code> recebe a próxima letra contida em <code>nome</code>, que é então impressa com a função <code>print(letra)</code>. O resultado final é a impressão de cada letra do nome digitado pelo usuário em uma linha separada.</p>
 <p>Por exemplo, se o usuário digitar <em>“Maria”</em>, o resultado mostrado na tela será:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="ex">M</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="ex">a</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="ex">r</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="ex">i</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="ex">a</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-label="1"></a><span class="ex">M</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-label="2"></a><span class="ex">a</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-label="3"></a><span class="ex">r</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-label="4"></a><span class="ex">i</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-label="5"></a><span class="ex">a</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="percorrendo-listas-de-palavras" class="level4" data-number="5.5.3.10">
 <h4 data-number="5.5.3.10" class="anchored" data-anchor-id="percorrendo-listas-de-palavras"><span class="header-section-number">5.5.3.10</span> Percorrendo listas de palavras</h4>
 <p>E se quiséssemos percorrer uma lista de palavras e verificar se alguma delas contém a letra <code>r</code>? Olha só:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="cf">for</span> palavra <span class="kw">in</span> [<span class="st">"casa"</span>, <span class="st">"amor"</span>, <span class="st">"árvore"</span>, <span class="st">"abacaxi"</span>]:</span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="cf">if</span> <span class="st">'r'</span> <span class="kw">in</span> palavra:</span>
-<span id="cb13-3"><a href="#cb13-3"></a>        <span class="bu">print</span>(palavra)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a><span class="cf">for</span> palavra <span class="kw">in</span> [<span class="st">"casa"</span>, <span class="st">"amor"</span>, <span class="st">"árvore"</span>, <span class="st">"abacaxi"</span>]:</span>
+<span id="cb13-2"><a href="#cb13-2" aria-label="2"></a>    <span class="cf">if</span> <span class="st">'r'</span> <span class="kw">in</span> palavra:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-label="3"></a>        <span class="bu">print</span>(palavra)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A estrutura <code>for palavra in ["casa", "amor", "arvore", "abacaxi"]:</code> indica que o loop irá percorrer cada palavra da lista <code>["casa", "amor", "arvore", "abacaxi"]</code>.</p>
 <p>Dentro do loop, a condição <code>if 'r' in palavra:</code> verifica se a letra <code>"r"</code> está presente (está dentro) em cada palavra. Se estiver, o <code>print(palavra)</code> será executado, exibindo a palavra que contém a letra <code>"r"</code>.</p>
 <p>Portanto, ao executar esse código, serão exibidas as palavras “amor” e “arvore”, que são as palavras da lista que possuem a letra <code>"r"</code>.</p>
@@ -688,9 +691,9 @@ Fim</code></pre>
 <section id="filtrando-números-pares" class="level4" data-number="5.5.3.11">
 <h4 data-number="5.5.3.11" class="anchored" data-anchor-id="filtrando-números-pares"><span class="header-section-number">5.5.3.11</span> Filtrando números pares</h4>
 <p>Para fechar: como seria um código que pudesse percorrer uma sequência de números e mostrar na tela somente aqueles que fossem pares? Veja só:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="cf">for</span> num <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">21</span>):</span>
-<span id="cb14-2"><a href="#cb14-2"></a>    <span class="cf">if</span> num <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb14-3"><a href="#cb14-3"></a>        <span class="bu">print</span>(num, <span class="st">" é um número par"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-label="1"></a><span class="cf">for</span> num <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">21</span>):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-label="2"></a>    <span class="cf">if</span> num <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb14-3"><a href="#cb14-3" aria-label="3"></a>        <span class="bu">print</span>(num, <span class="st">" é um número par"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Este código mostrará na tela apenas os números pares dentro de um intervalo de 1 a 20. A linha <code>for num in range(1, 21):</code> cria um loop que percorre todos os números de 1 a 20, atribuindo cada um deles à variável <code>num</code>, um de cada vez.</p>
 <p>Em seguida, o <code>if</code> verifica se o número é par, o que é feito usando o operador módulo <code>%</code>. Se o resto da divisão do número por 2 for igual a zero, isso significa que o número é par. Caso contrário, ele é ímpar e será ignorado pelo código.</p>
 <p>Por fim, a linha <code>print(num, " é um número par")</code> imprime o número par encontrado.</p>
@@ -709,10 +712,10 @@ Fim</code></pre>
 Fim</code></pre>
 <section id="e-como-seria-em-python-também-fácil" class="level4" data-number="5.5.4.1">
 <h4 data-number="5.5.4.1" class="anchored" data-anchor-id="e-como-seria-em-python-também-fácil"><span class="header-section-number">5.5.4.1</span> E Como Seria em Python? Também Fácil!</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">1000</span>:</span>
-<span id="cb16-3"><a href="#cb16-3"></a>    <span class="bu">print</span>(i)</span>
-<span id="cb16-4"><a href="#cb16-4"></a>    i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-label="1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-label="2"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">1000</span>:</span>
+<span id="cb16-3"><a href="#cb16-3" aria-label="3"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-label="4"></a>    i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>🎯 <strong>Veja que a linha <code>while i &lt;= 1000:</code> está fazendo a mesma coisa que a linha <code>Enquanto i &lt;= 1000, faça:</code> do pseudocódigo!</strong></p>
 </blockquote>
@@ -757,10 +760,10 @@ Fim</code></pre>
 <p>💡 <strong>Resultado:</strong> 1000 linhas na tela, cada uma com um número diferente!</p>
 </blockquote>
 <p>Em Python, o <em>“enquanto”</em> se chama <code>while</code>. Aquele problema de mostrar na tela todos os números de 1 a 1000 usando o <code>while</code> ficaria assim:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">1000</span>:</span>
-<span id="cb17-3"><a href="#cb17-3"></a>    <span class="bu">print</span>(i)</span>
-<span id="cb17-4"><a href="#cb17-4"></a>    i <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-label="1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-label="2"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">1000</span>:</span>
+<span id="cb17-3"><a href="#cb17-3" aria-label="3"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-label="4"></a>    i <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Este código começa definindo uma variável chamada <code>i</code> com o valor inicial de 1. Em seguida, ele entra em um loop que continuará enquanto <code>i</code> for menor ou igual a 1000.</p>
 <p>Dentro do loop, ele executa a ação de imprimir o valor de <code>i</code> e, em seguida, <strong>incrementa o valor de <code>i</code> em 1</strong>. Agora, queria chamar a sua atenção para isso: experimente testar o seu código <em>sem</em> usar aquela linha <code>i += 1</code> (que é a mesma coisa de <code>i = i + 1</code>): o loop se repetiria infinitamente e imprimiria o número 1 infinitamente. Isto acontece porque, sem esta linha, o número em <code>i</code> jamais mudaria e ficaríamos infinitamente executando o <code>print(i)</code> porque a condição <code>i &lt;= 1000</code> seria para sempre verdade.</p>
 <p>Ah, e como comentei antes, o <code>while</code> é usado quando <strong>não se sabe exatamente</strong> quantas vezes um loop precisa ser executado. Ele continuará executando até que a condição seja falsa. Neste exemplo, a condição é <code>i &lt;= 1000</code>, o que significa que o loop continuará até que <code>i</code> seja maior que 1000.</p>
@@ -768,13 +771,13 @@ Fim</code></pre>
 <section id="soma-de-1-a-10-1" class="level4" data-number="5.5.4.4">
 <h4 data-number="5.5.4.4" class="anchored" data-anchor-id="soma-de-1-a-10-1"><span class="header-section-number">5.5.4.4</span> Soma de 1 a 10</h4>
 <p>Como seria aquele código que mostra a soma de todos os números de 1 a 10 que já vimos antes com o <code>for</code>, mas com o <code>while</code> no lugar? Veja e teste:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>soma <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
-<span id="cb18-4"><a href="#cb18-4"></a>    soma <span class="op">+=</span> i</span>
-<span id="cb18-5"><a href="#cb18-5"></a>    <span class="bu">print</span>(soma)</span>
-<span id="cb18-6"><a href="#cb18-6"></a>    </span>
-<span id="cb18-7"><a href="#cb18-7"></a>    i <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-label="1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-label="2"></a>soma <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-label="3"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
+<span id="cb18-4"><a href="#cb18-4" aria-label="4"></a>    soma <span class="op">+=</span> i</span>
+<span id="cb18-5"><a href="#cb18-5" aria-label="5"></a>    <span class="bu">print</span>(soma)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-label="6"></a>    </span>
+<span id="cb18-7"><a href="#cb18-7" aria-label="7"></a>    i <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>No início e <em>antes</em> de entrar no loop, a variável <code>i</code> é iniciada com o valor de 1 e a variável <code>soma</code> com o valor de 0 (até porque não somamos nada até agora). A condição do loop é que a variável <code>i</code> seja menor ou igual a 10. Enquanto essa condição for verdadeira, o código dentro do loop será executado.</p>
 <p>Dentro do loop, primeiro fazemos a soma do valor atual de <code>i</code> com o que já estava armazenado na variável <code>soma</code>, e mostramos isto na tela. Em seguida, a variável <code>i</code> é incrementada em 1 unidade com a linha <code>i += 1</code>. O loop é encerrado quando a variável <code>i</code> atingir o valor 11, pois a condição do loop deixará de ser verdadeira. Portanto, o resultado na tela será a soma da sequência numérica de 1 a 10, com cada número em uma linha diferente. O funcionamento será assim:</p>
 <ol type="1">
@@ -793,33 +796,33 @@ Fim</code></pre>
 <section id="testando-uma-senha" class="level4" data-number="5.5.4.5">
 <h4 data-number="5.5.4.5" class="anchored" data-anchor-id="testando-uma-senha"><span class="header-section-number">5.5.4.5</span> Testando uma senha</h4>
 <p>E um algoritmo simples para validar uma senha e que só mostre a frase <em>“Acesso permitido!”</em> somente depois do usuário informar uma senha correta? Veja:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>senha <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="cf">while</span> senha <span class="op">!=</span> <span class="st">"12345"</span>:</span>
-<span id="cb19-3"><a href="#cb19-3"></a>    senha <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite a senha: "</span>)</span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="bu">print</span>(<span class="st">"Acesso permitido!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-label="1"></a>senha <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-label="2"></a><span class="cf">while</span> senha <span class="op">!=</span> <span class="st">"12345"</span>:</span>
+<span id="cb19-3"><a href="#cb19-3" aria-label="3"></a>    senha <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite a senha: "</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-label="4"></a><span class="bu">print</span>(<span class="st">"Acesso permitido!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>O código acima cria um loop usando a estrutura <code>while</code> que pede ao usuário que digite uma senha. Ele mantém o loop enquanto a senha digitada não for igual à string <code>"12345"</code>. Enquanto o usuário não digitar a senha correta, ele solicitará para que o usuário insira a senha e armazena a entrada em uma variável chamada <code>senha</code>. Se a senha estiver correta e for igual a <code>"12345"</code>, o loop é interrompido e a mensagem <em>“Acesso permitido!”</em> é exibida. Se a senha digitada não for igual a <code>"12345"</code>, o loop continuará a pedir que o usuário insira a senha correta infinitamente.</p>
 </section>
 <section id="fazendo-um-menu" class="level4" data-number="5.5.4.6">
 <h4 data-number="5.5.4.6" class="anchored" data-anchor-id="fazendo-um-menu"><span class="header-section-number">5.5.4.6</span> Fazendo um menu</h4>
 <p>E o que acha de fazer um menu bonitão para o usuário? Com o <code>while</code>, isto é possível. Veja:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>opcao <span class="op">=</span> <span class="st">''</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="cf">while</span> opcao <span class="op">!=</span> <span class="st">'s'</span>:</span>
-<span id="cb20-3"><a href="#cb20-3"></a>    <span class="bu">print</span>(<span class="st">"MENU:"</span>)</span>
-<span id="cb20-4"><a href="#cb20-4"></a>    <span class="bu">print</span>(<span class="st">"a. Opção 1"</span>)</span>
-<span id="cb20-5"><a href="#cb20-5"></a>    <span class="bu">print</span>(<span class="st">"b. Opção 2"</span>)</span>
-<span id="cb20-6"><a href="#cb20-6"></a>    <span class="bu">print</span>(<span class="st">"c. Opção 3"</span>)</span>
-<span id="cb20-7"><a href="#cb20-7"></a>    <span class="bu">print</span>(<span class="st">"s. Sair"</span>)</span>
-<span id="cb20-8"><a href="#cb20-8"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma opção: "</span>)</span>
-<span id="cb20-9"><a href="#cb20-9"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">'a'</span>:</span>
-<span id="cb20-10"><a href="#cb20-10"></a>        <span class="bu">print</span>(<span class="st">"Opção 1 selecionada"</span>)</span>
-<span id="cb20-11"><a href="#cb20-11"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">'b'</span>:</span>
-<span id="cb20-12"><a href="#cb20-12"></a>        <span class="bu">print</span>(<span class="st">"Opção 2 selecionada"</span>)</span>
-<span id="cb20-13"><a href="#cb20-13"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">'c'</span>:</span>
-<span id="cb20-14"><a href="#cb20-14"></a>        <span class="bu">print</span>(<span class="st">"Opção 3 selecionada"</span>)</span>
-<span id="cb20-15"><a href="#cb20-15"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">'s'</span>:</span>
-<span id="cb20-16"><a href="#cb20-16"></a>        <span class="bu">print</span>(<span class="st">"Saindo..."</span>)</span>
-<span id="cb20-17"><a href="#cb20-17"></a>    <span class="cf">else</span>:</span>
-<span id="cb20-18"><a href="#cb20-18"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-label="1"></a>opcao <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-label="2"></a><span class="cf">while</span> opcao <span class="op">!=</span> <span class="st">'s'</span>:</span>
+<span id="cb20-3"><a href="#cb20-3" aria-label="3"></a>    <span class="bu">print</span>(<span class="st">"MENU:"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-label="4"></a>    <span class="bu">print</span>(<span class="st">"a. Opção 1"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-label="5"></a>    <span class="bu">print</span>(<span class="st">"b. Opção 2"</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-label="6"></a>    <span class="bu">print</span>(<span class="st">"c. Opção 3"</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-label="7"></a>    <span class="bu">print</span>(<span class="st">"s. Sair"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-label="8"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma opção: "</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-label="9"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">'a'</span>:</span>
+<span id="cb20-10"><a href="#cb20-10" aria-label="10"></a>        <span class="bu">print</span>(<span class="st">"Opção 1 selecionada"</span>)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-label="11"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">'b'</span>:</span>
+<span id="cb20-12"><a href="#cb20-12" aria-label="12"></a>        <span class="bu">print</span>(<span class="st">"Opção 2 selecionada"</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-label="13"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">'c'</span>:</span>
+<span id="cb20-14"><a href="#cb20-14" aria-label="14"></a>        <span class="bu">print</span>(<span class="st">"Opção 3 selecionada"</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-label="15"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">'s'</span>:</span>
+<span id="cb20-16"><a href="#cb20-16" aria-label="16"></a>        <span class="bu">print</span>(<span class="st">"Saindo..."</span>)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-label="17"></a>    <span class="cf">else</span>:</span>
+<span id="cb20-18"><a href="#cb20-18" aria-label="18"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Este código mostra um menu para o usuário e permite que ele selecione uma opção digitando a letra correspondente à opção. O programa entra em um loop enquanto o usuário não digita a opção <code>"s"</code> (sair). Em cada iteração do loop, o programa imprime o menu e solicita ao usuário que digite uma opção. Depois disso, o programa verifica qual opção foi selecionada pelo usuário e executa a ação correspondente. Se o usuário selecionar a opção <code>"s"</code>, o programa encerra o loop e imprime a mensagem <em>“Saindo…”</em>. Se o usuário selecionar uma opção inválida, o programa imprime a mensagem <em>“Opção inválida.”</em> e retorna ao início do loop para apresentar o menu novamente e aguardar uma nova seleção do usuário.</p>
 <blockquote class="blockquote">
 <p>👉 Pontos importantes neste código: veja que há uma combinação de <code>while</code> e <code>if</code>/<code>elif</code>/<code>else</code>. Experimente remover por completo o <code>else</code>: como seria a experiência do usuário em não se ter nenhuma mensagem apresentada para ele quando ele digita uma opção inválida? Talvez sejam em casos assim em que a utilidade do <code>else</code> fique mais clara para você.</p>
@@ -828,13 +831,13 @@ Fim</code></pre>
 <section id="testando-números-positivos-e-negativos" class="level4" data-number="5.5.4.7">
 <h4 data-number="5.5.4.7" class="anchored" data-anchor-id="testando-números-positivos-e-negativos"><span class="header-section-number">5.5.4.7</span> Testando números positivos e negativos</h4>
 <p>Agora, vamos imaginar um código em que pediremos para que o usuário digite um número. Se o número for zero, sairemos do programa. Enquanto não for zero, testaremos se aquele número é positivo ou negativo, mostraremos este resultado na tela, e pediremos por um outro número logo em seguida. Veja e teste:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>num <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite um número (digite 0 para sair): "</span>))</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="cf">while</span> num <span class="op">!=</span> <span class="dv">0</span>:</span>
-<span id="cb21-3"><a href="#cb21-3"></a>    <span class="cf">if</span> num <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb21-4"><a href="#cb21-4"></a>        <span class="bu">print</span>(<span class="st">"O número é positivo"</span>)</span>
-<span id="cb21-5"><a href="#cb21-5"></a>    <span class="cf">else</span>:</span>
-<span id="cb21-6"><a href="#cb21-6"></a>        <span class="bu">print</span>(<span class="st">"O número é negativo"</span>)</span>
-<span id="cb21-7"><a href="#cb21-7"></a>    num <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite outro número (digite 0 para sair): "</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-label="1"></a>num <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite um número (digite 0 para sair): "</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-label="2"></a><span class="cf">while</span> num <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb21-3"><a href="#cb21-3" aria-label="3"></a>    <span class="cf">if</span> num <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb21-4"><a href="#cb21-4" aria-label="4"></a>        <span class="bu">print</span>(<span class="st">"O número é positivo"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-label="5"></a>    <span class="cf">else</span>:</span>
+<span id="cb21-6"><a href="#cb21-6" aria-label="6"></a>        <span class="bu">print</span>(<span class="st">"O número é negativo"</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-label="7"></a>    num <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite outro número (digite 0 para sair): "</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>O código começa pedindo ao usuário para digitar um número e armazena essa entrada na variável <code>num</code>. Em seguida, o código entra em um loop <code>while</code> que só será interrompido quando o usuário digitar o número <code>0</code>. Dentro desse loop, o código verifica se o número digitado é maior que zero (positivo) ou menor que zero (negativo), imprimindo a mensagem correspondente na tela.</p>
 <p>Em seguida, o código pede ao usuário para digitar outro número e armazena a entrada na variável <code>num</code> novamente. Esse processo continua até que o usuário digite zero e, assim, interrompa o loop.</p>
 <p>O uso do while é importante aqui, pois permite que o código continue pedindo novos números <strong>até que o usuário decida sair, sem que seja necessário determinar previamente quantas vezes o loop será executado</strong>.</p>
@@ -842,10 +845,10 @@ Fim</code></pre>
 <section id="inserindo-notas-válidas" class="level4" data-number="5.5.4.8">
 <h4 data-number="5.5.4.8" class="anchored" data-anchor-id="inserindo-notas-válidas"><span class="header-section-number">5.5.4.8</span> Inserindo notas válidas</h4>
 <p>Lembra dos exemplos com notas que vimos no capítulo anterior? Em nenhum momento testamos casos em que a nota era menor do que 0 ou maior do que 10, certo? O que acha de usarmos o <code>while</code> para <strong>validar</strong> o que o usuário digitou, garantindo assim que ele informe apenas valores válidos? Teste isto:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>nota <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="cf">while</span> nota <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> nota <span class="op">&gt;</span> <span class="dv">10</span>:</span>
-<span id="cb22-3"><a href="#cb22-3"></a>    nota <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite uma nota entre 0 e 10: "</span>))</span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="bu">print</span>(<span class="st">"Nota válida:"</span>, nota)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-label="1"></a>nota <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-label="2"></a><span class="cf">while</span> nota <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> nota <span class="op">&gt;</span> <span class="dv">10</span>:</span>
+<span id="cb22-3"><a href="#cb22-3" aria-label="3"></a>    nota <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite uma nota entre 0 e 10: "</span>))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-label="4"></a><span class="bu">print</span>(<span class="st">"Nota válida:"</span>, nota)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Esse código solicita ao usuário que digite uma nota entre 0 e 10. Caso a nota digitada não esteja dentro desse intervalo, o programa continuará pedindo para que o usuário digite uma nota válida. Esse processo é feito por meio de um loop <code>while</code>. Para testar este código, tente informar notas inválidas como <code>1000</code>, <code>-5</code> e <code>1234</code>. Veja que o programa irá rejeitar estas notas. Se você testar letras no lugar de números você verá um erro bem feio (resolveremos isso mais adiante, também).</p>
 <p>Na primeira linha do loop, a variável <code>nota</code> é inicializada com o valor -1. Em seguida, a expressão <code>nota &lt; 0 or nota &gt; 10</code> verifica se a nota digitada está dentro do intervalo desejado. Se a nota não estiver dentro desse intervalo, o loop continuará executando e pedindo para que o usuário digite outra nota válida.</p>
 <p>Quando o usuário finalmente digita uma nota válida, o loop para de ser executado e o programa imprime a mensagem <em>“Nota válida:”</em> seguida da nota digitada.</p>
@@ -979,18 +982,18 @@ Fim</code></pre>
 <section id="muito-fácil-nível-1-1" class="level3" data-number="5.7.1">
 <h3 data-number="5.7.1" class="anchored" data-anchor-id="muito-fácil-nível-1-1"><span class="header-section-number">5.7.1</span> <strong>MUITO FÁCIL</strong> (Nível 1)</h3>
 <p><strong>1. Contador Simples</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>):</span>
-<span id="cb23-2"><a href="#cb23-2"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-label="1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-label="2"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>for i in range(1, 6):</code> - Cria um loop que vai de 1 a 5 (range para antes do 6)</li>
 <li><strong>Linha 2:</strong> <code>print(i)</code> - Mostra o valor atual de i na tela</li>
 </ul>
 <p><strong>2. Contador com While</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">3</span>:</span>
-<span id="cb24-3"><a href="#cb24-3"></a>    <span class="bu">print</span>(i)</span>
-<span id="cb24-4"><a href="#cb24-4"></a>    i <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-label="1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-label="2"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">3</span>:</span>
+<span id="cb24-3"><a href="#cb24-3" aria-label="3"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-label="4"></a>    i <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>i = 1</code> - Inicializa a variável contadora com valor 1</li>
@@ -999,26 +1002,26 @@ Fim</code></pre>
 <li><strong>Linha 4:</strong> <code>i += 1</code> - Incrementa i em 1 (importante para não criar loop infinito)</li>
 </ul>
 <p><strong>3. Números Pares</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">11</span>, <span class="dv">2</span>):</span>
-<span id="cb25-2"><a href="#cb25-2"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-label="1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">11</span>, <span class="dv">2</span>):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-label="2"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>for i in range(2, 11, 2):</code> - range(2, 11, 2) gera números de 2 a 10 pulando de 2 em 2</li>
 <li><strong>Linha 2:</strong> <code>print(i)</code> - Mostra cada número par</li>
 </ul>
 <p><strong>4. Contagem Regressiva</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>):</span>
-<span id="cb26-2"><a href="#cb26-2"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-label="1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-label="2"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>for i in range(5, 0, -1):</code> - range(5, 0, -1) gera números de 5 a 1 em ordem decrescente</li>
 <li><strong>Linha 2:</strong> <code>print(i)</code> - Mostra cada número da contagem regressiva</li>
 </ul>
 <p><strong>5. Soma Simples</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>soma <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>):</span>
-<span id="cb27-3"><a href="#cb27-3"></a>    soma <span class="op">+=</span> i</span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="bu">print</span>(<span class="st">"A soma é:"</span>, soma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-label="1"></a>soma <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-label="2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>):</span>
+<span id="cb27-3"><a href="#cb27-3" aria-label="3"></a>    soma <span class="op">+=</span> i</span>
+<span id="cb27-4"><a href="#cb27-4" aria-label="4"></a><span class="bu">print</span>(<span class="st">"A soma é:"</span>, soma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>soma = 0</code> - Inicializa a variável soma com zero</li>
@@ -1030,9 +1033,9 @@ Fim</code></pre>
 <section id="fácil-nível-2-1" class="level3" data-number="5.7.2">
 <h3 data-number="5.7.2" class="anchored" data-anchor-id="fácil-nível-2-1"><span class="header-section-number">5.7.2</span> <strong>FÁCIL</strong> (Nível 2)</h3>
 <p><strong>6. Tabuada do 2</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
-<span id="cb28-2"><a href="#cb28-2"></a>    resultado <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> i</span>
-<span id="cb28-3"><a href="#cb28-3"></a>    <span class="bu">print</span>(<span class="ss">f"2 x </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-label="1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
+<span id="cb28-2"><a href="#cb28-2" aria-label="2"></a>    resultado <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> i</span>
+<span id="cb28-3"><a href="#cb28-3" aria-label="3"></a>    <span class="bu">print</span>(<span class="ss">f"2 x </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>for i in range(1, 11):</code> - Cria um loop que vai de 1 a 10</li>
@@ -1040,10 +1043,10 @@ Fim</code></pre>
 <li><strong>Linha 3:</strong> <code>print(f"2 x {i} = {resultado}")</code> - Mostra a multiplicação formatada</li>
 </ul>
 <p><strong>7. Validação de Senha</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>senha <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="cf">while</span> senha <span class="op">!=</span> <span class="st">"123"</span>:</span>
-<span id="cb29-3"><a href="#cb29-3"></a>    senha <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite a senha: "</span>)</span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="bu">print</span>(<span class="st">"Acesso liberado!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-label="1"></a>senha <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-label="2"></a><span class="cf">while</span> senha <span class="op">!=</span> <span class="st">"123"</span>:</span>
+<span id="cb29-3"><a href="#cb29-3" aria-label="3"></a>    senha <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite a senha: "</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-label="4"></a><span class="bu">print</span>(<span class="st">"Acesso liberado!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>senha = ""</code> - Inicializa senha com string vazia para entrar no loop</li>
@@ -1052,20 +1055,20 @@ Fim</code></pre>
 <li><strong>Linha 4:</strong> <code>print("Acesso liberado!")</code> - Mostra mensagem de sucesso quando sair do loop</li>
 </ul>
 <p><strong>8. Números Ímpares</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">16</span>, <span class="dv">2</span>):</span>
-<span id="cb30-2"><a href="#cb30-2"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-label="1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">16</span>, <span class="dv">2</span>):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-label="2"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>for i in range(1, 16, 2):</code> - range(1, 16, 2) gera números ímpares de 1 a 15 (pula de 2 em 2)</li>
 <li><strong>Linha 2:</strong> <code>print(i)</code> - Mostra cada número ímpar</li>
 </ul>
 <p><strong>9. Soma com While</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>soma <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb31-3"><a href="#cb31-3"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
-<span id="cb31-4"><a href="#cb31-4"></a>    soma <span class="op">+=</span> i</span>
-<span id="cb31-5"><a href="#cb31-5"></a>    i <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb31-6"><a href="#cb31-6"></a><span class="bu">print</span>(<span class="st">"A soma é:"</span>, soma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-label="1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-label="2"></a>soma <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-label="3"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
+<span id="cb31-4"><a href="#cb31-4" aria-label="4"></a>    soma <span class="op">+=</span> i</span>
+<span id="cb31-5"><a href="#cb31-5" aria-label="5"></a>    i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-label="6"></a><span class="bu">print</span>(<span class="st">"A soma é:"</span>, soma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>i = 1</code> - Inicializa contador com valor 1</li>
@@ -1076,18 +1079,18 @@ Fim</code></pre>
 <li><strong>Linha 6:</strong> <code>print("A soma é:", soma)</code> - Mostra o resultado final</li>
 </ul>
 <p><strong>10. Menu Simples</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>opcao <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="cf">while</span> opcao <span class="op">!=</span> <span class="st">"2"</span>:</span>
-<span id="cb32-3"><a href="#cb32-3"></a>    <span class="bu">print</span>(<span class="st">"1. Opção A"</span>)</span>
-<span id="cb32-4"><a href="#cb32-4"></a>    <span class="bu">print</span>(<span class="st">"2. Opção B"</span>)</span>
-<span id="cb32-5"><a href="#cb32-5"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escolha uma opção: "</span>)</span>
-<span id="cb32-6"><a href="#cb32-6"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"1"</span>:</span>
-<span id="cb32-7"><a href="#cb32-7"></a>        <span class="bu">print</span>(<span class="st">"Você escolheu A"</span>)</span>
-<span id="cb32-8"><a href="#cb32-8"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"2"</span>:</span>
-<span id="cb32-9"><a href="#cb32-9"></a>        <span class="bu">print</span>(<span class="st">"Você escolheu B"</span>)</span>
-<span id="cb32-10"><a href="#cb32-10"></a>    <span class="cf">else</span>:</span>
-<span id="cb32-11"><a href="#cb32-11"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida"</span>)</span>
-<span id="cb32-12"><a href="#cb32-12"></a><span class="bu">print</span>(<span class="st">"Programa encerrado"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-label="1"></a>opcao <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-label="2"></a><span class="cf">while</span> opcao <span class="op">!=</span> <span class="st">"2"</span>:</span>
+<span id="cb32-3"><a href="#cb32-3" aria-label="3"></a>    <span class="bu">print</span>(<span class="st">"1. Opção A"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-label="4"></a>    <span class="bu">print</span>(<span class="st">"2. Opção B"</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-label="5"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escolha uma opção: "</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-label="6"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"1"</span>:</span>
+<span id="cb32-7"><a href="#cb32-7" aria-label="7"></a>        <span class="bu">print</span>(<span class="st">"Você escolheu A"</span>)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-label="8"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"2"</span>:</span>
+<span id="cb32-9"><a href="#cb32-9" aria-label="9"></a>        <span class="bu">print</span>(<span class="st">"Você escolheu B"</span>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-label="10"></a>    <span class="cf">else</span>:</span>
+<span id="cb32-11"><a href="#cb32-11" aria-label="11"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida"</span>)</span>
+<span id="cb32-12"><a href="#cb32-12" aria-label="12"></a><span class="bu">print</span>(<span class="st">"Programa encerrado"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>opcao = ""</code> - Inicializa variável de controle com string vazia</li>
@@ -1101,11 +1104,11 @@ Fim</code></pre>
 <section id="médio-nível-3-1" class="level3" data-number="5.7.3">
 <h3 data-number="5.7.3" class="anchored" data-anchor-id="médio-nível-3-1"><span class="header-section-number">5.7.3</span> <strong>MÉDIO</strong> (Nível 3)</h3>
 <p><strong>11. Fatorial</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>numero <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite um número: "</span>))</span>
-<span id="cb33-2"><a href="#cb33-2"></a>fatorial <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb33-3"><a href="#cb33-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, numero <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb33-4"><a href="#cb33-4"></a>    fatorial <span class="op">*=</span> i</span>
-<span id="cb33-5"><a href="#cb33-5"></a><span class="bu">print</span>(<span class="ss">f"O fatorial de </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> é </span><span class="sc">{</span>fatorial<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-label="1"></a>numero <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite um número: "</span>))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-label="2"></a>fatorial <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-label="3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, numero <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb33-4"><a href="#cb33-4" aria-label="4"></a>    fatorial <span class="op">*=</span> i</span>
+<span id="cb33-5"><a href="#cb33-5" aria-label="5"></a><span class="bu">print</span>(<span class="ss">f"O fatorial de </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> é </span><span class="sc">{</span>fatorial<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>numero = int(input("Digite um número: "))</code> - Solicita um número ao usuário e converte para inteiro</li>
@@ -1115,10 +1118,10 @@ Fim</code></pre>
 <li><strong>Linha 5:</strong> <code>print(f"O fatorial de {numero} é {fatorial}")</code> - Mostra o resultado final</li>
 </ul>
 <p><strong>12. Validação de Nota</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>nota <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a><span class="cf">while</span> nota <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> nota <span class="op">&gt;</span> <span class="dv">10</span>:</span>
-<span id="cb34-3"><a href="#cb34-3"></a>    nota <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite uma nota entre 0 e 10: "</span>))</span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="bu">print</span>(<span class="ss">f"Nota válida: </span><span class="sc">{</span>nota<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-label="1"></a>nota <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-label="2"></a><span class="cf">while</span> nota <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> nota <span class="op">&gt;</span> <span class="dv">10</span>:</span>
+<span id="cb34-3"><a href="#cb34-3" aria-label="3"></a>    nota <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite uma nota entre 0 e 10: "</span>))</span>
+<span id="cb34-4"><a href="#cb34-4" aria-label="4"></a><span class="bu">print</span>(<span class="ss">f"Nota válida: </span><span class="sc">{</span>nota<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>nota = -1</code> - Inicializa com valor inválido para garantir entrada no loop</li>
@@ -1127,11 +1130,11 @@ Fim</code></pre>
 <li><strong>Linha 4:</strong> <code>print(f"Nota válida: {nota}")</code> - Mostra a nota válida quando sair do loop</li>
 </ul>
 <p><strong>13. Soma de Números Pares</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>soma <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">21</span>):</span>
-<span id="cb35-3"><a href="#cb35-3"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb35-4"><a href="#cb35-4"></a>        soma <span class="op">+=</span> i</span>
-<span id="cb35-5"><a href="#cb35-5"></a><span class="bu">print</span>(<span class="ss">f"A soma dos números pares é: </span><span class="sc">{</span>soma<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-label="1"></a>soma <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-label="2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">21</span>):</span>
+<span id="cb35-3"><a href="#cb35-3" aria-label="3"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb35-4"><a href="#cb35-4" aria-label="4"></a>        soma <span class="op">+=</span> i</span>
+<span id="cb35-5"><a href="#cb35-5" aria-label="5"></a><span class="bu">print</span>(<span class="ss">f"A soma dos números pares é: </span><span class="sc">{</span>soma<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>soma = 0</code> - Inicializa acumulador com valor 0</li>
@@ -1141,11 +1144,11 @@ Fim</code></pre>
 <li><strong>Linha 5:</strong> <code>print(f"A soma dos números pares é: {soma}")</code> - Mostra o resultado final</li>
 </ul>
 <p><strong>14. Contador com Break</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
-<span id="cb36-2"><a href="#cb36-2"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">7</span>:</span>
-<span id="cb36-3"><a href="#cb36-3"></a>        <span class="cf">break</span></span>
-<span id="cb36-4"><a href="#cb36-4"></a>    <span class="bu">print</span>(i)</span>
-<span id="cb36-5"><a href="#cb36-5"></a><span class="bu">print</span>(<span class="st">"Loop encerrado"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-label="1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
+<span id="cb36-2"><a href="#cb36-2" aria-label="2"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">7</span>:</span>
+<span id="cb36-3"><a href="#cb36-3" aria-label="3"></a>        <span class="cf">break</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-label="4"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-label="5"></a><span class="bu">print</span>(<span class="st">"Loop encerrado"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>for i in range(1, 11):</code> - Loop que vai de 1 a 10</li>
@@ -1155,11 +1158,11 @@ Fim</code></pre>
 <li><strong>Linha 5:</strong> <code>print("Loop encerrado")</code> - Mensagem após o loop ser interrompido</li>
 </ul>
 <p><strong>15. Tabuada Completa</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>numero <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite um número para a tabuada: "</span>))</span>
-<span id="cb37-2"><a href="#cb37-2"></a><span class="bu">print</span>(<span class="ss">f"Tabuada do </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss">:"</span>)</span>
-<span id="cb37-3"><a href="#cb37-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
-<span id="cb37-4"><a href="#cb37-4"></a>    resultado <span class="op">=</span> numero <span class="op">*</span> i</span>
-<span id="cb37-5"><a href="#cb37-5"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> x </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-label="1"></a>numero <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite um número para a tabuada: "</span>))</span>
+<span id="cb37-2"><a href="#cb37-2" aria-label="2"></a><span class="bu">print</span>(<span class="ss">f"Tabuada do </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss">:"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-label="3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
+<span id="cb37-4"><a href="#cb37-4" aria-label="4"></a>    resultado <span class="op">=</span> numero <span class="op">*</span> i</span>
+<span id="cb37-5"><a href="#cb37-5" aria-label="5"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> x </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>numero = int(input("Digite um número para a tabuada: "))</code> - Solicita um número ao usuário</li>
@@ -1172,19 +1175,19 @@ Fim</code></pre>
 <section id="difícil-nível-4-1" class="level3" data-number="5.7.4">
 <h3 data-number="5.7.4" class="anchored" data-anchor-id="difícil-nível-4-1"><span class="header-section-number">5.7.4</span> <strong>DIFÍCIL</strong> (Nível 4)</h3>
 <p><strong>16. Jogo de Adivinhação</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="im">import</span> random</span>
-<span id="cb38-2"><a href="#cb38-2"></a>numero_secreto <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">10</span>)</span>
-<span id="cb38-3"><a href="#cb38-3"></a>tentativas <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb38-4"><a href="#cb38-4"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb38-5"><a href="#cb38-5"></a>    palpite <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite seu palpite (1 a 10): "</span>))</span>
-<span id="cb38-6"><a href="#cb38-6"></a>    tentativas <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb38-7"><a href="#cb38-7"></a>    <span class="cf">if</span> palpite <span class="op">==</span> numero_secreto:</span>
-<span id="cb38-8"><a href="#cb38-8"></a>        <span class="bu">print</span>(<span class="ss">f"Parabéns! Você acertou em </span><span class="sc">{</span>tentativas<span class="sc">}</span><span class="ss"> tentativas!"</span>)</span>
-<span id="cb38-9"><a href="#cb38-9"></a>        <span class="cf">break</span></span>
-<span id="cb38-10"><a href="#cb38-10"></a>    <span class="cf">elif</span> palpite <span class="op">&lt;</span> numero_secreto:</span>
-<span id="cb38-11"><a href="#cb38-11"></a>        <span class="bu">print</span>(<span class="st">"Muito baixo! Tente novamente."</span>)</span>
-<span id="cb38-12"><a href="#cb38-12"></a>    <span class="cf">else</span>:</span>
-<span id="cb38-13"><a href="#cb38-13"></a>        <span class="bu">print</span>(<span class="st">"Muito alto! Tente novamente."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-label="1"></a><span class="im">import</span> random</span>
+<span id="cb38-2"><a href="#cb38-2" aria-label="2"></a>numero_secreto <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">10</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-label="3"></a>tentativas <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-label="4"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb38-5"><a href="#cb38-5" aria-label="5"></a>    palpite <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Digite seu palpite (1 a 10): "</span>))</span>
+<span id="cb38-6"><a href="#cb38-6" aria-label="6"></a>    tentativas <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-label="7"></a>    <span class="cf">if</span> palpite <span class="op">==</span> numero_secreto:</span>
+<span id="cb38-8"><a href="#cb38-8" aria-label="8"></a>        <span class="bu">print</span>(<span class="ss">f"Parabéns! Você acertou em </span><span class="sc">{</span>tentativas<span class="sc">}</span><span class="ss"> tentativas!"</span>)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-label="9"></a>        <span class="cf">break</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-label="10"></a>    <span class="cf">elif</span> palpite <span class="op">&lt;</span> numero_secreto:</span>
+<span id="cb38-11"><a href="#cb38-11" aria-label="11"></a>        <span class="bu">print</span>(<span class="st">"Muito baixo! Tente novamente."</span>)</span>
+<span id="cb38-12"><a href="#cb38-12" aria-label="12"></a>    <span class="cf">else</span>:</span>
+<span id="cb38-13"><a href="#cb38-13" aria-label="13"></a>        <span class="bu">print</span>(<span class="st">"Muito alto! Tente novamente."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>import random</code> - Importa o módulo random para gerar números aleatórios</li>
@@ -1202,40 +1205,40 @@ Fim</code></pre>
 <li><strong>Linha 13:</strong> <code>print("Muito alto! Tente novamente.")</code> - Dá dica para diminuir</li>
 </ul>
 <p><strong>17. Calculadora com Menu</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb39-2"><a href="#cb39-2"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== CALCULADORA ==="</span>)</span>
-<span id="cb39-3"><a href="#cb39-3"></a>    <span class="bu">print</span>(<span class="st">"1. Somar"</span>)</span>
-<span id="cb39-4"><a href="#cb39-4"></a>    <span class="bu">print</span>(<span class="st">"2. Subtrair"</span>)</span>
-<span id="cb39-5"><a href="#cb39-5"></a>    <span class="bu">print</span>(<span class="st">"3. Multiplicar"</span>)</span>
-<span id="cb39-6"><a href="#cb39-6"></a>    <span class="bu">print</span>(<span class="st">"4. Dividir"</span>)</span>
-<span id="cb39-7"><a href="#cb39-7"></a>    <span class="bu">print</span>(<span class="st">"5. Sair"</span>)</span>
-<span id="cb39-8"><a href="#cb39-8"></a>    </span>
-<span id="cb39-9"><a href="#cb39-9"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escolha uma opção: "</span>)</span>
-<span id="cb39-10"><a href="#cb39-10"></a>    </span>
-<span id="cb39-11"><a href="#cb39-11"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"5"</span>:</span>
-<span id="cb39-12"><a href="#cb39-12"></a>        <span class="bu">print</span>(<span class="st">"Calculadora encerrada!"</span>)</span>
-<span id="cb39-13"><a href="#cb39-13"></a>        <span class="cf">break</span></span>
-<span id="cb39-14"><a href="#cb39-14"></a>    <span class="cf">elif</span> opcao <span class="kw">in</span> [<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>, <span class="st">"4"</span>]:</span>
-<span id="cb39-15"><a href="#cb39-15"></a>        num1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o primeiro número: "</span>))</span>
-<span id="cb39-16"><a href="#cb39-16"></a>        num2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o segundo número: "</span>))</span>
-<span id="cb39-17"><a href="#cb39-17"></a>        </span>
-<span id="cb39-18"><a href="#cb39-18"></a>        <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"1"</span>:</span>
-<span id="cb39-19"><a href="#cb39-19"></a>            resultado <span class="op">=</span> num1 <span class="op">+</span> num2</span>
-<span id="cb39-20"><a href="#cb39-20"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> + </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb39-21"><a href="#cb39-21"></a>        <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"2"</span>:</span>
-<span id="cb39-22"><a href="#cb39-22"></a>            resultado <span class="op">=</span> num1 <span class="op">-</span> num2</span>
-<span id="cb39-23"><a href="#cb39-23"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> - </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb39-24"><a href="#cb39-24"></a>        <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"3"</span>:</span>
-<span id="cb39-25"><a href="#cb39-25"></a>            resultado <span class="op">=</span> num1 <span class="op">*</span> num2</span>
-<span id="cb39-26"><a href="#cb39-26"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> x </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb39-27"><a href="#cb39-27"></a>        <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"4"</span>:</span>
-<span id="cb39-28"><a href="#cb39-28"></a>            <span class="cf">if</span> num2 <span class="op">!=</span> <span class="dv">0</span>:</span>
-<span id="cb39-29"><a href="#cb39-29"></a>                resultado <span class="op">=</span> num1 <span class="op">/</span> num2</span>
-<span id="cb39-30"><a href="#cb39-30"></a>                <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> ÷ </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb39-31"><a href="#cb39-31"></a>            <span class="cf">else</span>:</span>
-<span id="cb39-32"><a href="#cb39-32"></a>                <span class="bu">print</span>(<span class="st">"Erro: Divisão por zero!"</span>)</span>
-<span id="cb39-33"><a href="#cb39-33"></a>    <span class="cf">else</span>:</span>
-<span id="cb39-34"><a href="#cb39-34"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-label="1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb39-2"><a href="#cb39-2" aria-label="2"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== CALCULADORA ==="</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-label="3"></a>    <span class="bu">print</span>(<span class="st">"1. Somar"</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-label="4"></a>    <span class="bu">print</span>(<span class="st">"2. Subtrair"</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-label="5"></a>    <span class="bu">print</span>(<span class="st">"3. Multiplicar"</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-label="6"></a>    <span class="bu">print</span>(<span class="st">"4. Dividir"</span>)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-label="7"></a>    <span class="bu">print</span>(<span class="st">"5. Sair"</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-label="8"></a>    </span>
+<span id="cb39-9"><a href="#cb39-9" aria-label="9"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escolha uma opção: "</span>)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-label="10"></a>    </span>
+<span id="cb39-11"><a href="#cb39-11" aria-label="11"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"5"</span>:</span>
+<span id="cb39-12"><a href="#cb39-12" aria-label="12"></a>        <span class="bu">print</span>(<span class="st">"Calculadora encerrada!"</span>)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-label="13"></a>        <span class="cf">break</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-label="14"></a>    <span class="cf">elif</span> opcao <span class="kw">in</span> [<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>, <span class="st">"4"</span>]:</span>
+<span id="cb39-15"><a href="#cb39-15" aria-label="15"></a>        num1 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o primeiro número: "</span>))</span>
+<span id="cb39-16"><a href="#cb39-16" aria-label="16"></a>        num2 <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o segundo número: "</span>))</span>
+<span id="cb39-17"><a href="#cb39-17" aria-label="17"></a>        </span>
+<span id="cb39-18"><a href="#cb39-18" aria-label="18"></a>        <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"1"</span>:</span>
+<span id="cb39-19"><a href="#cb39-19" aria-label="19"></a>            resultado <span class="op">=</span> num1 <span class="op">+</span> num2</span>
+<span id="cb39-20"><a href="#cb39-20" aria-label="20"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> + </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb39-21"><a href="#cb39-21" aria-label="21"></a>        <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"2"</span>:</span>
+<span id="cb39-22"><a href="#cb39-22" aria-label="22"></a>            resultado <span class="op">=</span> num1 <span class="op">-</span> num2</span>
+<span id="cb39-23"><a href="#cb39-23" aria-label="23"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> - </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb39-24"><a href="#cb39-24" aria-label="24"></a>        <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"3"</span>:</span>
+<span id="cb39-25"><a href="#cb39-25" aria-label="25"></a>            resultado <span class="op">=</span> num1 <span class="op">*</span> num2</span>
+<span id="cb39-26"><a href="#cb39-26" aria-label="26"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> x </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb39-27"><a href="#cb39-27" aria-label="27"></a>        <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"4"</span>:</span>
+<span id="cb39-28"><a href="#cb39-28" aria-label="28"></a>            <span class="cf">if</span> num2 <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb39-29"><a href="#cb39-29" aria-label="29"></a>                resultado <span class="op">=</span> num1 <span class="op">/</span> num2</span>
+<span id="cb39-30"><a href="#cb39-30" aria-label="30"></a>                <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>num1<span class="sc">}</span><span class="ss"> ÷ </span><span class="sc">{</span>num2<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb39-31"><a href="#cb39-31" aria-label="31"></a>            <span class="cf">else</span>:</span>
+<span id="cb39-32"><a href="#cb39-32" aria-label="32"></a>                <span class="bu">print</span>(<span class="st">"Erro: Divisão por zero!"</span>)</span>
+<span id="cb39-33"><a href="#cb39-33" aria-label="33"></a>    <span class="cf">else</span>:</span>
+<span id="cb39-34"><a href="#cb39-34" aria-label="34"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>while True:</code> - Loop infinito até escolher sair</li>
@@ -1251,14 +1254,14 @@ Fim</code></pre>
 <li><strong>Linhas 32-33:</strong> Trata opção inválida</li>
 </ul>
 <p><strong>18. Sequência de Fibonacci</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>a, b <span class="op">=</span> <span class="dv">0</span>, <span class="dv">1</span></span>
-<span id="cb40-2"><a href="#cb40-2"></a><span class="bu">print</span>(<span class="st">"Sequência de Fibonacci:"</span>)</span>
-<span id="cb40-3"><a href="#cb40-3"></a><span class="bu">print</span>(a)</span>
-<span id="cb40-4"><a href="#cb40-4"></a><span class="bu">print</span>(b)</span>
-<span id="cb40-5"><a href="#cb40-5"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8</span>):</span>
-<span id="cb40-6"><a href="#cb40-6"></a>    proximo <span class="op">=</span> a <span class="op">+</span> b</span>
-<span id="cb40-7"><a href="#cb40-7"></a>    <span class="bu">print</span>(proximo)</span>
-<span id="cb40-8"><a href="#cb40-8"></a>    a, b <span class="op">=</span> b, proximo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-label="1"></a>a, b <span class="op">=</span> <span class="dv">0</span>, <span class="dv">1</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-label="2"></a><span class="bu">print</span>(<span class="st">"Sequência de Fibonacci:"</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-label="3"></a><span class="bu">print</span>(a)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-label="4"></a><span class="bu">print</span>(b)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-label="5"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8</span>):</span>
+<span id="cb40-6"><a href="#cb40-6" aria-label="6"></a>    proximo <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb40-7"><a href="#cb40-7" aria-label="7"></a>    <span class="bu">print</span>(proximo)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-label="8"></a>    a, b <span class="op">=</span> b, proximo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>a, b = 0, 1</code> - Inicializa os dois primeiros números da sequência</li>
@@ -1271,14 +1274,14 @@ Fim</code></pre>
 <li><strong>Linha 8:</strong> <code>a, b = b, proximo</code> - Atualiza valores: a recebe b, b recebe próximo</li>
 </ul>
 <p><strong>19. Validação de CPF</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>cpf <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a><span class="cf">while</span> <span class="bu">len</span>(cpf) <span class="op">!=</span> <span class="dv">11</span> <span class="kw">or</span> <span class="kw">not</span> cpf.isdigit():</span>
-<span id="cb41-3"><a href="#cb41-3"></a>    cpf <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite um CPF (11 dígitos): "</span>)</span>
-<span id="cb41-4"><a href="#cb41-4"></a>    <span class="cf">if</span> <span class="bu">len</span>(cpf) <span class="op">!=</span> <span class="dv">11</span>:</span>
-<span id="cb41-5"><a href="#cb41-5"></a>        <span class="bu">print</span>(<span class="st">"CPF deve ter exatamente 11 dígitos!"</span>)</span>
-<span id="cb41-6"><a href="#cb41-6"></a>    <span class="cf">elif</span> <span class="kw">not</span> cpf.isdigit():</span>
-<span id="cb41-7"><a href="#cb41-7"></a>        <span class="bu">print</span>(<span class="st">"CPF deve conter apenas números!"</span>)</span>
-<span id="cb41-8"><a href="#cb41-8"></a><span class="bu">print</span>(<span class="ss">f"CPF válido: </span><span class="sc">{</span>cpf<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-label="1"></a>cpf <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-label="2"></a><span class="cf">while</span> <span class="bu">len</span>(cpf) <span class="op">!=</span> <span class="dv">11</span> <span class="kw">or</span> <span class="kw">not</span> cpf.isdigit():</span>
+<span id="cb41-3"><a href="#cb41-3" aria-label="3"></a>    cpf <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite um CPF (11 dígitos): "</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-label="4"></a>    <span class="cf">if</span> <span class="bu">len</span>(cpf) <span class="op">!=</span> <span class="dv">11</span>:</span>
+<span id="cb41-5"><a href="#cb41-5" aria-label="5"></a>        <span class="bu">print</span>(<span class="st">"CPF deve ter exatamente 11 dígitos!"</span>)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-label="6"></a>    <span class="cf">elif</span> <span class="kw">not</span> cpf.isdigit():</span>
+<span id="cb41-7"><a href="#cb41-7" aria-label="7"></a>        <span class="bu">print</span>(<span class="st">"CPF deve conter apenas números!"</span>)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-label="8"></a><span class="bu">print</span>(<span class="ss">f"CPF válido: </span><span class="sc">{</span>cpf<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>cpf = ""</code> - Inicializa CPF com string vazia</li>
@@ -1291,13 +1294,13 @@ Fim</code></pre>
 <li><strong>Linha 8:</strong> <code>print(f"CPF válido: {cpf}")</code> - Mostra CPF válido quando sair do loop</li>
 </ul>
 <p><strong>20. Contador de Vogais</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>palavra <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma palavra: "</span>).lower()</span>
-<span id="cb42-2"><a href="#cb42-2"></a>vogais <span class="op">=</span> <span class="st">"aeiou"</span></span>
-<span id="cb42-3"><a href="#cb42-3"></a>contador <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb42-4"><a href="#cb42-4"></a><span class="cf">for</span> letra <span class="kw">in</span> palavra:</span>
-<span id="cb42-5"><a href="#cb42-5"></a>    <span class="cf">if</span> letra <span class="kw">in</span> vogais:</span>
-<span id="cb42-6"><a href="#cb42-6"></a>        contador <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb42-7"><a href="#cb42-7"></a><span class="bu">print</span>(<span class="ss">f"A palavra '</span><span class="sc">{</span>palavra<span class="sc">}</span><span class="ss">' tem </span><span class="sc">{</span>contador<span class="sc">}</span><span class="ss"> vogais"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-label="1"></a>palavra <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma palavra: "</span>).lower()</span>
+<span id="cb42-2"><a href="#cb42-2" aria-label="2"></a>vogais <span class="op">=</span> <span class="st">"aeiou"</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-label="3"></a>contador <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-label="4"></a><span class="cf">for</span> letra <span class="kw">in</span> palavra:</span>
+<span id="cb42-5"><a href="#cb42-5" aria-label="5"></a>    <span class="cf">if</span> letra <span class="kw">in</span> vogais:</span>
+<span id="cb42-6"><a href="#cb42-6" aria-label="6"></a>        contador <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-label="7"></a><span class="bu">print</span>(<span class="ss">f"A palavra '</span><span class="sc">{</span>palavra<span class="sc">}</span><span class="ss">' tem </span><span class="sc">{</span>contador<span class="sc">}</span><span class="ss"> vogais"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>palavra = input("Digite uma palavra: ").lower()</code> - Solicita palavra e converte para minúscula</li>
@@ -1312,37 +1315,37 @@ Fim</code></pre>
 <section id="muito-difícil-nível-5-1" class="level3" data-number="5.7.5">
 <h3 data-number="5.7.5" class="anchored" data-anchor-id="muito-difícil-nível-5-1"><span class="header-section-number">5.7.5</span> <strong>MUITO DIFÍCIL</strong> (Nível 5)</h3>
 <p><strong>21. Jogo da Forca</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>palavra_secreta <span class="op">=</span> <span class="st">"python"</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a>palavra_oculta <span class="op">=</span> <span class="st">"_"</span> <span class="op">*</span> <span class="bu">len</span>(palavra_secreta)</span>
-<span id="cb43-3"><a href="#cb43-3"></a>tentativas <span class="op">=</span> <span class="dv">6</span></span>
-<span id="cb43-4"><a href="#cb43-4"></a>letras_usadas <span class="op">=</span> []</span>
-<span id="cb43-5"><a href="#cb43-5"></a></span>
-<span id="cb43-6"><a href="#cb43-6"></a><span class="cf">while</span> tentativas <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> <span class="st">"_"</span> <span class="kw">in</span> palavra_oculta:</span>
-<span id="cb43-7"><a href="#cb43-7"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Palavra: </span><span class="sc">{</span>palavra_oculta<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb43-8"><a href="#cb43-8"></a>    <span class="bu">print</span>(<span class="ss">f"Tentativas restantes: </span><span class="sc">{</span>tentativas<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb43-9"><a href="#cb43-9"></a>    <span class="bu">print</span>(<span class="ss">f"Letras usadas: </span><span class="sc">{</span>letras_usadas<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb43-10"><a href="#cb43-10"></a>    </span>
-<span id="cb43-11"><a href="#cb43-11"></a>    letra <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma letra: "</span>).lower()</span>
-<span id="cb43-12"><a href="#cb43-12"></a>    </span>
-<span id="cb43-13"><a href="#cb43-13"></a>    <span class="cf">if</span> letra <span class="kw">in</span> letras_usadas:</span>
-<span id="cb43-14"><a href="#cb43-14"></a>        <span class="bu">print</span>(<span class="st">"Você já usou essa letra!"</span>)</span>
-<span id="cb43-15"><a href="#cb43-15"></a>        <span class="cf">continue</span></span>
-<span id="cb43-16"><a href="#cb43-16"></a>    </span>
-<span id="cb43-17"><a href="#cb43-17"></a>    letras_usadas.append(letra)</span>
-<span id="cb43-18"><a href="#cb43-18"></a>    </span>
-<span id="cb43-19"><a href="#cb43-19"></a>    <span class="cf">if</span> letra <span class="kw">in</span> palavra_secreta:</span>
-<span id="cb43-20"><a href="#cb43-20"></a>        <span class="bu">print</span>(<span class="st">"Letra encontrada!"</span>)</span>
-<span id="cb43-21"><a href="#cb43-21"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(palavra_secreta)):</span>
-<span id="cb43-22"><a href="#cb43-22"></a>            <span class="cf">if</span> palavra_secreta[i] <span class="op">==</span> letra:</span>
-<span id="cb43-23"><a href="#cb43-23"></a>                palavra_oculta <span class="op">=</span> palavra_oculta[:i] <span class="op">+</span> letra <span class="op">+</span> palavra_oculta[i<span class="op">+</span><span class="dv">1</span>:]</span>
-<span id="cb43-24"><a href="#cb43-24"></a>    <span class="cf">else</span>:</span>
-<span id="cb43-25"><a href="#cb43-25"></a>        <span class="bu">print</span>(<span class="st">"Letra não encontrada!"</span>)</span>
-<span id="cb43-26"><a href="#cb43-26"></a>        tentativas <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb43-27"><a href="#cb43-27"></a></span>
-<span id="cb43-28"><a href="#cb43-28"></a><span class="cf">if</span> <span class="st">"_"</span> <span class="kw">not</span> <span class="kw">in</span> palavra_oculta:</span>
-<span id="cb43-29"><a href="#cb43-29"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Parabéns! Você ganhou! A palavra era: </span><span class="sc">{</span>palavra_secreta<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb43-30"><a href="#cb43-30"></a><span class="cf">else</span>:</span>
-<span id="cb43-31"><a href="#cb43-31"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Game Over! A palavra era: </span><span class="sc">{</span>palavra_secreta<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-label="1"></a>palavra_secreta <span class="op">=</span> <span class="st">"python"</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-label="2"></a>palavra_oculta <span class="op">=</span> <span class="st">"_"</span> <span class="op">*</span> <span class="bu">len</span>(palavra_secreta)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-label="3"></a>tentativas <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-label="4"></a>letras_usadas <span class="op">=</span> []</span>
+<span id="cb43-5"><a href="#cb43-5" aria-label="5"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-label="6"></a><span class="cf">while</span> tentativas <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> <span class="st">"_"</span> <span class="kw">in</span> palavra_oculta:</span>
+<span id="cb43-7"><a href="#cb43-7" aria-label="7"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Palavra: </span><span class="sc">{</span>palavra_oculta<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-label="8"></a>    <span class="bu">print</span>(<span class="ss">f"Tentativas restantes: </span><span class="sc">{</span>tentativas<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-label="9"></a>    <span class="bu">print</span>(<span class="ss">f"Letras usadas: </span><span class="sc">{</span>letras_usadas<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb43-10"><a href="#cb43-10" aria-label="10"></a>    </span>
+<span id="cb43-11"><a href="#cb43-11" aria-label="11"></a>    letra <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite uma letra: "</span>).lower()</span>
+<span id="cb43-12"><a href="#cb43-12" aria-label="12"></a>    </span>
+<span id="cb43-13"><a href="#cb43-13" aria-label="13"></a>    <span class="cf">if</span> letra <span class="kw">in</span> letras_usadas:</span>
+<span id="cb43-14"><a href="#cb43-14" aria-label="14"></a>        <span class="bu">print</span>(<span class="st">"Você já usou essa letra!"</span>)</span>
+<span id="cb43-15"><a href="#cb43-15" aria-label="15"></a>        <span class="cf">continue</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-label="16"></a>    </span>
+<span id="cb43-17"><a href="#cb43-17" aria-label="17"></a>    letras_usadas.append(letra)</span>
+<span id="cb43-18"><a href="#cb43-18" aria-label="18"></a>    </span>
+<span id="cb43-19"><a href="#cb43-19" aria-label="19"></a>    <span class="cf">if</span> letra <span class="kw">in</span> palavra_secreta:</span>
+<span id="cb43-20"><a href="#cb43-20" aria-label="20"></a>        <span class="bu">print</span>(<span class="st">"Letra encontrada!"</span>)</span>
+<span id="cb43-21"><a href="#cb43-21" aria-label="21"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(palavra_secreta)):</span>
+<span id="cb43-22"><a href="#cb43-22" aria-label="22"></a>            <span class="cf">if</span> palavra_secreta[i] <span class="op">==</span> letra:</span>
+<span id="cb43-23"><a href="#cb43-23" aria-label="23"></a>                palavra_oculta <span class="op">=</span> palavra_oculta[:i] <span class="op">+</span> letra <span class="op">+</span> palavra_oculta[i<span class="op">+</span><span class="dv">1</span>:]</span>
+<span id="cb43-24"><a href="#cb43-24" aria-label="24"></a>    <span class="cf">else</span>:</span>
+<span id="cb43-25"><a href="#cb43-25" aria-label="25"></a>        <span class="bu">print</span>(<span class="st">"Letra não encontrada!"</span>)</span>
+<span id="cb43-26"><a href="#cb43-26" aria-label="26"></a>        tentativas <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb43-27"><a href="#cb43-27" aria-label="27"></a></span>
+<span id="cb43-28"><a href="#cb43-28" aria-label="28"></a><span class="cf">if</span> <span class="st">"_"</span> <span class="kw">not</span> <span class="kw">in</span> palavra_oculta:</span>
+<span id="cb43-29"><a href="#cb43-29" aria-label="29"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Parabéns! Você ganhou! A palavra era: </span><span class="sc">{</span>palavra_secreta<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb43-30"><a href="#cb43-30" aria-label="30"></a><span class="cf">else</span>:</span>
+<span id="cb43-31"><a href="#cb43-31" aria-label="31"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Game Over! A palavra era: </span><span class="sc">{</span>palavra_secreta<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>palavra_secreta = "python"</code> - Define a palavra a ser adivinhada</li>
@@ -1371,43 +1374,43 @@ Fim</code></pre>
 <li><strong>Linhas 29-32:</strong> Verificam fim do jogo e mostram resultado</li>
 </ul>
 <p><strong>22. Sistema de Banco</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>saldo <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb44-2"><a href="#cb44-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb44-3"><a href="#cb44-3"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== BANCO PYTHON ==="</span>)</span>
-<span id="cb44-4"><a href="#cb44-4"></a>    <span class="bu">print</span>(<span class="st">"1. Depositar"</span>)</span>
-<span id="cb44-5"><a href="#cb44-5"></a>    <span class="bu">print</span>(<span class="st">"2. Sacar"</span>)</span>
-<span id="cb44-6"><a href="#cb44-6"></a>    <span class="bu">print</span>(<span class="st">"3. Consultar Saldo"</span>)</span>
-<span id="cb44-7"><a href="#cb44-7"></a>    <span class="bu">print</span>(<span class="st">"4. Sair"</span>)</span>
-<span id="cb44-8"><a href="#cb44-8"></a>    </span>
-<span id="cb44-9"><a href="#cb44-9"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escolha uma opção: "</span>)</span>
-<span id="cb44-10"><a href="#cb44-10"></a>    </span>
-<span id="cb44-11"><a href="#cb44-11"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"1"</span>:</span>
-<span id="cb44-12"><a href="#cb44-12"></a>        valor <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o valor do depósito: "</span>))</span>
-<span id="cb44-13"><a href="#cb44-13"></a>        <span class="cf">if</span> valor <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb44-14"><a href="#cb44-14"></a>            saldo <span class="op">+=</span> valor</span>
-<span id="cb44-15"><a href="#cb44-15"></a>            <span class="bu">print</span>(<span class="ss">f"Depósito de R$ </span><span class="sc">{</span>valor<span class="sc">:.2f}</span><span class="ss"> realizado! Saldo atual: R$ </span><span class="sc">{</span>saldo<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb44-16"><a href="#cb44-16"></a>        <span class="cf">else</span>:</span>
-<span id="cb44-17"><a href="#cb44-17"></a>            <span class="bu">print</span>(<span class="st">"Valor inválido!"</span>)</span>
-<span id="cb44-18"><a href="#cb44-18"></a>    </span>
-<span id="cb44-19"><a href="#cb44-19"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"2"</span>:</span>
-<span id="cb44-20"><a href="#cb44-20"></a>        valor <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o valor do saque: "</span>))</span>
-<span id="cb44-21"><a href="#cb44-21"></a>        <span class="cf">if</span> valor <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> valor <span class="op">&lt;=</span> saldo:</span>
-<span id="cb44-22"><a href="#cb44-22"></a>            saldo <span class="op">-=</span> valor</span>
-<span id="cb44-23"><a href="#cb44-23"></a>            <span class="bu">print</span>(<span class="ss">f"Saque de R$ </span><span class="sc">{</span>valor<span class="sc">:.2f}</span><span class="ss"> realizado! Saldo atual: R$ </span><span class="sc">{</span>saldo<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb44-24"><a href="#cb44-24"></a>        <span class="cf">elif</span> valor <span class="op">&gt;</span> saldo:</span>
-<span id="cb44-25"><a href="#cb44-25"></a>            <span class="bu">print</span>(<span class="st">"Saldo insuficiente!"</span>)</span>
-<span id="cb44-26"><a href="#cb44-26"></a>        <span class="cf">else</span>:</span>
-<span id="cb44-27"><a href="#cb44-27"></a>            <span class="bu">print</span>(<span class="st">"Valor inválido!"</span>)</span>
-<span id="cb44-28"><a href="#cb44-28"></a>    </span>
-<span id="cb44-29"><a href="#cb44-29"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"3"</span>:</span>
-<span id="cb44-30"><a href="#cb44-30"></a>        <span class="bu">print</span>(<span class="ss">f"Saldo atual: R$ </span><span class="sc">{</span>saldo<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb44-31"><a href="#cb44-31"></a>    </span>
-<span id="cb44-32"><a href="#cb44-32"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"4"</span>:</span>
-<span id="cb44-33"><a href="#cb44-33"></a>        <span class="bu">print</span>(<span class="st">"Obrigado por usar o Banco Python!"</span>)</span>
-<span id="cb44-34"><a href="#cb44-34"></a>        <span class="cf">break</span></span>
-<span id="cb44-35"><a href="#cb44-35"></a>    </span>
-<span id="cb44-36"><a href="#cb44-36"></a>    <span class="cf">else</span>:</span>
-<span id="cb44-37"><a href="#cb44-37"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-label="1"></a>saldo <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-label="2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb44-3"><a href="#cb44-3" aria-label="3"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== BANCO PYTHON ==="</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-label="4"></a>    <span class="bu">print</span>(<span class="st">"1. Depositar"</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-label="5"></a>    <span class="bu">print</span>(<span class="st">"2. Sacar"</span>)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-label="6"></a>    <span class="bu">print</span>(<span class="st">"3. Consultar Saldo"</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-label="7"></a>    <span class="bu">print</span>(<span class="st">"4. Sair"</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-label="8"></a>    </span>
+<span id="cb44-9"><a href="#cb44-9" aria-label="9"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escolha uma opção: "</span>)</span>
+<span id="cb44-10"><a href="#cb44-10" aria-label="10"></a>    </span>
+<span id="cb44-11"><a href="#cb44-11" aria-label="11"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"1"</span>:</span>
+<span id="cb44-12"><a href="#cb44-12" aria-label="12"></a>        valor <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o valor do depósito: "</span>))</span>
+<span id="cb44-13"><a href="#cb44-13" aria-label="13"></a>        <span class="cf">if</span> valor <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb44-14"><a href="#cb44-14" aria-label="14"></a>            saldo <span class="op">+=</span> valor</span>
+<span id="cb44-15"><a href="#cb44-15" aria-label="15"></a>            <span class="bu">print</span>(<span class="ss">f"Depósito de R$ </span><span class="sc">{</span>valor<span class="sc">:.2f}</span><span class="ss"> realizado! Saldo atual: R$ </span><span class="sc">{</span>saldo<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb44-16"><a href="#cb44-16" aria-label="16"></a>        <span class="cf">else</span>:</span>
+<span id="cb44-17"><a href="#cb44-17" aria-label="17"></a>            <span class="bu">print</span>(<span class="st">"Valor inválido!"</span>)</span>
+<span id="cb44-18"><a href="#cb44-18" aria-label="18"></a>    </span>
+<span id="cb44-19"><a href="#cb44-19" aria-label="19"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"2"</span>:</span>
+<span id="cb44-20"><a href="#cb44-20" aria-label="20"></a>        valor <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite o valor do saque: "</span>))</span>
+<span id="cb44-21"><a href="#cb44-21" aria-label="21"></a>        <span class="cf">if</span> valor <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> valor <span class="op">&lt;=</span> saldo:</span>
+<span id="cb44-22"><a href="#cb44-22" aria-label="22"></a>            saldo <span class="op">-=</span> valor</span>
+<span id="cb44-23"><a href="#cb44-23" aria-label="23"></a>            <span class="bu">print</span>(<span class="ss">f"Saque de R$ </span><span class="sc">{</span>valor<span class="sc">:.2f}</span><span class="ss"> realizado! Saldo atual: R$ </span><span class="sc">{</span>saldo<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb44-24"><a href="#cb44-24" aria-label="24"></a>        <span class="cf">elif</span> valor <span class="op">&gt;</span> saldo:</span>
+<span id="cb44-25"><a href="#cb44-25" aria-label="25"></a>            <span class="bu">print</span>(<span class="st">"Saldo insuficiente!"</span>)</span>
+<span id="cb44-26"><a href="#cb44-26" aria-label="26"></a>        <span class="cf">else</span>:</span>
+<span id="cb44-27"><a href="#cb44-27" aria-label="27"></a>            <span class="bu">print</span>(<span class="st">"Valor inválido!"</span>)</span>
+<span id="cb44-28"><a href="#cb44-28" aria-label="28"></a>    </span>
+<span id="cb44-29"><a href="#cb44-29" aria-label="29"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"3"</span>:</span>
+<span id="cb44-30"><a href="#cb44-30" aria-label="30"></a>        <span class="bu">print</span>(<span class="ss">f"Saldo atual: R$ </span><span class="sc">{</span>saldo<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb44-31"><a href="#cb44-31" aria-label="31"></a>    </span>
+<span id="cb44-32"><a href="#cb44-32" aria-label="32"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"4"</span>:</span>
+<span id="cb44-33"><a href="#cb44-33" aria-label="33"></a>        <span class="bu">print</span>(<span class="st">"Obrigado por usar o Banco Python!"</span>)</span>
+<span id="cb44-34"><a href="#cb44-34" aria-label="34"></a>        <span class="cf">break</span></span>
+<span id="cb44-35"><a href="#cb44-35" aria-label="35"></a>    </span>
+<span id="cb44-36"><a href="#cb44-36" aria-label="36"></a>    <span class="cf">else</span>:</span>
+<span id="cb44-37"><a href="#cb44-37" aria-label="37"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>saldo = 0</code> - Inicializa saldo da conta com zero</li>
@@ -1433,50 +1436,50 @@ Fim</code></pre>
 <li><strong>Linhas 35-36:</strong> Tratam opção inválida</li>
 </ul>
 <p><strong>23. Calculadora de IMC com Histórico</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>historico <span class="op">=</span> []</span>
-<span id="cb45-2"><a href="#cb45-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb45-3"><a href="#cb45-3"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== CALCULADORA DE IMC ==="</span>)</span>
-<span id="cb45-4"><a href="#cb45-4"></a>    <span class="bu">print</span>(<span class="st">"1. Calcular IMC"</span>)</span>
-<span id="cb45-5"><a href="#cb45-5"></a>    <span class="bu">print</span>(<span class="st">"2. Ver Histórico"</span>)</span>
-<span id="cb45-6"><a href="#cb45-6"></a>    <span class="bu">print</span>(<span class="st">"3. Sair"</span>)</span>
-<span id="cb45-7"><a href="#cb45-7"></a>    </span>
-<span id="cb45-8"><a href="#cb45-8"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escolha uma opção: "</span>)</span>
-<span id="cb45-9"><a href="#cb45-9"></a>    </span>
-<span id="cb45-10"><a href="#cb45-10"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"1"</span>:</span>
-<span id="cb45-11"><a href="#cb45-11"></a>        nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite seu nome: "</span>)</span>
-<span id="cb45-12"><a href="#cb45-12"></a>        peso <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite seu peso (kg): "</span>))</span>
-<span id="cb45-13"><a href="#cb45-13"></a>        altura <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite sua altura (m): "</span>))</span>
-<span id="cb45-14"><a href="#cb45-14"></a>        </span>
-<span id="cb45-15"><a href="#cb45-15"></a>        imc <span class="op">=</span> peso <span class="op">/</span> (altura <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb45-16"><a href="#cb45-16"></a>        </span>
-<span id="cb45-17"><a href="#cb45-17"></a>        <span class="cf">if</span> imc <span class="op">&lt;</span> <span class="fl">18.5</span>:</span>
-<span id="cb45-18"><a href="#cb45-18"></a>            classificacao <span class="op">=</span> <span class="st">"Abaixo do peso"</span></span>
-<span id="cb45-19"><a href="#cb45-19"></a>        <span class="cf">elif</span> imc <span class="op">&lt;</span> <span class="dv">25</span>:</span>
-<span id="cb45-20"><a href="#cb45-20"></a>            classificacao <span class="op">=</span> <span class="st">"Peso normal"</span></span>
-<span id="cb45-21"><a href="#cb45-21"></a>        <span class="cf">elif</span> imc <span class="op">&lt;</span> <span class="dv">30</span>:</span>
-<span id="cb45-22"><a href="#cb45-22"></a>            classificacao <span class="op">=</span> <span class="st">"Sobrepeso"</span></span>
-<span id="cb45-23"><a href="#cb45-23"></a>        <span class="cf">else</span>:</span>
-<span id="cb45-24"><a href="#cb45-24"></a>            classificacao <span class="op">=</span> <span class="st">"Obesidade"</span></span>
-<span id="cb45-25"><a href="#cb45-25"></a>        </span>
-<span id="cb45-26"><a href="#cb45-26"></a>        resultado <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">: IMC </span><span class="sc">{</span>imc<span class="sc">:.2f}</span><span class="ss"> - </span><span class="sc">{</span>classificacao<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb45-27"><a href="#cb45-27"></a>        historico.append(resultado)</span>
-<span id="cb45-28"><a href="#cb45-28"></a>        </span>
-<span id="cb45-29"><a href="#cb45-29"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb45-30"><a href="#cb45-30"></a>    </span>
-<span id="cb45-31"><a href="#cb45-31"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"2"</span>:</span>
-<span id="cb45-32"><a href="#cb45-32"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== HISTÓRICO ==="</span>)</span>
-<span id="cb45-33"><a href="#cb45-33"></a>        <span class="cf">if</span> historico:</span>
-<span id="cb45-34"><a href="#cb45-34"></a>            <span class="cf">for</span> i, resultado <span class="kw">in</span> <span class="bu">enumerate</span>(historico, <span class="dv">1</span>):</span>
-<span id="cb45-35"><a href="#cb45-35"></a>                <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb45-36"><a href="#cb45-36"></a>        <span class="cf">else</span>:</span>
-<span id="cb45-37"><a href="#cb45-37"></a>            <span class="bu">print</span>(<span class="st">"Nenhum cálculo realizado ainda."</span>)</span>
-<span id="cb45-38"><a href="#cb45-38"></a>    </span>
-<span id="cb45-39"><a href="#cb45-39"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"3"</span>:</span>
-<span id="cb45-40"><a href="#cb45-40"></a>        <span class="bu">print</span>(<span class="st">"Obrigado por usar a Calculadora de IMC!"</span>)</span>
-<span id="cb45-41"><a href="#cb45-41"></a>        <span class="cf">break</span></span>
-<span id="cb45-42"><a href="#cb45-42"></a>    </span>
-<span id="cb45-43"><a href="#cb45-43"></a>    <span class="cf">else</span>:</span>
-<span id="cb45-44"><a href="#cb45-44"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-label="1"></a>historico <span class="op">=</span> []</span>
+<span id="cb45-2"><a href="#cb45-2" aria-label="2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb45-3"><a href="#cb45-3" aria-label="3"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== CALCULADORA DE IMC ==="</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-label="4"></a>    <span class="bu">print</span>(<span class="st">"1. Calcular IMC"</span>)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-label="5"></a>    <span class="bu">print</span>(<span class="st">"2. Ver Histórico"</span>)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-label="6"></a>    <span class="bu">print</span>(<span class="st">"3. Sair"</span>)</span>
+<span id="cb45-7"><a href="#cb45-7" aria-label="7"></a>    </span>
+<span id="cb45-8"><a href="#cb45-8" aria-label="8"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escolha uma opção: "</span>)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-label="9"></a>    </span>
+<span id="cb45-10"><a href="#cb45-10" aria-label="10"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"1"</span>:</span>
+<span id="cb45-11"><a href="#cb45-11" aria-label="11"></a>        nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite seu nome: "</span>)</span>
+<span id="cb45-12"><a href="#cb45-12" aria-label="12"></a>        peso <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite seu peso (kg): "</span>))</span>
+<span id="cb45-13"><a href="#cb45-13" aria-label="13"></a>        altura <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite sua altura (m): "</span>))</span>
+<span id="cb45-14"><a href="#cb45-14" aria-label="14"></a>        </span>
+<span id="cb45-15"><a href="#cb45-15" aria-label="15"></a>        imc <span class="op">=</span> peso <span class="op">/</span> (altura <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb45-16"><a href="#cb45-16" aria-label="16"></a>        </span>
+<span id="cb45-17"><a href="#cb45-17" aria-label="17"></a>        <span class="cf">if</span> imc <span class="op">&lt;</span> <span class="fl">18.5</span>:</span>
+<span id="cb45-18"><a href="#cb45-18" aria-label="18"></a>            classificacao <span class="op">=</span> <span class="st">"Abaixo do peso"</span></span>
+<span id="cb45-19"><a href="#cb45-19" aria-label="19"></a>        <span class="cf">elif</span> imc <span class="op">&lt;</span> <span class="dv">25</span>:</span>
+<span id="cb45-20"><a href="#cb45-20" aria-label="20"></a>            classificacao <span class="op">=</span> <span class="st">"Peso normal"</span></span>
+<span id="cb45-21"><a href="#cb45-21" aria-label="21"></a>        <span class="cf">elif</span> imc <span class="op">&lt;</span> <span class="dv">30</span>:</span>
+<span id="cb45-22"><a href="#cb45-22" aria-label="22"></a>            classificacao <span class="op">=</span> <span class="st">"Sobrepeso"</span></span>
+<span id="cb45-23"><a href="#cb45-23" aria-label="23"></a>        <span class="cf">else</span>:</span>
+<span id="cb45-24"><a href="#cb45-24" aria-label="24"></a>            classificacao <span class="op">=</span> <span class="st">"Obesidade"</span></span>
+<span id="cb45-25"><a href="#cb45-25" aria-label="25"></a>        </span>
+<span id="cb45-26"><a href="#cb45-26" aria-label="26"></a>        resultado <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">: IMC </span><span class="sc">{</span>imc<span class="sc">:.2f}</span><span class="ss"> - </span><span class="sc">{</span>classificacao<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb45-27"><a href="#cb45-27" aria-label="27"></a>        historico.append(resultado)</span>
+<span id="cb45-28"><a href="#cb45-28" aria-label="28"></a>        </span>
+<span id="cb45-29"><a href="#cb45-29" aria-label="29"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb45-30"><a href="#cb45-30" aria-label="30"></a>    </span>
+<span id="cb45-31"><a href="#cb45-31" aria-label="31"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"2"</span>:</span>
+<span id="cb45-32"><a href="#cb45-32" aria-label="32"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== HISTÓRICO ==="</span>)</span>
+<span id="cb45-33"><a href="#cb45-33" aria-label="33"></a>        <span class="cf">if</span> historico:</span>
+<span id="cb45-34"><a href="#cb45-34" aria-label="34"></a>            <span class="cf">for</span> i, resultado <span class="kw">in</span> <span class="bu">enumerate</span>(historico, <span class="dv">1</span>):</span>
+<span id="cb45-35"><a href="#cb45-35" aria-label="35"></a>                <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>resultado<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb45-36"><a href="#cb45-36" aria-label="36"></a>        <span class="cf">else</span>:</span>
+<span id="cb45-37"><a href="#cb45-37" aria-label="37"></a>            <span class="bu">print</span>(<span class="st">"Nenhum cálculo realizado ainda."</span>)</span>
+<span id="cb45-38"><a href="#cb45-38" aria-label="38"></a>    </span>
+<span id="cb45-39"><a href="#cb45-39" aria-label="39"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"3"</span>:</span>
+<span id="cb45-40"><a href="#cb45-40" aria-label="40"></a>        <span class="bu">print</span>(<span class="st">"Obrigado por usar a Calculadora de IMC!"</span>)</span>
+<span id="cb45-41"><a href="#cb45-41" aria-label="41"></a>        <span class="cf">break</span></span>
+<span id="cb45-42"><a href="#cb45-42" aria-label="42"></a>    </span>
+<span id="cb45-43"><a href="#cb45-43" aria-label="43"></a>    <span class="cf">else</span>:</span>
+<span id="cb45-44"><a href="#cb45-44" aria-label="44"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>historico = []</code> - Inicializa lista para armazenar histórico de cálculos</li>
@@ -1507,45 +1510,45 @@ Fim</code></pre>
 <li><strong>Linhas 43-44:</strong> Tratam opção inválida</li>
 </ul>
 <p><strong>24. Jogo de Dados</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a><span class="im">import</span> random</span>
-<span id="cb46-2"><a href="#cb46-2"></a>pontuacao <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb46-3"><a href="#cb46-3"></a>rodadas <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb46-4"><a href="#cb46-4"></a></span>
-<span id="cb46-5"><a href="#cb46-5"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb46-6"><a href="#cb46-6"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">=== JOGO DE DADOS ==="</span>)</span>
-<span id="cb46-7"><a href="#cb46-7"></a>    <span class="bu">print</span>(<span class="ss">f"Pontuação: </span><span class="sc">{</span>pontuacao<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb46-8"><a href="#cb46-8"></a>    <span class="bu">print</span>(<span class="ss">f"Rodadas: </span><span class="sc">{</span>rodadas<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb46-9"><a href="#cb46-9"></a>    <span class="bu">print</span>(<span class="st">"1. Jogar"</span>)</span>
-<span id="cb46-10"><a href="#cb46-10"></a>    <span class="bu">print</span>(<span class="st">"2. Sair"</span>)</span>
-<span id="cb46-11"><a href="#cb46-11"></a>    </span>
-<span id="cb46-12"><a href="#cb46-12"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escolha uma opção: "</span>)</span>
-<span id="cb46-13"><a href="#cb46-13"></a>    </span>
-<span id="cb46-14"><a href="#cb46-14"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"1"</span>:</span>
-<span id="cb46-15"><a href="#cb46-15"></a>        dado1 <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb46-16"><a href="#cb46-16"></a>        dado2 <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb46-17"><a href="#cb46-17"></a>        soma <span class="op">=</span> dado1 <span class="op">+</span> dado2</span>
-<span id="cb46-18"><a href="#cb46-18"></a>        </span>
-<span id="cb46-19"><a href="#cb46-19"></a>        <span class="bu">print</span>(<span class="ss">f"Dado 1: </span><span class="sc">{</span>dado1<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb46-20"><a href="#cb46-20"></a>        <span class="bu">print</span>(<span class="ss">f"Dado 2: </span><span class="sc">{</span>dado2<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb46-21"><a href="#cb46-21"></a>        </span>
-<span id="cb46-22"><a href="#cb46-22"></a>        palpite <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Qual sua previsão para a soma? "</span>))</span>
-<span id="cb46-23"><a href="#cb46-23"></a>        </span>
-<span id="cb46-24"><a href="#cb46-24"></a>        <span class="cf">if</span> palpite <span class="op">==</span> soma:</span>
-<span id="cb46-25"><a href="#cb46-25"></a>            pontos <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb46-26"><a href="#cb46-26"></a>            <span class="bu">print</span>(<span class="ss">f"Parabéns! Você acertou! Ganhou </span><span class="sc">{</span>pontos<span class="sc">}</span><span class="ss"> pontos!"</span>)</span>
-<span id="cb46-27"><a href="#cb46-27"></a>        <span class="cf">else</span>:</span>
-<span id="cb46-28"><a href="#cb46-28"></a>            pontos <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb46-29"><a href="#cb46-29"></a>            <span class="bu">print</span>(<span class="ss">f"Quase! A soma foi </span><span class="sc">{</span>soma<span class="sc">}</span><span class="ss">. Você ganhou </span><span class="sc">{</span>pontos<span class="sc">}</span><span class="ss"> pontos pela tentativa."</span>)</span>
-<span id="cb46-30"><a href="#cb46-30"></a>        </span>
-<span id="cb46-31"><a href="#cb46-31"></a>        pontuacao <span class="op">+=</span> pontos</span>
-<span id="cb46-32"><a href="#cb46-32"></a>        rodadas <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb46-33"><a href="#cb46-33"></a>    </span>
-<span id="cb46-34"><a href="#cb46-34"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"2"</span>:</span>
-<span id="cb46-35"><a href="#cb46-35"></a>        <span class="bu">print</span>(<span class="ss">f"Jogo encerrado! Pontuação final: </span><span class="sc">{</span>pontuacao<span class="sc">}</span><span class="ss"> em </span><span class="sc">{</span>rodadas<span class="sc">}</span><span class="ss"> rodadas"</span>)</span>
-<span id="cb46-36"><a href="#cb46-36"></a>        <span class="cf">break</span></span>
-<span id="cb46-37"><a href="#cb46-37"></a>    </span>
-<span id="cb46-38"><a href="#cb46-38"></a>    <span class="cf">else</span>:</span>
-<span id="cb46-39"><a href="#cb46-39"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-label="1"></a><span class="im">import</span> random</span>
+<span id="cb46-2"><a href="#cb46-2" aria-label="2"></a>pontuacao <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-label="3"></a>rodadas <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-label="4"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-label="5"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb46-6"><a href="#cb46-6" aria-label="6"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">=== JOGO DE DADOS ==="</span>)</span>
+<span id="cb46-7"><a href="#cb46-7" aria-label="7"></a>    <span class="bu">print</span>(<span class="ss">f"Pontuação: </span><span class="sc">{</span>pontuacao<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-label="8"></a>    <span class="bu">print</span>(<span class="ss">f"Rodadas: </span><span class="sc">{</span>rodadas<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb46-9"><a href="#cb46-9" aria-label="9"></a>    <span class="bu">print</span>(<span class="st">"1. Jogar"</span>)</span>
+<span id="cb46-10"><a href="#cb46-10" aria-label="10"></a>    <span class="bu">print</span>(<span class="st">"2. Sair"</span>)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-label="11"></a>    </span>
+<span id="cb46-12"><a href="#cb46-12" aria-label="12"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escolha uma opção: "</span>)</span>
+<span id="cb46-13"><a href="#cb46-13" aria-label="13"></a>    </span>
+<span id="cb46-14"><a href="#cb46-14" aria-label="14"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"1"</span>:</span>
+<span id="cb46-15"><a href="#cb46-15" aria-label="15"></a>        dado1 <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb46-16"><a href="#cb46-16" aria-label="16"></a>        dado2 <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb46-17"><a href="#cb46-17" aria-label="17"></a>        soma <span class="op">=</span> dado1 <span class="op">+</span> dado2</span>
+<span id="cb46-18"><a href="#cb46-18" aria-label="18"></a>        </span>
+<span id="cb46-19"><a href="#cb46-19" aria-label="19"></a>        <span class="bu">print</span>(<span class="ss">f"Dado 1: </span><span class="sc">{</span>dado1<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb46-20"><a href="#cb46-20" aria-label="20"></a>        <span class="bu">print</span>(<span class="ss">f"Dado 2: </span><span class="sc">{</span>dado2<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb46-21"><a href="#cb46-21" aria-label="21"></a>        </span>
+<span id="cb46-22"><a href="#cb46-22" aria-label="22"></a>        palpite <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Qual sua previsão para a soma? "</span>))</span>
+<span id="cb46-23"><a href="#cb46-23" aria-label="23"></a>        </span>
+<span id="cb46-24"><a href="#cb46-24" aria-label="24"></a>        <span class="cf">if</span> palpite <span class="op">==</span> soma:</span>
+<span id="cb46-25"><a href="#cb46-25" aria-label="25"></a>            pontos <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb46-26"><a href="#cb46-26" aria-label="26"></a>            <span class="bu">print</span>(<span class="ss">f"Parabéns! Você acertou! Ganhou </span><span class="sc">{</span>pontos<span class="sc">}</span><span class="ss"> pontos!"</span>)</span>
+<span id="cb46-27"><a href="#cb46-27" aria-label="27"></a>        <span class="cf">else</span>:</span>
+<span id="cb46-28"><a href="#cb46-28" aria-label="28"></a>            pontos <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb46-29"><a href="#cb46-29" aria-label="29"></a>            <span class="bu">print</span>(<span class="ss">f"Quase! A soma foi </span><span class="sc">{</span>soma<span class="sc">}</span><span class="ss">. Você ganhou </span><span class="sc">{</span>pontos<span class="sc">}</span><span class="ss"> pontos pela tentativa."</span>)</span>
+<span id="cb46-30"><a href="#cb46-30" aria-label="30"></a>        </span>
+<span id="cb46-31"><a href="#cb46-31" aria-label="31"></a>        pontuacao <span class="op">+=</span> pontos</span>
+<span id="cb46-32"><a href="#cb46-32" aria-label="32"></a>        rodadas <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb46-33"><a href="#cb46-33" aria-label="33"></a>    </span>
+<span id="cb46-34"><a href="#cb46-34" aria-label="34"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"2"</span>:</span>
+<span id="cb46-35"><a href="#cb46-35" aria-label="35"></a>        <span class="bu">print</span>(<span class="ss">f"Jogo encerrado! Pontuação final: </span><span class="sc">{</span>pontuacao<span class="sc">}</span><span class="ss"> em </span><span class="sc">{</span>rodadas<span class="sc">}</span><span class="ss"> rodadas"</span>)</span>
+<span id="cb46-36"><a href="#cb46-36" aria-label="36"></a>        <span class="cf">break</span></span>
+<span id="cb46-37"><a href="#cb46-37" aria-label="37"></a>    </span>
+<span id="cb46-38"><a href="#cb46-38" aria-label="38"></a>    <span class="cf">else</span>:</span>
+<span id="cb46-39"><a href="#cb46-39" aria-label="39"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>import random</code> - Importa módulo para gerar números aleatórios</li>
@@ -1577,63 +1580,63 @@ Fim</code></pre>
 <li><strong>Linhas 39-40:</strong> Tratam opção inválida</li>
 </ul>
 <p><strong>25. Sistema de Notas</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>alunos <span class="op">=</span> {}</span>
-<span id="cb47-2"><a href="#cb47-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb47-3"><a href="#cb47-3"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== SISTEMA DE NOTAS ==="</span>)</span>
-<span id="cb47-4"><a href="#cb47-4"></a>    <span class="bu">print</span>(<span class="st">"1. Cadastrar Aluno"</span>)</span>
-<span id="cb47-5"><a href="#cb47-5"></a>    <span class="bu">print</span>(<span class="st">"2. Adicionar Nota"</span>)</span>
-<span id="cb47-6"><a href="#cb47-6"></a>    <span class="bu">print</span>(<span class="st">"3. Calcular Média"</span>)</span>
-<span id="cb47-7"><a href="#cb47-7"></a>    <span class="bu">print</span>(<span class="st">"4. Ver Relatório"</span>)</span>
-<span id="cb47-8"><a href="#cb47-8"></a>    <span class="bu">print</span>(<span class="st">"5. Sair"</span>)</span>
-<span id="cb47-9"><a href="#cb47-9"></a>    </span>
-<span id="cb47-10"><a href="#cb47-10"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escolha uma opção: "</span>)</span>
-<span id="cb47-11"><a href="#cb47-11"></a>    </span>
-<span id="cb47-12"><a href="#cb47-12"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"1"</span>:</span>
-<span id="cb47-13"><a href="#cb47-13"></a>        nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite o nome do aluno: "</span>)</span>
-<span id="cb47-14"><a href="#cb47-14"></a>        <span class="cf">if</span> nome <span class="kw">not</span> <span class="kw">in</span> alunos:</span>
-<span id="cb47-15"><a href="#cb47-15"></a>            alunos[nome] <span class="op">=</span> []</span>
-<span id="cb47-16"><a href="#cb47-16"></a>            <span class="bu">print</span>(<span class="ss">f"Aluno </span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss"> cadastrado com sucesso!"</span>)</span>
-<span id="cb47-17"><a href="#cb47-17"></a>        <span class="cf">else</span>:</span>
-<span id="cb47-18"><a href="#cb47-18"></a>            <span class="bu">print</span>(<span class="st">"Aluno já cadastrado!"</span>)</span>
-<span id="cb47-19"><a href="#cb47-19"></a>    </span>
-<span id="cb47-20"><a href="#cb47-20"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"2"</span>:</span>
-<span id="cb47-21"><a href="#cb47-21"></a>        nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite o nome do aluno: "</span>)</span>
-<span id="cb47-22"><a href="#cb47-22"></a>        <span class="cf">if</span> nome <span class="kw">in</span> alunos:</span>
-<span id="cb47-23"><a href="#cb47-23"></a>            nota <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a nota: "</span>))</span>
-<span id="cb47-24"><a href="#cb47-24"></a>            <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;=</span> nota <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
-<span id="cb47-25"><a href="#cb47-25"></a>                alunos[nome].append(nota)</span>
-<span id="cb47-26"><a href="#cb47-26"></a>                <span class="bu">print</span>(<span class="ss">f"Nota </span><span class="sc">{</span>nota<span class="sc">}</span><span class="ss"> adicionada para </span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb47-27"><a href="#cb47-27"></a>            <span class="cf">else</span>:</span>
-<span id="cb47-28"><a href="#cb47-28"></a>                <span class="bu">print</span>(<span class="st">"Nota deve estar entre 0 e 10!"</span>)</span>
-<span id="cb47-29"><a href="#cb47-29"></a>        <span class="cf">else</span>:</span>
-<span id="cb47-30"><a href="#cb47-30"></a>            <span class="bu">print</span>(<span class="st">"Aluno não encontrado!"</span>)</span>
-<span id="cb47-31"><a href="#cb47-31"></a>    </span>
-<span id="cb47-32"><a href="#cb47-32"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"3"</span>:</span>
-<span id="cb47-33"><a href="#cb47-33"></a>        nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite o nome do aluno: "</span>)</span>
-<span id="cb47-34"><a href="#cb47-34"></a>        <span class="cf">if</span> nome <span class="kw">in</span> alunos <span class="kw">and</span> alunos[nome]:</span>
-<span id="cb47-35"><a href="#cb47-35"></a>            media <span class="op">=</span> <span class="bu">sum</span>(alunos[nome]) <span class="op">/</span> <span class="bu">len</span>(alunos[nome])</span>
-<span id="cb47-36"><a href="#cb47-36"></a>            <span class="bu">print</span>(<span class="ss">f"Média de </span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>media<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb47-37"><a href="#cb47-37"></a>        <span class="cf">else</span>:</span>
-<span id="cb47-38"><a href="#cb47-38"></a>            <span class="bu">print</span>(<span class="st">"Aluno não encontrado ou sem notas!"</span>)</span>
-<span id="cb47-39"><a href="#cb47-39"></a>    </span>
-<span id="cb47-40"><a href="#cb47-40"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"4"</span>:</span>
-<span id="cb47-41"><a href="#cb47-41"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== RELATÓRIO ==="</span>)</span>
-<span id="cb47-42"><a href="#cb47-42"></a>        <span class="cf">if</span> alunos:</span>
-<span id="cb47-43"><a href="#cb47-43"></a>            <span class="cf">for</span> nome, notas <span class="kw">in</span> alunos.items():</span>
-<span id="cb47-44"><a href="#cb47-44"></a>                <span class="cf">if</span> notas:</span>
-<span id="cb47-45"><a href="#cb47-45"></a>                    media <span class="op">=</span> <span class="bu">sum</span>(notas) <span class="op">/</span> <span class="bu">len</span>(notas)</span>
-<span id="cb47-46"><a href="#cb47-46"></a>                    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">len</span>(notas)<span class="sc">}</span><span class="ss"> notas, média </span><span class="sc">{</span>media<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb47-47"><a href="#cb47-47"></a>                <span class="cf">else</span>:</span>
-<span id="cb47-48"><a href="#cb47-48"></a>                    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">: sem notas"</span>)</span>
-<span id="cb47-49"><a href="#cb47-49"></a>        <span class="cf">else</span>:</span>
-<span id="cb47-50"><a href="#cb47-50"></a>            <span class="bu">print</span>(<span class="st">"Nenhum aluno cadastrado!"</span>)</span>
-<span id="cb47-51"><a href="#cb47-51"></a>    </span>
-<span id="cb47-52"><a href="#cb47-52"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"5"</span>:</span>
-<span id="cb47-53"><a href="#cb47-53"></a>        <span class="bu">print</span>(<span class="st">"Sistema encerrado!"</span>)</span>
-<span id="cb47-54"><a href="#cb47-54"></a>        <span class="cf">break</span></span>
-<span id="cb47-55"><a href="#cb47-55"></a>    </span>
-<span id="cb47-56"><a href="#cb47-56"></a>    <span class="cf">else</span>:</span>
-<span id="cb47-57"><a href="#cb47-57"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-label="1"></a>alunos <span class="op">=</span> {}</span>
+<span id="cb47-2"><a href="#cb47-2" aria-label="2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb47-3"><a href="#cb47-3" aria-label="3"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== SISTEMA DE NOTAS ==="</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-label="4"></a>    <span class="bu">print</span>(<span class="st">"1. Cadastrar Aluno"</span>)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-label="5"></a>    <span class="bu">print</span>(<span class="st">"2. Adicionar Nota"</span>)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-label="6"></a>    <span class="bu">print</span>(<span class="st">"3. Calcular Média"</span>)</span>
+<span id="cb47-7"><a href="#cb47-7" aria-label="7"></a>    <span class="bu">print</span>(<span class="st">"4. Ver Relatório"</span>)</span>
+<span id="cb47-8"><a href="#cb47-8" aria-label="8"></a>    <span class="bu">print</span>(<span class="st">"5. Sair"</span>)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-label="9"></a>    </span>
+<span id="cb47-10"><a href="#cb47-10" aria-label="10"></a>    opcao <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Escolha uma opção: "</span>)</span>
+<span id="cb47-11"><a href="#cb47-11" aria-label="11"></a>    </span>
+<span id="cb47-12"><a href="#cb47-12" aria-label="12"></a>    <span class="cf">if</span> opcao <span class="op">==</span> <span class="st">"1"</span>:</span>
+<span id="cb47-13"><a href="#cb47-13" aria-label="13"></a>        nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite o nome do aluno: "</span>)</span>
+<span id="cb47-14"><a href="#cb47-14" aria-label="14"></a>        <span class="cf">if</span> nome <span class="kw">not</span> <span class="kw">in</span> alunos:</span>
+<span id="cb47-15"><a href="#cb47-15" aria-label="15"></a>            alunos[nome] <span class="op">=</span> []</span>
+<span id="cb47-16"><a href="#cb47-16" aria-label="16"></a>            <span class="bu">print</span>(<span class="ss">f"Aluno </span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss"> cadastrado com sucesso!"</span>)</span>
+<span id="cb47-17"><a href="#cb47-17" aria-label="17"></a>        <span class="cf">else</span>:</span>
+<span id="cb47-18"><a href="#cb47-18" aria-label="18"></a>            <span class="bu">print</span>(<span class="st">"Aluno já cadastrado!"</span>)</span>
+<span id="cb47-19"><a href="#cb47-19" aria-label="19"></a>    </span>
+<span id="cb47-20"><a href="#cb47-20" aria-label="20"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"2"</span>:</span>
+<span id="cb47-21"><a href="#cb47-21" aria-label="21"></a>        nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite o nome do aluno: "</span>)</span>
+<span id="cb47-22"><a href="#cb47-22" aria-label="22"></a>        <span class="cf">if</span> nome <span class="kw">in</span> alunos:</span>
+<span id="cb47-23"><a href="#cb47-23" aria-label="23"></a>            nota <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Digite a nota: "</span>))</span>
+<span id="cb47-24"><a href="#cb47-24" aria-label="24"></a>            <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;=</span> nota <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
+<span id="cb47-25"><a href="#cb47-25" aria-label="25"></a>                alunos[nome].append(nota)</span>
+<span id="cb47-26"><a href="#cb47-26" aria-label="26"></a>                <span class="bu">print</span>(<span class="ss">f"Nota </span><span class="sc">{</span>nota<span class="sc">}</span><span class="ss"> adicionada para </span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb47-27"><a href="#cb47-27" aria-label="27"></a>            <span class="cf">else</span>:</span>
+<span id="cb47-28"><a href="#cb47-28" aria-label="28"></a>                <span class="bu">print</span>(<span class="st">"Nota deve estar entre 0 e 10!"</span>)</span>
+<span id="cb47-29"><a href="#cb47-29" aria-label="29"></a>        <span class="cf">else</span>:</span>
+<span id="cb47-30"><a href="#cb47-30" aria-label="30"></a>            <span class="bu">print</span>(<span class="st">"Aluno não encontrado!"</span>)</span>
+<span id="cb47-31"><a href="#cb47-31" aria-label="31"></a>    </span>
+<span id="cb47-32"><a href="#cb47-32" aria-label="32"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"3"</span>:</span>
+<span id="cb47-33"><a href="#cb47-33" aria-label="33"></a>        nome <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Digite o nome do aluno: "</span>)</span>
+<span id="cb47-34"><a href="#cb47-34" aria-label="34"></a>        <span class="cf">if</span> nome <span class="kw">in</span> alunos <span class="kw">and</span> alunos[nome]:</span>
+<span id="cb47-35"><a href="#cb47-35" aria-label="35"></a>            media <span class="op">=</span> <span class="bu">sum</span>(alunos[nome]) <span class="op">/</span> <span class="bu">len</span>(alunos[nome])</span>
+<span id="cb47-36"><a href="#cb47-36" aria-label="36"></a>            <span class="bu">print</span>(<span class="ss">f"Média de </span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>media<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb47-37"><a href="#cb47-37" aria-label="37"></a>        <span class="cf">else</span>:</span>
+<span id="cb47-38"><a href="#cb47-38" aria-label="38"></a>            <span class="bu">print</span>(<span class="st">"Aluno não encontrado ou sem notas!"</span>)</span>
+<span id="cb47-39"><a href="#cb47-39" aria-label="39"></a>    </span>
+<span id="cb47-40"><a href="#cb47-40" aria-label="40"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"4"</span>:</span>
+<span id="cb47-41"><a href="#cb47-41" aria-label="41"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== RELATÓRIO ==="</span>)</span>
+<span id="cb47-42"><a href="#cb47-42" aria-label="42"></a>        <span class="cf">if</span> alunos:</span>
+<span id="cb47-43"><a href="#cb47-43" aria-label="43"></a>            <span class="cf">for</span> nome, notas <span class="kw">in</span> alunos.items():</span>
+<span id="cb47-44"><a href="#cb47-44" aria-label="44"></a>                <span class="cf">if</span> notas:</span>
+<span id="cb47-45"><a href="#cb47-45" aria-label="45"></a>                    media <span class="op">=</span> <span class="bu">sum</span>(notas) <span class="op">/</span> <span class="bu">len</span>(notas)</span>
+<span id="cb47-46"><a href="#cb47-46" aria-label="46"></a>                    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">len</span>(notas)<span class="sc">}</span><span class="ss"> notas, média </span><span class="sc">{</span>media<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb47-47"><a href="#cb47-47" aria-label="47"></a>                <span class="cf">else</span>:</span>
+<span id="cb47-48"><a href="#cb47-48" aria-label="48"></a>                    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">: sem notas"</span>)</span>
+<span id="cb47-49"><a href="#cb47-49" aria-label="49"></a>        <span class="cf">else</span>:</span>
+<span id="cb47-50"><a href="#cb47-50" aria-label="50"></a>            <span class="bu">print</span>(<span class="st">"Nenhum aluno cadastrado!"</span>)</span>
+<span id="cb47-51"><a href="#cb47-51" aria-label="51"></a>    </span>
+<span id="cb47-52"><a href="#cb47-52" aria-label="52"></a>    <span class="cf">elif</span> opcao <span class="op">==</span> <span class="st">"5"</span>:</span>
+<span id="cb47-53"><a href="#cb47-53" aria-label="53"></a>        <span class="bu">print</span>(<span class="st">"Sistema encerrado!"</span>)</span>
+<span id="cb47-54"><a href="#cb47-54" aria-label="54"></a>        <span class="cf">break</span></span>
+<span id="cb47-55"><a href="#cb47-55" aria-label="55"></a>    </span>
+<span id="cb47-56"><a href="#cb47-56" aria-label="56"></a>    <span class="cf">else</span>:</span>
+<span id="cb47-57"><a href="#cb47-57" aria-label="57"></a>        <span class="bu">print</span>(<span class="st">"Opção inválida!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Explicação linha por linha:</strong></p>
 <ul>
 <li><strong>Linha 1:</strong> <code>alunos = {}</code> - Inicializa dicionário para armazenar alunos e suas notas</li>
@@ -1785,16 +1788,16 @@ Fim</code></pre>
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {

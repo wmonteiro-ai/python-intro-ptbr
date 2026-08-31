@@ -2,19 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Wellington Rodrigo Monteiro">
-<meta name="dcterms.date" content="2025-10-19">
+<meta name="dcterms.date" content="2026-08-31">
 
 <title>Python Descomplicado</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -70,15 +76,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./01-Introducao-Ambiente.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb0c5cf05bdf90cece8b0edf1cffcb8d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -133,9 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Python Descomplicado</a> 
     </div>
@@ -330,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 19, 2025</p>
+      <p class="date">August 31, 2026</p>
     </div>
   </div>
   
@@ -452,16 +455,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
@@ -820,22 +823,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu"># Python Descomplicado: Aprendendo Algoritmos de Forma Simples {.unnumbered}</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>Olá! Sabe como é a vida quando se aprende algo novo, né? Muito conteúdo pela internet, muito curso, muita coisa sendo apresentada de jeitos diferentes e você não sabendo exatamente onde olhar ou como interpretar as coisas. A ideia deste livro não é a de vender sonhos ou coisas do tipo. Não é falar para você algo como *"estude isso, e torne-se alguém que ganha 50k por mês com apenas algumas semanas de estudo!"*. Até porque, afinal de contas, as empresas possuem interesse por profissionais que saibam resolver problemas com uma ampla bagagem técnica, e para ter esta bagagem é importante explicar como as coisas funcionam.</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a>Dito isso, estudar não deve ser algo cansativo ou chato. Por isso, resolvi fazer este livro. Ele é totalmente escrito em português e é voltado para estudantes que estão dando os seus primeiros passos em desenvolvimento de software. O objetivo é o de explicar algoritmos de uma forma simples usando a linguagem de programação Python.</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a>Python é uma das linguagens de programação mais populares e versáteis do mercado. Aprender a desenvolver algoritmos é algo que faz parte da vida de quem deseja atuar na área de programação, e Python ajuda muito neste processo. Primeiro, porque é uma linguagem relativamente fácil de aprender, possuindo uma sintaxe clara e direta.  Além disso, usamos Python dentro das empresas para uma ampla variedade de projetos, desde desenvolvimento web e de aplicativos móveis, até análise de dados e inteligência artificial.</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a>Porém, nem tudo são rosas. Aprender Python (ou qualquer outra linguagem) pode ser um desafio para quem não tem conhecimentos prévios em programação, principalmente pela falta de recursos em português que expliquem de forma clara e acessível os conceitos básicos da linguagem. Muitos cursos e materiais didáticos disponíveis na internet acabam sendo superficiais, enquanto outros são extensos demais e acabam desestimulando quem está começando a estudar a linguagem. Diria que existem vários outros cursos, tutoriais e guias bem mais curtos e simplificados do que este aqui, e que resumem com um parágrafo o que eu explico tomando um tempo consideravelmente maior. Porém, a diferença aqui é a de que eu quero que você **entenda e aprenda**, e não que **decore**. Construir uma base será essencial para você ter uma boa carreira, e é essa a minha preocupação com você, sabe?</span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a>Por isso, é importante ressaltar que este livro não é um tutorial ou um guia passo-a-passo. O seu foco é desenvolver um pensamento crítico para a resolução de problemas em vez de somente seguir instruções clicando em telas e apertando botões. Isso porque, como profissional e como disse antes, é fundamental saber como resolver problemas complexos dentro das empresas, e seguir tutoriais pode limitar a autonomia nesse sentido.</span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a>Ah, vale lembrar que este livro foi produzido por mim, um humano com experiência acadêmica e profissional na minha área de atuação. Isto posto, também é preciso informar que eu, na posição de cientista de dados que sou, utilizei técnicas de IA Generativa com muita cautela para complementar o meu próprio conteúdo. Mais especificamente, usei LLMs como ferramentas para algumas complementações de conteúdo pontuais. Dito isso, embora tenham sido ferramentas interessante para a produção deste livro, é importante lembrar que este é um livro que é criado e editado por um professor/profissional com conhecimento e experiência na área abordada.</span>
-<span id="cb1-14"><a href="#cb1-14"></a></span>
-<span id="cb1-15"><a href="#cb1-15"></a>::: {#quarto-toc}</span>
-<span id="cb1-16"><a href="#cb1-16"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="fu"># Python Descomplicado: Aprendendo Algoritmos de Forma Simples {.unnumbered}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>Olá! Sabe como é a vida quando se aprende algo novo, né? Muito conteúdo pela internet, muito curso, muita coisa sendo apresentada de jeitos diferentes e você não sabendo exatamente onde olhar ou como interpretar as coisas. A ideia deste livro não é a de vender sonhos ou coisas do tipo. Não é falar para você algo como *"estude isso, e torne-se alguém que ganha 50k por mês com apenas algumas semanas de estudo!"*. Até porque, afinal de contas, as empresas possuem interesse por profissionais que saibam resolver problemas com uma ampla bagagem técnica, e para ter esta bagagem é importante explicar como as coisas funcionam.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>Dito isso, estudar não deve ser algo cansativo ou chato. Por isso, resolvi fazer este livro. Ele é totalmente escrito em português e é voltado para estudantes que estão dando os seus primeiros passos em desenvolvimento de software. O objetivo é o de explicar algoritmos de uma forma simples usando a linguagem de programação Python.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>Python é uma das linguagens de programação mais populares e versáteis do mercado. Aprender a desenvolver algoritmos é algo que faz parte da vida de quem deseja atuar na área de programação, e Python ajuda muito neste processo. Primeiro, porque é uma linguagem relativamente fácil de aprender, possuindo uma sintaxe clara e direta.  Além disso, usamos Python dentro das empresas para uma ampla variedade de projetos, desde desenvolvimento web e de aplicativos móveis, até análise de dados e inteligência artificial.</span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>Porém, nem tudo são rosas. Aprender Python (ou qualquer outra linguagem) pode ser um desafio para quem não tem conhecimentos prévios em programação, principalmente pela falta de recursos em português que expliquem de forma clara e acessível os conceitos básicos da linguagem. Muitos cursos e materiais didáticos disponíveis na internet acabam sendo superficiais, enquanto outros são extensos demais e acabam desestimulando quem está começando a estudar a linguagem. Diria que existem vários outros cursos, tutoriais e guias bem mais curtos e simplificados do que este aqui, e que resumem com um parágrafo o que eu explico tomando um tempo consideravelmente maior. Porém, a diferença aqui é a de que eu quero que você **entenda e aprenda**, e não que **decore**. Construir uma base será essencial para você ter uma boa carreira, e é essa a minha preocupação com você, sabe?</span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>Por isso, é importante ressaltar que este livro não é um tutorial ou um guia passo-a-passo. O seu foco é desenvolver um pensamento crítico para a resolução de problemas em vez de somente seguir instruções clicando em telas e apertando botões. Isso porque, como profissional e como disse antes, é fundamental saber como resolver problemas complexos dentro das empresas, e seguir tutoriais pode limitar a autonomia nesse sentido.</span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a>Ah, vale lembrar que este livro foi produzido por mim, um humano com experiência acadêmica e profissional na minha área de atuação. Isto posto, também é preciso informar que eu, na posição de cientista de dados que sou, utilizei técnicas de IA Generativa com muita cautela para complementar o meu próprio conteúdo. Mais especificamente, usei LLMs como ferramentas para algumas complementações de conteúdo pontuais. Dito isso, embora tenham sido ferramentas interessante para a produção deste livro, é importante lembrar que este é um livro que é criado e editado por um professor/profissional com conhecimento e experiência na área abordada.</span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a>::: {#quarto-toc}</span>
+<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
